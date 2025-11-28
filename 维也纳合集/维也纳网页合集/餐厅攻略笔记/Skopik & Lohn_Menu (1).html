@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skopik & Lohn - Menu</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%);
+            min-height: 100vh;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .restaurant-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            letter-spacing: 2px;
+        }
+
+        .restaurant-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #a0522d;
+            margin-bottom: 12px;
+        }
+
+        .menu-date {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Menu Layout */
+        .menu-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .menu-layout-full {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .menu-section {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(160, 82, 45, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #a0522d, #cd853f, #a0522d);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #a0522d;
+        }
+
+        .section-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: #a0522d;
+            text-align: center;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        /* Menu Items */
+        .menu-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            border-radius: 10px;
+            border-left: 3px solid #a0522d;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(135deg, #f8f6f0 0%, #f0ebe2 100%);
+        }
+
+        .item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .item-description {
+            font-size: 0.85rem;
+            color: #555555;
+            line-height: 1.4;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a0522d;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Special Sections */
+        .tasting-menu {
+            border: 1px solid rgba(160, 82, 45, 0.15);
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f5 100%);
+        }
+
+        .tasting-menu .section-title {
+            color: #1a1a1a;
+            font-size: 1.6rem;
+        }
+
+        .price-highlight {
+            background: linear-gradient(135deg, #f8f6f0 0%, #f0ebe2 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid rgba(160, 82, 45, 0.2);
+        }
+
+        .price-highlight .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Additional Info */
+        .additional-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .cheese-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(245, 222, 179, 0.2);
+            border-radius: 15px;
+            border: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .cheese-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cheese-item {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #4a3728;
+            font-size: 0.9rem;
+        }
+
+        /* Decorative Elements */
+        .decorative-element {
+            text-align: center;
+            margin: 20px 0;
+            color: #8b4513;
+            font-size: 1.5rem;
+        }
+
+        /* Footer Section */
+        .footer-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 25px;
+            border: 1px solid rgba(160, 82, 45, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p {
+            color: #555555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .footer-column a {
+            color: #a0522d;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #1a1a1a;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #a0522d;
+            margin: 20px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .menu-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .menu-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .restaurant-title {
+                font-size: 2.5rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .restaurant-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .menu-section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section fade-in">
+            <h1 class="restaurant-title">SKOPIK & LOHN</h1>
+            <p class="restaurant-subtitle">Contemporary Austrian Cuisine</p>
+            <p class="menu-date">Vienna Restaurant Menu</p>
+        </div>
+
+        <!-- Menu Layout - First Row: DINE & DESSERTS -->
+        <div class="menu-layout">
+            <!-- Left Section - DINE -->
+            <div class="menu-section tasting-menu fade-in">
+                <h2 class="section-title">DINE</h2>
+                <p class="section-subtitle">Main Courses</p>
+
+                <div class="menu-item">
+                    <div class="item-name">BROT & RICOTTA</div>
+                    <div class="item-description">Madame Crousto, geschlagener Ricotta</div>
+                    <div class="item-price">4.5</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">NO BEEF TARTAR</div>
+                    <div class="item-description">Dry Aged Beef, Salzcitrone, Louhöl, Eigelb Crème, Nori, Focaccia</div>
+                    <div class="item-price">17</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">GOLDFORELLE</div>
+                    <div class="item-description">Zitronengras XO Sauce, Beurre Blanc, Fenchelsalat, Grapefruit</div>
+                    <div class="item-price">27</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">GNOCCHI</div>
+                    <div class="item-description">mit Trüffel</div>
+                    <div class="item-price">24</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">BURRATA</div>
+                    <div class="item-description">Wassermelone, Ponzu, Kräuteröl, Paprikalike, Thaibasilikum</div>
+                    <div class="item-price">14</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">WIENER SCHNITZEL</div>
+                    <div class="item-description">vom Kalb, Kartoffelsalat & Preiselbeeren</div>
+                    <div class="item-price">27</div>
+                </div>
+            </div>
+
+            <!-- Right Section - DESSERTS -->
+            <div class="menu-section fade-in">
+                <h2 class="section-title">DESSERTS</h2>
+                <p class="section-subtitle">Sweet Endings</p>
+
+                <div class="menu-item">
+                    <div class="item-name">SNICKERS S&L STYLE</div>
+                    <div class="item-description">Schokoladen Ganache, Erdnusscreme, Mascarpone Eis, Salzkarmell</div>
+                    <div class="item-price">12</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">TOPFENKNÖDEL</div>
+                    <div class="item-description">und Marille</div>
+                    <div class="item-price">10</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">ILE FLOITANTE</div>
+                    <div class="item-description">Vanillesauce, Mandel, Himbeere</div>
+                    <div class="item-price">12</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">LEMON CURD</div>
+                    <div class="item-description">Crumble, Ananas Sorbet, Kokos Marshmallow Schaum</div>
+                    <div class="item-price">12</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">CASSIS SORBET & CRÉMANT</div>
+                    <div class="item-price">9</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">HAUSGEMACHTES SCHOKOLADENEIS</div>
+                    <div class="item-description">Olivenöl, Maldon-Meersalz</div>
+                    <div class="item-price">6</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Layout - Second Row: APERITIF & WINE -->
+        <div class="menu-layout">
+            <!-- Left Section - APERITIF -->
+            <div class="menu-section fade-in">
+                <h2 class="section-title">APERITIF</h2>
+                <p class="section-subtitle">Pre-Dinner Drinks</p>
+
+                <div class="menu-item">
+                    <div class="item-name">BRUT</div>
+                    <div class="item-description">Loimer, Extra Brut Reserve</div>
+                    <div class="item-price">11</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">CHAMPAGNE BLANC DE BLANCS</div>
+                    <div class="item-description">Bergeronnes Marion, Premier Cru</div>
+                    <div class="item-price">15</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">ELDERFLOWER FIZZ</div>
+                    <div class="item-description">Vodka, Elderflower, Lemon, Soda</div>
+                    <div class="item-price">9</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">PORT & TONIC</div>
+                    <div class="item-description">white Port, Tonic Water</div>
+                    <div class="item-price">9</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">NEGRONI</div>
+                    <div class="item-description">Gin, red Vermouth, Campari</div>
+                    <div class="item-price">12</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">BIER</div>
+                    <div class="item-description">Wiener Original/Budweiser/Rotes Zwickl 0.5l</div>
+                    <div class="item-price">4.2</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">VILLEBYGG FJELL ØL</div>
+                    <div class="item-description">Cranberry, Lemongrass, Birch Leaf - non-alcoholic</div>
+                    <div class="item-price">10</div>
+                </div>
+            </div>
+
+            <!-- Right Section - WINE -->
+            <div class="menu-section fade-in">
+                <h2 class="section-title">WINE</h2>
+                <p class="section-subtitle">Wine Selection</p>
+
+                <div class="menu-item">
+                    <div class="item-name">GRÜNER VELTLINER</div>
+                    <div class="item-description">Reisinger, Simon Polt 2024</div>
+                    <div class="item-price">6 / 30</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">SAUVIGNON BLANC</div>
+                    <div class="item-description">Polz, Südsteiermark DAC 2023</div>
+                    <div class="item-price">8 / 48</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">CHARDONNAY</div>
+                    <div class="item-description">Prieler, Sinner 2023</div>
+                    <div class="item-price">7.5 / 41</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">ZWEIGELT</div>
+                    <div class="item-description">K&H Wendelin 2022</div>
+                    <div class="item-price">6 / 36</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">PINOT NOIR</div>
+                    <div class="item-description">Gsell Heinrich 2023</div>
+                    <div class="item-price">8 / 48</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">RIESLING</div>
+                    <div class="item-description">Hoch, Peter&Paul 2023</div>
+                    <div class="item-price">6.5 / 39</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">WIENER GEMISCHTER SATZ</div>
+                    <div class="item-description">Fuchs-Steinklammer, Klippe 2023</div>
+                    <div class="item-price">8 / 48</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">BLAUFRÄNKISCH</div>
+                    <div class="item-description">Rosi Schuster 2021</div>
+                    <div class="item-price">7.5 / 45</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Layout - Third Row: DRINKS (Full Width) -->
+        <div class="menu-layout-full">
+            <div class="menu-section fade-in">
+                <h2 class="section-title">DRINKS</h2>
+                <p class="section-subtitle">Cocktails & Mixed Drinks</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <div class="menu-item">
+                            <div class="item-name">LYCHEE MARTINI</div>
+                            <div class="item-description">Vodka, Lychee, Lemongrass, Kaffir Lime</div>
+                            <div class="item-price">14</div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-name">POPCORN OLD FASHIONED</div>
+                            <div class="item-description">Rum, Jägermeister Manifest, Popcorn Syrup, Angostura Bitters</div>
+                            <div class="item-price">15</div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-name">COSMOPOLITAN</div>
+                            <div class="item-description">Absolut Citron, Cranberry, Cointreau, Lime</div>
+                            <div class="item-price">12</div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-name">ESPRESSO MARTINI</div>
+                            <div class="item-description">Vodka, Borghetti, Vanilla, Espresso, Chocolate Bitters</div>
+                            <div class="item-price">14</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="menu-item">
+                            <div class="item-name">LAST WORD</div>
+                            <div class="item-description">Gin, Chartreuse, Maraschino, Lime</div>
+                            <div class="item-price">14</div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-name">HURRICANE HIGHBALL</div>
+                            <div class="item-description">White Rum, Passionfruit, Lime, Soda</div>
+                            <div class="item-price">12</div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-name">TASMANIAN DAIQUIRI</div>
+                            <div class="item-description">Tonka Bean infused Rum, Lime, Sugar, Tasmanian Pepper</div>
+                            <div class="item-price">14</div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-name">TOMMY'S MARGARITA</div>
+                            <div class="item-description">Tequila Blanco, Lime, Agave</div>
+                            <div class="item-price">14</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="additional-info fade-in">
+            <div class="decorative-element">❈ ❈ ❈</div>
+            <p class="price-note">Informationen über in unseren Speisen, die Allergene oder sonstige Zusatzstoffe enthalten, erhalten Sie auf Nachfrage bei unserem Servicepersonal.</p>
+            <div class="decorative-element">❈ ❈ ❈</div>
+        </div>
+
+        
+    </div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Initialize first element as visible
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+
+        // Menu item hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

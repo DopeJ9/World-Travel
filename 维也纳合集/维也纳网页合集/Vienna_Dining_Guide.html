@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vienna Dining Guide | Imperial Tastes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --secondary-gold: #C5A028;
+            --dark-text: #1a1a1a;
+            --light-text: #4a4a4a;
+            --cream-bg: #F9F7F2;
+            --card-bg: #FFFFFF;
+            --accent-red: #8a2be2; /* Adjusted for dining - maybe a wine red? Let's stick to gold theme mainly */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--cream-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--cream-bg), transparent);
+        }
+
+        .hero-content {
+            z-index: 1;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Intro Section */
+        .intro-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+            position: relative;
+        }
+
+        .intro-text::before {
+            content: '❦';
+            display: block;
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+        }
+
+        /* Grid Layout */
+        .dining-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            padding-bottom: 5rem;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            border-top: 3px solid var(--primary-gold);
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-gold);
+            font-weight: 700;
+            border: 1px solid var(--primary-gold);
+            padding: 4px 8px;
+            border-radius: 2px;
+        }
+
+        .tag.michelin {
+            background-color: #C41230; /* Michelin Red */
+            color: white;
+            border-color: #C41230;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+        }
+
+        .card p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .card-details {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .detail-row i {
+            color: var(--primary-gold);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+            color: var(--dark-text);
+        }
+
+        .btn-primary {
+            background-color: var(--dark-text);
+            color: white;
+            border-color: var(--dark-text);
+            grid-column: 1 / -1;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-gold);
+            border-color: var(--primary-gold);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: #f0f0f0;
+            color: var(--dark-text);
+            border-color: #bbb;
+        }
+
+        /* Number Badge */
+        .card-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: white;
+            padding: 10px 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            box-shadow: -2px 2px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background-color: white;
+            padding: 4rem;
+            margin-bottom: 5rem;
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+        }
+        
+        .featured-section::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--primary-gold);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .dining-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Discover Culinary Excellence</div>
+            <h1 class="hero-title">Vienna Dining</h1>
+            <p class="hero-desc">From imperial coffee houses to Michelin-starred innovation, explore the tastes that define the Austrian capital.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Intro -->
+        <div class="intro-text">
+            <p>Experience the rich culinary heritage of Vienna, where imperial traditions meet contemporary innovation. Savor classic Viennese dishes in elegant atmospheres and discover modern interpretations in award-winning restaurants.</p>
+        </div>
+
+        <!-- Dining Grid -->
+        <div class="dining-grid">
+
+            <!-- 1. Konstantin Filippou -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://github.com/HuaqingYuan1/my-html-demo/raw/main/Konstantin%20Filippou.jpg" alt="Konstantin Filippou" class="card-img">
+                    <div class="card-number">01</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tags">
+                        <span class="tag michelin">2 Michelin Stars</span>
+                        <span class="tag">Fine Dining</span>
+                    </div>
+                    <h3>Konstantin Filippou</h3>
+                    <p>A purist cuisine characterized by unbridled passion. A seamless blend of Austrian and Mediterranean influences in a minimalist setting.</p>
+                    
+                    <div class="card-details">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i> Innere Stadt</div>
+                        <div class="detail-row"><i class="fas fa-utensils"></i> Contemporary European</div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="餐厅预订网页/Konstantin Filippou_booking (1).html" class="btn btn-primary">Book Table</a>
+                        <a href="餐厅攻略笔记/Konstantin Filippou_Menu (1).html" class="btn btn-outline">Menu</a>
+                        <a href="餐厅攻略笔记/Konstantin Filippou_攻略笔记1 (1).html" class="btn btn-outline">Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. Gota -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?auto=format&fit=crop&w=1600&q=80" alt="GOTA Coffee" class="card-img">
+                    <div class="card-number">02</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tags">
+                        <span class="tag">Modern</span>
+                        <span class="tag">Coffee & Brunch</span>
+                    </div>
+                    <h3>GOTA Coffee Experts</h3>
+                    <p>Celebrated for its exceptional coffee and creative brunch menu. A modern, vibrant spot perfect for starting your day in Vienna.</p>
+                    
+                    <div class="card-details">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i> Vienna Center</div>
+                        <div class="detail-row"><i class="fas fa-utensils"></i> Modern Austrian</div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="餐厅预订网页/Gota_booking.html" class="btn btn-primary">Book Table</a>
+                        <a href="餐厅攻略笔记/Gota_menu.html" class="btn btn-outline">Menu</a>
+                        <a href="餐厅攻略笔记/gota攻略笔记1.html" class="btn btn-outline">Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3. Plachutta -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1600&q=80" alt="Plachutta" class="card-img">
+                    <div class="card-number">03</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tags">
+                        <span class="tag">Classic</span>
+                        <span class="tag">Tafelspitz</span>
+                    </div>
+                    <h3>Plachutta Stammhaus</h3>
+                    <p>The home of the world-famous Tafelspitz. Immerse yourself in imperial Viennese beef culture in a traditional, bustling atmosphere.</p>
+                    
+                    <div class="card-details">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i> Hietzing</div>
+                        <div class="detail-row"><i class="fas fa-utensils"></i> Traditional Austrian</div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="餐厅预订网页/Plachutta Stammhaus Hietzing_booking.html" class="btn btn-primary">Book Table</a>
+                        <a href="餐厅攻略笔记/Plachutta Stammhaus Hietzing_menu.html" class="btn btn-outline">Menu</a>
+                        <a href="餐厅攻略笔记/Plachutta Stammhaus Hietzing攻略笔记1.html" class="btn btn-outline">Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4. Skopik & Lohn -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://github.com/HuaqingYuan1/my-html-demo/raw/main/Skopik%26Lohn.jpg" alt="Skopik & Lohn" class="card-img">
+                    <div class="card-number">04</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tags">
+                        <span class="tag">Art Nouveau</span>
+                        <span class="tag">Bistro</span>
+                    </div>
+                    <h3>Skopik & Lohn</h3>
+                    <p>Known for its iconic ceiling art and Wiener Schnitzel. A perfect blend of Viennese charm and New York bistro vibes.</p>
+                    
+                    <div class="card-details">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i> Leopoldstadt</div>
+                        <div class="detail-row"><i class="fas fa-utensils"></i> Austrian-Mediterranean</div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="餐厅预订网页/Skopik & Lohn_booking.html" class="btn btn-primary">Book Table</a>
+                        <a href="餐厅攻略笔记/Skopik & Lohn_Menu (1).html" class="btn btn-outline">Menu</a>
+                        <a href="餐厅攻略笔记/Skopik & Lohn_攻略笔记1.html" class="btn btn-outline">Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 5. Wiener Restaurant -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://github.com/HuaqingYuan1/my-html-demo/raw/main/Wiener%20Restaurant.jpg" alt="Wiener Restaurant" class="card-img">
+                    <div class="card-number">05</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-tags">
+                        <span class="tag">Authentic</span>
+                        <span class="tag">Viennese</span>
+                    </div>
+                    <h3>Wiener Restaurant</h3>
+                    <p>A tribute to genuine Viennese hospitality. Enjoy authentic local delicacies in a setting that feels like a home away from home.</p>
+                    
+                    <div class="card-details">
+                        <div class="detail-row"><i class="fas fa-map-marker-alt"></i> City Center</div>
+                        <div class="detail-row"><i class="fas fa-utensils"></i> Traditional Viennese</div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="餐厅预订网页/Wiener Restaurant_booking.html" class="btn btn-primary">Book Table</a>
+                        <a href="餐厅攻略笔记/Wiener Restaurant_Menu (1).html" class="btn btn-outline">Menu</a>
+                        <a href="餐厅攻略笔记/Wiener Restaurant_攻略笔记1.html" class="btn btn-outline">Guide</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Featured Experience Section -->
+        <div class="featured-section">
+            <div style="font-size: 2rem; color: var(--primary-gold); margin-bottom: 1rem;">❦</div>
+            <h2>The Essence of Viennese Dining</h2>
+            <p style="max-width: 600px; margin: 1.5rem auto; color: #666;">
+                Vienna is the only city in the world to have a cuisine named after it. From the crispy Schnitzel to the delicate Apfelstrudel, every bite tells a story of history, culture, and passion.
+            </p>
+            <a href="#" style="color: var(--dark-text); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--primary-gold); padding-bottom: 2px;">Explore Culinary History</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Simple scroll reveal effect
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 100) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

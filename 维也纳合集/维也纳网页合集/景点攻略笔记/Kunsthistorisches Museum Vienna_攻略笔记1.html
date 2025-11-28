@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guide 1 | Kunsthistorisches Museum Vienna — Quick Visit Guide</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600;700&display=swap">
+
+  <style>
+    :root{
+      --navy:#1c4d3c; --navy-2:#25664d;      /* primary deep green */
+      --gold:#3f8f5e; --gold-2:#52a774;      /* secondary mid green */
+      --ink:#1f2d24; --muted:#5b7865;        /* body text + muted green-gray */
+      --bg1:#f7fbf8; --bg2:#eef6f0;          /* gentle white-to-mint gradient */
+      --radius:14px; --shadow:0 8px 22px rgba(0,0,0,.08);
+
+      --blue:#43c27b; --blue-2:#68d49a;      /* pill gradient now bright green */
+      --row-bd:#d7eadf;                      /* card borders */
+      --green-bg:#e8f8ef; --green-bd:#b8e6ca; --accent:#ef4444;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.7; color:var(--ink);
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+    }
+
+    /* container keeps fixed width for social bar + title + content */
+    .container{max-width:1100px;margin:0 auto;padding:36px 20px}
+
+    /* Social bar (kept) */
+    .social-stats{
+      display:flex;justify-content:center;gap:28px;background:#fff;
+      border-radius:999px;padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow)
+    }
+    .stat-item{display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:600}
+    .stat-item i{color:var(--gold)}
+    .stat-number{color:var(--gold-2);font-weight:800}
+
+    /* Title band (kept) */
+    .note-header{
+      background:var(--navy);color:#fff;padding:40px 20px;border-radius:16px;
+      margin-bottom:18px;box-shadow:var(--shadow);text-align:center
+    }
+    .note-title{font-family:"Playfair Display",serif;font-size:28px;font-weight:800;letter-spacing:.2px;margin-bottom:6px}
+    .note-subtitle{font-size:15px;opacity:.95}
+
+    /* Below-hero block (NEW) — still inside .container so width stays the same */
+    .below-hero{margin-top:6px}
+
+    /* headline */
+    .highlight-wrap{margin:6px 0 14px}
+    .highlight-title{
+      display:flex;align-items:center;gap:8px;color:#0f172a;font-size:20px;font-weight:900;
+      margin:0 0 10px;border-bottom:1px solid #eef2f7;padding-bottom:6px
+    }
+
+    /* one-row highlight pills */
+    .hi-list{display:grid;gap:10px}
+    .hi-item{
+      display:grid;grid-template-columns:auto 1fr;gap:12px;background:#fff;
+      border:1px solid var(--row-bd);border-radius:12px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,.04)
+    }
+    .hi-num{
+      width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      box-shadow:0 2px 6px rgba(22,119,255,.25)
+    }
+    .hi-body{min-width:0}
+    .hi-heading{margin:0 0 4px;font-size:16px;font-weight:800;color:#1f2937}
+    .hi-heading .sep{opacity:.35;margin:0 .25em}
+    .hi-desc{margin:0;color:#667085;line-height:1.65;font-size:14.5px}
+
+    /* visitor info card */
+    .visitor-card{
+      margin-top:14px;background:var(--green-bg);border:1px solid var(--green-bd);
+      border-radius:12px;padding:14px
+    }
+    .visitor-title{
+      margin:0 0 8px;color:var(--accent);font-size:18px;font-weight:900;
+      display:flex;align-items:center;gap:8px
+    }
+    .v-list{margin:0 0 10px 0;padding-left:0;list-style:none}
+    .v-list li{padding:6px 0;border-bottom:1px dashed rgba(0,0,0,.06)}
+    .v-list li:last-child{border-bottom:none}
+    .muted{color:#6b7280}
+
+    .chiplist{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      background:#e6f0ff;color:#0b57d0;border:1px solid #cfe0ff;
+      font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px
+    }
+
+    /* main content card */
+    .note-content{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-top:16px}
+
+    @media (max-width:680px){
+      .hi-item{padding:10px}
+      .hi-heading{font-size:15.5px}
+      .hi-desc{font-size:14px}
+      .note-content{padding:18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Likes / Comments / Shares (kept, same width) -->
+    <div class="social-stats">
+      <div class="stat-item"><i class="fa-solid fa-heart" style="color:#e63946"></i><span class="stat-number" style="color:#e63946">1548</span><span style="color:#1f2d24">Likes</span></div>
+      <div class="stat-item"><i class="fa-solid fa-comment" style="color:#e63946"></i><span class="stat-number" style="color:#e63946">203</span><span style="color:#1f2d24">Comments</span></div>
+      <div class="stat-item"><i class="fa-solid fa-share" style="color:#e63946"></i><span class="stat-number" style="color:#e63946">412</span><span style="color:#1f2d24">Shares</span></div>
+    </div>
+    
+    <!-- Title (kept, same width) -->
+    <header class="note-header">
+      <h1 class="note-title">Guide 1 | Kunsthistorisches Museum Vienna — Quick Visit Guide</h1>
+    </header>
+
+    <!-- Ideal For Module -->
+    <style>
+      .best-for-module{
+        display:flex;
+        flex-direction:column;
+        gap:6px;
+        padding:16px 20px;
+        background:#f7fbf8;
+        border-left:5px solid #43c27b;
+        border-radius:12px;
+        box-shadow:0 6px 18px rgba(22,77,60,.08);
+        color:#1f2d24;
+      }
+      .best-for-module strong{
+        color:#25664d;
+      }
+    </style>
+    
+    <div class="best-for-module">
+      <p><strong>Ideal for:</strong> Visitors with limited time who wish to focus on the museum's key highlights</p>
+      <p><strong>Estimated visit duration:</strong> around 2 hours</p>
+    </div>
+
+    <!-- About the Museum -->
+    <div class="visitor-card">
+      <h2 class="visitor-title" style="color:#25664d">
+        <span style="color:#7b7b7b">🏛</span> About the Museum
+      </h2>
+      <ul class="v-list">
+        <li>The Kunsthistorisches Museum Vienna is one of the city's most iconic cultural landmarks. It houses the priceless art collection of the Habsburg dynasty, including numerous world-renowned masterpieces — a must-see for all art lovers.</li>
+      </ul>      
+    </div>
+                
+    
+    <!-- Recommended Route Overview -->
+    <section class="route-section">
+      <style>
+        .route-section{margin:8px 0 18px 0}
+        .route-card{background:#ffffff;border:1px solid #e5efe9;border-radius:14px;box-shadow:0 6px 18px rgba(22,77,60,.06);padding:16px 18px}
+        .route-title{display:flex;align-items:center;gap:8px;font-weight:900;color:#1f2937;margin-bottom:8px}
+        .route-block{margin:12px 0}
+        .route-block b{color:#0f172a}
+        .route-list{margin:8px 0 0 18px}
+        .spot{margin:8px 0 0 0;list-style:none}
+        .spot .spot-inner{display:block;background:#fff7ed;border:1px solid #fde68a;border-left:6px solid #f59e0b;color:#1f2937;border-radius:10px;padding:8px 10px;font-weight:800}
+        .spot .tip{font-weight:600;color:#334155;margin-left:30px;margin-top:6px}
+        .sub-list{margin:6px 0 0 22px}
+        .time-tag{color:#10b981;font-weight:700;font-size:14px}
+      </style>
+      <div class="route-card">
+        <div class="route-title" style="font-size: larger;">🗺️ Recommended Route Overview</div>
+        <p style="margin-bottom:12px"><b>Total duration:</b> about 2 hours</p>
+        <p style="margin-bottom:12px"><b>Suggested route:</b> from top to bottom (start on the 1st floor → mezzanine [0.5 floor] → end at the main hall)</p>
+        <li class="spot">
+          <div class="spot-inner">💡 Tip: Audio guides in multiple languages are available for rent at the entrance counter.</div>
+        </li>
+
+        <div class="route-block">
+          <p><b>1️⃣ First Floor — Picture Gallery</b></p>
+          <p style="margin:8px 0 0 0"><span class="time-tag">⏱ Recommended time:</span> about 1 hour (focus on key works)</p>
+          <p style="margin:8px 0 4px 0;font-weight:700">Must-see masterpieces:</p>
+          <ul class="route-list">
+            <li><b>Pieter Bruegel the Elder</b> — <em>The Tower of Babel</em>, <em>Hunters in the Snow</em> (Room 1)</li>
+            <li><b>Raphael</b> — <em>Madonna of the Meadow</em> (Room R-3)</li>
+            <li><b>Caravaggio</b> — <em>Madonna of the Rosary</em> (Room B-1)</li>
+            <li><b>Johannes Vermeer</b> — <em>The Art of Painting</em> (Room D-2)</li>
+          </ul>
+        </div>
+
+        <div class="route-block">
+          <p><b>2️⃣ Main Dome Hall & Café</b></p>
+          <p style="margin:8px 0 0 0"><span class="time-tag">⏱ Recommended stop:</span> about 15 minutes</p>
+          <p style="margin:8px 0 4px 0"><b>Location:</b> between the first floor and the mezzanine (0.5 floor)</p>
+          <p style="margin:8px 0 4px 0;font-weight:700">Highlights:</p>
+          <ul class="route-list">
+            <li>Magnificent dome ceiling frescoes</li>
+            <li>A beautiful spot to take photos or enjoy a short break</li>
+          </ul>
+          <li class="spot" style="margin-top:8px">
+            <div class="spot-inner">📝 Note: Last order at the café is 16:00 (open until 20:30 on Thursdays)</div>
+          </li>
+        </div>
+
+        <div class="route-block">
+          <p><b>3️⃣ Mezzanine (0.5 Floor) — Imperial Treasury</b></p>
+          <p style="margin:8px 0 0 0"><span class="time-tag">⏱ Recommended time:</span> about 45 minutes</p>
+          <p style="margin:8px 0 4px 0;font-weight:700">Highlights:</p>
+          <ul class="route-list">
+            <li>Royal jewelry of the Habsburg dynasty</li>
+            <li>Empress Maria Theresa's personal collection</li>
+            <li>The Hungarian Holy Crown of St. Stephen</li>
+          </ul>
+          <li class="spot" style="margin-top:8px">
+            <div class="spot-inner">💡 Suggestion: Focus on the main royal collections; skip the minor exhibits if time is limited.</div>
+          </li>
+        </div>
+
+        <div class="route-block">
+          <p><b>4️⃣ Museum Shop</b></p>
+          <ul class="route-list">
+            <li>Before leaving, stop by the museum shop for art books or souvenirs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+      <!-- Practical Tips -->
+      <section class="tips-visit">
+        <style>
+          .tips-card{background:#dbf1ff;border:1px solid #e5efe9;border-radius:14px;box-shadow:0 6px 18px rgba(22,77,60,.06);padding:16px 18px}
+          .tips-title{display:flex;align-items:center;gap:8px;font-weight:900;color:#1f2937;margin-bottom:8px}
+          .tips-list{margin-left:18px}
+          .tips-hr{height:1px;background:#e5e7eb;margin:12px 0}
+          .tips-note{display:flex;align-items:flex-start;gap:8px;color:#334155}
+        </style>
+        <div class="tips-card">
+          <div class="tips-title">📍 Practical Tips</div>
+          <ul class="tips-list">
+            <li><b>Avoid crowds:</b> Most visitors start from the mezzanine; beginning on the first floor allows a smoother flow.</li>
+            <li><b>Highly recommended:</b> Rent an audio guide for in-depth stories and art history behind the main pieces.</li>
+            <li><b>Short on time?</b> Skip the café and proceed directly to the Imperial Treasury.</li>
+          </ul>
+          
+        </div>
+      </section>
+
+  </div>
+</body>
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px 28px 20px;color:#0f172a;font-family:'Playfair Display',serif;font-weight:800;font-size:20px;letter-spacing:.2px">🎉 Enjoy your efficient art journey!</div>
+</html>

@@ -1,0 +1,735 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>St. Stephen's Cathedral, Vienna | Tickets & Booking</title>
+  <meta name="description" content="Book tickets for St. Stephen's Cathedral, Vienna. Check opening times, pick a date in August 2026, select tours and performance admissions, and complete your booking.">
+
+  <style>
+    /* ========== Theme (Blue–Yellow Vintage) ========== */
+    :root{
+      --ink:#0d1b2a;           /* deep ink */
+      --navy:#16324f;          /* vintage navy */
+      --navy-d:#0f2740;        /* darker navy */
+      --gold:#caa24a;          /* muted gold */
+      --gold-d:#a88735;        /* darker gold */
+      --sand:#f6f1e4;          /* warm paper */
+      --cream:#fffaf0;         /* light cream */
+      --line:#e8e1d2;          /* paper line */
+      --accent:#d14b3d;        /* brick accent */
+      --shadow: 0 10px 24px rgba(13,27,42,.12);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ margin:0; padding:0; }
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, Georgia, serif;
+      color: var(--ink);
+      background: var(--sand);
+    }
+    a{ color: var(--navy); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{ max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    header{ position: sticky; top:0; z-index: 10; backdrop-filter: saturate(160%) blur(6px); background: rgba(246,241,228,.85); border-bottom: 1px solid var(--line); }
+    .nav{ height: 56px; display:flex; align-items:center; justify-content:space-between; }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.3px; color: var(--navy); }
+    .brand .mark{ width:12px; height:12px; border-radius:50%; background: radial-gradient(circle at 35% 35%, #f7e9b0, var(--gold)); box-shadow: 0 0 0 3px #f1e6c8 inset; }
+
+    main section{ padding: 36px 0; border-bottom: 1px solid var(--line); }
+    .section-title{ display:flex; align-items:center; gap:10px; color: var(--gold-d); font-weight:800; letter-spacing:.2px; font-size:24px; line-height:1.25; }
+    .section-title .dot{ width:12px; height:12px; border-radius:50%; background: var(--gold); box-shadow: 0 0 0 3px #f6e9c9 inset; }
+    /* Wrap title + content as one block */
+    .section-box > .container{ background: var(--cream); border:1px solid var(--line); border-radius:14px; box-shadow: var(--shadow); padding:14px 16px; }
+
+    /* ========== Hero ========== */
+    .cover{
+      position:relative;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(15,39,64,.55) 0%, rgba(15,39,64,.65) 100%),
+        url('https://raw.githubusercontent.com/HuaqingYuan1/my-html-demo/main/cover2.jpg') center/cover no-repeat;
+      color:#fff;
+    }
+    .cover .container{
+      padding: 64px 16px 96px;
+      min-height: 240px;
+      display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+    }
+    .cover .title{ margin:0 0 10px; font-size: 44px; line-height:1.15; font-family: Georgia, "Times New Roman", serif; text-shadow: 0 3px 8px rgba(0,0,0,.35); }
+    .cover .subtitle{ margin:0; opacity:.98; font-weight:700; }
+
+    /* ========== Cards & Grid ========== */
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .col-7{ grid-column: span 7; }
+    .col-5{ grid-column: span 5; }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 900px){ .grid{ grid-template-columns: repeat(6, 1fr); } .col-7,.col-5,.col-6,.col-4{ grid-column: span 6; } }
+
+    .card{ background: var(--cream); border:1px solid var(--line); border-radius: 14px; overflow:hidden; box-shadow: var(--shadow); }
+    .card .head{ padding: 14px 16px; background: linear-gradient(180deg, #fff 0%, #fff7e1 100%); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:12px; }
+    .card .head .badge{ display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:999px; background: var(--navy); color:#fff; font-weight:800; font-size:12px; letter-spacing:.3px; text-transform:uppercase; }
+    .card .head h3{ margin:0; font-size:18px; color: var(--navy); }
+    .card .body{ padding: 14px 16px; }
+
+    /* Centered title with blue gradients (Opening Time card) */
+    .card .head.center{ justify-content:center; }
+    .card .head.center h3{ display:flex; align-items:center; gap:12px; }
+    .card .head.center h3:before,
+    .card .head.center h3:after{ content:""; height:2px; border-radius:2px; opacity:.65; flex:1; }
+    .card .head.center h3:before{ background: linear-gradient(90deg, rgba(15,39,64,0), #16324f); }
+    .card .head.center h3:after{ background: linear-gradient(90deg, #16324f, rgba(15,39,64,0)); }
+
+    .muted{ color:#6a778d; }
+    .nowrap{ white-space: nowrap; }
+
+    /* ========== Opening Time Section ========== */
+    .opening-time-section{ background: transparent; color: inherit; padding:36px 0; }
+    .opening-time-section .section-title{ font-size:24px; line-height:1.25; }
+    .opening-time-section .section-title{ margin-bottom: 8px; }
+    .opening-grid{ display:grid; grid-template-columns: 1fr; gap:16px; }
+    @media (max-width: 900px){ .opening-grid{ grid-template-columns:1fr; } }
+    .opening-time-section .ot-hours{ list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+    .opening-time-section .ot-hours li{ display:flex; justify-content:space-between; align-items:center; background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-weight:700; }
+    .opening-time-section .ot-hours li strong{ color:#a88735; min-width:240px; flex-shrink:0; white-space:nowrap; }
+    @media (max-width: 520px){ .opening-time-section .ot-hours li strong{ min-width:0; white-space:normal; } }
+    .opening-time-section .ot-note{ margin-top:14px; font-weight:600; color:#6a778d; }
+
+    /* Important Notice box (gold, rounded, subtle) */
+    .notice{ background: linear-gradient(180deg, #fffaf0 0%, #fff2c9 100%); border:1px solid var(--line); border-bottom:4px solid var(--gold); border-radius:12px; padding:14px 16px; color: var(--gold-d); }
+    .notice .title{ display:flex; align-items:center; gap:10px; font-weight:900; margin:0 0 8px; color: var(--gold-d); }
+    .notice .icon{ font-size:18px; line-height:1; }
+    .notice ul{ margin:0; padding-left:20px; }
+    .notice li{ margin:6px 0; }
+    /* Subsection heading for pricing groups (no box) */
+    .subhead{ display:block; margin:10px 0 6px; padding:0; color: var(--gold-d); font-weight:900; letter-spacing:.3px; text-transform:uppercase; font-size:15px; }
+    /* Inline warning line for group ticket hint */
+    .warn-line{ display:flex; align-items:center; gap:8px; margin:10px 0 12px; padding:10px 12px; border-left:4px solid var(--gold); border:1px solid var(--line); background: linear-gradient(180deg, #fffaf0 0%, #fff2c9 100%); color: var(--gold-d); font-weight:500; border-radius:10px; }
+
+    /* ========== Calendar & Times ========== */
+    /* .calendar{ } */
+    .cal-header{ display:flex; align-items:center; justify-content:space-between; font-weight:800; color: var(--navy); margin-bottom:6px; }
+    .cal-grid{ display:grid; grid-template-columns: repeat(7, 1fr); gap:8px; }
+    .day-name{
+      text-align:center;
+      font-weight:700;
+      color:#fff;
+      font-size:12px;
+      padding:6px 0;
+      border: 1px solid var(--navy-d);
+      border-radius: 10px;
+      background: var(--navy);
+    }
+    .day{ text-align:center; padding:10px 0; border-radius:10px; border:1px solid var(--line); background:#fff; font-weight:700; cursor:pointer; }
+    .day.muted{ opacity:.45; cursor:default; }
+    .day:hover{ background:#fdf7d7; border-color:#f1e2a5; }
+    .day.selected{ background: #16324f; color:#fff; border-color:#16324f; }
+    .times{ display:flex; flex-wrap:wrap; gap:8px; }
+    .time{ padding:8px 10px; background:#fff; border:1px solid var(--line); border-radius:10px; cursor:pointer; font-weight:700; }
+    .time:hover{ background:#fdf7d7; border-color:#f1e2a5; }
+    .time.selected{ background:#16324f; color:#fff; border-color:#16324f; }
+    .time.sold{ background:#f3f6fb; color:#9aa3b2; border-color:#e1e6ef; cursor:not-allowed; position:relative; }
+    .time.sold:hover{ background:#f3f6fb; border-color:#e1e6ef; }
+    .time.sold::after{ content:" Sold out"; font-weight:800; color:#d14b3d; }
+    .hint{ color:#6a778d; font-weight:600; }
+
+    /* ========== Ticket rows ========== */
+    .row{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px dashed var(--line); }
+    .row:last-child{ border-bottom:none; }
+    .price{ font-weight:800; color: var(--navy); }
+    .qty{ display:flex; align-items:center; gap:8px; }
+    .qty input{ width:44px; text-align:center; padding:8px 6px; border-radius:10px; border:1px solid var(--line); background:#fff; font-weight:700; }
+    /* Hide number input spinners across browsers */
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+    input[type=number]{ -moz-appearance: textfield; appearance: textfield; }
+    .btn-ghost{ height:34px; padding:0 10px; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer; font-weight:800; }
+    .btn-ghost:hover{ background:#fdf7d7; border-color:#f1e2a5; }
+
+    /* ========== Summary & Book ========== */
+    .summary .total{ display:flex; align-items:center; justify-content:space-between; padding-top:10px; margin-top:10px; border-top:1px solid var(--line); font-weight:900; color: var(--navy); }
+    .left{ margin-left:8px; color: #a88735; font-weight:700; }
+    
+    .actions{ display:flex; gap:10px; }
+    .btn{ height:40px; padding:0 16px; border:none; border-radius:10px; font-weight:900; cursor:pointer; }
+    .btn.primary{ background: var(--navy); color:#fff; }
+    .btn.primary:disabled{ background:#9a9fa8; cursor:not-allowed; }
+    .btn.reset{ background:#fff; color: var(--navy); border:1px solid var(--line); }
+    .btn.reset:hover{ background:#fdf7d7; border-color:#f1e2a5; }
+
+    /* ========== Modal ========== */
+    .modal{ position:fixed; inset:0; background: rgba(13,27,42,.55); display:none; align-items:center; justify-content:center; z-index: 100; }
+    .modal .box{ width: min(560px, 92vw); background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow: var(--shadow); overflow:hidden; }
+    .modal .box .head{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--line); background: linear-gradient(180deg, #fff 0%, #fff7e1 100%); }
+    .modal .box .head h4{ margin:0; }
+    .modal .box .body{ padding:14px 16px; }
+    .modal .box .item{ display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px dashed var(--line); }
+    .modal .box .item:last-child{ border-bottom:none; }
+    .modal .close{ background:transparent; border:0; font-size:22px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="mark"></span>St. Stephen's Cathedral</div>
+      <nav>
+        <a href="#opening">Opening Time</a>
+        <a href="#calendar">Calendar</a>
+        <a href="#tickets">Tickets</a>
+        <a href="#summary">Summary</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="cover" aria-label="Top banner">
+    <div class="container">
+      <h1 class="title">St. Stephen's Cathedral, Vienna</h1>
+      <p class="subtitle" style="font-size: 24px;">Tickets & Booking </p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Opening Time -->
+    <section id="opening" class="opening-time-section section-box" aria-label="Opening Time">
+      <div class="container">
+        <div class="section-title"><span class="dot"></span><span>Opening Time</span></div>
+        <div class="card" aria-label="Opening time">
+          
+          <div class="body">
+            <div class="opening-grid">
+              <div>
+                <ul class="ot-hours" aria-label="Standard opening hours">
+                  <li><strong>Monday – Saturday</strong><span>09:00 – 11:30 and 13:00 – 16:30</span></li>
+                  <li><strong>Sunday & Public Holidays</strong><span>13:00 – 16:30</span></li>
+                </ul>
+                <div class="notice" role="note" aria-label="Important notice" style="margin-top:14px;">
+                  <div class="title"><span class="icon" aria-hidden="true">⚠️</span><span>Important Notice</span></div>
+                  <ul>
+                    <li>Last entry time is 1 hour before the closing time.</li>
+                    <li>Please arrive 15 minutes before the selected time.</li>
+                  </ul>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendar & Base Tickets -->
+    <section id="calendar" class="section-box">
+      <div class="container">
+        <div class="section-title"><span class="dot"></span><span>Pick Your Date & Time</span></div>
+        <div class="grid" style="margin-top:8px;">
+          <div class="col-7">
+            <div class="card calendar" aria-label="Calendar (August 2026)">
+              <div class="head"><h3>August 2026</h3></div>
+              <div class="body">
+                <div class="cal-header">
+                  <div class="muted">Select a day</div>
+                  <div id="sel-date" class="price">Select</div>
+                </div>
+                <div class="cal-grid" id="cal-days"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="card" aria-label="Time slots">
+              <div class="head"><h3>Available Time Slots</h3></div>
+              <div class="body">
+                <div class="hint" id="time-hint">Select a day to see available times.</div>
+                <div class="times" id="time-list" style="margin-top:10px;"></div>
+                <div class="cal-header" style="margin-top:8px;">
+                  <div class="muted">Selected time</div>
+                  <div id="sel-time" class="price">Select</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="col-6">
+            <div class="card" aria-label="Visit tickets">
+              <div class="head"><h3>Visit Tickets</h3></div>
+              <div class="body">
+                <div class="row"><div><strong>Adults</strong></div><div class="qty"><span class="price">€7.00</span><button class="btn-ghost" data-dec="visit_adult">–</button><input id="visit_adult" type="number" min="0" value="0"><button class="btn-ghost" data-inc="visit_adult">+</button></div></div>
+                <div class="row"><div><strong>Children (up to 14 years)</strong></div><div class="qty"><span class="price">€3.00</span><button class="btn-ghost" data-dec="visit_child">–</button><input id="visit_child" type="number" min="0" value="0"><button class="btn-ghost" data-inc="visit_child">+</button></div></div>
+              </div>
+            </div>
+            <div class="card" aria-label="Self-guided group tickets" style="margin-top:12px;">
+              <div class="head"><h3>Self-guided</h3></div>
+              <div class="body">
+                <div class="warn-line" role="note" aria-label="Group ticket notice"><span aria-hidden="true">⚠️</span><span>Please note that this is a group ticket price and can only be purchased for groups of more than 15 people.</span></div>
+                <div class="row"><div><strong>Adults</strong></div><div class="qty"><span class="price">€6.00</span><button class="btn-ghost" data-dec="group_adult">–</button><input id="group_adult" type="number" min="0" value="0"><button class="btn-ghost" data-inc="group_adult">+</button></div></div>
+                <div class="row"><div><strong>Pupils (from 14 to 18 years)</strong></div><div class="qty"><span class="price">€4.00</span><button class="btn-ghost" data-dec="group_pupil_14_18">–</button><input id="group_pupil_14_18" type="number" min="0" value="0"><button class="btn-ghost" data-inc="group_pupil_14_18">+</button></div></div>
+                <div class="row"><div><strong>Pupils (from 10 to 14 years)</strong></div><div class="qty"><span class="price">€2.00</span><button class="btn-ghost" data-dec="group_pupil_10_14">–</button><input id="group_pupil_10_14" type="number" min="0" value="0"><button class="btn-ghost" data-inc="group_pupil_10_14">+</button></div></div>
+                <div class="row"><div><strong>Elementary schools</strong></div><div class="qty"><span class="price">Free</span><button class="btn-ghost" data-dec="group_elementary">–</button><input id="group_elementary" type="number" min="0" value="0"><button class="btn-ghost" data-inc="group_elementary">+</button></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card" aria-label="Guided cathedral tours">
+              <div class="head"><h3>Guided Cathedral Tours</h3></div>
+              <div class="body">
+                <div class="notice" role="note" aria-label="Tour time and meeting" style="margin-bottom:10px;">
+                  <div class="title"><span class="icon" aria-hidden="true">⚠️</span><span>Tour Time & Meeting</span></div>
+                  <ul>
+                    <li><strong>10:30 English cathedral tour (Mon – Fri)</strong></li>
+                    <li><strong>15:30 German cathedral tour (Mon – Fri)</strong></li>
+                    <li>Meeting place: <strong>in front of the Domshop.</strong></li>
+                    <li>The guided tour lasts approximately <strong>30</strong> minutes.</li>
+                    <li>Please arrive at the meeting point <strong>5</strong> minutes before your tour time.</li>
+                  </ul>
+                </div>
+
+                <div class="warn-line" role="note" aria-label="Pricing notice" style="margin-bottom:10px;"><span aria-hidden="true">💡</span><span>Note: These are standalone ticket prices. You do not need to purchase Visit Tickets separately.</span></div>
+
+                <div class="subhead">Price (less than 15 people)</div>
+                <div class="row"><div><strong>Adults</strong></div><div class="qty"><span class="price">€7.00</span><button class="btn-ghost" data-dec="tg_ind_adult">–</button><input id="tg_ind_adult" type="number" min="0" value="0"><button class="btn-ghost" data-inc="tg_ind_adult">+</button></div></div>
+                <div class="row"><div><strong>Children (up to 14 years)</strong></div><div class="qty"><span class="price">€3.00</span><button class="btn-ghost" data-dec="tg_ind_child">–</button><input id="tg_ind_child" type="number" min="0" value="0"><button class="btn-ghost" data-inc="tg_ind_child">+</button></div></div>
+
+                <div class="subhead" style="margin-top:12px;">Group tours (15 or more people)</div>
+                <div class="row"><div><strong>School classes(up to 14 years) </strong></div><div class="qty"><span class="price">€3.00</span><button class="btn-ghost" data-dec="tg_group_school_u14">–</button><input id="tg_group_school_u14" type="number" min="0" value="0"><button class="btn-ghost" data-inc="tg_group_school_u14">+</button></div></div>
+                <div class="row"><div><strong>School classes(14–18 years) </strong></div><div class="qty"><span class="price">€5.00</span><button class="btn-ghost" data-dec="tg_group_school_14_18">–</button><input id="tg_group_school_14_18" type="number" min="0" value="0"><button class="btn-ghost" data-inc="tg_group_school_14_18">+</button></div></div>
+                <div class="row"><div><strong>Adults</strong> </div><div class="qty"><span class="price">€7.00</span><button class="btn-ghost" data-dec="tg_group_adult">–</button><input id="tg_group_adult" type="number" min="0" value="0"><button class="btn-ghost" data-inc="tg_group_adult">+</button></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Performance Admission Tickets -->
+    <section id="performance" class="section-box">
+      <div class="container">
+        <div class="section-title"><span class="dot"></span><span>Concerts</span></div>
+        <div class="grid" style="margin-top:8px;">
+          <div class="col-4">
+            <div class="card" aria-label="Antonio Vivaldi — The Four Seasons">
+              <div class="head"><h3>Antonio Vivaldi — The Four Seasons</h3></div>
+              <div class="body">
+                
+                <div class="vmeta">
+                  <p class="muted" style="margin:4px 0 10px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Schedule: </strong>Every Sat & Sun.</p>
+                  <p class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Starting Time</strong>: 8:30 PM</p>
+                  <p class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Performers</strong>：Harmonia Ensemble Wien</p>
+                  <div class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Program</strong>：</div>
+                  <p class="muted" style="margin:4px 0 8px 18px;">
+                  J. S. Bach — Violin Concerto No. 2 in E Major (BWV 1042)</p>
+                  <p class="muted" style="margin:4px 0 8px 18px;">
+                  A. Vivaldi — The Four Seasons (Op. 8)</p>
+                  </ul>
+                  <p class="muted" style="margin:6px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Total duration:</strong> 60 minutes, no intermission</p>
+                  <p id="vivaldi-note" class="muted" style="margin-top:6px; color:#a88735; font-weight:700; display:none;">Available only on Saturdays and Sundays.</p>
+                  
+                  
+                </div>
+                <div class="row"><div><strong>Category 1</strong></div><div class="qty"><span class="price">€45</span><button class="btn-ghost" data-dec="vivaldi_c1">–</button><input id="vivaldi_c1" type="number" min="0" value="0"><button class="btn-ghost" data-inc="vivaldi_c1">+</button><span id="left-vivaldi_c1" class="left"></span></div></div>
+                <div class="row"><div><strong>Category 2</strong></div><div class="qty"><span class="price">€35</span><button class="btn-ghost" data-dec="vivaldi_c2">–</button><input id="vivaldi_c2" type="number" min="0" value="0"><button class="btn-ghost" data-inc="vivaldi_c2">+</button><span id="left-vivaldi_c2" class="left"></span></div></div>
+                <div class="row"><div><strong>Category 3</strong></div><div class="qty"><span class="price">€25</span><button class="btn-ghost" data-dec="vivaldi_c3">–</button><input id="vivaldi_c3" type="number" min="0" value="0"><button class="btn-ghost" data-inc="vivaldi_c3">+</button><span id="left-vivaldi_c3" class="left"></span></div></div>
+                <p id="vivaldi-note" class="muted" style="margin-top:6px; color:#a88735; font-weight:700; display:none;">Available only on Saturdays and Sundays.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" aria-label="Riesen-Orgel-Konzert">
+              <div class="head"><h3>Riesen-Orgel-Konzert — Andrzej Szadejko (Danzig)</h3></div>
+              <div class="body">
+                <div class="vmeta">
+                  <p class="muted" style="margin:4px 0 10px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Data: </strong>August 28</p>
+                  <p class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Starting Time</strong>: 8:30 PM</p>
+                  <p class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Performer</strong>：Andrzej Szadejko</p>
+                  <div class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Program</strong>：</div>
+                  <p class="muted" style="margin:4px 0 8px 18px;">
+                    Franz Liszt-Prelude and Fugue on B-A-C-H</p>
+                  <p class="muted" style="margin:4px 0 8px 18px;">
+                    Aleksander Karczyński-from Sonata in B minor, Op. 38-Adagio di molto</p>
+                  
+                  </ul>
+                  <p class="muted" style="margin:6px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Total duration:</strong> 60 minutes, no intermission</p>
+                  <p id="riesen-note" class="muted" style="margin-top:6px; color:#a88735; font-weight:700; display:none;">Available only on August 28.</p>
+                </div>
+                <div class="row"><div><strong>Category 1</strong></div><div class="qty"><span class="price">€35.00</span><button class="btn-ghost" data-dec="riesen_c1">–</button><input id="riesen_c1" type="number" min="0" value="0"><button class="btn-ghost" data-inc="riesen_c1">+</button><span id="left-riesen_c1" class="left"></span></div></div>
+                <div class="row"><div><strong>Category 2</strong></div><div class="qty"><span class="price">€25.00</span><button class="btn-ghost" data-dec="riesen_c2">–</button><input id="riesen_c2" type="number" min="0" value="0"><button class="btn-ghost" data-inc="riesen_c2">+</button><span id="left-riesen_c2" class="left"></span></div></div>
+                <div class="row"><div><strong>Category 3</strong></div><div class="qty"><span class="price">€15.00</span><button class="btn-ghost" data-dec="riesen_c3">–</button><input id="riesen_c3" type="number" min="0" value="0"><button class="btn-ghost" data-inc="riesen_c3">+</button><span id="left-riesen_c3" class="left"></span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" aria-label="Mozart Requiem">
+              <div class="head"><h3>W. A. Mozart — Requiem</h3></div>
+              <div class="body">
+                <p class="muted" style="margin:4px 0 10px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Data: </strong>August 31</p>
+                <p class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Starting Time</strong>: 8:30 PM</p>
+                <p class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Performers</strong>：Salzburger Domchor,Singschul’ der Oper Graz et.</p>
+                <div class="muted" style="margin:4px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Program</strong>：</div>
+                <p class="muted" style="margin:4px 0 8px 18px;">
+                  W. A. Mozart — Requiem, K. 626</p>
+              
+                
+                </ul>
+                <p class="muted" style="margin:6px 0 8px;"><span aria-hidden="true" style="color: var(--navy); font-weight:900; margin-right:6px;">✔</span><strong>Total duration:</strong> 60 minutes, no intermission</p>
+                <p id="mozart-note" class="muted" style="margin-top:6px; color:#a88735; font-weight:700; display:none;">Available only on August 31.</p>
+                <div class="row"><div><strong>Category 1</strong></div><div class="qty"><span class="price">€50</span><button class="btn-ghost" data-dec="mozart_c2">–</button><input id="mozart_c2" type="number" min="0" value="0"><button class="btn-ghost" data-inc="mozart_c2">+</button><span id="left-mozart_c2" class="left"></span></div></div>
+                <div class="row"><div><strong>Category 2</strong></div><div class="qty"><span class="price">€35</span><button class="btn-ghost" data-dec="mozart_c3">–</button><input id="mozart_c3" type="number" min="0" value="0"><button class="btn-ghost" data-inc="mozart_c3">+</button><span id="left-mozart_c3" class="left"></span></div></div>
+                <div class="row"><div><strong>Category 3</strong></div><div class="qty"><span class="price">€25</span><button class="btn-ghost" data-dec="mozart_c4">–</button><input id="mozart_c4" type="number" min="0" value="0"><button class="btn-ghost" data-inc="mozart_c4">+</button><span id="left-mozart_c4" class="left"></span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary & Book -->
+    <section id="summary">
+      <div class="container">
+        <div class="section-title"><span class="dot"></span><span>Summary & Book</span></div>
+        <div class="grid" style="margin-top:8px;">
+          <div class="col-12">
+            <div class="card summary" aria-label="Summary & booking">
+              <div class="head"><h3>Review Your Selection</h3></div>
+              <div class="body">
+                <div class="row"><div>Date</div><div id="sum-date" class="muted">Select</div></div>
+                <div class="row"><div>Time</div><div id="sum-time" class="muted">Select</div></div>
+                <div class="row"><div>Tickets</div><div id="sum-tickets" class="muted">0 items</div></div>
+                <div class="total"><div>Total</div><div id="sum-total">€0.00</div></div>
+                <div class="actions" style="margin-top:14px;">
+                  <button id="btn-book" class="btn primary" disabled>Book Now</button>
+                  <button id="btn-reset" class="btn reset">Reset</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="book-modal" class="modal" aria-hidden="true" aria-label="Booking details">
+    <div class="box">
+      <div class="head">
+        <h4>Booking Details</h4>
+        <button id="modal-close" class="close" aria-label="Close">×</button>
+      </div>
+      <div class="body">
+        <div class="row"><div>Date</div><div id="m-date" class="muted">—</div></div>
+        <div class="row"><div>Time</div><div id="m-time" class="muted">—</div></div>
+        <div id="modal-lines" style="margin-top:6px;"></div>
+        <div class="total" style="margin-top:8px;"><div>Total</div><div id="m-total">€0.00</div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== Data ======
+    const PRICES = {
+      // base visit
+      visit_adult: 7.00, visit_child: 3.00,
+      // self-guided groups (15+)
+      group_adult: 6.00,
+      group_pupil_14_18: 4.00,
+      group_pupil_10_14: 2.00,
+      group_elementary: 0.00,
+      // guided cathedral tours
+      tg_ind_adult: 7.00,
+      tg_ind_child: 3.00,
+      tg_group_school_u14: 3.00,
+      tg_group_school_14_18: 5.00,
+      tg_group_adult: 7.00,
+      // performance (events & categories)
+      vivaldi_c1: 45, vivaldi_c2: 35, vivaldi_c3: 25,
+      riesen_c1: 35, riesen_c2: 25, riesen_c3: 15,
+      mozart_c2: 50, mozart_c3: 35, mozart_c4: 25
+    };
+    // Half-hour slots aligned with visiting hours (closed 11:30–13:00)
+    const TIMES = ['09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30'];
+
+    // Random sold-out generator per day (deterministic per selected day)
+    function rng(seed){
+      let s = seed % 2147483647; if (s <= 0) s += 2147483646;
+      return function(){ return (s = s * 16807 % 2147483647) / 2147483647; };
+    }
+    // Time window by weekday/holiday: Sundays and Aug 15 (public holiday) open only 13:00–16:30
+    function isPublicHoliday(day){
+      if (!day) return false;
+      const d = new Date(2026, 7, day); // August 2026
+      return d.getMonth() === 7 && d.getDate() === 15; // Assumption Day
+    }
+    function allowedTimesForDay(day){
+      if (!day) return TIMES;
+      const d = new Date(2026, 7, day);
+      const isSunday = d.getDay() === 0; // 0 = Sunday
+      const holiday = isPublicHoliday(day);
+      return (isSunday || holiday) ? TIMES.filter(t => t >= '13:00') : TIMES;
+    }
+    function soldSetForDay(day){
+      const r = rng(2026*10000 + 8*100 + day);
+      const pool = allowedTimesForDay(day).slice();
+      const count = 2 + Math.floor(r()*3); // 2–4 sold-out slots
+      const set = new Set();
+      while(set.size < count && pool.length){
+        const idx = Math.floor(r()*pool.length);
+        set.add(pool.splice(idx,1)[0]);
+      }
+      return set;
+    }
+
+    // ====== Elements ======
+    const calDays = document.getElementById('cal-days');
+    const timeList = document.getElementById('time-list');
+    const timeHint = document.getElementById('time-hint');
+    const selDate = document.getElementById('sel-date');
+    const selTime = document.getElementById('sel-time');
+
+    const sumDate = document.getElementById('sum-date');
+    const sumTime = document.getElementById('sum-time');
+    const sumTickets = document.getElementById('sum-tickets');
+    const sumTotal = document.getElementById('sum-total');
+    const btnBook = document.getElementById('btn-book');
+    const btnReset = document.getElementById('btn-reset');
+
+    const inputIds = ['visit_adult','visit_child','group_adult','group_pupil_14_18','group_pupil_10_14','group_elementary','tg_ind_adult','tg_ind_child','tg_group_school_u14','tg_group_school_14_18','tg_group_adult','vivaldi_c1','vivaldi_c2','vivaldi_c3','riesen_c1','riesen_c2','riesen_c3','mozart_c2','mozart_c3','mozart_c4'];
+    const qtyInputs = Object.fromEntries(inputIds.map(id=> [id, document.getElementById(id)]));
+
+    let selectedDay = null; // 1..31
+    let selectedTime = null; // string
+    let lastTotal = 0;
+
+    // ====== Helpers ======
+    const euro = n => new Intl.NumberFormat('en-AT', { style:'currency', currency:'EUR' }).format(n||0);
+    function dateStr(d){ return `Aug ${String(d).padStart(2,'0')}, 2026`; }
+
+    // ====== Calendar (August 2026) ======
+    function buildCalendar(){
+      calDays.innerHTML = '';
+      const names = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      names.forEach(n=>{
+        const dn = document.createElement('div'); dn.textContent = n; dn.className = 'day-name'; calDays.appendChild(dn);
+      });
+      const y = 2026, m = 7; // August
+      const first = new Date(y, m, 1);
+      // shift to Monday-based: JS getDay(): 0=Sun..6=Sat
+      const startOffset = (first.getDay() + 6) % 7; // 0..6, 0 means Mon
+      const daysInMonth = new Date(y, m+1, 0).getDate();
+      const totalCells = startOffset + daysInMonth;
+      for (let i=0;i<startOffset;i++){
+        const d = document.createElement('div'); d.className = 'day muted'; d.textContent = '';
+        calDays.appendChild(d);
+      }
+      for (let d=1; d<=daysInMonth; d++){
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'day'; btn.textContent = String(d);
+        btn.addEventListener('click', ()=> selectDay(d, btn));
+        calDays.appendChild(btn);
+      }
+    }
+
+    function rebuildTimes(){
+      timeList.innerHTML = '';
+      const base = selectedDay ? allowedTimesForDay(selectedDay) : TIMES;
+      const sold = selectedDay ? soldSetForDay(selectedDay) : new Set();
+      base.forEach(t=>{
+        const b = document.createElement('button'); b.type='button'; b.className='time'; b.textContent = t;
+        if (sold.has(t)){
+          b.classList.add('sold');
+          b.disabled = true; b.setAttribute('aria-disabled','true'); b.title = 'Sold out';
+        } else {
+          b.addEventListener('click', ()=> selectTime(t, b));
+        }
+        timeList.appendChild(b);
+      });
+    }
+
+    function selectDay(d, el){
+      selectedDay = d; selectedTime = null;
+      [...calDays.querySelectorAll('.day')].forEach(x=> x.classList.remove('selected'));
+      el.classList.add('selected');
+      rebuildTimes();
+      selDate.textContent = dateStr(d);
+      sumDate.textContent = dateStr(d);
+      selTime.textContent = 'Select';
+      sumTime.textContent = 'Select';
+      const isSunday = new Date(2026,7,d).getDay() === 0;
+      const holiday = isPublicHoliday(d);
+      if (holiday) {
+        timeHint.textContent = 'Public holiday — open 13:00–16:30. Choose a time.';
+      } else if (isSunday) {
+        timeHint.textContent = 'Sundays open 13:00–16:30. Choose a time.';
+      } else {
+        timeHint.textContent = 'Choose a time for your visit.';
+      }
+      enableOrDisableBook();
+    }
+    function selectTime(t, el){
+      selectedTime = t;
+      [...timeList.querySelectorAll('.time')].forEach(x=> x.classList.remove('selected'));
+      el.classList.add('selected');
+      selTime.textContent = t;
+      sumTime.textContent = t;
+      enableOrDisableBook();
+    }
+
+    // ====== Ticket counting ======
+    function countTickets(){
+      let items = 0; let total = 0;
+      for (const [k, input] of Object.entries(qtyInputs)){
+        const qty = Math.max(0, parseInt(input.value||'0',10));
+        if (!Number.isFinite(qty)) continue;
+        if (qty){ items += qty; total += qty * (PRICES[k]||0); }
+        input.value = String(qty);
+      }
+      lastTotal = total;
+      return { items, total };
+    }
+    function refreshSummary(){
+      const {items, total} = countTickets();
+      sumTickets.textContent = `${items} item${items===1?'':'s'}`;
+      sumTotal.textContent = euro(total);
+      updateRemainingUI();
+    }
+
+    function updateRemainingUI(){}
+    function enableOrDisableBook(){
+      // Helper to toggle availability for a set of ids and show/hide a note
+      function setAvail(ids, allowed, noteId){
+        const noteEl = noteId ? document.getElementById(noteId) : null;
+        ids.forEach(k=>{
+          const input = qtyInputs[k];
+          const inc = document.querySelector(`[data-inc="${k}"]`);
+          const dec = document.querySelector(`[data-dec="${k}"]`);
+          if (!input) return;
+          if (!allowed){ input.value = '0'; }
+          input.disabled = !allowed;
+          if (inc) inc.disabled = !allowed;
+          if (dec) dec.disabled = !allowed;
+        });
+        if (noteEl) noteEl.style.display = allowed ? 'none' : 'block';
+      }
+
+      // Enforce: Vivaldi only on Sat/Sun
+      const weekend = selectedDay ? ((()=>{ const d=new Date(2026,7,selectedDay).getDay(); return d===0||d===6; })()) : false;
+      setAvail(['vivaldi_c1','vivaldi_c2','vivaldi_c3'], weekend, 'vivaldi-note');
+
+      // Enforce: Riesen only on Aug 28
+      const is28 = selectedDay === 28;
+      setAvail(['riesen_c1','riesen_c2','riesen_c3'], !!is28, 'riesen-note');
+
+      // Enforce: Mozart only on Aug 31
+      const is31 = selectedDay === 31;
+      setAvail(['mozart_c2','mozart_c3','mozart_c4'], !!is31, 'mozart-note');
+
+      const {items, total} = countTickets();
+      const ok = !!selectedDay && !!selectedTime && items>0 && total>0;
+      btnBook.disabled = !ok;
+    }
+
+    function wireQtyButtons(){
+      document.querySelectorAll('[data-inc]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const k = btn.getAttribute('data-inc');
+          const i = qtyInputs[k];
+          const cur = Math.max(0, parseInt(i.value||'0',10));
+          i.value = String(cur+1);
+          refreshSummary(); enableOrDisableBook();
+        });
+      });
+      document.querySelectorAll('[data-dec]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const k = btn.getAttribute('data-dec');
+          const i = qtyInputs[k];
+          i.value = String(Math.max(0, parseInt(i.value||'0',10)-1));
+          refreshSummary(); enableOrDisableBook();
+        });
+      });
+      Object.values(qtyInputs).forEach(i=>{
+        i.addEventListener('input', ()=>{ 
+          const k = i.id;
+          let val = Math.max(0, parseInt(i.value||'0',10) || 0);
+          i.value = String(val);
+          refreshSummary(); enableOrDisableBook(); 
+        });
+      });
+    }
+
+    // ====== Modal ======
+    function openModal(){
+      const modal = document.getElementById('book-modal');
+      const ml = document.getElementById('modal-lines');
+      const mDate = document.getElementById('m-date');
+      const mTime = document.getElementById('m-time');
+      const mTotal = document.getElementById('m-total');
+      mDate.textContent = sumDate.textContent;
+      mTime.textContent = sumTime.textContent;
+
+      const labels = {
+        visit_adult:'Visit — Adults', visit_child:'Visit — Children (≤14)',
+        group_adult:'Self-guided Group — Adults',
+        group_pupil_14_18:'Self-guided Group — Pupils (14–18)',
+        group_pupil_10_14:'Self-guided Group — Pupils (10–14)',
+        group_elementary:'Self-guided Group — Elementary Schools',
+        tg_ind_adult:'Guided Tour (Individual) — Adults',
+        tg_ind_child:'Guided Tour (Individual) — Children (≤14)',
+        tg_group_school_u14:'Guided Tour (School, ≤14)',
+        tg_group_school_14_18:'Guided Tour (School, 14–18)',
+        tg_group_adult:'Guided Tour (Group 15+) — Adults',
+        vivaldi_c1:'Vivaldi — Category 1',
+        vivaldi_c2:'Vivaldi — Category 2',
+        vivaldi_c3:'Vivaldi — Category 3',
+        riesen_c1:'Riesen-Orgel-Konzert — Category 1',
+        riesen_c2:'Riesen-Orgel-Konzert — Category 2',
+        riesen_c3:'Riesen-Orgel-Konzert — Category 3',
+        mozart_c2:'Mozart Requiem — Category 2',
+        mozart_c3:'Mozart Requiem — Category 3',
+        mozart_c4:'Mozart Requiem — Category 4'
+      };
+      const lines = [];
+      for (const [k, label] of Object.entries(labels)){
+        const qty = parseInt(qtyInputs[k].value||'0',10) || 0;
+        if (!qty) continue;
+        const total = qty * (PRICES[k]||0);
+        lines.push({ label, qty, total });
+      }
+      ml.innerHTML = lines.map(li=> `
+        <div class="item"><span>${li.label} × ${li.qty}</span><span>${euro(li.total)}</span></div>
+      `).join('');
+      mTotal.textContent = euro(lastTotal);
+
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      const modal = document.getElementById('book-modal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    // ====== Events ======
+    btnBook.addEventListener('click', openModal);
+    btnReset.addEventListener('click', ()=>{
+      selectedDay = null; selectedTime = null;
+      selDate.textContent = 'Select'; selTime.textContent = 'Select';
+      sumDate.textContent = 'Select'; sumTime.textContent = 'Select';
+      Object.values(qtyInputs).forEach(i=> i.value = '0');
+      buildCalendar(); timeList.innerHTML = ''; timeHint.textContent = 'Select a day to see available times.';
+      refreshSummary(); enableOrDisableBook();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    document.getElementById('book-modal').addEventListener('click', (e)=>{ if (e.target.id === 'book-modal') closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeModal(); });
+
+    // ====== Init ======
+    buildCalendar();
+    refreshSummary();
+    wireQtyButtons();
+  </script>
+</body>
+</html>

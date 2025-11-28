@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konstantin Filippou Menu</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg-primary: #f6f3ee;
+      --bg-secondary: rgba(255, 255, 255, 0.9);
+      --text-primary: #2c2a28;
+      --text-muted: #6f6a63;
+      --accent: #c27f34;
+      --divider: rgba(194, 127, 52, 0.28);
+      --font-title: "Playfair Display", "Times New Roman", serif;
+      --font-body: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top right, rgba(255, 216, 164, 0.25), transparent 55%),
+                  radial-gradient(circle at bottom left, rgba(236, 200, 162, 0.2), transparent 60%),
+                  var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 70px;
+    }
+
+    .brand {
+      font-family: var(--font-title);
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      font-size: 0.95rem;
+      color: var(--accent);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 60px;
+    }
+
+    section {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.82) 60%),
+                  var(--bg-secondary);
+      border: 1px solid rgba(194, 127, 52, 0.18);
+      padding: 48px 44px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 40px -30px rgba(34, 30, 27, 0.4);
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(194, 127, 52, 0.2), transparent 65%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-title);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      color: #4a3b2e;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    p {
+      margin: 14px 0;
+      font-size: 0.98rem;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 34px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--divider), transparent);
+      margin: 20px 0 28px;
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin: 16px 0;
+      font-size: 0.95rem;
+    }
+
+    .price-line span:last-child {
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .pairing-group {
+      margin: 24px 0;
+    }
+
+    .pairing-group strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .pairing-group p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .footnote {
+      margin-top: 34px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .menu-grid {
+        gap: 40px;
+      }
+
+      section {
+        padding: 40px 32px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        padding: 40px 24px 80px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">Konstantin Filippou</div>
+      <div class="subtitle">Menu</div>
+    </header>
+
+    <div class="menu-grid">
+      <section>
+        <h1>Lunch</h1>
+        <p class="subtitle">Konstantin Filippou’s Lunch Classics</p>
+
+        <p><strong>Signature Dish:</strong></p>
+        <p>Brandade. Caviar. 49</p>
+        <p>Fish soup. Root vegetables. Aioli. 46</p>
+
+        <div class="divider"></div>
+
+        <p>Salmon trout. Peach. Radish.</p>
+        <p>Smoked eel. Porcini. Leek.</p>
+        <p>Artichoke. Truffle. Juniper.<br><em>or</em><br>Pike perch. Lemongrass. Tarragon.</p>
+        <p>Apricot. Saffron. Hazelnut.<br><em>or</em><br>Rose. Coconut. Strawberry.</p>
+
+        <div class="divider"></div>
+
+        <p>3 courses 69 | 4 courses 86 | 6 courses 139</p>
+        <p>Cover 9</p>
+
+        <p class="footnote">Prices in Euro, all taxes included. No tip included.</p>
+      </section>
+
+      <section>
+        <h1>Dinner</h1>
+        <h3>Prologue.</h3>
+        <p>Gillardeau Oyster. Pear. Artichoke. Tarragon Anglaise.</p>
+        <p>Sardine. Mussel remoulade. Beer radish.</p>
+        <p>Iced amalfi lemon. Caviar. Fermented rice. Brown butter.</p>
+        <p>Langoustine à la crème. Bouillon Noisette. Grapefruit. Cochayuyo. Mushroom.</p>
+        <p>Pike perch. Anchovies. Pepper. Nori.</p>
+        <p>Dry-aged salmon trout. Eel. Tomato. Sauce Albufeira.<br><em>or</em><br>Saddle of venison. Grape. Seafood Toffee. Vine shoots.<br>65</p>
+        <p>Apricot. Saffron. Hazelnut.<br>Rose. Coconut. Strawberry.</p>
+
+        <h3>Epilogue.</h3>
+        <p>7 courses salmon trout: 265<br>7 courses venison: 310<br>8 courses salmon trout: 285<br>8 courses venison: 330<br>9 courses: 350<br>Cover: 9</p>
+
+        <h3>Pairings</h3>
+        <div class="pairing-group">
+          <strong>Wine pairing</strong>
+          <p>7 glasses 135 | 8 glasses 150 | 9 glasses 165</p>
+        </div>
+        <div class="pairing-group">
+          <strong>Alcohol-free pairing</strong>
+          <p>7 glasses 90 | 8 glasses 105 | 9 glasses 120</p>
+        </div>
+        <div class="pairing-group">
+          <strong>Champagne pairing</strong>
+          <p>7 glasses 200 | 8 glasses 225 | 9 glasses 250</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTA Menu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --ink:#1f2a37;
+            --slate:#293242;
+            --accent:#bca27d;
+            --divider:#d9dfe8;
+            --bg:#f7f9fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .menu-wrapper {
+            max-width: 1000px;
+            margin: 50px auto 80px;
+            background: #fff;
+            padding: 60px 70px;
+            box-shadow: 0 24px 60px rgba(24, 45, 82, 0.12);
+            border-radius: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .logo-mark {
+            width: 72px;
+            margin: 0 auto 16px;
+        }
+
+        .logo-mark svg {
+            width: 100%;
+            fill: var(--slate);
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.4rem;
+            font-size: 1rem;
+            color: var(--slate);
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            letter-spacing: 0.18rem;
+            text-transform: uppercase;
+            color: #5c6780;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 34px 48px;
+        }
+
+        .menu-section {
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.18rem;
+            margin-bottom: 18px;
+            color: var(--slate);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 8px;
+        }
+
+        .section-subtitle {
+            font-size: 0.78rem;
+            letter-spacing: 0.16rem;
+            text-transform: uppercase;
+            color: #8b96ad;
+            margin-bottom: 18px;
+        }
+
+        .menu-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px dotted var(--divider);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--slate);
+        }
+
+        .item-desc {
+            grid-column: 1 / -1;
+            font-size: 0.92rem;
+            color: #536079;
+            margin-top: 6px;
+        }
+
+        .item-note {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 4px;
+            grid-column: 1 / -1;
+        }
+
+        .section-note {
+            font-size: 0.85rem;
+            color: #536079;
+            margin-top: 6px;
+            letter-spacing: 0.08rem;
+        }
+
+        .breakfast-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0 24px;
+        }
+
+        .breakfast-grid .menu-item {
+            border-bottom: none;
+        }
+
+        .menu-section.wide {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 720px) {
+            .menu-wrapper {
+                padding: 40px 28px;
+                margin: 30px 14px 60px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .breakfast-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-section.wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-wrapper">
+        <header>
+            <div class="logo-mark">
+                <svg viewBox="0 0 64 64">
+                    <path d="M32 6c1.6 9.2 7.8 14 14 16-6.2 1.6-12.4 6.8-14 16-1.6-9.2-7.8-14-14-16 6.2-1.6 12.4-6.8 14-16zm0 18c3-5.4 7.2-8.4 11.4-9.8-3.6-1.4-7.6-4.2-11.4-9-3.8 4.8-7.8 7.6-11.4 9 4.2 1.4 8.4 4.4 11.4 9.8zM18 36c.8 5.8 4.4 9 8.4 10.4-4 .4-7.8 2.8-8.4 7.6-.6-4.8-4.4-7.2-8.4-7.6 4-.8 7.6-4 8.4-10.4zm28 0c.8 5.8 4.4 9 8.4 10.4-4 .4-7.8 2.8-8.4 7.6-.6-4.8-4.4-7.2-8.4-7.6 4-.8 7.6-4 8.4-10.4z"/>
+                </svg>
+            </div>
+            <div class="brand-name">GOTA</div>
+            <div class="tagline">The Coffee You Want, Not The Coffee You Need</div>
+        </header>
+
+        <div class="menu-grid">
+            <section class="menu-section">
+                <h2 class="section-title">Espresso Bar</h2>
+                <div class="menu-item">
+                    <div class="item-name">Flat White</div>
+                    <div class="item-price">€5.20</div>
+                    <div class="item-desc">Smooth micro-foam and a double espresso — GOTA’s all-time favorite balance.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cappuccino</div>
+                    <div class="item-price">€4.60</div>
+                    <div class="item-desc">Classic Italian style, creamy and perfectly proportioned.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cortado</div>
+                    <div class="item-price">€4.10</div>
+                    <div class="item-desc">Equal parts espresso and milk, bold and aromatic.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Espresso Doppio</div>
+                    <div class="item-price">€4.10</div>
+                    <div class="item-desc">A pure, intense double shot for coffee purists.</div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">Iced Coffee</h2>
+                <div class="menu-item">
+                    <div class="item-name">Iced Latte</div>
+                    <div class="item-price">€5.10</div>
+                    <div class="item-desc">Velvety milk over chilled espresso — summer’s best-seller.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Espresso Tonic</div>
+                    <div class="item-price">€4.90</div>
+                    <div class="item-desc">A refreshing mix of espresso and tonic water, citrusy and sparkling.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Affogato</div>
+                    <div class="item-price">€5.40</div>
+                    <div class="item-desc">Vanilla ice cream “drowned” in hot espresso — the perfect bittersweet indulgence.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cold Brew</div>
+                    <div class="item-price">€4.90</div>
+                    <div class="item-desc">Slow-brewed and naturally sweet, clean finish.</div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">Brew Bar – Filter Coffee</h2>
+                <div class="section-note">All filter coffees are hand-brewed using the V60 or AeroPress method.</div>
+                <div class="menu-item">
+                    <div class="item-name">GOTA | Costa Rica – Juicy</div>
+                    <div class="item-price">€6.90</div>
+                    <div class="item-desc">Medium roast · Black Honey process<br>Floral and fruity — elderflower, cranberry, rum &amp; chocolate notes.<br><span class="item-note">Method: V60 hand drip – clean, bright and balanced.</span></div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">FATHERS | Rwanda – Tumba</div>
+                    <div class="item-price">€5.90</div>
+                    <div class="item-desc">Light roast · Natural process<br>Sweet and rich — pineapple, milk chocolate &amp; gingerbread finish.<br><span class="item-note">Method: AeroPress – smooth, full-bodied and mellow.</span></div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">Refreshments</h2>
+                <div class="menu-item">
+                    <div class="item-name">Cascara Soda</div>
+                    <div class="item-price">€4.90</div>
+                    <div class="item-desc">Sparkling soda made from coffee-cherry husks — fruity and lightly caffeinated.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Kombucha Hibiscus &amp; Lime</div>
+                    <div class="item-price">€5.60</div>
+                    <div class="item-desc">Lightly fermented and tangy, refreshing and healthy.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Lemonaid Passionfruit</div>
+                    <div class="item-price">€4.30</div>
+                    <div class="item-desc">Tropical sweetness with a citrus twist.</div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">Coffee Cocktails</h2>
+                <div class="menu-item">
+                    <div class="item-name">Espresso Martini</div>
+                    <div class="item-price">€10.90</div>
+                    <div class="item-desc">A modern classic — vodka, espresso, and coffee liqueur.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cold Brew Whiskey Sour</div>
+                    <div class="item-price">€10.90</div>
+                    <div class="item-desc">Cold brew meets whiskey and lemon for a layered, aromatic sour.</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Baileys Cappuccino</div>
+                    <div class="item-price">€7.90</div>
+                    <div class="item-desc">A comforting blend of espresso, milk foam, and Irish cream.</div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">Patisserie</h2>
+                <div class="section-subtitle">Homemade Cakes &amp; Pastries</div>
+                <div class="menu-item">
+                    <div class="item-name">Schokomousse Himbeer Torte</div>
+                    <div class="item-price">€4.60</div>
+                    <div class="item-desc">Chocolate-raspberry mousse cake — sweet-tart harmony in every bite.</div>
+                    <div class="item-note">(ACFGO)</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Banana Bread (Vegan)</div>
+                    <div class="item-price">€4.10</div>
+                    <div class="item-desc">Soft, moist, and naturally sweet — dairy-free &amp; egg-free.</div>
+                    <div class="item-note">(AH)</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Cheesecake</div>
+                    <div class="item-price">€4.60</div>
+                    <div class="item-desc">Classic New York style — rich and creamy.</div>
+                    <div class="item-note">(ACGH)</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-name">Oreo Peanut Butter Tarte (Vegan)</div>
+                    <div class="item-price">€4.60</div>
+                    <div class="item-desc">Dark cocoa base with nutty peanut filling — decadent yet balanced.</div>
+                    <div class="item-note">(AEFH)</div>
+                </div>
+            </section>
+
+            <section class="menu-section wide">
+                <h2 class="section-title">Weekend Breakfast</h2>
+                <div class="section-subtitle">Friday – Sunday · 08:00 – 14:00</div>
+                <div class="breakfast-grid">
+                    <div class="menu-item">
+                        <div class="item-name">Shakshuka</div>
+                        <div class="item-price">€12.90</div>
+                        <div class="item-desc">Tomato stew with poached eggs, spices, feta &amp; bread — a Mediterranean favorite.</div>
+                        <div class="item-note">(ACGLN)</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Avocado Genuss</div>
+                        <div class="item-price">€12.90</div>
+                        <div class="item-desc">Avocado, crispy bacon, fried egg &amp; fig jam — hearty and satisfying.</div>
+                        <div class="item-note">(ACGLM)</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">French Toast</div>
+                        <div class="item-price">€13.90</div>
+                        <div class="item-desc">White-chocolate orange mousse &amp; seasonal fruits — indulgent and photo-ready.</div>
+                        <div class="item-note">(AECGHL)</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Turkish Eggs</div>
+                        <div class="item-price">€10.90</div>
+                        <div class="item-desc">Greek yogurt with poached eggs &amp; spicy chili oil, served with pita.</div>
+                        <div class="item-note">(ACG)</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-name">Vegan Pancakes</div>
+                        <div class="item-price">€10.90</div>
+                        <div class="item-desc">With plum compote, vegan butter &amp; maple syrup — light and plant-based.</div>
+                        <div class="item-note">(AFH)</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
+

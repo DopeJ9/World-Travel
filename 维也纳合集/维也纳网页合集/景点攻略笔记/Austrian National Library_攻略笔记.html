@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guide: Austrian National Library - Baroque Masterpiece & Habsburg Heritage</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600;700&display=swap">
+
+  <style>
+    :root{
+      --navy:#8B4513; --navy-2:#A0522D;      /* primary brown */
+      --gold:#CD853F; --gold-2:#DAA520;      /* secondary amber */
+      --ink:#3d2817; --muted:#6B4E37;        /* body text + muted brown-gray */
+      --bg1:#faf8f5; --bg2:#f5f1eb;          /* gentle cream gradient */
+      --radius:14px; --shadow:0 8px 22px rgba(0,0,0,.08);
+
+      --blue:#A0522D; --blue-2:#CD853F;      /* pill gradient brown */
+      --row-bd:#d9c7b8;                      /* card borders */
+      --green-bg:#fff8e1; --green-bd:#ffe0b2; --accent:#8B4513;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.7; color:var(--ink);
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+    }
+
+    /* container keeps fixed width for social bar + title + content */
+    .container{max-width:1100px;margin:0 auto;padding:36px 20px}
+
+    /* Social bar */
+    .social-stats{
+      display:flex;justify-content:center;gap:28px;background:#fff;
+      border-radius:999px;padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow)
+    }
+    .stat-item{display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:600}
+    .stat-item i{color:var(--gold)}
+    .stat-number{color:var(--gold-2);font-weight:800}
+
+    /* Title band */
+    .note-header{
+      background:var(--navy);color:#fff;padding:40px 20px;border-radius:16px;
+      margin-bottom:18px;box-shadow:var(--shadow);text-align:center
+    }
+    .note-title{font-family:"Playfair Display",serif;font-size:28px;font-weight:800;letter-spacing:.2px;margin-bottom:6px}
+    .note-subtitle{font-size:15px;opacity:.95}
+
+    /* headline */
+    .highlight-wrap{margin:6px 0 14px}
+    .highlight-title{
+      display:flex;align-items:center;gap:8px;color:#0f172a;font-size:20px;font-weight:900;
+      margin:0 0 10px;border-bottom:1px solid #eef2f7;padding-bottom:6px
+    }
+
+    /* one-row highlight pills */
+    .hi-list{display:grid;gap:10px}
+    .hi-item{
+      display:grid;grid-template-columns:auto 1fr;gap:12px;background:#fff;
+      border:1px solid var(--row-bd);border-radius:12px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,.04)
+    }
+    .hi-num{
+      width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      box-shadow:0 2px 6px rgba(139,69,19,.25)
+    }
+    .hi-body{min-width:0}
+    .hi-heading{margin:0 0 4px;font-size:16px;font-weight:800;color:#1f2937}
+    .hi-heading .sep{opacity:.35;margin:0 .25em}
+    .hi-desc{margin:0;color:#667085;line-height:1.65;font-size:14.5px}
+
+    /* visitor info card */
+    .visitor-card{
+      margin-top:14px;background:var(--green-bg);border:1px solid var(--green-bd);
+      border-radius:12px;padding:14px
+    }
+    .visitor-title{
+      margin:0 0 8px;color:var(--accent);font-size:18px;font-weight:900;
+      display:flex;align-items:center;gap:8px
+    }
+    .v-list{margin:0 0 10px 0;padding-left:0;list-style:none}
+    .v-list li{padding:6px 0;border-bottom:1px dashed rgba(0,0,0,.06)}
+    .v-list li:last-child{border-bottom:none}
+    .muted{color:#6b7280}
+
+    .chiplist{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      background:#f5e6d3;color:#8B4513;border:1px solid #e8c4a8;
+      font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px
+    }
+
+    /* main content card */
+    .note-content{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-top:16px}
+
+    @media (max-width:680px){
+      .hi-item{padding:10px}
+      .hi-heading{font-size:15.5px}
+      .hi-desc{font-size:14px}
+      .note-content{padding:18px}
+    }
+
+    /* Best for module */
+    .best-for-module{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding:16px 20px;
+      background:#f7fbf8;
+      border-left:5px solid #8B4513;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(139,69,19,.08);
+      color:#1f2d24;
+      margin-bottom:18px;
+    }
+    .best-for-module strong{
+      color:#8B4513;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Social Stats -->
+    <div class="social-stats">
+      <div class="stat-item"><i class="fa-solid fa-heart" style="color:#8B4513"></i><span class="stat-number" style="color:#8B4513">1,289</span><span style="color:#1f2d24">Likes</span></div>
+      <div class="stat-item"><i class="fa-solid fa-comment" style="color:#8B4513"></i><span class="stat-number" style="color:#8B4513">567</span><span style="color:#1f2d24">Comments</span></div>
+      <div class="stat-item"><i class="fa-solid fa-share" style="color:#8B4513"></i><span class="stat-number" style="color:#8B4513">234</span><span style="color:#1f2d24">Shares</span></div>
+    </div>
+    
+    <!-- Title -->
+    <header class="note-header">
+      <h1 class="note-title">Guide: Austrian National Library - Baroque Masterpiece & Habsburg Heritage</h1>
+    </header>
+
+    <!-- About the Library -->
+    <div class="visitor-card">
+      <h2 class="visitor-title" style="color:#8B4513">
+        <span style="color:#7b7b7b">🏛️</span> About the Library
+      </h2>
+      <ul class="v-list">
+        <li>The Austrian National Library is not just a library—it's a cultural embodiment of the Habsburg dynasty. Nestled within Vienna's Hofburg Palace complex, it stands as one of the world's most magnificent libraries and a paradise for European culture enthusiasts.</li>
+        
+         <li>
+           <h3 class="visitor-title" style="color:#8B4513"><span>⭐</span> Ideal For</h3>
+          <ul class="v-list" style="margin: 6px 0 0 0">
+            <li>Josefsplatz 1, 1010/1015 Wien - Centrally located in Vienna's Hofburg Palace complex</li>
+            <li>Easily accessible by Vienna's public transportation network</li>
+          </ul>
+        </li>
+        <li>
+          <h3 class="visitor-title" style="color:#8B4513"><span>📍</span> Location</h3>
+          <ul class="v-list" style="margin: 6px 0 0 0">
+            <li>History enthusiasts, culture lovers, and anyone seeking to immerse themselves in the magnificence of the Habsburg dynasty</li>
+            
+          </ul>
+        </li>
+      </ul>      
+    </div>
+
+   
+
+    <!-- The Grand Hall (Prunksaal) -->
+    <section class="route-section">
+      <style>
+        .route-section{margin:8px 0 18px 0}
+        .route-card{background:#ffffff;border:1px solid #e5efe9;border-radius:14px;box-shadow:0 6px 18px rgba(139,69,19,.06);padding:16px 18px}
+        .route-title{display:flex;align-items:center;gap:8px;font-weight:900;color:#1f2937;margin-bottom:8px}
+        .route-block{margin:12px 0}
+        .route-block b{color:#0f172a}
+        .route-list{margin:8px 0 0 18px}
+        .spot{margin:8px 0 0 0;list-style:none}
+        .spot .spot-inner{display:block;background:#fff8e1;border:1px solid #ffe0b2;border-left:6px solid #8B4513;color:#1f2937;border-radius:10px;padding:8px 10px;font-weight:800}
+        .spot .tip{font-weight:600;color:#334155;margin-left:30px;margin-top:6px}
+        .sub-list{margin:6px 0 0 22px}
+      </style>
+      <div class="route-card">
+        <div class="route-title" style="font-size: larger;">🏛️ The Grand Hall (Prunksaal) - Baroque Splendor</div>
+
+        <div class="route-block">
+          <p><b>Architecture & History</b></p>
+          <ul class="route-list">
+            <li>Commissioned by Holy Roman Emperor Charles VI and completed in 1726</li>
+            <li>Measures 80 meters in length and 20 meters in height</li>
+            <li>Houses over 200,000 volumes</li>
+            <li>Magnificent ceiling frescoes depict Habsburg glory</li>
+            <li>Exquisitely carved bookcases</li>
+          </ul>
+          <li class="spot">
+            <div class="spot-inner">📸 Best Photography Time: Mornings when crowds are minimal - soft, natural light creates ideal conditions for capturing the Baroque beauty</div>
+          </li>
+        </div>
+
+        <div class="route-block">
+          <p><b>Imperial Collections (dating back to 1368)</b></p>
+          <ul class="route-list">
+            <li>Imperial codices, manuscripts, globes, maps, papyrus documents</li>
+            <li>Holy Roman Empire legal documents and rare historical artifacts</li>
+            <li>Mozart's original manuscript of his Requiem</li>
+            <li>Medieval manuscripts and historical documents spanning centuries</li>
+          </ul>
+        </div>
+
+        <div class="route-block">
+          <p><b>Crown Jewels of Literature</b></p>
+          <ul class="route-list">
+            <li><strong>Golden Gospels (1368)</strong> - One of the library's crown jewels from the 14th century</li>
+            <li><strong>Mozart's Requiem Manuscript</strong> - Original manuscript by Wolfgang Amadeus Mozart</li>
+            <li><strong>Gutenberg Bible (1454)</strong> - Rare first edition printed by Johannes Gutenberg</li>
+            <li><strong>Tabula Peutingeriana (12th Century)</strong> - Medieval Roman road map spanning the ancient empire</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="route-section">
+      <div class="route-card">
+        <div class="route-title" style="font-size: larger;">🖼️ Special Exhibitions</div>
+        <div class="route-block">
+          <p><b>Included with Admission</b></p>
+          <ul class="route-list">
+            <li>Explore rotating exhibitions spotlighting Austrian history, music, and science</li>
+            <li>Example themes: Johann Strauss II’s legacy, medicine through the ages</li>
+            <li>No additional ticket required; simply choose the relevant time slot</li>
+          </ul>
+        </div>
+        <div class="route-block">
+          <p><b>Timing Tips</b></p>
+          <ul class="route-list">
+            <li>Morning session: 10:00 a.m. – 12:00 p.m.</li>
+            <li>Afternoon session: 1:00 p.m. – 5:00 p.m.</li>
+            <li>Allow ~30 minutes per exhibition to read descriptions and take photos</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips for Your Visit -->
+    <section class="tips-visit">
+      <style>
+        .tips-card{background:#fff8e1;border:1px solid #e5efe9;border-radius:14px;box-shadow:0 6px 18px rgba(139,69,19,.06);padding:16px 18px}
+        .tips-title{display:flex;align-items:center;gap:8px;font-weight:900;color:#1f2937;margin-bottom:8px}
+        .tips-list{margin-left:18px}
+        .tips-hr{height:1px;background:#e5e7eb;margin:12px 0}
+        .tips-note{display:flex;align-items:flex-start;gap:8px;color:#334155}
+      </style>
+      <div class="tips-card">
+        <div class="tips-title">💡 Tips for Your Visit</div>
+        <ul class="tips-list">
+          <li>Arrive around 9:00 a.m. to experience the library in tranquility and capture stunning photographs without crowds</li>
+          <li>Plan to spend at least one hour exploring the Baroque architecture and collections</li>
+          
+        </ul>
+      </div>
+    </section>
+
+  </div>
+  
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px 28px 20px;color:#0f172a;font-family:'Playfair Display',serif;font-weight:800;font-size:20px;letter-spacing:.2px">🎉 Immerse yourself in the magnificence of Habsburg heritage at Vienna's most magnificent Baroque library!</div>
+</body>
+</html>

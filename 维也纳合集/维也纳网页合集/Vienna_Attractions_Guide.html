@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vienna - Imperial Elegance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold: #C5A059;
+            --dark: #1a1a1a;
+            --cream: #f9f7f2;
+            --text: #4a4a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Section Headers */
+        .section-title {
+            text-align: center;
+            padding: 80px 20px 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: "❦";
+            display: block;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        /* Card Grid */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        /* Luxury Card */
+        .card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-img-wrapper {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            color: var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-type {
+            color: var(--gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: 1px solid var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b08d48;
+            border-color: #b08d48;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* Guide Section Specifics */
+        .guide-badge {
+            background: var(--dark);
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 2px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #888;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 0 20px 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1516550893923-42d28e5677af?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80');">
+        <div class="hero-content">
+            <h1>Vienna</h1>
+            <p>Where Imperial History Meets Timeless Art</p>
+        </div>
+    </header>
+
+    <!-- Section 1: Attractions -->
+    <section>
+        <div class="section-title">
+            <h2>Must-Visit Landmarks</h2>
+        </div>
+
+        <div class="container">
+            <div class="grid">
+                
+                <!-- St. Stephen's Cathedral -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://raw.githubusercontent.com/HuaqingYuan1/my-html-demo/main/cover2.jpg" alt="St. Stephen's Cathedral" class="card-img">
+                        <div class="card-number">01</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-type">Cathedral</span>
+                        <h3>St. Stephen's Cathedral</h3>
+                        <p>The Gothic soul of Vienna. Marvel at its multi-colored tile roof and climb the South Tower for breathtaking city views.</p>
+                        <div class="btn-group">
+                            <a href="景点预订网页/St. Stephen's Cathedral.html" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Book Ticket
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Vienna State Opera -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://raw.githubusercontent.com/HuaqingYuan1/my-html-demo/main/cover4.jpg" alt="Vienna State Opera" class="card-img">
+                        <div class="card-number">02</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-type">Culture</span>
+                        <h3>Vienna State Opera</h3>
+                        <p>One of the world's leading opera houses. Step into a world of velvet, gold, and world-class acoustics.</p>
+                        <div class="btn-group">
+                            <a href="景点预订网页/Vienna State Opera (4).html" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Book Ticket
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Schönbrunn Palace -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/DrXfblPS0o0jFoxdwY2cIQN5nQe/?preview_type=16" alt="Schönbrunn Palace" class="card-img">
+                        <div class="card-number">03</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-type">Imperial</span>
+                        <h3>Schloss Schönbrunn</h3>
+                        <p>The magnificent summer residence of the Habsburgs. Explore 1,441 rooms and the sprawling baroque gardens.</p>
+                        <div class="btn-group">
+                            <a href="景点预订网页/Schloss Schönbrunn.html" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Book Ticket
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Kunsthistorisches Museum -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://raw.githubusercontent.com/HuaqingYuan1/my-html-demo/main/cover.jpg" alt="Art History Museum" class="card-img">
+                        <div class="card-number">04</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-type">Museum</span>
+                        <h3>Kunsthistorisches Museum</h3>
+                        <p>A palace for art. Home to Bruegel's masterpieces and imperial treasures, housed in a building as stunning as its collection.</p>
+                        <div class="btn-group">
+                            <a href="景点预订网页/Kunsthistorisches Museum Vienna .html" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Book Ticket
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- National Library -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://raw.githubusercontent.com/HuaqingYuan1/my-html-demo/main/cover3.jpg" alt="Austrian National Library" class="card-img">
+                        <div class="card-number">05</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-type">Heritage</span>
+                        <h3>Austrian National Library</h3>
+                        <p>A baroque jewel. The State Hall is one of the most beautiful library halls in the world, featuring stunning frescoes.</p>
+                        <div class="btn-group">
+                            <a href="景点预订网页/Austrian National Library.html" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Book Ticket
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Children's Museum -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1600&q=80" alt="Children's Museum" class="card-img">
+                        <div class="card-number">06</div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-type">Family</span>
+                        <h3>Children's Museum</h3>
+                        <p>History comes alive. An interactive experience at Schönbrunn where kids can dress up and learn about imperial life.</p>
+                        <div class="btn-group">
+                            <a href="景点预订网页/Children's Museum Schönbrunn Palace.html" class="btn btn-primary">
+                                <i class="fas fa-ticket-alt"></i> Book Ticket
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Guides -->
+    <section style="background-color: #f0ece3;">
+        <div class="section-title">
+            <h2>Travel Guides & Tips</h2>
+        </div>
+
+        <div class="container">
+            <div class="grid">
+
+                <!-- Guide 1 -->
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-type"><i class="fas fa-book-open"></i> Guide</span>
+                        <h3>St. Stephen's Cathedral</h3>
+                        <p>Tower climbing tips, catacombs tours, and best photography spots.</p>
+                        <div class="btn-group">
+                            <a href="景点攻略笔记/St. Stephen's Cathedral_攻略笔记.html" class="btn btn-outline">
+                                Read Guide
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guide 2 -->
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-type"><i class="fas fa-book-open"></i> Guide</span>
+                        <h3>Vienna State Opera</h3>
+                        <p>Dress code advice, standing room tickets, and tour information.</p>
+                        <div class="btn-group">
+                            <a href="景点攻略笔记/Vienna State Opera_攻略笔记.html" class="btn btn-outline">
+                                Read Guide
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guide 3 -->
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-type"><i class="fas fa-book-open"></i> Guide</span>
+                        <h3>Schönbrunn Palace</h3>
+                        <p>Grand Tour vs Imperial Tour, garden highlights, and zoo tips.</p>
+                        <div class="btn-group">
+                            <a href="景点攻略笔记/Schloss Schönbrunn攻略笔记.html" class="btn btn-outline">
+                                Read Guide
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guide 4 -->
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-type"><i class="fas fa-book-open"></i> Guide</span>
+                        <h3>Kunsthistorisches Museum</h3>
+                        <p>Must-see masterpieces and optimal visit routes.</p>
+                        <div class="btn-group">
+                            <a href="景点攻略笔记/Kunsthistorisches Museum Vienna_攻略笔记1.html" class="btn btn-outline">
+                                Part I
+                            </a>
+                            <a href="景点攻略笔记/Kunsthistorisches Museum Vienna_攻略笔记2.html" class="btn btn-outline">
+                                Part II
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guide 5 -->
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-type"><i class="fas fa-book-open"></i> Guide</span>
+                        <h3>National Library</h3>
+                        <p>Highlights of the State Hall and globe museum.</p>
+                        <div class="btn-group">
+                            <a href="景点攻略笔记/Austrian National Library_攻略笔记.html" class="btn btn-outline">
+                                Read Guide
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Guide 6 -->
+                <article class="card">
+                    <div class="card-content">
+                        <span class="card-type"><i class="fas fa-book-open"></i> Guide</span>
+                        <h3>Children's Museum</h3>
+                        <p>Family visit tips and interactive activity guide.</p>
+                        <div class="btn-group">
+                            <a href="景点攻略笔记/Children's Museum Schönbrunn Palace攻略笔记.html" class="btn btn-outline">
+                                Read Guide
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Vienna Travel Collection. Designed with Elegance.</p>
+    </footer>
+
+</body>
+</html>
+

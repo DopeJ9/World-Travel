@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plachutta Stammhaus Hietzing | Seasonal Menu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --forest:#0f2f20;
+            --deep-forest:#0a2117;
+            --sage:#e8f3e6;
+            --accent:#d6c99e;
+            --muted:#b2c3b6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: radial-gradient(circle at top, rgba(33,66,49,0.6), rgba(10,31,22,0.95)), var(--forest);
+            color: #f2efe6;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 32px 100px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 0.4rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: var(--accent);
+        }
+
+        header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            margin: 18px auto 0;
+            opacity: 0.6;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 36px 46px;
+        }
+
+        .menu-section {
+            position: relative;
+            padding-top: 18px;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 2px;
+            background: rgba(214, 201, 158, 0.45);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.08rem;
+            margin-bottom: 20px;
+            color: #f3f1e6;
+        }
+
+        .menu-item {
+            margin-bottom: 22px;
+        }
+
+        .menu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .item-header .price {
+            font-size: 1rem;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .item-allergens {
+            font-size: 0.72rem;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .item-description {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: rgba(236, 235, 229, 0.88);
+            margin-top: 10px;
+        }
+
+        .item-note {
+            font-size: 0.88rem;
+            margin-top: 12px;
+            color: rgba(214, 201, 158, 0.9);
+            font-style: italic;
+        }
+
+        .allergen-section {
+            margin-top: 60px;
+            padding-top: 26px;
+            border-top: 1px solid rgba(214, 201, 158, 0.25);
+            font-size: 0.9rem;
+            color: rgba(232, 243, 230, 0.85);
+        }
+
+        .allergen-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.08rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .allergen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px 24px;
+        }
+
+        .allergen-item span {
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 40px 22px 80px;
+            }
+
+            header {
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .menu-grid {
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>MENU</header>
+
+        <div class="menu-grid">
+            <section class="menu-section">
+                <h2 class="section-title">🦆 Goose Season</h2>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Roasted St. Martin’s Goose</h3>
+                        <span class="price">€34.00</span>
+                    </div>
+                    <p class="item-allergens">ACEGHLO</p>
+                    <p class="item-description">with gravy, red cabbage or warm cabbage salad with bacon, stuffed baked apple &amp; white bread dumplings</p>
+                    <p class="item-note">A festive Austrian classic – crispy skin, juicy meat, rich aroma.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Goose Liver Crème Brûlée</h3>
+                        <span class="price">€20.40</span>
+                    </div>
+                    <p class="item-allergens">ACGO</p>
+                    <p class="item-description">with homemade brioche &amp; wild cranberries</p>
+                    <p class="item-note">Smooth and elegant, balancing sweet and savory flavors.</p>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">🍽 The Viennese Classics</h2>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Original Wiener Schnitzel (Veal)</h3>
+                        <span class="price">€25.80</span>
+                    </div>
+                    <p class="item-allergens">ACG</p>
+                    <p class="item-description">We recommend potato salad with it (€6.40)</p>
+                    <p class="item-note">The national dish of Vienna – golden, tender, and perfectly crisp.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Veal Goulash</h3>
+                        <span class="price">€24.80</span>
+                    </div>
+                    <p class="item-allergens">ACGL</p>
+                    <p class="item-description">with homemade buttered dumplings</p>
+                    <p class="item-note">Traditional veal stew, mildly spiced with rich gravy.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Deep-Fried Veal Head</h3>
+                        <span class="price">€22.50</span>
+                    </div>
+                    <p class="item-allergens">ACGLMO</p>
+                    <p class="item-description">with Gribiche sauce (tartar sauce &amp; chopped egg)</p>
+                    <p class="item-note">A true Viennese specialty – crispy on the outside, meltingly soft inside.</p>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">🥣 Plachutta's Delicious Beef Broth</h2>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Plachutta's Beef Broth</h3>
+                        <span class="price">€8.90</span>
+                    </div>
+                    <p class="item-allergens">ACGL</p>
+                    <p class="item-description">with freshly prepared soup garnish of your choice, root vegetables &amp; chives</p>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">🐂 Plachutta’s Signature Boiled Beef</h2>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Tafelspitz</h3>
+                        <span class="price">€33.50</span>
+                    </div>
+                    <p class="item-allergens">L</p>
+                    <p class="item-description">world-famous boiled beef, served with root vegetables &amp; horseradish</p>
+                    <p class="item-note">The restaurant’s signature dish – famously favored by Einstein.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Gustostückerl</h3>
+                        <span class="price">€31.90</span>
+                    </div>
+                    <p class="item-allergens">L</p>
+                    <p class="item-description">three selected cuts to choose from, lean or marbled</p>
+                    <p class="item-note">Ideal for first-timers who want to taste the variety of beef textures.</p>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">🐟 Fish &amp; Prawns</h2>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Combination of Salmon &amp; Prawn</h3>
+                        <span class="price">€29.80</span>
+                    </div>
+                    <p class="item-allergens">BDGLO</p>
+                    <p class="item-description">in tomato broth with zucchini &amp; parsley potatoes</p>
+                    <p class="item-note">Light and aromatic seafood dish with balanced acidity.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>King Prawns Sautéed with Herbs &amp; Garlic</h3>
+                        <span class="price">€34.00</span>
+                    </div>
+                    <p class="item-allergens">BGHL</p>
+                    <p class="item-description">served alongside basmati rice with pine nuts</p>
+                    <p class="item-note">Juicy king prawns with a fragrant garlic-herb aroma.</p>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <h2 class="section-title">🍰 Sweet Vienna</h2>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>“Chocolate-Nut Cake in a Shirt”</h3>
+                        <span class="price">€12.60</span>
+                    </div>
+                    <p class="item-allergens">ACGH</p>
+                    <p class="item-description">with vanilla ice cream, chocolate sauce &amp; whipped cream</p>
+                    <p class="item-note">Warm molten-style chocolate dessert – rich and indulgent.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Plachutta’s Curd Casserole with Fresh Raspberries</h3>
+                        <span class="price">€12.30</span>
+                    </div>
+                    <p class="item-allergens">CG</p>
+                    <p class="item-description">vanilla cream &amp; raspberry sauce</p>
+                    <p class="item-note">Light, fruity, and beautifully balanced.</p>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-header">
+                        <h3>Viennese Chestnut Rice</h3>
+                        <span class="price">€11.80</span>
+                    </div>
+                    <p class="item-allergens">AGHO</p>
+                    <p class="item-description">with amarena cherry &amp; whipped cream</p>
+                    <p class="item-note">A seasonal favorite – creamy chestnut purée with sweet cherries.</p>
+                </div>
+            </section>
+        </div>
+
+        <section class="allergen-section">
+            <h3 class="allergen-title">🧾 Allergen Key</h3>
+            <div class="allergen-grid">
+                <div class="allergen-item"><span>A</span> Cereals containing gluten</div>
+                <div class="allergen-item"><span>B</span> Crustaceans</div>
+                <div class="allergen-item"><span>C</span> Eggs</div>
+                <div class="allergen-item"><span>D</span> Fish</div>
+                <div class="allergen-item"><span>E</span> Peanuts</div>
+                <div class="allergen-item"><span>F</span> Soybeans</div>
+                <div class="allergen-item"><span>G</span> Milk / lactose</div>
+                <div class="allergen-item"><span>H</span> Nuts</div>
+                <div class="allergen-item"><span>L</span> Celery</div>
+                <div class="allergen-item"><span>M</span> Mustard</div>
+                <div class="allergen-item"><span>N</span> Sesame</div>
+                <div class="allergen-item"><span>O</span> Sulphites</div>
+                <div class="allergen-item"><span>R</span> Molluscs</div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

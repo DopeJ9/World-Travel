@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plachutta Stammhaus Hietzing - Reservations</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #153d2c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(15, 76, 53, 0.18);
+            height: 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-name-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(15, 76, 53, 0.85);
+            color: #d8f3e6;
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(216, 243, 230, 0.35);
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.65);
+            letter-spacing: 2px;
+            color: #d8f3e6;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(232, 245, 238, 0.97);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(15, 76, 53, 0.22);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(47, 127, 90, 0.25);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #0f4c35;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: #1f825b;
+        }
+
+        /* Restaurant Info */
+        .info-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #eef8f2, #d8f3e6);
+            border-radius: 12px;
+            border-left: 4px solid #1f825b;
+        }
+
+        .info-item h3 {
+            color: #0f4c35;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            color: #1e5f43;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .hour-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(15, 76, 53, 0.12);
+            border: 1px solid rgba(47, 127, 90, 0.16);
+        }
+
+        .hour-label {
+            font-weight: 600;
+            color: #0f4c35;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .hour-time {
+            color: #1f825b;
+            font-size: 0.85rem;
+        }
+
+        .closed-item {
+            background: rgba(210, 233, 221, 0.4);
+            color: #6a8f7b;
+        }
+
+        .closed-item .hour-time {
+            color: #6a8f7b;
+        }
+
+        /* Dress Code & Rules */
+        .rules-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .rules-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(15, 76, 53, 0.14);
+            color: #1e5f43;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li i {
+            color: #1f825b;
+            width: 16px;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            background: rgba(232, 245, 238, 0.97);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(15, 76, 53, 0.22);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(47, 127, 90, 0.25);
+            grid-column: span 2;
+        }
+
+        .simple-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(15, 76, 53, 0.18);
+            border: 1px solid rgba(47, 127, 90, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav-btn {
+            background: #0f4c35;
+            color: #d8f3e6;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .month-nav-btn:hover {
+            background: #1f825b;
+            transform: scale(1.08);
+        }
+
+        .month-nav-btn:disabled {
+            background: #b8dccc;
+            color: #eef8f2;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0f4c35;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .day-header {
+            background: #0f4c35;
+            color: #d8f3e6;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .calendar-day {
+            background: #e4f4ec;
+            border: 1px solid #c5e5d4;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin: 1px;
+        }
+
+        .calendar-day:hover {
+            background: #d0eddf;
+            border-color: #1f825b;
+        }
+
+        .calendar-day.selected {
+            background: #0f4c35;
+            color: #d8f3e6;
+            border-color: #0f4c35;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+
+        .calendar-day.empty:hover {
+            background: transparent;
+        }
+
+        /* Time Slots Styles */
+        .time-slots-container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(15, 76, 53, 0.18);
+            border: 1px solid rgba(47, 127, 90, 0.2);
+        }
+
+        .time-section {
+            margin-bottom: 20px;
+        }
+
+        .time-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-section-title {
+            font-weight: 600;
+            color: #0f4c35;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #e4f4ec;
+            border: 2px solid #c5e5d4;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f4c35;
+            font-family: inherit;
+            background-clip: padding-box;
+        }
+
+        .time-slot:focus {
+            outline: 2px solid #1f825b;
+            outline-offset: 2px;
+        }
+
+        .time-slot-placeholder {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #6a8f7b;
+            font-style: italic;
+            padding: 12px 8px;
+            border: 1px dashed #c5e5d4;
+            border-radius: 8px;
+            background: rgba(228, 244, 236, 0.4);
+        }
+
+        .time-slot:hover {
+            background: #d0eddf;
+            border-color: #1f825b;
+        }
+
+        .time-slot.selected {
+            background: #0f4c35;
+            color: #d8f3e6;
+            border-color: #0f4c35;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0f4c35;
+            font-size: 0.95rem;
+        }
+
+        /* Reserve Button */
+        .reserve-button {
+            background: linear-gradient(135deg, #0f4c35, #1f825b);
+            color: #e8fff5;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 22px rgba(15, 76, 53, 0.35);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .reserve-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(15, 76, 53, 0.42);
+        }
+
+        .reserve-button:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(232, 245, 238, 0.97);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(15, 76, 53, 0.22);
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 20px;
+            color: #0f4c35;
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: #1f825b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .restaurant-name-overlay {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+            }
+
+            .restaurant-name {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-form {
+                grid-column: span 1;
+            }
+
+            .simple-form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                min-height: 40px;
+                font-size: 0.9rem;
+                padding: 10px 5px;
+            }
+
+            .day-header {
+                padding: 8px 5px;
+                font-size: 0.8rem;
+            }
+
+            .time-slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .time-slot {
+                min-height: 40px;
+                font-size: 0.8rem;
+                padding: 10px 5px;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1600&q=80" 
+                 alt="Plachutta Stammhaus Hietzing" 
+                 class="hero-image">
+            <div class="restaurant-name-overlay">
+                <h1 class="restaurant-name">PLACHUTTA STAMMHAUS HIETZING</h1>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Restaurant Information -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    Restaurant Information
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                    <p>Auhofstraße 1, 1130 Wien, Austria</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                    <div class="hours-grid">
+                        <div class="hour-item">
+                            <div class="hour-label">Monday – Friday</div>
+                            <div class="hour-time">11:30 AM – 3:00 PM<br>& 6:00 PM – 11:00 PM</div>
+                        </div>
+                        <div class="hour-item">
+                            <div class="hour-label">Sat, Sun & Public Holidays</div>
+                            <div class="hour-time">11:00 AM – 11:00 PM</div>
+                        </div>
+                    </div>
+                    <p style="margin-top:12px; color:#1e5f43; font-size:0.92rem;">Please note: we stop seating guests one hour before closing time.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-tshirt"></i> Dress Code</h3>
+                    <p><strong>Smart casual attire recommended</strong></p>
+                    <ul class="rules-list">
+                        <li><i class="fas fa-check"></i> Polished casual wear encouraged</li>
+                        <li><i class="fas fa-check"></i> Comfortable shoes acceptable</li>
+                        <li><i class="fas fa-times"></i> Sportswear discouraged</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Policies & Rules -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Policies & Requirements
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-calendar-check"></i> Reservations</h3>
+                    <p><strong>Tables fill quickly</strong> for both lunch and dinner. Booking ahead ensures you enjoy Viennese classics without a wait.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-utensils"></i> Signature Experience</h3>
+                    <p>Plachutta is renowned for its Tafelspitz and traditional Viennese cuisine served in elegant dining rooms with garden seating.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-concierge-bell"></i> Special Requests</h3>
+                    <p>Please inform us of dietary needs, celebrations, or stroller seating when reserving. We are happy to tailor your visit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form fade-in">
+            <h2 class="card-title">
+                <i class="fas fa-utensils"></i>
+                Make a Reservation
+            </h2>
+
+            <form id="reservationForm">
+                <div class="simple-form-grid">
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="month-nav-btn" id="prevMonth" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="monthTitle">August</div>
+                                <button type="button" class="month-nav-btn" id="nextMonth" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time *</label>
+                        <div class="time-slots-container">
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-sun"></i>
+                                    Lunch (Daily)
+                                </div>
+                                <div class="time-slots-grid" id="lunchSlots">
+                                </div>
+                            </div>
+                            
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-moon"></i>
+                                    Dinner (Daily)
+                                </div>
+                                <div class="time-slots-grid" id="dinnerSlots">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTime" name="time" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="reserve-button">
+                    <i class="fas fa-calendar-plus"></i>
+                    Make Reservation
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+43 1 877 6897</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hietzing@plachutta.at</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDateValue = null;
+        let selectedTimeValue = null;
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        const WEEKDAY_SLOTS = {
+            lunch: ['11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30'],
+            dinner: ['18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']
+        };
+
+        const WEEKEND_SLOTS = {
+            lunch: ['11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00'],
+            dinner: ['16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']
+        };
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            monthTitle.textContent = monthNames[currentMonth] + ' ' + currentYear;
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month (restaurant open daily)
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.setAttribute('role', 'button');
+                dayElement.setAttribute('tabindex', '0');
+                dayElement.setAttribute('aria-label', `Select ${monthNames[currentMonth]} ${day}, ${currentYear}`);
+                dayElement.addEventListener('click', () => selectDate(day, dayElement));
+                dayElement.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectDate(day, dayElement);
+                    }
+                });
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            updateNavButtons();
+            renderTimeSlotsForDay(null);
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevMonth');
+            const nextBtn = document.getElementById('nextMonth');
+            
+            // Allow navigation between August 2026 and September 2026
+            prevBtn.disabled = (currentMonth === 7 && currentYear === 2026);
+            nextBtn.disabled = (currentMonth === 8 && currentYear === 2026);
+        }
+
+        function changeMonth(direction) {
+            let newMonth = currentMonth + direction;
+            let newYear = currentYear;
+            
+            if (newMonth < 0) {
+                newMonth = 11;
+                newYear--;
+            } else if (newMonth > 11) {
+                newMonth = 0;
+                newYear++;
+            }
+            
+            // Only allow August 2026 and September 2026
+            if ((newMonth === 7 && newYear === 2026) || (newMonth === 8 && newYear === 2026)) {
+                currentMonth = newMonth;
+                currentYear = newYear;
+                generateCalendar();
+                // Clear selection when month changes
+                selectedDateValue = null;
+                document.getElementById('selectedDate').value = '';
+                resetTimeSelection();
+            }
+        }
+
+        function selectDate(day, element) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            element.classList.add('selected');
+            
+            // Set selected date value
+            const month = String(currentMonth + 1).padStart(2, '0');
+            const dayStr = String(day).padStart(2, '0');
+            selectedDateValue = `${currentYear}-${month}-${dayStr}`;
+            document.getElementById('selectedDate').value = selectedDateValue;
+
+            const dayOfWeek = new Date(currentYear, currentMonth, day).getDay();
+            renderTimeSlotsForDay(dayOfWeek);
+        }
+
+        function selectTime(time, element) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time slot
+            element.classList.add('selected');
+            
+            // Set selected time value
+            selectedTimeValue = time;
+            document.getElementById('selectedTime').value = selectedTimeValue;
+            element.focus();
+        }
+
+        // Form Validation and Submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.date || !data.time) {
+                alert('Please select both date and time.');
+                return;
+            }
+            
+            const selectedDate = new Date(data.date);
+            const allowedTimes = getAllowedTimesForDate(selectedDate);
+            if (!allowedTimes.includes(data.time)) {
+                alert('Selected time is not available for the chosen date. Please pick another slot.');
+                return;
+            }
+            
+            // Format date for display
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+            const displayDate = selectedDate.toLocaleDateString('en-US', dateOptions);
+            
+            // Success message
+            alert(`Reservation Confirmed!\n\nDate: ${displayDate}\nTime: ${formatTimeLabel(data.time)}\n\nWe look forward to welcoming you to Plachutta Stammhaus Hietzing.`);
+            
+            // Reset form
+            this.reset();
+            selectedDateValue = null;
+            selectedTimeValue = null;
+            generateCalendar(); // Regenerate to clear selection
+            resetTimeSelection();
+        });
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            renderTimeSlotsForDay(null);
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize first element as visible
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+
+        function isWeekend(dayOfWeek) {
+            return dayOfWeek === 0 || dayOfWeek === 6;
+        }
+
+        function getSlotConfig(dayOfWeek) {
+            if (typeof dayOfWeek !== 'number') return null;
+            return isWeekend(dayOfWeek) ? WEEKEND_SLOTS : WEEKDAY_SLOTS;
+        }
+
+        function renderTimeSlotsForDay(dayOfWeek) {
+            const lunchContainer = document.getElementById('lunchSlots');
+            const dinnerContainer = document.getElementById('dinnerSlots');
+
+            resetTimeSelection();
+
+            lunchContainer.innerHTML = '';
+            dinnerContainer.innerHTML = '';
+
+            if (typeof dayOfWeek !== 'number') {
+                showPlaceholder(lunchContainer, 'Select a date to view lunch times.');
+                showPlaceholder(dinnerContainer, 'Select a date to view dinner times.');
+                return;
+            }
+
+            const config = getSlotConfig(dayOfWeek);
+            if (!config) {
+                showPlaceholder(lunchContainer, 'No available slots for the selected day.');
+                showPlaceholder(dinnerContainer, 'No available slots for the selected day.');
+                return;
+            }
+
+            populateSlots(lunchContainer, config.lunch);
+            populateSlots(dinnerContainer, config.dinner);
+        }
+
+        function populateSlots(container, slots) {
+            if (!slots || !slots.length) {
+                showPlaceholder(container, 'No service for this period.');
+                return;
+            }
+
+            slots.forEach(time => {
+                const slot = document.createElement('button');
+                slot.type = 'button';
+                slot.className = 'time-slot';
+                slot.dataset.time = time;
+                slot.textContent = formatTimeLabel(time);
+                slot.addEventListener('click', () => selectTime(time, slot));
+                slot.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectTime(time, slot);
+                    }
+                });
+                container.appendChild(slot);
+            });
+        }
+
+        function showPlaceholder(container, message) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'time-slot-placeholder';
+            placeholder.textContent = message;
+            container.appendChild(placeholder);
+        }
+
+        function resetTimeSelection() {
+            selectedTimeValue = null;
+            const timeInput = document.getElementById('selectedTime');
+            if (timeInput) {
+                timeInput.value = '';
+            }
+        }
+
+        function formatTimeLabel(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            const date = new Date(0, 0, 0, hours, minutes);
+            return date.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+        }
+
+        function getAllowedTimesForDate(date) {
+            const config = getSlotConfig(date.getDay());
+            if (!config) return [];
+            return [...config.lunch, ...config.dinner];
+        }
+    </script>
+</body>
+</html>
+

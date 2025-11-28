@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visit note and experience at Plachutta Wollzeile - Vienna's legendary restaurant for Tafelspitz">
+    <meta name="keywords" content="Plachutta Wollzeile, Vienna dining, Tafelspitz, Austrian cuisine, travel guide">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note 1: Plachutta Wollzeile – Vienna's Legendary Tafelspitz Temple</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Plachutta Wollzeile – A Viennese Legend">
+    <meta property="og:description" content="Discover why Plachutta Wollzeile is cherished by royalty, stars, and locals alike for its iconic beef broth and Tafelspitz.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Plachutta Wollzeile Experience">
+    <meta name="twitter:description" content="Step into Vienna's culinary history with the legendary beef broth and Tafelspitz at Plachutta Wollzeile.">
+    
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #f8f3ec 0%, #ede3d4 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 42px 20px 80px;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 18px 24px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 30px rgba(154, 93, 48, 0.12);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #7a6654;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #b9854a;
+        }
+
+        .stat-icon {
+            color: #b9854a;
+            font-size: 1.1rem;
+        }
+
+        .note-header {
+            background: linear-gradient(135deg, #b9854a, #8c5b32);
+            color: #fff;
+            padding: 44px 32px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 18px 45px rgba(140, 91, 50, 0.35);
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -55%;
+            left: -50%;
+            width: 210%;
+            height: 210%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.06) 10px,
+                rgba(255,255,255,0.06) 20px
+            );
+            animation: shimmer 24s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
+            letter-spacing: 0.1rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 12px;
+        }
+
+        .note-subtitle {
+            font-size: 1.08rem;
+            opacity: 0.92;
+            position: relative;
+            z-index: 1;
+        }
+
+        .note-content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 20px 45px rgba(139, 110, 80, 0.12);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 22px;
+            border-bottom: 2px solid #f0e4d4;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #b9854a, #8c5b32);
+            color: white;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.35rem;
+            box-shadow: 0 10px 18px rgba(140, 91, 50, 0.35);
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.48rem;
+            font-weight: 600;
+            color: #8c5b32;
+            margin-bottom: 6px;
+        }
+
+        .restaurant-type {
+            color: #7a6654;
+            font-size: 0.96rem;
+            font-weight: 500;
+        }
+
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.82;
+            color: #3c3126;
+        }
+
+        .article-content p {
+            margin-bottom: 22px;
+        }
+
+        .intro-paragraph {
+            font-size: 1.12rem;
+            color: #71563b;
+            font-style: italic;
+            background: #f8f1e6;
+            padding: 22px;
+            border-left: 4px solid #b9854a;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 34px;
+        }
+
+        .highlight-box,
+        .time-box,
+        .dish-box,
+        .summary-box {
+            border-radius: 10px;
+            padding: 24px;
+            margin: 26px 0;
+            position: relative;
+            box-shadow: 0 12px 24px rgba(140, 91, 50, 0.08);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f6ede1, #f3e4d1);
+            border: 1px solid rgba(185, 133, 74, 0.35);
+        }
+
+        .highlight-box::before {
+            content: '🍽️';
+            position: absolute;
+            top: -10px;
+            left: 22px;
+            background: #fff;
+            padding: 0 9px;
+            font-size: 1.25rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(140, 91, 50, 0.18);
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, #f1f7ff, #e3ecfb);
+            border: 1px solid rgba(91, 127, 175, 0.35);
+        }
+
+        .time-box::before {
+            content: '🕰️';
+            position: absolute;
+            top: -10px;
+            left: 22px;
+            background: #fff;
+            padding: 0 9px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(91, 127, 175, 0.18);
+        }
+
+        .dish-box {
+            background: linear-gradient(135deg, #f5efe0, #efe4cd);
+            border: 1px solid rgba(196, 148, 85, 0.4);
+        }
+
+        .dish-box::before {
+            content: '🍖';
+            position: absolute;
+            top: -10px;
+            left: 22px;
+            background: #fff;
+            padding: 0 9px;
+            font-size: 1.25rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(196, 148, 85, 0.2);
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #fff4dd, #ffe9c4);
+            border: 1px solid rgba(211, 147, 62, 0.35);
+        }
+
+        .summary-box::before {
+            content: '💬';
+            position: absolute;
+            top: -10px;
+            left: 22px;
+            background: #fff;
+            padding: 0 9px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(211, 147, 62, 0.18);
+        }
+
+        .article-content ul {
+            margin: 14px 0 0 18px;
+            padding-left: 10px;
+            color: #4a3d30;
+        }
+
+        .article-content ul li {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px 60px;
+            }
+
+            .note-header {
+                padding: 32px 22px;
+            }
+
+            .note-content {
+                padding: 26px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">412</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">128</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">57</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note 1</h1>
+            <p class="note-subtitle">Plachutta Wollzeile – Vienna's Legendary Tafelspitz Experience</p>
+        </header>
+
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="restaurant-name">Plachutta Wollzeile</h2>
+                    <p class="restaurant-type">Historic Viennese Restaurant • Tafelspitz & Beef Broth Specialists</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <p class="intro-paragraph">Plachutta Wollzeile – A Viennese Legend. Stepping into Plachutta feels like entering the living history of Vienna. This century-old restaurant has hosted countless celebrities — from Sisi, the beloved Empress of Austria, to King Franz Joseph himself. Even today, it remains a favorite among stars like Woody Allen, Maradona, Pelé, and Kaká. The restaurant is famed for its clear, flavorful beef soup — a true comfort on a chilly European day. It’s the essence of Viennese warmth, elegance, and culinary tradition.</p>
+
+                <div class="highlight-box">
+                    <strong>🍽 About Plachutta Wollzeile</strong>
+                    <ul>
+                        <li>Located near Stadtpark, Plachutta is one of Vienna’s most iconic and historic restaurants.</li>
+                        <li>Established over a century ago, it specializes in Tafelspitz — a clear beef broth with tender boiled beef, once a royal favorite of Emperor Franz Joseph and Empress Elisabeth (“Sisi”).</li>
+                        <li>The walls are adorned with photographs of famous diners, from film legends to football stars, giving it a timeless charm and sense of legacy.</li>
+                    </ul>
+                    <br>
+                    📍 <strong>Address:</strong> Wollzeile 38, 1010 Vienna<br>
+                    ⏰ <strong>Best time to visit:</strong> After touring Schönbrunn Palace or for a cozy lunch in winter<br>
+                    💡 <strong>Tip:</strong> Reservations are recommended, especially for lunch hours.
+                </div>
+
+                <div class="time-box">
+                    <strong>⭐ Overall Experience</strong>
+                    <ul>
+                        <li>The atmosphere is elegant yet relaxed, with white tablecloths, polished brass décor, and waiters in formal uniforms.</li>
+                        <li>The service is graceful — attentive but never intrusive.</li>
+                        <li>The highlight, of course, is the beef broth: hot, clear, and deeply aromatic.</li>
+                    </ul>
+                    <br>
+                    <strong>⏰ Minimum dining time:</strong> Expect to spend at least 120 minutes at the table, as courses are paced for an unhurried experience.
+                    <br><br>
+                    For anyone craving warmth and comfort, this is the ultimate "Viennese soul food." We spent a leisurely two hours here, enjoying the hearty flavors, refined service, and calm ambience. It's easy to understand why this place has been loved by royalty and stars alike.
+                </div>
+
+                <div class="dish-box">
+                    <strong>🍖 Highly Recommended Dishes</strong>
+                    <p><strong>Tafelspitz (Boiled Beef in Broth)</strong><br>
+                    Vienna’s national dish, served with root vegetables and horseradish sauce. The beef is tender and juicy, the broth light yet full of depth.<br>
+                    💡 You can choose your preferred beef cuts — we tried two cuts plus ox tongue (six pieces total), perfect for two people.</p>
+                    <p><strong>Bone Marrow with Bread</strong><br>
+                    Two marrow bones are served inside the soup — rich, silky, and delicious spread on bread.<br>
+                    🥖 A luxurious touch that feels truly authentic.</p>
+                    <p><strong>Dessert</strong><br>
+                    Save room for dessert — the chocolate-nut cake is a decadent finale.</p>
+                </div>
+
+                <div class="summary-box">
+                    <strong>💬 Quick Summary</strong>
+                    <ul>
+                        <li>👑 Historic restaurant favored by Empress Sisi & Emperor Franz Joseph</li>
+                        <li>📸 Walls filled with celebrity photos (Woody Allen, Maradona, Pelé, Kaká...)</li>
+                        <li>🍲 Famous for its Tafelspitz beef broth — flavorful, clear, and comforting</li>
+                        <li>🕰️ Perfect lunch spot after Schönbrunn Palace</li>
+                        <li>✅ Reservation recommended, though lunchtime queues are usually short</li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>
+

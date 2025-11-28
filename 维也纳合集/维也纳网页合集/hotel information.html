@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIENNA HOTELS - Experience the Imperial Capital in Ultimate Luxury</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-family: 'Times New Roman', serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Introduction Section */
+        .intro {
+            text-align: center;
+            padding: 30px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro h2 {
+            font-family: 'Times New Roman', serif;
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Hotel Sections */
+        .hotel-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hotel-section {
+            display: flex;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hotel-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .hotel-image {
+            flex: 1;
+            min-height: 350px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hotel-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hotel-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .hotel-location {
+            color: #5a6c7d;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .rating-text {
+            color: #5a6c7d;
+            font-size: 1rem;
+        }
+
+        .hotel-price {
+            font-size: 1.8rem;
+            color: #0ea5e9;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hotel-description {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .amenities-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .amenities {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .amenity {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .amenity-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        /* Hotel Images */
+        .hotel-zeitgeist-vienna {
+            background-image: url('https://github.com/HuaqingYuan1/my-html-demo/raw/main/Hotel%20Zeitgeist%20Vienna%20Hauptbahnhof.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .anantara-palais-hansen {
+            background-image: url('https://github.com/HuaqingYuan1/my-html-demo/raw/main/Anantara%20Palais%20Hansen%20Vienna.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .almanac-palais-vienna {
+            background-image: url('https://github.com/HuaqingYuan1/my-html-demo/raw/main/Almanac%20Palais%20Vienna.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hotel-imperial {
+            background-image: url('https://github.com/HuaqingYuan1/my-html-demo/raw/main/Hotel%20Imperial.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .the-amauris-vienna {
+            background-image: url('https://github.com/HuaqingYuan1/my-html-demo/raw/main/The%20Amauris%20Vienna.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .intro h2 {
+                font-size: 2rem;
+            }
+
+            .hotel-section {
+                flex-direction: column;
+            }
+
+            .hotel-section:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .hotel-image {
+                min-height: 250px;
+            }
+
+            .amenities {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>VIENNA HOTELS</h1>
+        <p class="subtitle">Experience the Imperial Capital in Ultimate Luxury</p>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="intro">
+        <h2>Vienna's Finest Accommodations</h2>
+        <p>Discover an exclusive collection of Vienna's most prestigious hotels, where imperial heritage meets contemporary luxury. From historic palaces to modern boutique hotels, each property offers a unique gateway to the wonders of the Austrian capital.</p>
+    </section>
+
+    <!-- Hotel Listings -->
+    <div class="hotel-container">
+        <!-- Hotel Zeitgeist Vienna Hauptbahnhof -->
+        <div class="hotel-section">
+            <div class="hotel-image hotel-zeitgeist-vienna"></div>
+            <div class="hotel-content">
+                <h3 class="hotel-name">Hotel Zeitgeist Vienna Hauptbahnhof</h3>
+                <p class="hotel-location">Near Vienna Main Train Station</p>
+                <div class="hotel-rating">
+                    
+                    <span class="rating-text">Excellent location – rated 9.1/10! (score from 1390 reviews)</span>
+                </div>
+                <div class="hotel-price">€220/night</div>
+                <p class="hotel-description">Located in the heart of Vienna's 10th district, Hotel Zeitgeist offers modern comfort with excellent connectivity. Just 1,600 ft from Vienna Main Train Station, this contemporary hotel provides easy access to all major attractions while maintaining a peaceful atmosphere.</p>
+                <div class="amenities">
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #ec4899;">🚇</span>
+                        Subway/Metro Access
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">🚂</span>
+                        Train Station Nearby
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #06b6d4;">🏨</span>
+                        Modern Rooms
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #8b5cf6;">📶</span>
+                        Free WiFi
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #10b981;">📍</span>
+                        Excellent Location
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">⭐</span>
+                        High Guest Rating
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Anantara Palais Hansen Vienna -->
+        <div class="hotel-section">
+            <div class="hotel-image anantara-palais-hansen"></div>
+            <div class="hotel-content">
+                <h3 class="hotel-name">Anantara Palais Hansen Vienna</h3>
+                <p class="hotel-location">Ringstraße boulevard, In the city center of Vienna</p>
+                <div class="hotel-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">5-Star Fashion Hotel</span>
+                </div>
+                <div class="hotel-price">€1300/night</div>
+                <p class="hotel-description">A newly renovated luxury hotel in Vienna's historic center, housed in a magnificent 19th-century palace. Anantara Palais Hansen combines imperial elegance with contemporary luxury, offering spacious rooms with city views and exceptional service. Includes breakfast for 3 guests.</p>
+                <div class="amenities">
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #ec4899;">🏛️</span>
+                        Historic Palace Setting
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">🚇</span>
+                        Metro Access (1,400 ft)
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #06b6d4;">🌆</span>
+                        City View Rooms
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #8b5cf6;">🍳</span>
+                        Breakfast for 3 Guests
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #10b981;">✨</span>
+                        Newly Renovated
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">⭐</span>
+                        High Guest Rating
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Almanac Palais Vienna -->
+        <div class="hotel-section">
+            <div class="hotel-image almanac-palais-vienna"></div>
+            <div class="hotel-content">
+                <h3 class="hotel-name">Almanac Palais Vienna</h3>
+                <p class="hotel-location">Innere Stadt, Near St. Stephen’s Cathedral</p>
+                <div class="hotel-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">5-Star Fashion Hotel</span>
+                </div>
+                <div class="hotel-price">€1400/night</div>
+                <p class="hotel-description">Almanac Palais Vienna in Vienna offers a 5-star hotel experience with spa facilities, a wellness center, sauna, fitness center, indoor swimming pool, terrace, restaurant, bar, and free WiFi.</p>
+                <div class="amenities">
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #ec4899;">🎵</span>
+                        Live DJ Performances
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #10b981;">🏋️</span>
+                        24-Hour Fitness Center
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #8b5cf6;">🍸</span>
+                        Rooftop Cocktail Bar
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #06b6d4;">💼</span>
+                        Business Center
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #ec4899;">🐾</span>
+                        Pet-Friendly Services
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">📶</span>
+                        High-Speed WiFi
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portrait Firenze -->
+        <div class="hotel-section">
+            <div class="hotel-image hotel-imperial"></div>
+            <div class="hotel-content">
+                <h3 class="hotel-name">Hotel Imperial</h3>
+                <p class="hotel-location">On the Ringstraße boulevard, Heart of Vienna</p>
+                <div class="hotel-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">5-star Hotel Imperial</span>
+                </div>
+                <div class="hotel-price">€1800/night</div>
+                <p class="hotel-description">The luxurious, renowned 5-star Hotel Imperial is set directly on the Ringstraße boulevard in the heart of Vienna and takes you back to the times of the Austro-Hungarian Empire. It features exclusive hotel rooms, a gourmet restaurant and a 24-hour rooftop fitness center with a sauna. It was inaugurated in 1873 by Emperor Francis Joseph as the Palais Württemberg.</p>
+                <h4 class="amenities-title">Most popular amenities</h4>
+                <div class="amenities">
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #10b981;">🚭</span>
+                        Non-smoking rooms
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">✈️</span>
+                        Airport shuttle
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #06b6d4;">♿</span>
+                        Facilities for disabled guests
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #8b5cf6;">🍽️</span>
+                        Room service
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #ec4899;">💪</span>
+                        Fitness center
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #10b981;">🍸</span>
+                        Bar
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Amauris Vienna -->
+        <div class="hotel-section">
+            <div class="hotel-image the-amauris-vienna"></div>
+            <div class="hotel-content">
+                <h3 class="hotel-name">The Amauris Vienna</h3>
+                <p class="hotel-location">Kärntner Ring, City Center</p>
+                <div class="hotel-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">5-Star Boutique Hotel</span>
+                </div>
+                <div class="hotel-price">€500/night</div>
+                <p class="hotel-description">The Amauris Vienna - Relais & Châteaux is an elegant and modern design hotel, located right in the city center on the famous Ringstraße boulevard, 656 feet from the State Opera. The luxury boutique hotel is your gateway to Viennese rich culture. </p>
+                <div class="amenities">
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #0ea5e9;">🏊</span>
+                        Indoor swimming pool
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #06b6d4;">♿</span>
+                        Facilities for disabled guests
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #ec4899;">🍴</span>
+                        2 restaurants
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #10b981;">💆</span>
+                        Spa
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #8b5cf6;">☕</span>
+                        Tea/Coffee Maker in All Rooms
+                    </div>
+                    <div class="amenity">
+                        <span class="amenity-icon" style="color: #8b5cf6;">📶</span>
+                        Free WiFi
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

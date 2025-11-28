@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal visit note and experience at GOTA Café - Europe’s premier specialty coffee spot in Vienna">
+    <meta name="keywords" content="GOTA Café, Vienna coffee, specialty coffee, third-wave coffee, Austria travel">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note 1: GOTA Café – Europe’s No.1 Specialty Coffee Spot</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="GOTA Café – Europe’s No.1 Specialty Coffee Spot">
+    <meta property="og:description" content="Ranked Europe’s best coffee shop, GOTA Café is a must-visit for specialty coffee lovers in Vienna.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GOTA Café Experience">
+    <meta name="twitter:description" content="Discover why Vienna’s GOTA Café is ranked the top specialty coffee shop in Europe.">
+    
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2f3745;
+            background: linear-gradient(135deg, #f3f7fb 0%, #e4ecf4 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(38, 62, 98, 0.12);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #5a6a83;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #1f4d7a;
+        }
+
+        .stat-icon {
+            color: #1f4d7a;
+            font-size: 1.1rem;
+        }
+
+        .note-header {
+            background: linear-gradient(135deg, #1f4d7a, #133857);
+            color: white;
+            padding: 42px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 16px 36px rgba(19, 56, 87, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 210%;
+            height: 210%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 22s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+
+        .note-subtitle {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .note-content {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(32, 58, 90, 0.12);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e9f1;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #1f4d7a, #2f6d9d);
+            color: white;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.35rem;
+            box-shadow: 0 12px 24px rgba(31, 77, 122, 0.35);
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .cafe-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f4d7a;
+            margin-bottom: 6px;
+        }
+
+        .cafe-type {
+            color: #5a6a83;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #38475b;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: #476184;
+            font-style: italic;
+            background: #f3f7fb;
+            padding: 20px;
+            border-left: 4px solid #1f4d7a;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 26px;
+        }
+
+        .highlight-box,
+        .time-box,
+        .coffee-box,
+        .summary-box {
+            background: linear-gradient(135deg, #f1f7ff, #e2ebf8);
+            border: 1px solid rgba(31, 77, 122, 0.25);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 26px 0;
+            position: relative;
+            box-shadow: 0 14px 28px rgba(31, 77, 122, 0.12);
+        }
+
+        .highlight-box::before,
+        .time-box::before,
+        .coffee-box::before,
+        .summary-box::before {
+            position: absolute;
+            top: -12px;
+            left: 22px;
+            background: white;
+            padding: 0 10px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(31, 77, 122, 0.18);
+        }
+
+        .highlight-box::before { content: '🏡'; }
+        .time-box::before { content: '🕰️'; }
+        .coffee-box::before { content: '☕'; }
+        .summary-box::before { content: '💬'; }
+
+        .article-content ul {
+            margin-top: 12px;
+            padding-left: 20px;
+        }
+
+        .article-content ul li {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px 16px 60px;
+            }
+
+            .note-content {
+                padding: 26px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">512</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">203</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">87</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note 1</h1>
+            <p class="note-subtitle">GOTA Café – Europe’s No.1 Specialty Coffee Spot</p>
+        </header>
+
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-mug-hot"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="cafe-name">GOTA Café</h2>
+                    <p class="cafe-type">World-Ranked Specialty Coffee Roastery & Café</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <p class="intro-text">GOTA Café – Europe’s No.1 Specialty Coffee Spot. Ranked among the world’s top three and Europe’s best coffee shops, GOTA Café is a must-visit destination for true coffee lovers in Vienna.</p>
+
+                <div class="highlight-box">
+                    <strong>🏡 About the Café</strong>
+                    <ul>
+                        <li>Hidden near Schönbrunn Palace, GOTA Café is a modern minimalist roastery and café known for its single-origin beans and precise brewing.</li>
+                        <li>Arriving around 10:00 AM on Saturday, you can easily find a seat; by 11:00, it’s nearly full — locals love this place for their weekend brunch and specialty brews.</li>
+                    </ul>
+                    <br>
+                    📍 <strong>Address:</strong> GOTA Coffee, Mariahilfer Straße 192, 1150, Vienna<br>
+                    🕰 <strong>Opening Hours:</strong> Mon–Fri 7:00am - 6:00pm · Sat-Sun 8:00am - 6:00pm · Breakfast Fri - Sun 8:00am - 2:00pm<br>
+                    ⏳ <strong>Recommended Stay:</strong> 45–60 minutes for breakfast &amp; coffee tasting<br>
+                    💡 <strong>Tip:</strong> Visit before 10:30 AM to avoid the crowd, especially on weekends.
+                </div>
+
+                <div class="coffee-box">
+                    <strong>☕ Coffee Highlights</strong>
+                    <ul>
+                        <li>✅ <strong>Flat White (with Specialty Beans)</strong> – smooth milk texture paired with single-origin espresso.</li>
+                        <li>✅ <strong>V60 Hand Drip</strong> – bright and aromatic, world-class clarity.</li>
+                        <li>❌ <strong>Cappuccino Freddo</strong> – average, not recommended.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <strong>🍳 Breakfast &amp; Atmosphere</strong>
+                    <p>Simple but satisfying breakfast — avocado toast, shakshuka, and French toast are all good choices. The space is bright and minimal, with GOTA’s signature beans displayed for purchase.</p>
+                </div>
+
+                <div class="summary-box">
+                    <strong>💬 Travel Tip</strong>
+                    <p>Perfect stop before visiting Schönbrunn Palace — ideal for a relaxed morning coffee break. If you’re not nearby, it’s optional; the main charm lies in its coffee craft.</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>
+

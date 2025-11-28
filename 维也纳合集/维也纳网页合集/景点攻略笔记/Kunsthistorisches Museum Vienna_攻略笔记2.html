@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guide 2 | In-Depth Exploration of the Kunsthistorisches Museum Vienna</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600;700&display=swap">
+
+  <style>
+    :root{
+      /* Cool blue + warm amber palette */
+      --navy:#0b3b70; --navy-2:#155fa0;      /* primary blues */
+      --gold:#f59e0b; --gold-2:#fbbf24;      /* amber accents */
+      --ink:#0f172a; --muted:#475569;        /* body text + muted slate */
+      --bg1:#f8fbff; --bg2:#eef5ff;          /* soft blue gradient */
+      --radius:14px; --shadow:0 8px 22px rgba(0,0,0,.08);
+
+      --blue:#2563eb; --blue-2:#60a5fa;      /* pill gradient now blue */
+      --row-bd:#dbeafe;                      /* card borders */
+      --green-bg:#eef6ff; --green-bd:#cfe0ff; --accent:#d97706; /* reused tokens */
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.7; color:var(--ink);
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+    }
+
+    /* container keeps fixed width for social bar + title + content */
+    .container{max-width:1100px;margin:0 auto;padding:36px 20px}
+
+    /* Social bar (kept) */
+    .social-stats{
+      display:flex;justify-content:center;gap:28px;background:#fff;
+      border-radius:999px;padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow)
+    }
+    .stat-item{display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:600}
+    .stat-item i{color:var(--gold)}
+    .stat-number{color:var(--gold-2);font-weight:800}
+
+    /* Title band (kept) */
+    .note-header{
+      background:var(--navy);color:#fff;padding:40px 20px;border-radius:16px;
+      margin-bottom:18px;box-shadow:var(--shadow);text-align:center
+    }
+    .note-title{font-family:"Playfair Display",serif;font-size:28px;font-weight:800;letter-spacing:.2px;margin-bottom:6px}
+    .note-subtitle{font-size:15px;opacity:.95}
+
+    /* Below-hero block (NEW) — still inside .container so width stays the same */
+    .below-hero{margin-top:6px}
+
+    /* headline */
+    .highlight-wrap{margin:6px 0 14px}
+    .highlight-title{
+      display:flex;align-items:center;gap:8px;color:#0f172a;font-size:20px;font-weight:900;
+      margin:0 0 10px;border-bottom:1px solid #eef2f7;padding-bottom:6px
+    }
+
+    /* one-row highlight pills */
+    .hi-list{display:grid;gap:10px}
+    .hi-item{
+      display:grid;grid-template-columns:auto 1fr;gap:12px;background:#fff;
+      border:1px solid var(--row-bd);border-radius:12px;padding:12px;box-shadow:0 2px 10px rgba(0,0,0,.04)
+    }
+    .hi-num{
+      width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2));
+      box-shadow:0 2px 6px rgba(22,119,255,.25)
+    }
+    .hi-body{min-width:0}
+    .hi-heading{margin:0 0 4px;font-size:16px;font-weight:800;color:#1f2937}
+    .hi-heading .sep{opacity:.35;margin:0 .25em}
+    .hi-desc{margin:0;color:#667085;line-height:1.65;font-size:14.5px}
+
+    /* visitor info card */
+    .visitor-card{
+      margin-top:14px;background:var(--green-bg);border:1px solid var(--green-bd);
+      border-radius:12px;padding:14px
+    }
+    .visitor-title{
+      margin:0 0 8px;color:var(--accent);font-size:18px;font-weight:900;
+      display:flex;align-items:center;gap:8px
+    }
+    .v-list{margin:0 0 10px 0;padding-left:0;list-style:none}
+    .v-list li{padding:6px 0;border-bottom:1px dashed rgba(0,0,0,.06)}
+    .v-list li:last-child{border-bottom:none}
+    .muted{color:#6b7280}
+
+    .chiplist{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      background:#e6f0ff;color:#0b57d0;border:1px solid #cfe0ff;
+      font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px
+    }
+
+    /* main content card */
+    .note-content{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-top:16px}
+
+    @media (max-width:680px){
+      .hi-item{padding:10px}
+      .hi-heading{font-size:15.5px}
+      .hi-desc{font-size:14px}
+      .note-content{padding:18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Likes / Comments / Shares (kept, same width) -->
+    <div class="social-stats">
+      <div class="stat-item"><i class="fa-solid fa-heart" style="color:#e63946"></i><span class="stat-number" style="color:#e63946">892</span><span style="color:#1f2d24">Likes</span></div>
+      <div class="stat-item"><i class="fa-solid fa-comment" style="color:#e63946"></i><span class="stat-number" style="color:#e63946">176</span><span style="color:#1f2d24">Comments</span></div>
+      <div class="stat-item"><i class="fa-solid fa-share" style="color:#e63946"></i><span class="stat-number" style="color:#e63946">324</span><span style="color:#1f2d24">Shares</span></div>
+    </div>
+    
+    <!-- Title (kept, same width) -->
+    <header class="note-header">
+      <h1 class="note-title">Guide 2 | In-Depth Exploration of the Kunsthistorisches Museum Vienna</h1>
+    </header>
+
+    <!-- Ideal For Module -->
+    <style>
+      .best-for-module{
+        display:flex;
+        flex-direction:column;
+        gap:6px;
+        padding:16px 20px;
+        background:#f9f7fb;
+        border-left:5px solid #4743c2;
+        border-radius:12px;
+        box-shadow:0 6px 18px rgba(48, 22, 77, 0.08);
+        color:#1f2d24;
+      }
+      .best-for-module strong{
+        color:#253166;
+      }
+    </style>
+    
+    <div class="best-for-module">
+      <p><strong>Ideal for:</strong> Art lovers with ample time who wish to deeply appreciate one of the world's finest art collections</p>
+      <p><strong>Recommended visit duration:</strong> 3–4.5 hours</p>
+    </div>
+
+    <!-- About the Museum -->
+    <div class="visitor-card">
+      <h2 class="visitor-title" style="color:#252666">
+        <span style="color:#7b7b7b">🏛</span> About the Museum
+      </h2>
+      <ul class="v-list">
+        <li>The building itself is a masterpiece of art — with grand imperial architecture, rich royal ambience, and awe-inspiring collections of paintings, sculptures, and treasures. A perfect destination for travelers who are truly passionate about art!</li>
+      </ul>      
+    </div>
+
+    <!-- Ticket Information -->
+    <div class="visitor-card">
+      <h2 class="visitor-title" style="color:#252666">
+        <span>💰</span> Ticket Information
+      </h2>
+      <ul class="v-list">
+        <li><strong>Audio Guide:</strong> Highly recommended — listen to fascinating stories behind the masterpieces.</li>
+        <li style="background:#fff7ed;border:1px solid #fde68a;padding:10px;border-radius:8px;border-left:4px solid #f59e0b">
+          <strong>💡 Tip:</strong> When renting the audio guide, don't forget to pick up a free museum map at the same counter.
+        </li>
+      </ul>      
+    </div>
+    
+
+     <!-- Suggested Visit Route -->
+    <section class="tour-guide" style="--ink:#0f172a;--muted:#475569;--green:#2563eb;--green-2:#60a5fa;--bg:#ffffff;--soft:#eef5ff;--line:#dbeafe; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Microsoft YaHei, Noto Sans, Arial, sans-serif; color:var(--ink);">
+      <style>
+        .tour-guide{margin:24px 0;padding:0}
+        .tg-card{background:var(--bg);border:1px solid var(--line);border-radius:20px;box-shadow:0 6px 24px rgba(37,102,77,.08);overflow:hidden}
+        .tg-head{display:flex;align-items:center;gap:12px;padding:16px 18px;background:linear-gradient(0deg, #ffffff, var(--soft));border-bottom:1px solid var(--line)}
+        .tg-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--green);color:#fff;font-size:16px}
+        .tg-title{font-size:18px;font-weight:800;color:var(--green);letter-spacing:.2px}
+        .tg-sec{padding:18px}
+        /* Reduce gap between section header and first content block */
+        .tg-head + .tg-sec{padding-top:8px}
+        .tg-quote{margin:8px 0 14px 0;padding-left:12px;border-left:4px solid var(--green);color:var(--muted)}
+        .tg-p{margin:10px 0 12px 0;line-height:1.75}
+        .tg-olist{margin:10px 0 0 24px}
+        .tg-olist li{margin:6px 0;padding-left:4px}
+        .tg-hr{height:1px;background:var(--line);margin:10px 0}
+        .tg-sub{display:flex;align-items:center;gap:8px;font-weight:800;color:#222;margin:6px 0 8px 0}
+        .dot{width:8px;height:8px;border-radius:999px;background:var(--green)}
+        .muted{color:var(--muted)}
+        .em{font-style:italic}
+        .note{background:var(--soft);border:1px dashed var(--line);padding:12px 14px;border-radius:12px}
+        .tip{display:flex;gap:10px;margin:10px 0}
+        .tip i{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:8px}
+        .floor-tag{display:inline-flex;align-items:center;gap:8px;background:#e6f0ff;color:#155fa0;font-weight:800;padding:6px 10px;border-radius:10px}
+        .floor-tag i{font-style:normal}
+        .dim{opacity:.9}
+        @media (max-width:560px){
+          .tg-title{font-size:17px}
+          .tg-sec{padding:16px}
+        }
+      </style>
+    
+      <div class="tg-card">
+        <!-- Intro lead block -->
+        <div class="tg-sec">
+          <div class="floor-tag" style="margin-bottom:12px;"><i>🔎</i> Suggested Visit Route</div>
+          
+          <div style="border-left:4px solid var(--line);background:#fff;padding:14px 16px;border-radius:12px">
+            <div style="font-weight:800;color:#1f2937;margin-bottom:8px">Layout Overview:</div>
+            <ul class="tg-olist" style="list-style: disc; margin-left: 20px; margin-bottom:12px">
+              <li><strong>Mezzanine (0.5 Floor)</strong>: Sculptures, decorative arts, and golden treasures — compact but exquisitely curated</li>
+              <li><strong>First Floor</strong>: Paintings — <span class="em">the very heart of the museum</span></li>
+            </ul>
+            <div style="font-weight:800;color:#1f2937;margin:6px 0 6px 0">🪞 Visiting Advice:</div>
+            <p style="margin-left:20px;margin-bottom:6px"><strong>Start with the section that interests you most!</strong></p>
+            <ul class="tg-olist" style="list-style: disc; margin-left: 20px;">
+              <li><strong>If you love painting</strong> → begin on the first floor</li>
+              <li><strong>If you prefer sculptures and antiquities</strong> → start from the mezzanine (0.5 floor)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- First Floor — Picture Gallery -->
+        <div class="tg-head">
+          <span>🖼️</span>
+          <div class="tg-title">First Floor — Picture Gallery</div>
+        </div>
+        <div class="tg-sec">
+          <div class="tg-quote muted">⏱ Recommended time: <span class="em">2–3 hours</span></div>
+          <p class="tg-p">This is the soul of the entire museum. Find a comfortable bench, put on your audio guide headset, and quietly enjoy these timeless masterpieces.</p>
+    
+          <div class="tg-sub"><span class="dot"></span> Must-see works:</div>
+          <ol class="tg-olist">
+            <li><strong>Pieter Bruegel the Elder</strong> — <span class="em">The Peasant Wedding</span></li>
+            <li><strong>Johannes Vermeer</strong> — <span class="em">The Art of Painting</span></li>
+            <li><strong>Raphael</strong> — <span class="em">Madonna of the Meadow</span></li>
+            <li><strong>Peter Paul Rubens</strong> — magnificent Baroque masterpieces</li>
+            <li><strong>Titian</strong> — vivid colors and rich textures</li>
+          </ol>
+        </div>
+    
+        <div class="tg-hr"></div>
+    
+        <!-- Mezzanine (0.5 Floor) -->
+        <div class="tg-head">
+          <span>🏺</span>
+          <div class="tg-title">Mezzanine (0.5 Floor) — Egyptian, Greek & Roman Antiquities & Kunstkammer</div>
+        </div>
+        <div class="tg-sec">
+          <div class="tg-quote muted">⏱ Recommended time: <span class="em">30–60 minutes</span></div>
+          <p class="tg-p">This section displays fascinating ancient artifacts, including Egyptian and Greek works of art.</p>
+    
+          <div class="tg-sub"><span class="dot"></span> Top 3 Highlights:</div>
+          <ol class="tg-olist">
+            <li><strong>Benvenuto Cellini's Saliera (Salt Cellar)</strong></li>
+            <li><strong>Madonna of the Rosary statue</strong></li>
+            <li>Ancient ritual vessels and reliquaries</li>
+          </ol>
+
+          <div class="tg-sub" style="margin-top:16px"><span class="dot"></span> Other unmissable exhibits:</div>
+          <ul class="tg-olist" style="list-style: disc;">
+            <li>Giant Priest Statue from Cyprus</li>
+            <li>Cellini's Salt Cellar (master goldsmith work)</li>
+            <li>Roman cameo Gemma Augustea</li>
+          </ul>
+        </div>
+    
+        <div class="tg-hr"></div>
+
+        <!-- Second Floor — Coin Collection -->
+        <div class="tg-head">
+          <span>📍</span>
+          <div class="tg-title">Second Floor — Coin Collection</div>
+        </div>
+        <div class="tg-sec">
+          <p class="tg-p">A showcase of Austria's historical coins and banknotes.</p>
+          <div class="tg-quote muted">⏱ Suggested visit time: <span class="em">around 30 minutes</span></div>
+          <div style="background:#fff7ed;border:1px solid #fde68a;padding:10px;border-radius:8px;border-left:4px solid #f59e0b;margin-top:8px">
+            <strong>📷 Photo Tip:</strong> The display cases are well lit — ideal for taking bright, clear photos.
+          </div>
+        </div>
+      </div>
+    </section>
+        
+
+      <!-- Tips & Notes -->
+      <div style="margin-top:16px;background:linear-gradient(0deg,#ffffff,#eef5ff);border:1px solid #dbeafe;border-left:6px solid #2563eb;border-radius:14px;box-shadow:0 6px 18px rgba(11,59,112,.08);padding:16px 18px;">
+        <div style="display:flex;align-items:center;gap:8px;font-weight:900;color:#155fa0;margin-bottom:8px">
+          <span>⚠️</span>
+          <div style="font-size: larger;">Practical Tips & Reminders</div>
+        </div>
+        <ul style="margin-left:18px;list-style: disc;">
+          <li style="margin:6px 0 8px 0;font-weight:800;color:#0f172a">☕ Relax at the Central Dome Café</li>
+          <div style="color:#475569;margin-left:8px;line-height:1.75;margin-bottom:12px">
+            Plan a coffee break around <strong>10:00 AM</strong> — crowds are fewer, and you can quietly enjoy the elegant, tranquil atmosphere under the grand dome without waiting in line.
+          </div>
+          <li style="margin:12px 0 8px 0;font-weight:800;color:#0f172a">🎒 Travel Light — Use the Cloakroom</li>
+          <div style="color:#475569;margin-left:8px;line-height:1.75">
+            If you plan a long visit, leave your bags at the cloakroom near the entrance.<br>
+            This will make your exploration lighter and allow you to immerse yourself fully in the world of art.
+          </div>
+        </ul>
+      </div>
+    
+
+    
+  </div>
+</body>
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px 28px 20px;color:#0f172a;font-family:'Playfair Display',serif;font-weight:800;font-size:20px;letter-spacing:.2px">🎨 Enjoy your immersive art journey at the Kunsthistorisches Museum!</div>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTA - Reservations</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: #f6f9fc;
+            min-height: 100vh;
+            color: #273041;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 26px rgba(24, 49, 83, 0.2);
+            height: 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-name-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(25, 56, 93, 0.82);
+            color: #d7eaff;
+            padding: 16px 26px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(215, 234, 255, 0.35);
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 2px;
+            color: #e5f3ff;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(240, 247, 255, 0.92);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 18px 38px rgba(26, 49, 79, 0.18);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(78, 121, 173, 0.25);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #173659;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: #4676b8;
+        }
+
+        /* Restaurant Info */
+        .info-item {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5faff, #dde9fa);
+            border-radius: 12px;
+            border-left: 4px solid #4676b8;
+        }
+
+        .info-item h3 {
+            color: #1c3553;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            color: #42546c;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .hour-item {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 14px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(32, 59, 92, 0.1);
+            border: 1px solid rgba(76, 122, 173, 0.2);
+        }
+
+        .hour-label {
+            font-weight: 600;
+            color: #1c3553;
+            font-size: 0.92rem;
+            margin-bottom: 6px;
+        }
+
+        .hour-time {
+            color: #37608b;
+            font-size: 0.85rem;
+        }
+
+        .rules-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .rules-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(64, 96, 136, 0.15);
+            color: #42546c;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li i {
+            color: #4676b8;
+            width: 16px;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            background: rgba(240, 247, 255, 0.92);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 18px 38px rgba(26, 49, 79, 0.18);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(78, 121, 173, 0.25);
+            grid-column: span 2;
+        }
+
+        .simple-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 18px rgba(32, 59, 92, 0.15);
+            border: 1px solid rgba(78, 121, 173, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav-btn {
+            background: #173659;
+            color: #e2efff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .month-nav-btn:hover {
+            background: #4676b8;
+            transform: scale(1.08);
+        }
+
+        .month-nav-btn:disabled {
+            background: #cbd6e3;
+            color: #eff4f9;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #173659;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .day-header {
+            background: #173659;
+            color: #e2efff;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        .calendar-day {
+            background: #eef4fb;
+            border: 1px solid #d1dee9;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            margin: 1px;
+        }
+
+        .calendar-day:hover {
+            background: #cfe1f5;
+            border-color: #4676b8;
+        }
+
+        .calendar-day.selected {
+            background: #173659;
+            color: #e2efff;
+            border-color: #173659;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+
+        .calendar-day.closed {
+            background: #e6ecf4;
+            color: #869ab7;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .calendar-day.closed:hover {
+            background: #e6ecf4;
+            border-color: #d1dee9;
+        }
+
+        /* Time Slots Styles */
+        .time-slots-container {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 18px rgba(32, 59, 92, 0.15);
+            border: 1px solid rgba(78, 121, 173, 0.2);
+        }
+
+        .time-section {
+            margin-bottom: 20px;
+        }
+
+        .time-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-section-title {
+            font-weight: 600;
+            color: #173659;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #eef4fb;
+            border: 2px solid #d1dee9;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #214367;
+        }
+
+        .time-slot:hover {
+            background: #cfe1f5;
+            border-color: #4676b8;
+        }
+
+        .time-slot.selected {
+            background: #173659;
+            color: #e2efff;
+            border-color: #173659;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #173659;
+            font-size: 0.95rem;
+        }
+
+        /* Reserve Button */
+        .reserve-button {
+            background: linear-gradient(135deg, #173659, #4676b8);
+            color: #e2efff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 12px 30px rgba(24, 48, 83, 0.35);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .reserve-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 36px rgba(24, 48, 83, 0.4);
+        }
+
+        .reserve-button:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(240, 247, 255, 0.92);
+            border-radius: 20px;
+            padding: 26px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 16px 32px rgba(26, 49, 79, 0.16);
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 20px;
+            color: #173659;
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: #4676b8;
+        }
+
+        @media (max-width: 768px) {
+            .restaurant-name-overlay {
+                top: 15px;
+                left: 15px;
+                padding: 10px 18px;
+            }
+
+            .restaurant-name {
+                font-size: 1.25rem;
+                letter-spacing: 1px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-form {
+                grid-column: span 1;
+            }
+
+            .simple-form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                min-height: 40px;
+                font-size: 0.9rem;
+                padding: 10px 5px;
+            }
+
+            .day-header {
+                padding: 8px 5px;
+                font-size: 0.8rem;
+            }
+
+            .time-slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .time-slot {
+                min-height: 40px;
+                font-size: 0.85rem;
+                padding: 10px 5px;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <img src="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?auto=format&fit=crop&w=1600&q=80" 
+                 alt="GOTA Restaurant" 
+                 class="hero-image">
+            <div class="restaurant-name-overlay">
+                <h1 class="restaurant-name">GOTA</h1>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Restaurant Information -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    Restaurant Information
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                    <p>Mariahilfer Straße 192, 1150, Vienna, Austria</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                    <div class="hours-grid">
+                        <div class="hour-item">
+                            <div class="hour-label">Monday – Friday</div>
+                            <div class="hour-time">7:00 AM – 6:00 PM</div>
+                        </div>
+                        <div class="hour-item">
+                            <div class="hour-label">Saturday – Sunday</div>
+                            <div class="hour-time">8:00 AM – 6:00 PM<br><em>Breakfast service Friday – Sunday 8:00 AM – 2:00 PM</em></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-tshirt"></i> Dress Code</h3>
+                    <p><strong>Smart casual attire recommended</strong></p>
+                    <ul class="rules-list">
+                        <li><i class="fas fa-check"></i> Polished casual wear with a modern twist</li>
+                        <li><i class="fas fa-check"></i> Fashion-forward sneakers welcome in the evening</li>
+                        <li><i class="fas fa-times"></i> Sportswear and beachwear discouraged</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Policies & Rules -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Policies & Experience
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-calendar-check"></i> Reservations</h3>
+                    <p>Booking is highly recommended, especially for dinner and weekend brunch services.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-star"></i> Concept</h3>
+                    <p>GOTA combines Nordic-inspired flavors with Austrian produce, featuring seasonal tasting menus and innovative cocktails.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-concierge-bell"></i> Special Requests</h3>
+                    <p>Please let us know of dietary restrictions or celebrations when reserving; we tailor each experience to your preferences.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form fade-in">
+            <h2 class="card-title">
+                <i class="fas fa-utensils"></i>
+                Make a Reservation
+            </h2>
+
+            <form id="reservationForm">
+                <div class="simple-form-grid">
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="month-nav-btn" id="prevMonth" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="monthTitle">August</div>
+                                <button type="button" class="month-nav-btn" id="nextMonth" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time *</label>
+                        <div class="time-slots-container">
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-sun"></i>
+                                    Morning Service
+                                </div>
+                                <div class="time-slots-grid" id="lunchSlots">
+                                </div>
+                            </div>
+                            
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-moon"></i>
+                                Afternoon Service
+                                </div>
+                                <div class="time-slots-grid" id="dinnerSlots">
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTime" name="time" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="reserve-button">
+                    <i class="fas fa-calendar-plus"></i>
+                    Make Reservation
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+43 1 456 7890</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>reservations@gota.at</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDateValue = null;
+        let selectedTimeValue = null;
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        const WEEKDAY_MORNING_TIMES = ['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00'];
+        const WEEKEND_MORNING_TIMES = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00'];
+        const AFTERNOON_TIMES = ['14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00'];
+
+        const lunchSlotsEl = document.getElementById('lunchSlots');
+        const dinnerSlotsEl = document.getElementById('dinnerSlots');
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            monthTitle.textContent = monthNames[currentMonth] + ' ' + currentYear;
+            calendarGrid.innerHTML = '';
+            
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, day);
+                const dayOfWeek = date.getDay();
+                
+                dayElement.className = 'calendar-day';
+                dayElement.onclick = () => selectDate(day);
+                
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            updateNavButtons();
+        }
+
+        function renderTimeSlots(dayOfWeek) {
+            lunchSlotsEl.innerHTML = '';
+            dinnerSlotsEl.innerHTML = '';
+
+            const morningTimes = (dayOfWeek === 0 || dayOfWeek === 6) ? WEEKEND_MORNING_TIMES : WEEKDAY_MORNING_TIMES;
+
+            const createSlot = (timeString, container) => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.dataset.time = timeString;
+                slot.textContent = formatTimeLabel(timeString);
+                slot.addEventListener('click', () => selectTimeElement(timeString, slot));
+                container.appendChild(slot);
+            };
+
+            morningTimes.forEach(time => createSlot(time, lunchSlotsEl));
+            AFTERNOON_TIMES.forEach(time => createSlot(time, dinnerSlotsEl));
+        }
+
+        function formatTimeLabel(time) {
+            const [hour, minute] = time.split(':').map(Number);
+            const date = new Date(0, 0, 0, hour, minute);
+            return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevMonth');
+            const nextBtn = document.getElementById('nextMonth');
+            
+            prevBtn.disabled = (currentMonth === 7 && currentYear === 2026);
+            nextBtn.disabled = (currentMonth === 8 && currentYear === 2026);
+        }
+
+        function changeMonth(direction) {
+            let newMonth = currentMonth + direction;
+            let newYear = currentYear;
+            
+            if (newMonth < 0) {
+                newMonth = 11;
+                newYear--;
+            } else if (newMonth > 11) {
+                newMonth = 0;
+                newYear++;
+            }
+            
+            if ((newMonth === 7 && newYear === 2026) || (newMonth === 8 && newYear === 2026)) {
+                currentMonth = newMonth;
+                currentYear = newYear;
+                generateCalendar();
+                selectedDateValue = null;
+                document.getElementById('selectedDate').value = '';
+            }
+        }
+
+        function selectDate(day) {
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            event.target.classList.add('selected');
+            
+            const month = String(currentMonth + 1).padStart(2, '0');
+            const dayStr = String(day).padStart(2, '0');
+            selectedDateValue = `${currentYear}-${month}-${dayStr}`;
+            document.getElementById('selectedDate').value = selectedDateValue;
+            const date = new Date(currentYear, currentMonth, day);
+            renderTimeSlots(date.getDay());
+            selectedTimeValue = null;
+            document.getElementById('selectedTime').value = '';
+            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+        }
+
+        function selectTimeElement(time, element) {
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+            
+            element.classList.add('selected');
+            
+            selectedTimeValue = time;
+            document.getElementById('selectedTime').value = selectedTimeValue;
+        }
+
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            if (!data.date || !data.time) {
+            alert('Please select both date and time.');
+            return;
+        }
+        
+        const selectedDate = new Date(data.date);
+        const dayOfWeek = selectedDate.getDay();
+            const selectedTime = data.time;
+            const hour = parseInt(selectedTime.substring(0,2), 10);
+            if (dayOfWeek >= 1 && dayOfWeek <= 4 && hour < 7) {
+            alert('Weekday service begins at 7:00 AM. Please select another time.');
+            return;
+        }
+        if (dayOfWeek >= 5 && hour < 8) {
+            alert('Weekend service begins at 8:00 AM. Please select another time.');
+            return;
+        }
+        if (hour >= 18) {
+            alert('Reservations are available until 6:00 PM. Please choose an earlier time.');
+            return;
+        }
+        
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const displayDate = selectedDate.toLocaleDateString('en-US', dateOptions);
+        
+        alert(`Reservation Confirmed!\n\nDate: ${displayDate}\nTime: ${data.time}\n\nWe look forward to welcoming you to GOTA!`);
+            
+            this.reset();
+            selectedDateValue = null;
+            selectedTimeValue = null;
+            generateCalendar();
+            renderTimeSlots(new Date().getDay());
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            renderTimeSlots(new Date().getDay());
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
+
