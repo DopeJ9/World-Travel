@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saporium - Florence Restaurant Reservations</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Arial', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section - New Design */
+        .hero-section {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            height: 350px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .restaurant-name-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            padding: 20px 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            text-align: center;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 3px;
+            color: #667eea;
+            text-shadow: none;
+        }
+
+        /* Main Content - New Layout */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: #764ba2;
+        }
+
+        /* Restaurant Info */
+        .info-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f8f9ff, #e8ecff);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-item h3 {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            color: #4a5568;
+            line-height: 1.5;
+            font-size: 0.85rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .hour-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .hour-label {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .hour-time {
+            color: #764ba2;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .closed-item {
+            background: rgba(200, 200, 200, 0.3);
+            color: #666;
+        }
+
+        .closed-item .hour-time {
+            color: #666;
+        }
+
+        /* Rules List */
+        .rules-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .rules-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            color: #4a5568;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li i {
+            color: #764ba2;
+            width: 14px;
+        }
+
+        /* Reservation Form - New Design */
+        .reservation-form {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .form-title i {
+            color: #764ba2;
+        }
+
+        .simple-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        /* Calendar Styles - Updated */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .month-nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .month-nav-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .month-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .month-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 5px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .calendar-day {
+            background: #f8f9ff;
+            border: 2px solid #e8ecff;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 1px;
+            font-weight: 500;
+        }
+
+        .calendar-day:hover {
+            background: #e8ecff;
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .calendar-day.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+
+        .calendar-day.empty:hover {
+            background: transparent;
+            transform: none;
+        }
+
+        .calendar-day.closed {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .calendar-day.closed:hover {
+            background: #f0f0f0;
+            border-color: #e8ecff;
+            transform: none;
+        }
+
+        /* Time Slots Styles - Updated */
+        .time-slots-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .time-section {
+            margin-bottom: 25px;
+        }
+
+        .time-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-section-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .time-slot {
+            background: #f8f9ff;
+            border: 2px solid #e8ecff;
+            padding: 15px 12px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-slot:hover {
+            background: #e8ecff;
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1rem;
+        }
+
+        /* Reserve Button - New Design */
+        .reserve-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .reserve-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .reserve-button:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info - New Design */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 25px;
+            color: #667eea;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: #764ba2;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .restaurant-name-overlay {
+                bottom: 20px;
+                padding: 15px 25px;
+            }
+
+            .restaurant-name {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .simple-form-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .calendar-grid {
+                gap: 2px;
+            }
+
+            .calendar-day {
+                min-height: 45px;
+                font-size: 0.9rem;
+                padding: 12px 5px;
+            }
+
+            .day-header {
+                padding: 10px 5px;
+                font-size: 0.8rem;
+            }
+
+            .time-slots-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .time-slot {
+                min-height: 45px;
+                font-size: 0.85rem;
+                padding: 12px 8px;
+            }
+
+            .contact-item {
+                display: flex;
+                justify-content: center;
+                margin: 15px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* New floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .info-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .info-card:nth-child(2) {
+            animation-delay: -2s;
+        }
+
+        .info-card:nth-child(3) {
+            animation-delay: -4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/F9CobLZ8foyxpjxO5TRcQVe4nib/?preview_type=16" 
+                 alt="Saporium Florence" 
+                 class="hero-image">
+            <div class="restaurant-name-overlay">
+                <h1 class="restaurant-name">SAPORIUM</h1>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Restaurant Information Cards -->
+            <div class="info-section fade-in">
+                <!-- Address Card -->
+                <div class="info-card">
+                    <h2 class="card-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Location
+                    </h2>
+                    <div class="info-item">
+                        <h3><i class="fas fa-building"></i> Address</h3>
+                        <p>Via dei Georgofili, 11R<br>50122 Firenze, Italy</p>
+                    </div>
+                </div>
+
+                <!-- Hours Card -->
+                <div class="info-card">
+                    <h2 class="card-title">
+                        <i class="fas fa-clock"></i>
+                        Opening Hours
+                    </h2>
+                    <div class="hours-grid">
+                        <div class="hour-item">
+                            <div class="hour-label">Tue - Sat</div>
+                            <div class="hour-time">Lunch: 12:30 - 14:00<br>Dinner: 18:00 - 23:45</div>
+                        </div>
+                        <div class="hour-item closed-item">
+                            <div class="hour-label">Sun - Mon</div>
+                            <div class="hour-time">Closed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Card -->
+                <div class="info-card">
+                    <h2 class="card-title">
+                        <i class="fas fa-star"></i>
+                        Experience
+                    </h2>
+                    <div class="info-item">
+                        <h3><i class="fas fa-utensils"></i> Cuisine</h3>
+                        <p>Contemporary Italian cuisine with innovative techniques and seasonal ingredients</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-tshirt"></i> Dress Code</h3>
+                        <p><strong>Smart casual recommended</strong></p>
+                        <ul class="rules-list">
+                            <li><i class="fas fa-check"></i> Elegant casual attire</li>
+                            <li><i class="fas fa-times"></i> No sportswear</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form fade-in">
+            <h2 class="form-title">
+                <i class="fas fa-calendar-alt"></i>
+                Reserve Your Table
+            </h2>
+
+            <form id="reservationForm">
+                <div class="simple-form-grid">
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="month-nav-btn" id="prevMonth" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="monthTitle">August</div>
+                                <button type="button" class="month-nav-btn" id="nextMonth" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time *</label>
+                        <div class="time-slots-container">
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-sun"></i>
+                                    Lunch (Tue - Sat)
+                                </div>
+                                <div class="time-slots-grid" id="lunchSlots">
+                                    <div class="time-slot" data-time="12:30" onclick="selectTime('12:30')">12:30 PM</div>
+                                    <div class="time-slot" data-time="13:00" onclick="selectTime('13:00')">1:00 PM</div>
+                                    <div class="time-slot" data-time="13:15" onclick="selectTime('13:15')">1:15 PM</div>
+                                    <div class="time-slot" data-time="13:30" onclick="selectTime('13:30')">1:30 PM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-moon"></i>
+                                    Dinner (Tue - Sat)
+                                </div>
+                                <div class="time-slots-grid" id="dinnerSlots">
+                                    <div class="time-slot" data-time="18:00" onclick="selectTime('18:00')">6:00 PM</div>
+                                    <div class="time-slot" data-time="18:30" onclick="selectTime('18:30')">6:30 PM</div>
+                                    <div class="time-slot" data-time="19:00" onclick="selectTime('19:00')">7:00 PM</div>
+                                    <div class="time-slot" data-time="19:30" onclick="selectTime('19:30')">7:30 PM</div>
+                                    <div class="time-slot" data-time="20:00" onclick="selectTime('20:00')">8:00 PM</div>
+                                    <div class="time-slot" data-time="20:30" onclick="selectTime('20:30')">8:30 PM</div>
+                                    <div class="time-slot" data-time="21:00" onclick="selectTime('21:00')">9:00 PM</div>
+                                    <div class="time-slot" data-time="21:30" onclick="selectTime('21:30')">9:30 PM</div>
+                                    <div class="time-slot" data-time="22:00" onclick="selectTime('22:00')">10:00 PM</div>
+                                    <div class="time-slot" data-time="22:30" onclick="selectTime('22:30')">10:30 PM</div>
+                                    <div class="time-slot" data-time="23:00" onclick="selectTime('23:00')">11:00 PM</div>
+                                    <div class="time-slot" data-time="23:30" onclick="selectTime('23:30')">11:30 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTime" name="time" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="reserve-button">
+                    <i class="fas fa-check-circle"></i>
+                    Confirm Reservation
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+39 055 234 5678</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@saporium.it</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDateValue = null;
+        let selectedTimeValue = null;
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            monthTitle.textContent = monthNames[currentMonth] + ' ' + currentYear;
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, day);
+                const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
+                
+                // Check if restaurant is closed (Sunday = 0, Monday = 1)
+                if (dayOfWeek === 0 || dayOfWeek === 1) {
+                    dayElement.className = 'calendar-day closed';
+                    dayElement.title = 'Restaurant is closed on Sundays and Mondays';
+                } else {
+                    dayElement.className = 'calendar-day';
+                    dayElement.onclick = () => selectDate(day);
+                }
+                
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevMonth');
+            const nextBtn = document.getElementById('nextMonth');
+            
+            // Allow navigation between August 2026 and September 2026
+            prevBtn.disabled = (currentMonth === 7 && currentYear === 2026);
+            nextBtn.disabled = (currentMonth === 8 && currentYear === 2026);
+        }
+
+        function changeMonth(direction) {
+            let newMonth = currentMonth + direction;
+            let newYear = currentYear;
+            
+            if (newMonth < 0) {
+                newMonth = 11;
+                newYear--;
+            } else if (newMonth > 11) {
+                newMonth = 0;
+                newYear++;
+            }
+            
+            // Only allow August 2026 and September 2026
+            if ((newMonth === 7 && newYear === 2026) || (newMonth === 8 && newYear === 2026)) {
+                currentMonth = newMonth;
+                currentYear = newYear;
+                generateCalendar();
+                // Clear selection when month changes
+                selectedDateValue = null;
+                document.getElementById('selectedDate').value = '';
+            }
+        }
+
+        function selectDate(day) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            
+            // Set selected date value
+            const month = String(currentMonth + 1).padStart(2, '0');
+            const dayStr = String(day).padStart(2, '0');
+            selectedDateValue = `${currentYear}-${month}-${dayStr}`;
+            document.getElementById('selectedDate').value = selectedDateValue;
+        }
+
+        function selectTime(time) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time slot
+            event.target.classList.add('selected');
+            
+            // Set selected time value
+            selectedTimeValue = time;
+            document.getElementById('selectedTime').value = selectedTimeValue;
+        }
+
+        // Form Validation and Submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.date || !data.time) {
+                alert('Please select both date and time.');
+                return;
+            }
+            
+            // Check if selected date is on a closed day
+            const selectedDate = new Date(data.date);
+            const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday
+            
+            if (dayOfWeek === 0 || dayOfWeek === 1) {
+                alert('Sorry, Saporium is closed on Sundays and Mondays. Please select a different date.');
+                return;
+            }
+            
+            // Format date for display
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+            const displayDate = selectedDate.toLocaleDateString('en-US', dateOptions);
+            
+            // Success message
+            alert(`Reservation Confirmed!\n\nDate: ${displayDate}\nTime: ${data.time}\n\nGrazie! Thank you for choosing Saporium!`);
+            
+            // Reset form
+            this.reset();
+            selectedDateValue = null;
+            selectedTimeValue = null;
+            generateCalendar(); // Regenerate to clear selection
+            // Clear time selection
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+        });
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize first element as visible
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

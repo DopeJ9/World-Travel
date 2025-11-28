@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piazzale Michelangelo - Skip the Line Tours & Tickets</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-image-section {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            text-align: center;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .booking-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 35px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #B8860B;
+            margin-bottom: 25px;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title i {
+            margin-right: 12px;
+            color: #B8860B;
+        }
+
+        .available-tours {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tour-option {
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tour-option:hover {
+            border-color: #B8860B;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.1);
+        }
+
+        .tour-option.selected {
+            border-color: #B8860B;
+            background-color: #fefdf5;
+        }
+
+        .tour-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tour-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .tour-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feature-tag {
+            background: #f0f8ff;
+            color: #4169E1;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tour-times {
+            margin: 15px 0;
+            padding: 15px 0;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .times-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .times-title i {
+            color: #B8860B;
+            margin-right: 6px;
+        }
+
+        .inline-times {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .time-badge {
+            background: linear-gradient(135deg, #B8860B, #DAA520);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .time-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(184, 134, 11, 0.3);
+        }
+
+        .time-badge.selected {
+            background: white;
+            color: #B8860B;
+            border-color: #B8860B;
+        }
+
+        .tour-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #B8860B;
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .duration {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .date-time-section {
+            margin-top: 30px;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .subsection-title i {
+            margin-right: 10px;
+            color: #B8860B;
+        }
+
+        .date-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .date-nav-btn {
+            background: #B8860B;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .date-nav-btn:hover {
+            background: #996f0d;
+            transform: scale(1.1);
+        }
+
+        .current-date {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            min-width: 200px;
+            text-align: center;
+            padding: 10px 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .time-slot {
+            padding: 12px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .time-slot:hover {
+            border-color: #B8860B;
+            background: #fefdf5;
+        }
+
+        .time-slot.selected {
+            border-color: #B8860B;
+            background: #B8860B;
+            color: white;
+        }
+
+        .time-slot.unavailable {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .date-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .availability-note {
+            background: #e8f5e8;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .availability-note i {
+            margin-right: 8px;
+        }
+
+        .tour-times-display {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .tour-times-display h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tour-times-display h4 i {
+            color: #B8860B;
+            margin-right: 8px;
+        }
+
+        .times-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .time-option {
+            padding: 12px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 500;
+        }
+
+        .time-option:hover {
+            border-color: #B8860B;
+            background: #fefdf5;
+        }
+
+        .time-option.selected {
+            border-color: #B8860B;
+            background: #B8860B;
+            color: white;
+        }
+
+        .time-selection-note {
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid #ffeaa7;
+            margin-top: 15px;
+        }
+
+        .time-selection-note i {
+            margin-right: 8px;
+            color: #B8860B;
+        }
+
+        .participants-section {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .participant-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .participant-row:last-child {
+            border-bottom: none;
+        }
+
+        .participant-info {
+            flex: 1;
+        }
+
+        .participant-type {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .participant-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .participant-price {
+            font-weight: 700;
+            color: #B8860B;
+            margin-right: 20px;
+            min-width: 60px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #B8860B;
+            background: white;
+            color: #B8860B;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #B8860B;
+            color: white;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 35px;
+            text-align: center;
+            border: 2px solid #e5e5e5;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .booking-summary {
+            background: #f0f8ff;
+            border: 2px solid #B8860B;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #B8860B;
+            margin-bottom: 20px;
+        }
+
+        .book-button {
+            background: linear-gradient(135deg, #B8860B, #DAA520);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
+        }
+
+        .book-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .important-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .important-info h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .important-info ul {
+            color: #856404;
+            margin-left: 20px;
+        }
+
+        /* Pricing Cards Styles */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border: 2px solid #B8860B;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(184, 134, 11, 0.25);
+        }
+
+        .pricing-card.selected {
+            border-color: #B8860B;
+            background: linear-gradient(135deg, #fefdf5, #ffffff);
+            box-shadow: 0 8px 30px rgba(184, 134, 11, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .pricing-card-title {
+            color: #B8860B;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .pricing-card-title i {
+            margin-right: 10px;
+        }
+
+        .pricing-details {
+            margin-bottom: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-info-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .age-group {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .price-amount {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #B8860B;
+        }
+
+        .price-amount .original-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
+        .tour-info {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item i {
+            margin-right: 8px;
+            color: #B8860B;
+            width: 16px;
+        }
+
+        .available-times {
+            background: #e8f5e8;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Card Date Selector Styles */
+        .card-date-selector {
+            background: #f0f8ff;
+            border-radius: 8px;
+            padding: 15px;
+            border-top: 2px solid #B8860B;
+        }
+
+        .date-label {
+            font-weight: 600;
+            color: #B8860B;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .date-label i {
+            margin-right: 6px;
+        }
+
+        .date-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+
+        .date-controls .current-date {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            min-width: 140px;
+            text-align: center;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .date-controls .date-nav-btn {
+            background: #B8860B;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .date-controls .date-nav-btn:hover {
+            background: #996f0d;
+            transform: scale(1.1);
+        }
+
+        .date-availability {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .tour-selection-note {
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid #ffeaa7;
+            margin-bottom: 20px;
+        }
+
+        .tour-selection-note i {
+            margin-right: 8px;
+            color: #B8860B;
+        }
+
+        .selection-status {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .available-tours {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .hero-image {
+                height: 250px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .date-selector {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .current-date {
+                min-width: auto;
+            }
+
+            .participant-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Image Section -->
+        <div class="hero-image-section" data-aos="fade-down">
+            <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/If1VbtzixoHjnmxGyCScd14qnGh/?preview_type=16" 
+                 alt="Piazzale Michelangelo Florence" 
+                 class="hero-image">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Piazzale Michelangelo</h1>
+                <p class="hero-subtitle">Sunset Tours & Walking Experiences</p>
+            </div>
+        </div>
+
+        <!-- Tour Options Section -->
+        <div class="booking-section" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-map-marked-alt"></i> Choose Your Experience
+            </h2>
+            
+            <div class="available-tours">
+                <!-- Sunset Walking Tour -->
+                <div class="tour-option" onclick="selectTour('sunset')" id="tour-sunset">
+                    <div class="tour-title">Sunset Walking Tour</div>
+                    <div class="tour-description">
+                        Guided walking tour to Piazzale Michelangelo with stunning sunset views over Florence. Includes professional guide and photo opportunities.
+                    </div>
+                    <div class="tour-features">
+                        <span class="feature-tag">2.5 hours</span>
+                        <span class="feature-tag">Professional Guide</span>
+                        <span class="feature-tag">Small Group</span>
+                        <span class="feature-tag">Photo Stops</span>
+                    </div>
+                    <div class="tour-times">
+                        <div class="times-title">
+                            <i class="fas fa-clock"></i> Available Times
+                        </div>
+                        <div class="inline-times">
+                            <span class="time-badge">5:00 PM</span>
+                            <span class="time-badge">6:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="tour-pricing">
+                        <div class="price-info">
+                            <span class="price">€35</span>
+                            <span class="original-price">€45</span>
+                        </div>
+                        <div class="duration">
+                            <i class="fas fa-clock"></i> 2.5 hours
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Private Photography Session -->
+                <div class="tour-option" onclick="selectTour('photography')" id="tour-photography">
+                    <div class="tour-title">Private Photography Session</div>
+                    <div class="tour-description">
+                        Personal photographer service at Piazzale Michelangelo during golden hour. Perfect for couples, families, or solo travelers.
+                    </div>
+                    <div class="tour-features">
+                        <span class="feature-tag">3 hour</span>
+                        <span class="feature-tag">Professional Photographer</span>
+                        <span class="feature-tag">30+ Edited Photos</span>
+                        <span class="feature-tag">Private Service</span>
+                    </div>
+                    <div class="tour-times">
+                        <div class="times-title">
+                            <i class="fas fa-clock"></i> Available Times
+                        </div>
+                        <div class="inline-times">
+                            <span class="time-badge">10:00 AM</span>
+                            <span class="time-badge">2:00 PM</span>
+                            <span class="time-badge">3:00 PM</span>
+                            <span class="time-badge">4:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="tour-pricing">
+                        <div class="price-info">
+                            <span class="price">€120</span>
+                        </div>
+                        <div class="duration">
+                            <i class="fas fa-camera"></i> 3 hour
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pricing Information Section -->
+            <div class="booking-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-euro-sign"></i> Pricing Information
+                </h2>
+                
+                <div class="pricing-grid">
+                    <!-- Sunset Walking Tour Pricing -->
+                    <div class="pricing-card">
+                        <h3 class="pricing-card-title">
+                            <i class="fas fa-sun"></i> Sunset Walking Tour
+                        </h3>
+                        <div class="pricing-details">
+                            <div class="price-row">
+                                <div class="price-info-left">
+                                    <span class="age-group">Adult (18+)</span>
+                                    <span class="price-amount">€35 <span class="original-price">€45</span></span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('adult', -1, 'sunset')">−</button>
+                                    <input type="number" class="quantity-input" id="sunset-adult-qty" value="0" min="0" max="10" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity('adult', 1, 'sunset')">+</button>
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <div class="price-info-left">
+                                    <span class="age-group">Child (6-17)</span>
+                                    <span class="price-amount">€25</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('child', -1, 'sunset')">−</button>
+                                    <input type="number" class="quantity-input" id="sunset-child-qty" value="0" min="0" max="10" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity('child', 1, 'sunset')">+</button>
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <div class="price-info-left">
+                                    <span class="age-group">Senior (65+)</span>
+                                    <span class="price-amount">€30</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('senior', -1, 'sunset')">−</button>
+                                    <input type="number" class="quantity-input" id="sunset-senior-qty" value="0" min="0" max="10" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity('senior', 1, 'sunset')">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-info">
+                            <div class="info-item"><i class="fas fa-clock"></i> 2.5 hours</div>
+                            <div class="info-item"><i class="fas fa-users"></i> Small Group</div>
+                            <div class="info-item"><i class="fas fa-camera"></i> Photo Stops</div>
+                        </div>
+                        <div class="available-times">
+                            <strong>Available Times:</strong> 5:00 PM, 6:00 PM
+                        </div>
+                        
+                        <!-- Date Selection for Sunset Tour -->
+                        <div class="card-date-selector">
+                            <div class="date-label">
+                                <i class="fas fa-calendar-alt"></i> Select Date
+                            </div>
+                            <div class="date-controls">
+                                <button class="date-nav-btn" onclick="changeDate(-1)">‹</button>
+                                <div class="current-date" id="sunset-current-date">August 1, 2026</div>
+                                <button class="date-nav-btn" onclick="changeDate(1)">›</button>
+                            </div>
+                            <div class="date-availability">Available: August 1-31, 2026</div>
+                        </div>
+                    </div>
+
+                    <!-- Private Photography Session Pricing -->
+                    <div class="pricing-card">
+                        <h3 class="pricing-card-title">
+                            <i class="fas fa-camera"></i> Private Photography Session
+                        </h3>
+                        <div class="pricing-details">
+                            <div class="price-row">
+                                <div class="price-info-left">
+                                    <span class="age-group">Adult (18+)</span>
+                                    <span class="price-amount">€120</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('adult', -1, 'photography')">−</button>
+                                    <input type="number" class="quantity-input" id="photography-adult-qty" value="0" min="0" max="10" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity('adult', 1, 'photography')">+</button>
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <div class="price-info-left">
+                                    <span class="age-group">Child (6-17)</span>
+                                    <span class="price-amount">Free</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('child', -1, 'photography')">−</button>
+                                    <input type="number" class="quantity-input" id="photography-child-qty" value="0" min="0" max="10" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity('child', 1, 'photography')">+</button>
+                                </div>
+                            </div>
+                            <div class="price-row">
+                                <div class="price-info-left">
+                                    <span class="age-group">Senior (65+)</span>
+                                    <span class="price-amount">€120</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('senior', -1, 'photography')">−</button>
+                                    <input type="number" class="quantity-input" id="photography-senior-qty" value="0" min="0" max="10" readonly>
+                                    <button class="quantity-btn" onclick="updateQuantity('senior', 1, 'photography')">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-info">
+                            <div class="info-item"><i class="fas fa-clock"></i> 3 hours</div>
+                            <div class="info-item"><i class="fas fa-user"></i> Private Service</div>
+                            <div class="info-item"><i class="fas fa-images"></i> 30+ Edited Photos</div>
+                        </div>
+                        <div class="available-times">
+                            <strong>Available Times:</strong> 10:00 AM, 2:00 PM, 3:00 PM, 4:00 PM
+                        </div>
+                        
+                        <!-- Date Selection for Photography Session -->
+                        <div class="card-date-selector">
+                            <div class="date-label">
+                                <i class="fas fa-calendar-alt"></i> Select Date
+                            </div>
+                            <div class="date-controls">
+                                <button class="date-nav-btn" onclick="changeDate(-1)">‹</button>
+                                <div class="current-date" id="photography-current-date">August 1, 2026</div>
+                                <button class="date-nav-btn" onclick="changeDate(1)">›</button>
+                            </div>
+                            <div class="date-availability">Available: August 1-31, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Booking Summary -->
+            <div class="booking-summary" id="booking-summary">
+                <div class="total-price" id="total-price">Total: €0</div>
+                <div class="selection-status" id="selection-status">
+                    Please select a tour type and number of participants
+                </div>
+                <button class="book-button" id="book-button" onclick="proceedToCheckout()" disabled>
+                    Book Now - Secure Payment
+                </button>
+            </div>
+
+            <!-- Important Information -->
+            <div class="important-info">
+                <h4><i class="fas fa-info-circle"></i> Important Information</h4>
+                <ul>
+                    <li><strong>Sunset Walking Tour:</strong> Please arrive 15 minutes before your scheduled time</li>
+                    <li><strong>Private Photography Session:</strong> Please arrive 10 minutes before your scheduled time</li>
+                    <li>Free cancellation up to 24 hours before the tour</li>
+                    <li>Tours run rain or shine - dress appropriately for weather conditions</li>
+                    <li>Comfortable walking shoes strongly recommended</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedTour = null;
+        let selectedDate = new Date(2026, 7, 1); // August 1, 2026
+        let selectedTime = null;
+        let quantities = {
+            sunset: { adult: 0, child: 0, senior: 0 },
+            photography: { adult: 0, child: 0, senior: 0 }
+        };
+        let tourPrices = {
+            sunset: { adult: 35, child: 25, senior: 30 },
+            photography: { adult: 120, child: 0, senior: 120 }
+        };
+        let tourTimes = {
+            sunset: ['5:00 PM', '6:00 PM'],
+            photography: ['10:00 AM', '2:00 PM', '3:00 PM', '4:00 PM']
+        };
+
+        function selectTour(tourType) {
+            // Remove previous selection
+            document.querySelectorAll('.tour-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked tour
+            document.getElementById('tour-' + tourType).classList.add('selected');
+            selectedTour = tourType;
+            
+            // Highlight selected pricing card
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            if (tourType === 'sunset') {
+                pricingCards[0].classList.add('selected');
+            } else if (tourType === 'photography') {
+                pricingCards[1].classList.add('selected');
+            }
+            
+            
+            // Enable time selection on the cards
+            enableTimeSelection(tourType);
+            
+            // Reset quantities and time selection
+            resetQuantities();
+            selectedTime = null;
+            updateTotal();
+            updateBookButton();
+            updateSelectionStatus();
+        }
+
+        function enableTimeSelection(tourType) {
+            // Remove previous time selection handlers
+            document.querySelectorAll('.time-badge').forEach(badge => {
+                badge.classList.remove('selected');
+                badge.onclick = null;
+            });
+            
+            // Add click handlers to time badges for the selected tour
+            const selectedTourElement = document.getElementById('tour-' + tourType);
+            const timeBadges = selectedTourElement.querySelectorAll('.time-badge');
+            
+            timeBadges.forEach(badge => {
+                badge.onclick = (e) => {
+                    e.stopPropagation(); // Prevent tour selection
+                    selectTimeFromBadge(badge.textContent, tourType);
+                };
+            });
+        }
+
+        function selectTimeFromBadge(time, tourType) {
+            // Remove selection from all time badges
+            document.querySelectorAll('.time-badge').forEach(badge => {
+                badge.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time badge
+            const selectedTourElement = document.getElementById('tour-' + tourType);
+            const timeBadges = selectedTourElement.querySelectorAll('.time-badge');
+            timeBadges.forEach(badge => {
+                if (badge.textContent === time) {
+                    badge.classList.add('selected');
+                }
+            });
+            
+            selectedTime = time;
+            updateBookButton();
+            updateSelectionStatus();
+        }
+
+
+        function showAvailableTimes(tourType) {
+            const timesContainer = document.getElementById('selected-tour-times');
+            const times = tourTimes[tourType];
+            
+            timesContainer.innerHTML = `
+                <div class="tour-times-display">
+                    <h4><i class="fas fa-clock"></i> Available Times</h4>
+                    <div class="times-list">
+                        ${times.map(time => `
+                            <div class="time-option ${selectedTime === time ? 'selected' : ''}" onclick="selectTime('${time}', this)">
+                                ${time}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectTime(time, element) {
+            // Remove previous selection
+            document.querySelectorAll('.time-option').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Add selection
+            element.classList.add('selected');
+            selectedTime = time;
+            updateBookButton();
+        }
+
+        function updateQuantity(type, change, tourType) {
+            // Auto-select the tour if not already selected
+            if (!selectedTour) {
+                selectTour(tourType);
+            } else if (selectedTour !== tourType) {
+                // If switching tours, reset the previous tour's quantities
+                resetQuantities(selectedTour);
+                selectTour(tourType);
+            }
+            
+            quantities[tourType][type] = Math.max(0, Math.min(10, quantities[tourType][type] + change));
+            document.getElementById(tourType + '-' + type + '-qty').value = quantities[tourType][type];
+            updateTotal();
+            updateBookButton();
+            updateSelectionStatus();
+        }
+
+        function resetQuantities(tourType = null) {
+            if (tourType) {
+                // Reset specific tour quantities
+                quantities[tourType] = { adult: 0, child: 0, senior: 0 };
+                Object.keys(quantities[tourType]).forEach(type => {
+                    document.getElementById(tourType + '-' + type + '-qty').value = 0;
+                });
+            } else {
+                // Reset all quantities
+                quantities = {
+                    sunset: { adult: 0, child: 0, senior: 0 },
+                    photography: { adult: 0, child: 0, senior: 0 }
+                };
+                ['sunset', 'photography'].forEach(tour => {
+                    Object.keys(quantities[tour]).forEach(type => {
+                        document.getElementById(tour + '-' + type + '-qty').value = 0;
+                    });
+                });
+            }
+        }
+
+        function updateTotal() {
+            if (!selectedTour) {
+                document.getElementById('total-price').textContent = 'Total: €0';
+                return;
+            }
+            
+            const prices = tourPrices[selectedTour];
+            const tourQuantities = quantities[selectedTour];
+            let total = 0;
+            
+            total += tourQuantities.adult * prices.adult;
+            total += tourQuantities.child * prices.child;
+            total += tourQuantities.senior * prices.senior;
+            
+            document.getElementById('total-price').textContent = 'Total: €' + total;
+        }
+
+        function updateBookButton() {
+            const button = document.getElementById('book-button');
+            const hasParticipants = selectedTour && Object.values(quantities[selectedTour]).some(q => q > 0);
+            const hasTimeSelected = selectedTime !== null;
+            const hasTourSelected = selectedTour !== null;
+            
+            button.disabled = !(hasParticipants && hasTimeSelected && hasTourSelected);
+        }
+
+        function updateSelectionStatus() {
+            const statusElement = document.getElementById('selection-status');
+            const hasParticipants = selectedTour && Object.values(quantities[selectedTour]).some(q => q > 0);
+            
+            if (!selectedTour) {
+                statusElement.textContent = 'Please select participants for a tour to get started';
+                statusElement.style.background = '#e3f2fd';
+                statusElement.style.color = '#1976d2';
+            } else if (!selectedTime) {
+                statusElement.textContent = 'Please select a time slot above';
+                statusElement.style.background = '#fff3cd';
+                statusElement.style.color = '#856404';
+            } else if (!hasParticipants) {
+                statusElement.textContent = 'Please select number of participants';
+                statusElement.style.background = '#fff3cd';
+                statusElement.style.color = '#856404';
+            } else {
+                const tourName = selectedTour === 'sunset' ? 'Sunset Walking Tour' : 'Private Photography Session';
+                const totalParticipants = Object.values(quantities[selectedTour]).reduce((sum, qty) => sum + qty, 0);
+                statusElement.textContent = `Selected: ${tourName} at ${selectedTime} for ${totalParticipants} participant${totalParticipants > 1 ? 's' : ''}`;
+                statusElement.style.background = '#d4edda';
+                statusElement.style.color = '#155724';
+            }
+        }
+
+        function changeDate(direction) {
+            const newDate = new Date(selectedDate);
+            newDate.setDate(newDate.getDate() + direction);
+            
+            // Check if date is within August 2026 range
+            const minDate = new Date(2026, 7, 1); // August 1, 2026
+            const maxDate = new Date(2026, 7, 31); // August 31, 2026
+            
+            if (newDate >= minDate && newDate <= maxDate) {
+                selectedDate = newDate;
+                const formattedDate = selectedDate.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                
+                // Update both card date displays
+                document.getElementById('sunset-current-date').textContent = formattedDate;
+                document.getElementById('photography-current-date').textContent = formattedDate;
+            }
+        }
+
+        function proceedToCheckout() {
+            const tourName = selectedTour === 'sunset' ? 'Sunset Walking Tour' : 'Private Photography Session';
+            const participants = quantities[selectedTour];
+            const participantSummary = Object.entries(participants)
+                .filter(([type, qty]) => qty > 0)
+                .map(([type, qty]) => `${type}: ${qty}`)
+                .join(', ');
+                
+            alert('Redirecting to secure payment gateway...\n\nBooking Summary:\n' +
+                  'Tour: ' + tourName + '\n' +
+                  'Date: ' + selectedDate.toLocaleDateString() + '\n' +
+                  'Time: ' + selectedTime + '\n' +
+                  'Participants: ' + participantSummary + '\n' +
+                  'Total: ' + document.getElementById('total-price').textContent);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true
+                });
+            }
+            
+            // Set initial date display for both cards
+            const formattedDate = selectedDate.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            document.getElementById('sunset-current-date').textContent = formattedDate;
+            document.getElementById('photography-current-date').textContent = formattedDate;
+                
+            // Initialize selection status
+            updateSelectionStatus();
+            updateBookButton();
+        });
+    </script>
+</body>
+</html>

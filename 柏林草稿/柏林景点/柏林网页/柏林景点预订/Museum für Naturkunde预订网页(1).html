@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum für Naturkunde - Ticket Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .header-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding: 30px 40px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            text-align: left;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: white;
+            text-align: left;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .opening-hours-inline {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 0 auto;
+            max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .opening-hours-inline h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .opening-hours-inline p {
+            font-size: 1rem;
+            margin: 8px 0;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .opening-hours-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .opening-hours-section h3 {
+            color: #1a365d;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .opening-hours-section p {
+            font-size: 1.1rem;
+            color: #2d3748;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: start;
+        }
+
+        .ticket-section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ticket-section h3 {
+            color: #1a365d;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 6px;
+        }
+
+        .ticket-items-container {
+            flex: 1;
+            overflow: visible;
+        }
+
+        .ticket-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .ticket-item:last-child {
+            border-bottom: none;
+        }
+
+        .ticket-name {
+            font-weight: 500;
+            color: #2d3748;
+            flex: 1;
+        }
+
+        .ticket-name-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .ticket-description {
+            font-size: 0.9rem;
+            color: #718096;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .ticket-price-quantity {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ticket-price {
+            font-weight: bold;
+            color: #38a169;
+            font-size: 1.1rem;
+            min-width: 60px;
+            text-align: left;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: #38a169;
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: #2f855a;
+        }
+
+        .qty-btn:disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .quantity {
+            min-width: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .tour-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .tour-section h3 {
+            color: #1a365d;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tour-item {
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border-left: 4px solid #38a169;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tour-item:nth-child(1) .tour-details,
+        .tour-item:nth-child(2) .tour-details {
+            flex-grow: 0;
+        }
+
+        .tour-title {
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .tour-details {
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+
+        .tour-pricing {
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        /* 前两个模块的票价紧挨着说明文字 */
+        .tour-item:nth-child(1) .tour-pricing,
+        .tour-item:nth-child(2) .tour-pricing {
+            margin-top: 0;
+            padding-top: 10px;
+        }
+
+        /* 第三个模块的票价保持底部对齐 */
+        .tour-item:nth-child(3) .tour-pricing {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .tour-price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .tour-price-item.group-flatrate {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .tour-price-label {
+            font-size: 0.9rem;
+            color: #4a5568;
+            flex: 1;
+        }
+
+        .tour-price {
+            font-weight: bold;
+            color: #38a169;
+            font-size: 1rem;
+            min-width: 50px;
+            text-align: left;
+        }
+
+        .date-time-section {
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-time-section h3 {
+            color: #1a365d;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 8px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #38a169;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .calendar-header button {
+            background: #38a169;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .calendar-header button:hover {
+            background: #2f855a;
+        }
+
+        .calendar-header h4 {
+            color: #1a365d;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+
+        .calendar-day-header {
+            background: #1a365d;
+            color: white;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .calendar-day {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 6px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s;
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .calendar-day:hover {
+            background: #e6fffa;
+            border-color: #38a169;
+        }
+
+        .calendar-day.selected {
+            background: #38a169;
+            color: white;
+            border-color: #38a169;
+        }
+
+        .calendar-day.other-month {
+            color: #a0aec0;
+            background: #f7fafc;
+        }
+
+        .calendar-day.disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.sold-out {
+            background: #fed7d7;
+            color: #c53030;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .calendar-day.sold-out::after {
+            content: 'SOLD OUT';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.6rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .calendar-day.sold-out {
+            font-size: 0.8rem;
+        }
+
+        .calendar-day.low-availability {
+            background: #fef5e7;
+            color: #d69e2e;
+            border: 2px solid #f6ad55;
+        }
+
+        .calendar-day:hover:not(.disabled):not(.sold-out) {
+            background: #e6fffa;
+            border-color: #38a169;
+        }
+
+        .time-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .time-slot-enlarged {
+            margin-bottom: 8px;
+        }
+
+        .time-slot-enlarged .time-options {
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-slot-enlarged .time-option {
+            padding: 12px 8px;
+            font-size: 0.9rem;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-option {
+            padding: 6px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .time-option:hover {
+            border-color: #38a169;
+            background: #f0fff4;
+        }
+
+        .time-option.selected {
+            border-color: #38a169;
+            background: #38a169;
+            color: white;
+        }
+
+        .time-option.sold-out {
+            background: #fed7d7;
+            color: #c53030;
+            cursor: not-allowed;
+            opacity: 0.6;
+            border: 2px solid #c53030;
+        }
+
+        .time-option.low-availability {
+            background: white;
+            color: #2d3748;
+            border: 1px solid #e2e8f0;
+        }
+
+        .ticket-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #38a169;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .time-option.sold-out .ticket-badge {
+            background: #a0aec0;
+        }
+
+        .time-option {
+            position: relative;
+        }
+
+        .order-summary {
+            background: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .order-content {
+            flex: 1;
+        }
+
+        .order-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 8px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+        }
+
+        .order-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #d4af37;
+        }
+
+        .order-section {
+            margin-bottom: 15px;
+        }
+
+        .order-section-title {
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 4px;
+        }
+
+        .order-empty {
+            text-align: center;
+            padding: 15px;
+            color: #a0aec0;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .book-now-btn {
+            background: #d4af37;
+            color: #1a365d;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .book-now-btn:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .book-now-btn:active {
+            transform: translateY(0);
+        }
+
+
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .tour-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .order-actions {
+                align-items: center;
+            }
+            
+            .book-now-btn {
+                width: 100%;
+            }
+            
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+                letter-spacing: 1px;
+            }
+            
+            .header p {
+                font-size: 1.2rem;
+            }
+            
+            .opening-hours-inline {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            .opening-hours-inline h3 {
+                font-size: 1.2rem;
+            }
+            
+            .opening-hours-inline p {
+                font-size: 0.9rem;
+            }
+            
+            .opening-hours-section {
+                padding: 20px;
+                margin: 0 10px 20px 10px;
+            }
+            
+            .opening-hours-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .opening-hours-section p {
+                font-size: 0.9rem;
+            }
+            
+            .time-options {
+                flex-direction: column;
+            }
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        .ticket-notice {
+            background: linear-gradient(to right, #fff9e6, #fffbf0);
+            border: 1px solid #f6e05e;
+            border-left: 3px solid #f6ad55;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticket-notice-icon {
+            width: 18px;
+            height: 18px;
+            background: #f6ad55;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            font-family: Georgia, serif;
+            flex-shrink: 0;
+        }
+
+        .ticket-notice p {
+            color: #744210;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.4;
+            margin: 0;
+            letter-spacing: 0.2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/WWmDbVs0KooB2Ax7cljcPXHEnPe/?preview_type=16" alt="Museum für Naturkunde" class="header-image">
+            <div class="header-overlay">
+                <h1>Museum für Naturkunde</h1>
+                <p>Discover the Wonders of Nature</p>
+            </div>
+        </div>
+
+        <!-- Opening Hours Section -->
+        <div class="opening-hours-section">
+            <h3>OPENING HOURS</h3>
+            <p>Tuesday-Friday: 09:30am to 6:00pm | Saturday, Sunday & Public Holidays: 10:00am to 6:00pm | Monday: CLOSED</p>
+            <p>Please arrive <strong>15 minutes early</strong> to ensure smooth check-in and ticket collection.</p>
+        </div>
+
+        <!-- Date & Time Selection and General Tickets -->
+        <div class="main-content">
+            <!-- Date & Time Selection -->
+            <div class="date-time-section">
+                <h3>DATE & TIME SELECTION</h3>
+                
+                <div class="calendar-container">
+                <div class="calendar-header">
+                    <h4 id="current-month">August 2026</h4>
+                </div>
+                    <div class="calendar" id="calendar">
+                        <!-- Calendar will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="form-group time-slot-enlarged">
+                    <label>⏰ Time Slot</label>
+                    <div class="time-options" id="time-options">
+                        <!-- Time slots will be generated based on selected date -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- General Tickets Section -->
+            <div class="ticket-section">
+                <h3>GENERAL TICKETS</h3>
+                
+                <!-- Notice about ticket availability -->
+                <div class="ticket-notice">
+                    <span class="ticket-notice-icon">i</span>
+                    <p>Remaining tickets indicate the available admission capacity for this time slot. Please note: Guided tour participants must also purchase a General Admission ticket. Both general admission and guided tour tickets share the same capacity limit.</p>
+                </div>
+                
+                <!-- Notice about Family ticket counting -->
+                <div class="ticket-notice">
+                    <span class="ticket-notice-icon">i</span>
+                    <p>Please note: Family and Mini Family tickets are counted by the total number of participants. For example, if you purchase one Family ticket (2 adults + 1 child), the remaining availability will decrease by 3 tickets, not 1.</p>
+                </div>
+                
+                <div class="ticket-items-container">
+                <div class="ticket-item">
+                    <span class="ticket-name">Adults</span>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€11.00</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-item">
+                    <div class="ticket-name-container">
+                        <span class="ticket-name">Reduced Price</span>
+                        <span class="ticket-description">Students, seniors, and disabled visitors (proof required)</span>
+                    </div>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€5.00</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-item">
+                    <div class="ticket-name-container">
+                        <span class="ticket-name">Families</span>
+                        <span class="ticket-description">(2 adults + up to 3 children under 14)</span>
+                    </div>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€18.00</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-item">
+                    <div class="ticket-name-container">
+                        <span class="ticket-name">Mini Families</span>
+                        <span class="ticket-description">(1 adult + up to 2 children under 14)</span>
+                    </div>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€12.00</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-item">
+                    <span class="ticket-name">Adults in groups of 10 or more</span>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€8.00</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-item">
+                    <div class="ticket-name-container">
+                        <span class="ticket-name">Concessions in groups of 10 or more</span>
+                        <span class="ticket-description">Reduced price for students, seniors, and disabled visitors (proof required)</span>
+                    </div>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€2.00</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-item">
+                    <span class="ticket-name">Pre-school children, children under 6</span>
+                    <div class="ticket-price-quantity">
+                        <span class="ticket-price">€0</span>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                            <span class="quantity">0</span>
+                            <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Guided Tours Section -->
+        <div class="tour-section">
+            <h3>GUIDED TOURS</h3>
+            
+            <div class="tour-grid">
+                <div class="tour-item">
+                    <div class="tour-title">🦕 Dinosaurs and Fossils</div>
+                    <div class="tour-details">
+                        150 million years ago, there were land-dwelling dinosaurs, ichthyosaurs hunted their prey in the sea and pterosaurs ruled the skies. This guided tour explains what the world of dinosaurs looked like many million years ago and what other animals and plants populated the Earth during that period.
+                        <br><strong>Participants:</strong> children from age 5, teenagers and adults
+                        <br><strong>Available Times:</strong> August 23 - August 27 | 14:00, 16:00, 17:00
+                    </div>
+                    <div class="tour-pricing">
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (45 min):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€5.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (reduced):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€2.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (45 min):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€6.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (reduced):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€3.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-item">
+                    <div class="tour-title">🧬 Evolution in Action</div>
+                    <div class="tour-details">
+                        Looking at examples including the primeval bird Archaeopteryx, lobe-finned fish, lungfish and the primeval horse Eurohippus, evolutionary processes and mechanisms such as selection, adaptation, convergence and homology are explained and discussed.
+                        <br><strong>Participants:</strong> teenagers from age 15 and adults
+                        <br><strong>Available Times:</strong> August 10 - August 15 | 13:00, 17:00
+                    </div>
+                    <div class="tour-pricing">
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (45 min):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€5.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (45 min, reduced):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€2.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (45 min):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€6.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (45 min, reduced):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€3.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-item">
+                    <div class="tour-title">⭐ Highlights of the Exhibition</div>
+                    <div class="tour-details">
+                        This overview tour focuses on the museum's key attractions: the 13-metre-high Giraffatitan skeleton, the primeval bird Archaeopteryx, Knut the Polar Bear and the amazing biodiversity wall. A further highlight of this guided tour is a visit to the East Wing, showing the museum's scientific wet collections.
+                        <br><strong>Participants:</strong> children from age 5, teenagers and adults
+                        <br><strong>Available Times:</strong> August 17 - August 22 | 10:00, 11:00, 12:00
+                    </div>
+                    <div class="tour-pricing">
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (45 min):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€5.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (45 min, reduced):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€2.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (45 min):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€6.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (45 min, reduced):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€3.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item group-flatrate">
+                            <span class="tour-price-label"><strong>Group Flatrate (under 10 people):</strong></span>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">German (45 min, group):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€60.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour-price-item">
+                            <span class="tour-price-label">English (45 min, group):</span>
+                            <div class="tour-price-quantity">
+                                <span class="tour-price">€65.00</span>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" onclick="changeQuantity(this, -1)">-</button>
+                                    <span class="quantity">0</span>
+                                    <button class="qty-btn" onclick="changeQuantity(this, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <div class="order-content">
+                <h3>ORDER SUMMARY</h3>
+                <div id="order-items">
+                    <!-- Order items will be dynamically generated -->
+                </div>
+                <div class="order-total">
+                    <span>Total: <span id="total-price">€0.00</span></span>
+                </div>
+            </div>
+            <div class="order-actions">
+                <button class="book-now-btn" onclick="bookNow()">Book Now</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentDate = new Date(2026, 7, 1); // August 2026
+        let selectedDate = null;
+        let selectedTime = null;
+
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const currentMonth = document.getElementById('current-month');
+            
+            // Update month display
+            currentMonth.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+            
+            // Clear calendar
+            calendar.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'calendar-day-header';
+                dayHeader.textContent = day;
+                calendar.appendChild(dayHeader);
+            });
+            
+            // Get first day of month and number of days
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startingDayOfWeek = firstDay.getDay();
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < startingDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day other-month';
+                emptyDay.textContent = '';
+                calendar.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                // Check if this is a Monday (closed day)
+                const dayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), day).getDay();
+                if (dayOfWeek === 1) { // Monday
+                    dayElement.classList.add('disabled');
+                    dayElement.title = 'Museum closed on Mondays';
+                } else {
+                    // Generate fixed ticket availability based on day
+                    const ticketCount = generateTicketAvailability(day);
+                    dayElement.setAttribute('data-tickets', ticketCount);
+                    dayElement.title = `${ticketCount} tickets available`;
+                    
+                    // For August 2026, no sold out dates and no low-availability warnings
+                    
+                    dayElement.onclick = () => selectDate(dayElement, day);
+                }
+                
+                calendar.appendChild(dayElement);
+            }
+        }
+
+        // Store ticket availability for each day and time slot
+        let ticketAvailability = {};
+
+        // 创建一个简单的伪随机数生成器，基于种子值
+        function seededRandom(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        // 基于日期生成固定但不同的票数
+        function generateTicketAvailability(day) {
+            // 使用日期作为种子，确保每天都有固定的票数
+            const seed = day * 17 + 2026; // 使用日期和年份作为种子
+            const random = seededRandom(seed);
+            
+            // 按照要求的分布：0张票10%，1-5张票70%，大于5张票20%
+            if (random < 0.1) return 0;        // 10% chance of 0 tickets
+            if (random < 0.8) return Math.floor(random * 5) + 1;  // 70% chance of 1-5 tickets
+            return Math.floor(random * 15) + 6;  // 20% chance of 6-20 tickets
+        }
+
+        // 基于日期和时间段生成固定但不同的票数
+        function generateTimeSlotAvailability(date, timeSlot) {
+            // 使用日期和时间段作为种子，确保每个时间段都有固定的票数
+            const timeValue = parseInt(timeSlot.replace(':', '')); // 将时间转换为数字，如 "10:30" -> 1030
+            const seed = date * 31 + timeValue * 7 + 2026; // 使用日期、时间和年份作为种子
+            const random = seededRandom(seed);
+            
+            // 按照要求的分布：0张票10%，1-5张票70%，大于5张票20%
+            if (random < 0.1) return 0;        // 10% chance of 0 tickets
+            if (random < 0.8) return Math.floor(random * 5) + 1;  // 70% chance of 1-5 tickets
+            return Math.floor(random * 15) + 6;  // 20% chance of 6-20 tickets
+        }
+
+        function selectDate(element, day) {
+            // Remove selected class from all days
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked day
+            element.classList.add('selected');
+            selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+            
+            console.log(`Debug: Selected date: ${selectedDate.toDateString()}`);
+            
+            // Clear all selected tickets when changing date
+            clearAllTickets();
+            
+            // Generate time slots based on selected date
+            generateTimeSlots(selectedDate);
+            
+            // Update all plus buttons based on new date availability
+            updateAllPlusButtons();
+        }
+
+        function generateTimeSlots(date) {
+            const timeOptionsContainer = document.getElementById('time-options');
+            const dayOfWeek = date.getDay();
+            const dateKey = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+            
+            let timeSlots = [];
+            
+            // Define time slots based on day of week
+            if (dayOfWeek >= 2 && dayOfWeek <= 5) { // Tuesday to Friday
+                timeSlots = ['09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'];
+            } else if (dayOfWeek === 0 || dayOfWeek === 6) { // Saturday and Sunday
+                timeSlots = ['10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'];
+            }
+            
+            // Initialize ticket availability for this date if not exists
+            if (!ticketAvailability[dateKey]) {
+                ticketAvailability[dateKey] = {};
+                timeSlots.forEach(time => {
+                    ticketAvailability[dateKey][time] = generateTimeSlotAvailability(date.getDate(), time);
+                });
+            }
+            
+            // Clear existing time options
+            timeOptionsContainer.innerHTML = '';
+            
+            // Generate time option elements with ticket availability
+            timeSlots.forEach(time => {
+                const timeOption = document.createElement('div');
+                timeOption.className = 'time-option';
+                timeOption.textContent = time;
+                timeOption.setAttribute('data-time', time);
+                timeOption.setAttribute('data-date', dateKey);
+                
+                const availableTickets = ticketAvailability[dateKey][time];
+                timeOption.setAttribute('data-tickets', availableTickets);
+                
+                // Add ticket count badge
+                const badge = document.createElement('span');
+                badge.className = 'ticket-badge';
+                badge.textContent = availableTickets;
+                timeOption.appendChild(badge);
+                
+                // Add visual states
+                if (availableTickets === 0) {
+                    timeOption.classList.add('sold-out');
+                    timeOption.title = 'Sold out';
+                } else {
+                    timeOption.title = `${availableTickets} tickets available`;
+                }
+                
+                timeOption.onclick = () => selectTime(timeOption);
+                timeOptionsContainer.appendChild(timeOption);
+            });
+        }
+
+        function selectTime(element) {
+            // Check if sold out
+            if (element.classList.contains('sold-out')) {
+                alert('This time slot is sold out. Please choose another time.');
+                return;
+            }
+            
+            // Remove selected class from all time options
+            document.querySelectorAll('.time-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            selectedTime = element.getAttribute('data-time'); // Use data-time instead of textContent
+            
+            console.log(`Debug: Selected time: ${selectedTime}`);
+            
+            // Clear all selected tickets when changing time slot
+            clearAllTickets();
+            
+            // Update all plus buttons based on new time slot availability
+            updateAllPlusButtons();
+        }
+
+        function changeQuantity(button, change) {
+            const quantitySpan = button.parentElement.querySelector('.quantity');
+            let currentQuantity = parseInt(quantitySpan.textContent);
+            let newQuantity = currentQuantity + change;
+            
+            // Ensure quantity doesn't go below 0
+            if (newQuantity < 0) {
+                newQuantity = 0;
+            }
+            
+            // Check if user is trying to add more tickets than available
+            if (change > 0) {
+                console.log(`Debug: selectedDate: ${selectedDate}, selectedTime: ${selectedTime}`);
+                
+                if (!selectedDate || !selectedTime) {
+                    alert('Please select a date and time slot first before adding tickets.');
+                    return;
+                }
+                
+                const dateKey = `${selectedDate.getFullYear()}-${selectedDate.getMonth()}-${selectedDate.getDate()}`;
+                const timeSlot = selectedTime;
+                
+                console.log(`Debug: Looking for ticket data with dateKey: ${dateKey}, timeSlot: ${timeSlot}`);
+                console.log(`Debug: ticketAvailability[${dateKey}]:`, ticketAvailability[dateKey]);
+                
+                if (ticketAvailability[dateKey] && ticketAvailability[dateKey][timeSlot] !== undefined) {
+                    const availableTickets = ticketAvailability[dateKey][timeSlot];
+                    // Get tickets selected only from the same section (general tickets or guided tours)
+                    const currentSelectedTickets = getSelectedTicketsForSection(button);
+                    
+                    console.log(`Debug: Available tickets: ${availableTickets}, Current selected in section: ${currentSelectedTickets}, Trying to add: ${change}`);
+                    
+                    // Check if adding this ticket would exceed the limit
+                    if (currentSelectedTickets + change > availableTickets) {
+                        alert(`Sorry, only ${availableTickets} tickets are available for ${timeSlot} on ${selectedDate.toDateString()}. You have already selected ${currentSelectedTickets} tickets in this section.`);
+                        return;
+                    }
+                } else {
+                    console.log(`Debug: No ticket data found for ${dateKey} - ${timeSlot}`);
+                    console.log(`Debug: Available dateKeys:`, Object.keys(ticketAvailability));
+                    if (ticketAvailability[dateKey]) {
+                        console.log(`Debug: Available timeSlots for ${dateKey}:`, Object.keys(ticketAvailability[dateKey]));
+                    }
+                    alert('Ticket availability data not found. Please refresh the page and try again.');
+                    return;
+                }
+            }
+            
+            quantitySpan.textContent = newQuantity;
+            
+            // Update button states
+            const minusBtn = button.parentElement.querySelector('.qty-btn:first-child');
+            const plusBtn = button.parentElement.querySelector('.qty-btn:last-child');
+            
+            minusBtn.disabled = newQuantity <= 0;
+            
+            // Check if plus button should be disabled based on available tickets
+            if (selectedDate && selectedTime) {
+                const dateKey = `${selectedDate.getFullYear()}-${selectedDate.getMonth()}-${selectedDate.getDate()}`;
+                const timeSlot = selectedTime;
+                
+                if (ticketAvailability[dateKey] && ticketAvailability[dateKey][timeSlot] !== undefined) {
+                    const availableTickets = ticketAvailability[dateKey][timeSlot];
+                    // Get tickets selected only from the same section (general tickets or guided tours)
+                    const currentSelectedTickets = getSelectedTicketsForSection(button);
+                    
+                    plusBtn.disabled = currentSelectedTickets >= availableTickets;
+                } else {
+                    plusBtn.disabled = false;
+                }
+            } else {
+                plusBtn.disabled = false;
+            }
+            
+            // Update total calculation
+            updateTotal();
+        }
+
+        function getTotalSelectedTickets() {
+            let total = 0;
+            document.querySelectorAll('.quantity').forEach(qty => {
+                total += parseInt(qty.textContent);
+            });
+            return total;
+        }
+
+        // Get selected tickets for a specific section (general tickets or guided tours)
+        function getSelectedTicketsForSection(element) {
+            let total = 0;
+            
+            // Check if element is in general tickets section or guided tours section
+            const isGeneralTicket = element.closest('.ticket-section');
+            const isGuidedTour = element.closest('.tour-section');
+            
+            if (isGeneralTicket) {
+                // Count tickets from GENERAL TICKETS section only
+                document.querySelectorAll('.ticket-section .quantity').forEach(qty => {
+                    total += parseInt(qty.textContent);
+                });
+            } else if (isGuidedTour) {
+                // Count tickets from GUIDED TOURS section only (all tours combined)
+                document.querySelectorAll('.tour-section .quantity').forEach(qty => {
+                    total += parseInt(qty.textContent);
+                });
+            }
+            
+            return total;
+        }
+
+        function clearAllTickets() {
+            // Reset all quantity selectors to 0
+            document.querySelectorAll('.quantity').forEach(qty => {
+                qty.textContent = '0';
+            });
+            
+            // Reset all minus buttons to disabled state
+            document.querySelectorAll('.qty-btn:first-child').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // Reset all plus buttons based on current availability (section-specific)
+            document.querySelectorAll('.qty-btn:last-child').forEach(btn => {
+                if (selectedDate && selectedTime) {
+                    const dateKey = `${selectedDate.getFullYear()}-${selectedDate.getMonth()}-${selectedDate.getDate()}`;
+                    const timeSlot = selectedTime;
+                    
+                    if (ticketAvailability[dateKey] && ticketAvailability[dateKey][timeSlot] !== undefined) {
+                        const availableTickets = ticketAvailability[dateKey][timeSlot];
+                        // Use section-specific count (should be 0 after clearing)
+                        const currentSelectedTickets = getSelectedTicketsForSection(btn);
+                        btn.disabled = currentSelectedTickets >= availableTickets;
+                    } else {
+                        btn.disabled = false;
+                    }
+                } else {
+                    btn.disabled = false;
+                }
+            });
+            
+            // Update order summary
+            updateTotal();
+        }
+
+        function updateTotal() {
+            updateOrderSummary();
+            updateAllPlusButtons();
+        }
+
+        function updateAllPlusButtons() {
+            document.querySelectorAll('.qty-btn:last-child').forEach(btn => {
+                if (selectedDate && selectedTime) {
+                    const dateKey = `${selectedDate.getFullYear()}-${selectedDate.getMonth()}-${selectedDate.getDate()}`;
+                    const timeSlot = selectedTime;
+                    
+                    if (ticketAvailability[dateKey] && ticketAvailability[dateKey][timeSlot] !== undefined) {
+                        const availableTickets = ticketAvailability[dateKey][timeSlot];
+                        // Get tickets selected only from the same section as this button
+                        const currentSelectedTickets = getSelectedTicketsForSection(btn);
+                        btn.disabled = currentSelectedTickets >= availableTickets;
+                    } else {
+                        btn.disabled = false;
+                    }
+                } else {
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        function updateOrderSummary() {
+            const orderItems = document.getElementById('order-items');
+            const totalPriceElement = document.getElementById('total-price');
+            let totalPrice = 0;
+            let orderItemsHTML = '';
+
+            // Process General Tickets
+            const generalTickets = document.querySelectorAll('.ticket-section .quantity-selector');
+            let generalTicketsHTML = '';
+            let hasGeneralTickets = false;
+            
+            generalTickets.forEach(selector => {
+                const quantity = parseInt(selector.querySelector('.quantity').textContent);
+                if (quantity > 0) {
+                    hasGeneralTickets = true;
+                    const priceElement = selector.parentElement.querySelector('.ticket-price');
+                    const priceText = priceElement.textContent;
+                    const price = parseFloat(priceText.replace('€', '').replace('FREE', '0'));
+                    
+                    // Get the ticket name - handle both regular and container formats
+                    let label = 'General Ticket';
+                    const nameElement = selector.parentElement.parentElement.querySelector('.ticket-name');
+                    const containerElement = selector.parentElement.parentElement.querySelector('.ticket-name-container');
+                    
+                    if (containerElement) {
+                        label = containerElement.querySelector('.ticket-name').textContent;
+                    } else if (nameElement) {
+                        label = nameElement.textContent;
+                    }
+                    
+                    const itemTotal = price * quantity;
+                    totalPrice += itemTotal;
+                    
+                    generalTicketsHTML += `
+                        <div class="order-item">
+                            <span>${label} x${quantity}</span>
+                            <span>€${itemTotal.toFixed(2)}</span>
+                        </div>
+                    `;
+                }
+            });
+
+            if (hasGeneralTickets) {
+                orderItemsHTML += `
+                    <div class="order-section">
+                        <div class="order-section-title">General Tickets</div>
+                        ${generalTicketsHTML}
+                    </div>
+                `;
+            }
+
+            // Process Guided Tours
+            const tourModules = document.querySelectorAll('.tour-item');
+            tourModules.forEach(module => {
+                const moduleTitle = module.querySelector('.tour-title').textContent;
+                const moduleTickets = module.querySelectorAll('.quantity-selector');
+                let moduleHTML = '';
+                let hasModuleTickets = false;
+
+                moduleTickets.forEach(selector => {
+                    const quantity = parseInt(selector.querySelector('.quantity').textContent);
+                    if (quantity > 0) {
+                        hasModuleTickets = true;
+                        const priceElement = selector.parentElement.querySelector('.tour-price');
+                        const priceText = priceElement.textContent;
+                        const price = parseFloat(priceText.replace('€', '').replace('FREE', '0'));
+                        
+                        const labelElement = selector.parentElement.parentElement.querySelector('.tour-price-label');
+                        const label = labelElement ? labelElement.textContent : 'Tour Item';
+                        
+                        const itemTotal = price * quantity;
+                        totalPrice += itemTotal;
+                        
+                        moduleHTML += `
+                            <div class="order-item">
+                                <span>${label} x${quantity}</span>
+                                <span>€${itemTotal.toFixed(2)}</span>
+                            </div>
+                        `;
+                    }
+                });
+
+                if (hasModuleTickets) {
+                    orderItemsHTML += `
+                        <div class="order-section">
+                            <div class="order-section-title">${moduleTitle}</div>
+                            ${moduleHTML}
+                        </div>
+                    `;
+                }
+            });
+
+            // Show message if no items selected
+            if (orderItemsHTML === '') {
+                orderItemsHTML = `
+                    <div class="order-empty">
+                        <p>No items selected. Please choose tickets from the options above.</p>
+                    </div>
+                `;
+            }
+
+            // Update the order items
+            orderItems.innerHTML = orderItemsHTML;
+            
+            // Update total price
+            totalPriceElement.textContent = `€${totalPrice.toFixed(2)}`;
+        }
+
+        function bookNow() {
+            const totalPrice = document.getElementById('total-price').textContent;
+            if (totalPrice === '€0.00') {
+                alert('Please select at least one item before booking.');
+                return;
+            }
+            
+            // Here you would typically redirect to a payment page or show a confirmation
+            alert(`Booking confirmed! Total: ${totalPrice}\nThank you for choosing Museum für Naturkunde!`);
+            
+            // Clear all selected tickets after booking
+            clearAllTickets();
+        }
+
+        function changeMonth(direction) {
+            const newDate = new Date(currentDate);
+            newDate.setMonth(currentDate.getMonth() + direction);
+            
+            // Only allow August 2026
+            if (newDate.getFullYear() === 2026 && newDate.getMonth() === 7) {
+                currentDate = newDate;
+                generateCalendar();
+            }
+        }
+
+        // Initialize calendar when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            // Set August 1st as default selected date
+            selectDefaultDate();
+            initializeQuantitySelectors();
+            updateOrderSummary();
+        });
+
+        function selectDefaultDate() {
+            // Set August 1st as the default selected date
+            selectedDate = new Date(2026, 7, 1); // August 1, 2026
+            
+            // Find and select the August 1st day element
+            const dayElements = document.querySelectorAll('.calendar-day');
+            dayElements.forEach(dayEl => {
+                if (dayEl.textContent === '1' && !dayEl.classList.contains('disabled')) {
+                    dayEl.classList.add('selected');
+                    // Generate time slots for August 1st
+                    generateTimeSlots(selectedDate);
+                }
+            });
+        }
+
+        function initializeQuantitySelectors() {
+            // Initialize all quantity selectors
+            document.querySelectorAll('.quantity-selector').forEach(selector => {
+                const minusBtn = selector.querySelector('.qty-btn:first-child');
+                const plusBtn = selector.querySelector('.qty-btn:last-child');
+                const quantity = selector.querySelector('.quantity');
+                
+                // Set initial state
+                minusBtn.disabled = parseInt(quantity.textContent) <= 0;
+            });
+            
+            // Initialize plus buttons based on availability
+            updateAllPlusButtons();
+        }
+    </script>
+</body>
+</html>

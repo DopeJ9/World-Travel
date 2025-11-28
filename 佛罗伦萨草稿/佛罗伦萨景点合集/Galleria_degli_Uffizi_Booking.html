@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria degli Uffizi - Book Your Visit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/UidXbyhwdo9ksrxVNuHc0GEGnfd/?preview_type=16');
+            background-size: cover;
+            background-position: center;
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .booking-section {
+            background: #f5f5dc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: -5rem auto 2rem;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            color: #8b4513;
+        }
+
+        .section-title i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .opening-hours {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .opening-hours h3 {
+            color: #8b4513;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hours-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hours-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e9e9e9;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .date-range {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .time-range {
+            color: #666;
+        }
+
+        .important-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .audioguide-info {
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #2d5016;
+            font-size: 0.95rem;
+        }
+
+        .audioguide-info h4 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .audioguide-info ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .audioguide-info li {
+            margin-bottom: 5px;
+        }
+
+        .booking-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .date-selection {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .calendar {
+            margin-top: 0.8rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .calendar-nav {
+            background: #d4af37;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.2rem;
+            max-width: 400px;
+        }
+
+        .calendar-day {
+            padding: 0.5rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .calendar-day:hover:not(.other-month) {
+            background: #f0f0f0;
+        }
+
+        .calendar-day.selected {
+            background: #8b4513;
+            color: white;
+        }
+
+        .calendar-day.other-month {
+            color: #ccc;
+            cursor: default;
+        }
+
+        .calendar-day.monday {
+            color: #dc3545;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+
+        .time-slots-container {
+            margin-top: 1.5rem;
+        }
+
+        .time-slots-title {
+            color: #8b4513;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .time-slot-btn {
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .time-slot-btn:hover {
+            background: #d4af37;
+            color: white;
+            border-color: #8b4513;
+        }
+
+        .time-slot-btn.selected {
+            background: #8b4513;
+            color: white;
+            border-color: #d4af37;
+        }
+
+        .time-slot-btn.sold-out {
+            background: #f8f8f8;
+            color: #999;
+            border-color: #ddd;
+            cursor: not-allowed;
+            position: relative;
+            text-decoration: line-through;
+        }
+
+        .time-slot-btn.sold-out::after {
+            content: "Sold Out";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            transform: rotate(-10deg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+
+        .pass-selection {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .pass-options {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .pass-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f5f5dc;
+            position: relative;
+        }
+
+        .pass-card:hover {
+            border-color: #d4af37;
+        }
+
+        .pass-card.selected {
+            border-color: #8b4513;
+            background: #f5f5dc;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+        }
+
+        .pass-card h3 {
+            color: #8b4513;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .pass-price {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #8b4513;
+        }
+
+        .pass-includes {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            background: #d4af37;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-display {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .total-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .total-cost {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 1rem;
+        }
+
+        .book-now-btn {
+            background: #8b4513;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .book-now-btn:hover {
+            background: #654321;
+            transform: translateY(-2px);
+        }
+
+        .book-now-btn i {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .booking-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Galleria degli Uffizi</h1>
+            <p>Florence's Premier Art Gallery</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Booking Section -->
+        <div class="booking-section">
+            <h2 class="section-title">
+                <i class="fas fa-ticket-alt"></i>
+                Opening Hours
+            </h2>
+
+            <!-- Opening Hours -->
+            <div class="opening-hours">
+                <h3><i class="fas fa-calendar-check"></i> Operating Schedule</h3>
+                <ul class="hours-list">
+                    <li>
+                        <span class="date-range">Tuesday to Sunday</span>
+                        <span class="time-range">8:15 AM – 6:30 PM</span>
+                    </li>
+                    <li>
+                        <span class="date-range">Monday</span>
+                        <span class="time-range" style="color: #070707; font-weight: 600;">Closed</span>
+                    </li>
+                </ul>
+
+                <!-- Important Notice -->
+                <div class="important-notice" style="margin-top: 1.5rem;">
+                    <i class="fas fa-exclamation-triangle" style="color: #dc3545; margin-right: 0.5rem;"></i>
+                    <strong>IMPORTANT NOTICE:</strong> Please arrive at least 15 minutes before your scheduled time slot to ensure smooth entry.
+                </div>
+
+                <!-- Audioguide Info -->
+                <div class="audioguide-info">
+                    <h4><i class="fas fa-headphones"></i> Audioguide Service</h4>
+                    <p>Available at the entrance upon presentation of a valid identity document.</p>
+                    <ul>
+                        <li><strong>Service Hours:</strong> Available until 5:00 PM</li>
+                        <li><strong>Languages Available:</strong> Italian, English, French, Spanish, German, Polish, Russian, and Japanese</li>
+                        <li><strong>Price:</strong> €6.00 per audioguide (includes one pair of earphones)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Date and Ticket Selection -->
+            <div class="booking-content">
+                <!-- Left Column: Date Selection -->
+                <div class="left-column">
+                    <!-- Date Selection -->
+                    <div class="date-selection">
+                        <h3 class="section-title">
+                            <i class="fas fa-calendar"></i>
+                            Select Visit Date
+                        </h3>
+                        <div class="calendar">
+                            <div class="calendar-header">
+                                <button class="calendar-nav" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                                <h4>August 2026</h4>
+                                <button class="calendar-nav" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="calendar-day">Sun</div>
+                                <div class="calendar-day">Mon</div>
+                                <div class="calendar-day">Tue</div>
+                                <div class="calendar-day">Wed</div>
+                                <div class="calendar-day">Thu</div>
+                                <div class="calendar-day">Fri</div>
+                                <div class="calendar-day">Sat</div>
+                                <div class="calendar-day other-month">26</div>
+                                <div class="calendar-day other-month">27</div>
+                                <div class="calendar-day other-month">28</div>
+                                <div class="calendar-day other-month">29</div>
+                                <div class="calendar-day other-month">30</div>
+                                <div class="calendar-day other-month">31</div>
+                                <div class="calendar-day" onclick="selectDate(this, '1')">1</div>
+                                <div class="calendar-day" onclick="selectDate(this, '2')">2</div>
+                                <div class="calendar-day monday" onclick="selectDate(this, '3')">3</div>
+                                <div class="calendar-day selected" onclick="selectDate(this, '4')">4</div>
+                                <div class="calendar-day" onclick="selectDate(this, '5')">5</div>
+                                <div class="calendar-day" onclick="selectDate(this, '6')">6</div>
+                                <div class="calendar-day" onclick="selectDate(this, '7')">7</div>
+                                <div class="calendar-day" onclick="selectDate(this, '8')">8</div>
+                                <div class="calendar-day" onclick="selectDate(this, '9')">9</div>
+                                <div class="calendar-day monday" onclick="selectDate(this, '10')">10</div>
+                                <div class="calendar-day" onclick="selectDate(this, '11')">11</div>
+                                <div class="calendar-day" onclick="selectDate(this, '12')">12</div>
+                                <div class="calendar-day" onclick="selectDate(this, '13')">13</div>
+                                <div class="calendar-day" onclick="selectDate(this, '14')">14</div>
+                                <div class="calendar-day" onclick="selectDate(this, '15')">15</div>
+                                <div class="calendar-day" onclick="selectDate(this, '16')">16</div>
+                                <div class="calendar-day monday" onclick="selectDate(this, '17')">17</div>
+                                <div class="calendar-day" onclick="selectDate(this, '18')">18</div>
+                                <div class="calendar-day" onclick="selectDate(this, '19')">19</div>
+                                <div class="calendar-day" onclick="selectDate(this, '20')">20</div>
+                                <div class="calendar-day" onclick="selectDate(this, '21')">21</div>
+                                <div class="calendar-day" onclick="selectDate(this, '22')">22</div>
+                                <div class="calendar-day" onclick="selectDate(this, '23')">23</div>
+                                <div class="calendar-day monday" onclick="selectDate(this, '24')">24</div>
+                                <div class="calendar-day" onclick="selectDate(this, '25')">25</div>
+                                <div class="calendar-day" onclick="selectDate(this, '26')">26</div>
+                                <div class="calendar-day" onclick="selectDate(this, '27')">27</div>
+                                <div class="calendar-day" onclick="selectDate(this, '28')">28</div>
+                                <div class="calendar-day" onclick="selectDate(this, '29')">29</div>
+                                <div class="calendar-day" onclick="selectDate(this, '30')">30</div>
+                                <div class="calendar-day monday" onclick="selectDate(this, '31')">31</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Time Slots -->
+                        <div class="time-slots-container" id="timeSlots">
+                            <h4 class="time-slots-title">Available Times for August <span id="selectedDateDisplay">4</span></h4>
+                            <div class="time-slots-grid" id="timeSlotsGrid">
+                                <!-- Time slots will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Ticket Selection -->
+                <div class="pass-selection">
+                    <h3 class="section-title">
+                        <i class="fas fa-ticket-alt"></i>
+                        Ticket Options
+                    </h3>
+                    <div class="pass-options">
+                        <div class="pass-card selected" onclick="selectTicket(this, 'regular', 25)">
+                            <h3>Regular Ticket</h3>
+                            <div class="pass-price">€25 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                            <div class="pass-includes">Standard admission to the Uffizi Gallery</div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('regular', -1)">−</button>
+                                    <span class="quantity-display" id="regular-qty">0</span>
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('regular', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pass-card" onclick="selectTicket(this, 'reduced', 3)">
+                            <h3>Reduced-Price Ticket</h3>
+                            <div class="pass-price">€3 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                            <div class="pass-includes">European Union citizens only, ages 18-25</div>
+                            <div class="pass-includes" style="font-size: 0.85rem; color: #999;">Valid passport or ID required</div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('reduced', -1)">−</button>
+                                    <span class="quantity-display" id="reduced-qty">0</span>
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('reduced', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pass-card" onclick="selectTicket(this, 'senior', 15)">
+                            <h3>Senior Ticket</h3>
+                            <div class="pass-price">€15 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                            <div class="pass-includes">For visitors 65 years and older</div>
+                            <div class="pass-includes" style="font-size: 0.85rem; color: #999;">Valid ID required</div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('senior', -1)">−</button>
+                                    <span class="quantity-display" id="senior-qty">0</span>
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('senior', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pass-card" onclick="selectTicket(this, 'audioguide', 6)">
+                            <h3>Audioguide</h3>
+                            <div class="pass-price">€6.00 <span style="font-size: 0.8rem; color: #666;">per unit</span></div>
+                            <div class="pass-includes">Available in 8 languages</div>
+                            <div class="pass-includes" style="font-size: 0.85rem; color: #999;">One pair of earphones included</div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('audioguide', -1)">−</button>
+                                    <span class="quantity-display" id="audioguide-qty">0</span>
+                                    <button class="quantity-btn" onclick="event.stopPropagation(); changeQuantity('audioguide', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Free admission note -->
+                    <div style="background: #e8f5e8; border: 1px solid #c3e6c3; border-radius: 8px; padding: 12px; margin-top: 15px; color: #2d5016; font-size: 0.95rem; text-align: center;">
+                        <strong>🎫 Free Admission:</strong> Children under 6 years old can enter for free (no ticket required)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Button -->
+        <div class="total-section">
+            <div class="total-cost" id="total-cost">Total Cost: €0</div>
+            <button class="book-now-btn" onclick="bookNow()">
+                <i class="fas fa-shopping-cart"></i>
+                Book Now
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedDate = '4';
+        let selectedTime = null;
+        let quantities = {
+            regular: 0,
+            reduced: 0,
+            senior: 0,
+            audioguide: 0
+        };
+
+        const prices = {
+            regular: 25,
+            reduced: 3,
+            senior: 15,
+            audioguide: 6
+        };
+
+        const timeSlots = ['08:15', '09:00', '09:45', '10:30', '11:15', '12:00', '12:45', '13:30', '14:15', '15:00', '15:45', '16:30', '17:15', '18:00'];
+        
+        function selectDate(element, dateValue) {
+            // Only process clicks on actual dates (not other-month days)
+            if (element.classList.contains('other-month')) {
+                return;
+            }
+            
+            // Check if it's a Monday
+            if (element.classList.contains('monday')) {
+                alert('The Uffizi Gallery is closed on Mondays. Please select another day.');
+                return;
+            }
+            
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            selectedDate = dateValue;
+            
+            // Update selected date display
+            document.getElementById('selectedDateDisplay').textContent = dateValue;
+            
+            // Generate and display time slots
+            generateTimeSlots();
+        }
+
+        // Fixed sold out patterns for each date
+        function getSoldOutSlots(dateValue) {
+            const soldOutPatterns = {
+                '1': [2, 7],
+                '2': [1, 5, 9],
+                '3': [], // Monday - closed
+                '4': [3, 8],
+                '5': [0, 4, 10],
+                '6': [2, 6, 11],
+                '7': [1, 7, 12],
+                '8': [3, 5, 9],
+                '9': [0, 6, 13],
+                '10': [], // Monday - closed
+                '11': [2, 8, 11],
+                '12': [1, 4, 9],
+                '13': [3, 7, 10],
+                '14': [0, 5, 12],
+                '15': [2, 6, 9],
+                '16': [1, 8, 13],
+                '17': [], // Monday - closed
+                '18': [3, 4, 11],
+                '19': [0, 7, 10],
+                '20': [2, 5, 12],
+                '21': [1, 6, 9],
+                '22': [3, 8, 13],
+                '23': [0, 4, 11],
+                '24': [], // Monday - closed
+                '25': [2, 7, 10],
+                '26': [1, 5, 12],
+                '27': [3, 6, 9],
+                '28': [0, 8, 13],
+                '29': [2, 4, 11],
+                '30': [1, 7, 10],
+                '31': [] // Monday - closed
+            };
+            
+            return soldOutPatterns[dateValue] || [];
+        }
+
+        function generateTimeSlots() {
+            const timeSlotsGrid = document.getElementById('timeSlotsGrid');
+            
+            // Get fixed sold out slots for selected date
+            const soldOutSlots = getSoldOutSlots(selectedDate);
+            
+            // Clear existing time slots
+            timeSlotsGrid.innerHTML = '';
+            
+            // Create time slot buttons
+            timeSlots.forEach((time, index) => {
+                const timeButton = document.createElement('button');
+                timeButton.className = 'time-slot-btn';
+                timeButton.textContent = time;
+                
+                if (soldOutSlots.includes(index)) {
+                    timeButton.classList.add('sold-out');
+                    timeButton.disabled = true;
+                } else {
+                    timeButton.onclick = () => selectTimeSlot(timeButton);
+                }
+                
+                timeSlotsGrid.appendChild(timeButton);
+            });
+        }
+
+        function selectTimeSlot(element) {
+            if (element.disabled) return;
+            
+            // Remove previous selection
+            document.querySelectorAll('.time-slot-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            selectedTime = element.textContent;
+            updateTotal();
+        }
+
+        function selectTicket(element, ticketType, price) {
+            // Optional: highlight selected ticket type
+            document.querySelectorAll('.pass-card').forEach(card => {
+                card.style.borderWidth = '2px';
+            });
+            element.style.borderWidth = '3px';
+        }
+
+        function changeQuantity(type, change) {
+            quantities[type] = Math.max(0, quantities[type] + change);
+            document.getElementById(type + '-qty').textContent = quantities[type];
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            
+            total += quantities.regular * prices.regular;
+            total += quantities.reduced * prices.reduced;
+            total += quantities.senior * prices.senior;
+            total += quantities.audioguide * prices.audioguide;
+            
+            document.getElementById('total-cost').textContent = `Total Cost: €${total}`;
+        }
+
+        function changeMonth(direction) {
+            // This would implement month navigation
+            console.log('Change month:', direction);
+            alert('Month navigation feature coming soon!');
+        }
+
+        function bookNow() {
+            const totalTickets = quantities.regular + quantities.reduced + quantities.senior;
+            
+            if (totalTickets === 0) {
+                alert('Please select at least one ticket.');
+                return;
+            }
+            
+            if (!selectedTime) {
+                alert('Please select a time slot.');
+                return;
+            }
+            
+            let ticketDetails = [];
+            if (quantities.regular > 0) ticketDetails.push(`${quantities.regular} Regular Ticket(s)`);
+            if (quantities.reduced > 0) ticketDetails.push(`${quantities.reduced} Reduced-Price Ticket(s)`);
+            if (quantities.senior > 0) ticketDetails.push(`${quantities.senior} Senior Ticket(s)`);
+            if (quantities.audioguide > 0) ticketDetails.push(`${quantities.audioguide} Audioguide(s)`);
+            
+            const total = document.getElementById('total-cost').textContent;
+            
+            alert(`Booking Confirmation!\n\nDate: August ${selectedDate}, 2026\nTime: ${selectedTime}\n\nTickets:\n${ticketDetails.join('\n')}\n\n${total}\n\nReminder:\nPlease arrive at least 15 minutes before your scheduled time slot.\n\nProceeding to payment...`);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            generateTimeSlots();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

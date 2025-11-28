@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal visit note and experience at FACIL - Berlin's two Michelin star restaurant known for rational yet gentle culinary artistry">
+    <meta name="keywords" content="FACIL, Berlin dining, Michelin two stars, fine dining, Germany travel, luxury dining">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note 1: FACIL - Two Michelin Star Restaurant (Rational Yet Gentle Culinary Experience)</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="FACIL - Two Michelin Star Restaurant (Rational Yet Gentle Culinary Experience)">
+    <meta property="og:description" content="FACIL feels like a rational yet gentle experiment — every dish is precise, balanced, and understated. Stunning desserts, affordable lunch, perfect for those seeking 'Michelin's beauty of order.'">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FACIL Restaurant Experience">
+    <meta name="twitter:description" content="A detailed review of Berlin's two Michelin star restaurant FACIL">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2f7 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: white;
+            border-radius: 15px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #4A90A4;
+        }
+
+        .stat-icon {
+            color: #4A90A4;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #4A90A4, #7CB9CC);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(74, 144, 164, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Two Column Layout */
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #4A90A4, #7CB9CC);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4A90A4;
+            margin-bottom: 5px;
+        }
+
+        .restaurant-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.4;
+            color: #444;
+        }
+
+        .article-content h3 {
+            color: #4A90A4;
+            font-size: 1.3rem;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .article-content h4 {
+            color: #555;
+            font-size: 1.15rem;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .article-content p {
+            margin-bottom: 10px;
+        }
+
+        .article-content ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .article-content li {
+            margin-bottom: 5px;
+        }
+
+        .article-content blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #4A90A4;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .article-content p:first-of-type {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            background: #f0f9ff;
+            padding: 12px;
+            border-left: 4px solid #4A90A4;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2f7);
+            border: 1px solid #4A90A4;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .highlight-box::before {
+            content: '🌿';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, #fff8f0, #ffe6d0);
+            border: 1px solid #FF8C00;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .time-box::before {
+            content: '⏱️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .dish-box {
+            background: linear-gradient(135deg, #fffacd, #fff8dc);
+            border: 1px solid #DAA520;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .dish-box::before {
+            content: '🍽️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, #ffe4e1, #ffd6d1);
+            border: 1px solid #dc3545;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .price-box::before {
+            content: '💰';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, #e6f3ff, #cce6ff);
+            border: 1px solid #4682B4;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .tips-box::before {
+            content: '📋';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .atmosphere-box {
+            background: linear-gradient(135deg, #fef5e7, #fdebd0);
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .atmosphere-box::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+            border: 1px solid #ff69b4;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .recommendation-box::before {
+            content: '🥇';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .neutral-box {
+            background: linear-gradient(135deg, #f5f5f5, #ebebeb);
+            border: 1px solid #999;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .neutral-box::before {
+            content: '😐';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .dessert-box {
+            background: linear-gradient(135deg, #fef0ff, #f8e6ff);
+            border: 1px solid #9370db;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .dessert-box::before {
+            content: '🍰';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .coffee-box {
+            background: linear-gradient(135deg, #fff5e6, #ffe8cc);
+            border: 1px solid #8B4513;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .coffee-box::before {
+            content: '☕️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer Section */
+        .note-footer {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .rating-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.3rem;
+        }
+
+        .visit-date {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #4A90A4, #7CB9CC);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            .social-stats {
+                gap: 15px;
+                padding: 10px;
+            }
+
+            .stat-item {
+                font-size: 0.8rem;
+                gap: 5px;
+            }
+
+            .note-header {
+                padding: 20px 15px;
+            }
+
+            .note-title {
+                font-size: 1.4rem;
+            }
+
+            .note-content {
+                padding: 15px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">892</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">314</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">167</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">🌿 Visit Note 1</h1>
+            <p class="note-subtitle">FACIL - Two Michelin Star Restaurant (Rational Yet Gentle Culinary Experience)</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="restaurant-name">FACIL</h2>
+                    <p class="restaurant-type">Two Michelin Stars · Modern European Cuisine · Berlin</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <p>FACIL feels like a rational yet gentle experiment — every dish is precise, balanced, and understated. Stunning desserts, affordable lunch, perfect for those seeking 'Michelin's beauty of order.'</p>
+
+                <div class="atmosphere-box">
+                    <strong>✨ Guest Experience</strong><br><br>
+                    FACIL is the kind of restaurant that's "understated yet exceptionally refined."<br><br>
+                    <strong>Atmosphere:</strong> Quiet, airy, and orderly — the restaurant is surrounded by chestnut trees and small fountains, like a "sky garden" floating above the city<br><br>
+                    <strong>Cuisine embodies "rationality with tenderness":</strong><br>
+                    • Flavors are precise and structured, not chasing dramatic wow moments<br>
+                    • Eastern and Mediterranean elements are subtly integrated — Japanese miso, Thai fish sauce, Chinese bok choy, and Indian spices all work within French culinary logic<br>
+                    • Overall leans toward the "light" side — not heavy or greasy, leaving you comfortable after the meal<br><br>
+                    Compared to other two-star restaurants, FACIL is more like a top student: rigorous, restrained, nearly flawless, yet lacking a bit of "heart-stirring rebellion."<br>
+                    If you want to experience "Michelin's aesthetic of balance," this is perfect; if you seek intense excitement or innovative impact, it might feel too quiet.
+                </div>
+
+                <div class="two-column-layout">
+                    <!-- Left Column: Dishes and Reviews -->
+                    <div class="column">
+                        <div class="recommendation-box">
+                            <strong>🥇 Highly Recommended Dishes</strong><br><br>
+                            
+                            <h4>🍤 LANGUSTINO FROM THE FAROE ISLANDS</h4>
+                            <blockquote>
+                                <strong>The most acclaimed opening dish</strong>. The prawn has high sweetness, the fish sauce adds layers, and the fried rice crisps at the bottom provide crunch and a tropical feel. Slightly "Southeast Asian-inspired," refreshing with umami depth.
+                            </blockquote>
+
+                            <h4>🐙 Octopus (Lunch Menu)</h4>
+                            <blockquote>
+                                Most diners consider this <strong>the standout dish of the lunch menu</strong>. Perfectly cooked with a subtle charcoal note, well-balanced accompaniments.
+                            </blockquote>
+
+                            <h4>🥩 ENTRECÔTE OF MIYAZAKI WAGYU BEEF</h4>
+                            <blockquote>
+                                The sauce is impeccably reduced, the meat is firm.
+                            </blockquote>
+                        </div>
+
+                        <div class="dessert-box">
+                            <strong>🍮 Dessert Selection</strong><br><br>
+                            <strong>Unanimously praised highlight</strong>. Inspired by natural scenes:<br><br>
+                            • 🍐 <strong>Coffee Mousse + Caramelized Walnuts + Pear + Lemon Pearls</strong><br><br>
+                            • 🌰 <strong>Lemon Mousse + Chocolate Caramel Center + Coconut Banana Ice Cream</strong><br><br>
+                            Artistically presented, sweet but not cloying, many call them "Berlin's most beautiful desserts."
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Practical Information -->
+                    <div class="column">
+                        <div class="time-box">
+                            <strong>🕰️ Recommended Visit Duration</strong><br><br>
+                            
+                            <strong>• Lunch (Lunch Menu)</strong><br>
+                            ⏱ Suggested stay: <strong>1.5～2 hours</strong><br><br>
+                            &nbsp;&nbsp;&nbsp;· 2 courses are filling enough; 3 courses include complimentary amuse-bouche and dessert — excellent value<br>
+                            &nbsp;&nbsp;&nbsp;· Steady pacing, attentive service, no rush<br><br>
+                            
+                            <strong>• Dinner (Tasting Menu)</strong><br>
+                            ⏱ Suggested stay: <strong>2.5～3 hours</strong><br><br>
+                            &nbsp;&nbsp;&nbsp;· Choose 7–8 courses to fully experience Chef Michael Kempf's "structured logic" style
+                        </div>
+
+                        <div class="coffee-box">
+                            <strong>☕️ Other Highlights</strong><br><br>
+                            • <strong>Excellent post-meal coffee</strong>, perfectly paired with desserts for a satisfying finale.<br><br>
+                            • <strong>No pushy wine pairing</strong> — they thoughtfully ask if you'd like sommelier recommendations.<br><br>
+                            • <strong>Lunch offers exceptional value</strong>, especially tourist-friendly.
+                        </div>
+
+                        <div class="tips-box">
+                            <strong>📋 Pro Tips</strong><br><br>
+                            • <strong>Recommendation: Reserve in advance</strong> (lunch is particularly popular)<br><br>
+                            • <strong>Dress code:</strong> No strict requirements, overall casual-elegant
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Print functionality
+        function printNote() {
+            window.print();
+        }
+
+        // Share functionality (if needed)
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'FACIL Restaurant Experience',
+                    text: 'Check out this detailed review of FACIL - Berlin\'s two Michelin star restaurant',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+

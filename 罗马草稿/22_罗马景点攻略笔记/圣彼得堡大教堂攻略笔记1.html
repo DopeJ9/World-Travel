@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Peter's Basilica Travel Notes 1 - Quick Visit Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 700;
+            color: #2c5aa0;
+            font-size: 1.2rem;
+        }
+
+        .stat-icon {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c5aa0, #4285f4);
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.4em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 35px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            color: #2c5aa0;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background-color: #e8f2ff;
+            border-left: 4px solid #2c5aa0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tip-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffd166;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .tip-title {
+            color: #e6a700;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ticket-info {
+            background-color: #f0f7ff;
+            border: 2px solid #2c5aa0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .ticket-title {
+            color: #2c5aa0;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .ticket-option {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .ticket-option:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .ticket-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .ticket-price {
+            color: #2c5aa0;
+            font-weight: 700;
+        }
+        
+        .ticket-desc {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .route-path {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .route-step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background-color: #2c5aa0;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .duration-note {
+            color: #666;
+            font-style: italic;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .photo-tip {
+            background-color: #fff0f0;
+            border: 1px solid #ffcccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .photo-title {
+            color: #cc3333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .social-stats {
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Social Stats -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">428</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">156</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-bookmark stat-icon"></i>
+                <span class="stat-number">289</span>
+                <span>Bookmarks</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="header">
+                <h1>St. Peter's Basilica: Quick Visit Guide for Busy Travelers</h1>
+                <div class="subtitle">Maximize your Vatican experience in limited time</div>
+            </div>
+            
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">Overview</h2>
+                    <p>As one of the holiest Catholic sites and a masterpiece of Renaissance architecture, St. Peter's Basilica is a must-visit in Rome. This guide is tailored for travelers with limited time who want to experience the highlights efficiently.</p>
+                    
+                    <div class="duration-note">
+                        With efficient planning, you can experience the main highlights of St. Peter's Basilica in about 1.5 hours, perfect for those on a tight schedule.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">My Recommended Route</h2>
+                    <div class="route-path">
+                        <div class="route-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Enter through security</div>
+                                <div class="step-desc">Arrive 15 minutes before opening (6:45 AM) to avoid the longest queues. The security check is mandatory for all visitors.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="route-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Bernini's Baldacchino</div>
+                                <div class="step-desc">Head directly to the center of the crossing to admire this monumental bronze canopy over the papal altar.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="route-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Michelangelo's Pietà</div>
+                                <div class="step-desc">Located in the first chapel on the right, this is Michelangelo's stunning marble sculpture of Mary holding Jesus.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="route-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Dome ascent (optional)</div>
+                                <div class="step-desc">If you have extra time and energy, climb the dome for breathtaking views of Vatican City and Rome.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="photo-tip">
+                    <div class="photo-title">
+                        <i class="fas fa-camera"></i> Best Photo Opportunity
+                    </div>
+                    <p><strong>Early morning (7:00-8:30 AM)</strong> offers the best lighting for photography inside the Basilica, with beautiful sunlight streaming through the windows. The exterior is best photographed in the late afternoon when the façade is evenly lit.</p>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Ticket Information</h2>
+                    <div class="ticket-info">
+                        <div class="ticket-title">Entry Options for Quick Visitors</div>
+                        
+                        <div class="ticket-option">
+                            <div class="ticket-name">The Basilica Only</div>
+                            <div class="ticket-price">€7 (includes digital audio guide)</div>
+                            <div class="ticket-desc">Perfect for those with limited time. The audio guide provides essential information without requiring a fixed schedule.</div>
+                        </div>
+                        
+                        <div class="ticket-option">
+                            <div class="ticket-name">Guided Express Tour ⭐</div>
+                            <div class="ticket-price">€25/person <span style="font-size: 0.9em; color: #d32f2f;">(+ €7 base ticket = €32 total)</span></div>
+                            <div class="ticket-desc">A local guide will show you the highlights and share interesting facts, maximizing your limited time.</div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 2px solid #ff9800; border-radius: 8px; padding: 15px; margin-top: 20px;">
+                            <div style="color: #e65100; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-exclamation-circle"></i> Hidden Option Alert
+                            </div>
+                            <p style="margin: 0; font-size: 0.95em; color: #666;">
+                                <strong>Important:</strong> The Guided Express Tour is <strong>NOT listed on the official website</strong>. This is a special option that can only be arranged through select tour operators or by inquiry on-site. The €25 fee is <strong>in addition to</strong> your base ticket (€7), making it €32 total per person. This quick tour is perfect for time-pressed visitors who still want expert insights.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Personal Experience:</strong> As someone who visited Rome during a busy business trip, I found that arriving right at opening time allowed me to see everything important without rushing. The key is having a plan and sticking to it. The atmosphere is much more peaceful early in the morning before the crowds arrive.</p>
+                </div>
+                
+                <div class="tip-box">
+                    <div class="tip-title">
+                        <i class="fas fa-lightbulb"></i> Quick Tip
+                    </div>
+                    <p>Skip the dome climb if you're truly pressed for time. While the view is spectacular, the climb takes 45-60 minutes round trip. Instead, use that time to appreciate the interior artworks more thoroughly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

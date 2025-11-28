@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal visit note and experience at San Baylon Restaurant - Authentic Italian dining in Rome">
+    <meta name="keywords" content="San Baylon Restaurant, Rome dining, Italian cuisine, Michelin restaurant, Italy travel, luxury dining">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <title>Visit Note 1: San Baylon Restaurant - Authentic Italian Dining Experience in Rome</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #B8860B;
+        }
+
+        .stat-icon {
+            color: #B8860B;
+            font-size: 1.1rem;
+        }
+
+        .note-header {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 5px;
+        }
+
+        .restaurant-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content p:first-of-type {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            background: #fffbf0;
+            padding: 20px;
+            border-left: 4px solid #8B4513;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f5f5dc, #f0e68c);
+            border: 1px solid #CD853F;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '🇮🇹';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .dish-box {
+            background: linear-gradient(135deg, #e6f3ff, #cce7ff);
+            border: 1px solid #4682B4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .dish-box::before {
+            content: '🍽️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, #ffe4e1, #ffd6d1);
+            border: 1px solid #dc3545;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .price-box::before {
+            content: '💰';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .note-footer {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .rating-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.3rem;
+        }
+
+        .visit-date {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .social-stats {
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .stat-item {
+                font-size: 0.8rem;
+                gap: 6px;
+            }
+
+            .note-header {
+                padding: 30px 20px;
+            }
+
+            .note-title {
+                font-size: 1.4rem;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">347</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">128</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">64</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note 1</h1>
+            <p class="note-subtitle">San Baylon Restaurant - Authentic Italian Dining Experience in Rome</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="restaurant-name">San Baylon Restaurant</h2>
+                    <p class="restaurant-type">Authentic Italian Cuisine in Historic Palazzo Ripetta</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <p>Nestled in the heart of Rome near Piazza del Popolo, San Baylon offers an unforgettable dining experience that beautifully balances traditional Italian flavors with modern culinary techniques. From the moment you step into the historic Palazzo Ripetta, you're transported to a world of elegance and culinary delight.</p>
+
+                <div class="highlight-box">
+                    <strong>Atmosphere & Ambience</strong><br>
+                    The restaurant occupies what was once the refectory of a 17th-century monastery, but today the atmosphere is more informal with an almost bistro-like feel. The interior seamlessly blends historic architecture with contemporary design elements. In fine weather, meals are served in the palazzo's beautiful inner courtyard, creating a magical dining experience under the Roman sky.
+                </div>
+
+                <div class="dish-box">
+                    <strong>Dish Recommendations</strong><br>
+                    <strong>Must-Try Dishes:</strong><br>
+                    • <strong>Plin Pasta with White Ragout</strong> - An exquisite pasta dish with mushrooms, seaweed velouté, and rich meat jus that creates a perfect harmony of flavors.<br>
+                    • <strong>Grilled Beef with Swiss Chard</strong> - Perfectly cooked beef with ajo e ojo preparation of Swiss chard, lemon, and beef jus that will delight any meat lover.<br><br>
+                    
+                    <strong>Dishes to Consider Carefully:</strong><br>
+                    • <strong>Tagliolini in Spicy Broth</strong> - While flavorful, the spicy broth might be too intense for those with sensitive palates. The cuttlefish is perfectly cooked, but the spice level could be overwhelming.
+                </div>
+
+                <p>Our dining experience lasted about two and a half hours, which felt just right for the four-course tasting menu we selected.In to my personal dining experience, the average recommended dining time for each course is about 30 to 40 minutes. The pacing was excellent, with just enough time between courses to savor each dish without feeling rushed.</p>
+
+                <div class="price-box">
+                    <strong>Price Point & Value</strong><br>
+                    The Sorgente tasting menu at €80 offers excellent value for four carefully curated courses. Wine pairings are available at €50 for three glasses, which complements the meal beautifully. While not inexpensive, the quality of ingredients and execution justifies the price point.
+                </div>
+
+                <p>The service was attentive without being intrusive, and the staff demonstrated impressive knowledge of both the menu and wine pairings. Chef Christian Spalvieri's philosophy that "the taste is the soul of the dish" truly shines through in every creation.</p>
+
+            </article>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="note-footer" data-aos="fade-up">
+            <div class="rating-section">
+                <span class="rating-label">Overall Rating:</span>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+            <p class="visit-date">Visited: October 15, 2023</p>
+            <div class="tags">
+                <span class="tag">Italian Cuisine</span>
+                <span class="tag">Michelin Experience</span>
+                <span class="tag">Rome Dining</span>
+                <span class="tag">Historic Setting</span>
+                <span class="tag">Wine Pairing</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        function printNote() {
+            window.print();
+        }
+
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'San Baylon Restaurant Experience',
+                    text: 'Check out this detailed review of San Baylon Restaurant in Rome',
+                    url: window.location.href
+                });
+            } else {
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

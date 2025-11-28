@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piazza di Spagna - Spanish Steps Visit Information</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .header-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #8B4513;
+            margin-bottom: 8px;
+        }
+
+        .main-subtitle {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .plaza-description {
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+            margin-top: 10px;
+            border-left: 3px solid #8B4513;
+            padding-left: 15px;
+            background: #f9f9f9;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-weight: 600;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 8px;
+        }
+
+        .opening-hours {
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .hours-info {
+            display: inline-block;
+        }
+
+        .hours-details {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .days-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .pricing-section {
+            background: #f0f8ff;
+            border: 1px solid #4169E1;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .free-admission {
+            background: white;
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 15px;
+            display: inline-block;
+        }
+
+        .free-text {
+            font-size: 1.2rem;
+            color: #28a745;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .free-icon {
+            font-size: 1.5rem;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .free-description {
+            color: #666;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        .visit-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #856404;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .visit-info h4 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .visit-info ul {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+
+        .visit-info ul li {
+            margin-bottom: 8px;
+        }
+
+        .attraction-item {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .attraction-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 8px;
+        }
+
+        .attraction-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .main-title {
+                font-size: 1.5rem;
+            }
+
+            .main-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .info-section {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1 class="main-title">Piazza di Spagna</h1>
+            <div class="plaza-description">
+                An exquisite 18th-century square featuring the Spanish Steps and the Trinità dei Monti church on the hill, creating a perfect trio of architectural wonders.
+            </div>
+        </div>
+
+        <!-- Opening Hours Section -->
+        <div class="info-section">
+            <h2 class="section-title">Opening Hours</h2>
+            <div class="opening-hours">
+                <div class="hours-info">
+                    <div class="hours-details">09:00 - 19:00</div>
+                    <div class="days-info">Monday to Sunday</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="info-section">
+            <h2 class="section-title">Admission</h2>
+            <div class="pricing-section">
+                <div class="free-admission">
+                    <div class="free-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="free-text">FREE</div>
+                    <div class="free-description">
+                        No entrance fee required<br>
+                        Open to all visitors
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What to See Section -->
+        <div class="info-section">
+            <h2 class="section-title">What to See</h2>
+            
+            <div class="attraction-item">
+                <div class="attraction-title">The Spanish Steps (Scalinata di Trinità dei Monti)</div>
+                <div class="attraction-description">
+                    The Spanish Steps in Rome, Italy, climb a steep slope between Piazza di Spagna at the base and Piazza Trinità dei Monti, dominated by the Trinità dei Monti church, at the top.
+                </div>
+            </div>
+
+            <div class="attraction-item">
+                <div class="attraction-title">Trinità dei Monti</div>
+                <div class="attraction-description">
+                    A place of prayer and welcoming in the heart of Rome.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>

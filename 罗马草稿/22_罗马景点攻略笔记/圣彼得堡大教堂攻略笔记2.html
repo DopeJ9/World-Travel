@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Peter's Basilica Travel Notes 2 - Art Lover's Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 700;
+            color: #8B4513;
+            font-size: 1.2rem;
+        }
+
+        .stat-icon {
+            color: #8B4513;
+            font-size: 1.3rem;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.4em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 35px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            color: #8B4513;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .artwork-spotlight {
+            background-color: #f8f5f1;
+            border-left: 4px solid #8B4513;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .artwork-title {
+            color: #8B4513;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .artwork-artist {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .insight-box {
+            background-color: #f0f7f0;
+            border: 1px solid #7cb342;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .insight-title {
+            color: #388e3c;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ticket-info {
+            background-color: #f9f5f0;
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .ticket-title {
+            color: #8B4513;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .ticket-option {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+        }
+        
+        .ticket-option:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .ticket-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .ticket-price {
+            color: #8B4513;
+            font-weight: 700;
+        }
+        
+        .ticket-desc {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .architecture-detail {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .detail-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #8B4513;
+        }
+        
+        .shop-info {
+            background-color: #fff3e0;
+            border: 1px solid #ffb74d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .shop-title {
+            color: #e65100;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .duration-note {
+            color: #666;
+            font-style: italic;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .experience-reflection {
+            background-color: #e8eaf6;
+            border: 1px solid #3f51b5;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .reflection-title {
+            color: #303f9f;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .social-stats {
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Social Stats -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">512</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">243</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-bookmark stat-icon"></i>
+                <span class="stat-number">367</span>
+                <span>Bookmarks</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="header">
+                <h1>St. Peter's Basilica: Art Lover's Deep Dive</h1>
+                <div class="subtitle">Exploring the artistic and architectural marvels of this Renaissance masterpiece</div>
+            </div>
+            
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">An Artistic Pilgrimage</h2>
+                    <p>St. Peter's Basilica represents the pinnacle of Renaissance and Baroque art and architecture. For art enthusiasts, this isn't just a church visit—it's a journey through centuries of artistic genius, where every corner reveals another masterpiece.</p>
+                    
+                    <div class="duration-note">
+                        To fully appreciate the artistic treasures of St. Peter's, I recommend dedicating at least 3-4 hours, allowing time to study the details and absorb the atmosphere.
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Masterpieces Not to Miss</h2>
+                    
+                    <div class="artwork-spotlight">
+                        <div class="artwork-title">Pietà</div>
+                        <div class="artwork-artist">Michelangelo Buonarroti (1498-1499)</div>
+                        <p>Michelangelo's breathtaking marble sculpture depicts the Virgin Mary holding the body of Christ after the Crucifixion. Created when the artist was only 24, it's the only work he ever signed. Notice the incredible detail in the drapery and the youthful appearance of Mary, representing her perpetual virginity.</p>
+                    </div>
+                    
+                    <div class="artwork-spotlight">
+                        <div class="artwork-title">Baldacchino</div>
+                        <div class="artwork-artist">Gian Lorenzo Bernini (1624-1633)</div>
+                        <p>This 95-foot tall bronze canopy over the papal altar is a masterpiece of Baroque sculpture. Bernini used bronze taken from the Pantheon's portico, causing controversy at the time. The twisted columns symbolize the connection between heaven and earth, while the bees (symbol of the Barberini family) can be seen throughout.</p>
+                    </div>
+                    
+                    <div class="artwork-spotlight">
+                        <div class="artwork-title">Chair of St. Peter</div>
+                        <div class="artwork-artist">Gian Lorenzo Bernini (1647-1653)</div>
+                        <p>Located in the apse, this monumental sculpture encloses what was believed to be St. Peter's episcopal chair. The chair is elevated and surrounded by Doctors of the Church, with golden rays and stained glass representing the Holy Spirit—creating a theatrical display of divine illumination.</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Architectural Marvels</h2>
+                    <div class="architecture-detail">
+                        <div class="detail-title">The Dome</div>
+                        <p>Michelangelo's dome, completed after his death, rises 448 feet with a diameter of 138 feet. The double-shell design was revolutionary, allowing for both structural integrity and interior grandeur. The interior is decorated with mosaics rather than paintings, creating a shimmering effect when light enters through the windows at the base.</p>
+                    </div>
+                    
+                    <div class="architecture-detail">
+                        <div class="detail-title">The Nave</div>
+                        <p>Designed by Carlo Maderno, the nave extends the original Greek cross plan into a Latin cross. The monumental scale (613 feet long) was intended to dwarf the visitor, emphasizing the power and glory of the Church. The floor features Cosmatesque work, intricate geometric patterns of colored marble.</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Ticket Information</h2>
+                    <div class="ticket-info">
+                        <div class="ticket-title">Options for Art Enthusiasts</div>
+                        
+                        <div class="ticket-option">
+                            <div class="ticket-name">Basilica + Dome with Lift</div>
+                            <div class="ticket-price">€22 (includes digital audio guide)</div>
+                            <div class="ticket-desc">The best option for those who want to experience the dome without the strenuous climb. The elevator takes you to the terrace level, from where you can admire the dome's interior up close before continuing to the outer ring for panoramic views.</div>
+                        </div>
+                        
+                        <div class="ticket-option">
+                            <div class="ticket-name">Art Historian Guided Tour ⭐</div>
+                            <div class="ticket-price">€45/person <span style="font-size: 0.9em; color: #d32f2f;">(+ €22 base ticket = €67 total)</span></div>
+                            <div class="ticket-desc">Led by an art historian, this tour provides deep insights into the architectural history, artistic techniques, and symbolic meanings behind the masterpieces.</div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 2px solid #ff9800; border-radius: 8px; padding: 15px; margin-top: 20px;">
+                            <div style="color: #e65100; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-exclamation-circle"></i> Hidden Option Alert
+                            </div>
+                            <p style="margin: 0; font-size: 0.95em; color: #666;">
+                                <strong>Important:</strong> The Art Historian Guided Tour is <strong>NOT listed on the official website</strong>. This is a special option that can only be arranged through select tour operators or by inquiry on-site. The €45 fee is <strong>in addition to</strong> your base ticket (€22), making it €67 total per person. This exclusive experience offers far deeper insights than the standard audio guide.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="shop-info">
+                    <div class="shop-title">
+                        <i class="fas fa-shopping-bag"></i> Vatican Bookstore & Gift Shop
+                    </div>
+                    <p><strong>Opening Hours:</strong> 8:30 AM - 6:00 PM (Monday-Saturday), 1:00 PM - 5:00 PM (Sunday)</p>
+                    <p>The bookstore located near the exit offers excellent art books, reproductions of manuscripts, and high-quality prints of the artworks. For serious art lovers, their collection of academic publications on Renaissance art is particularly noteworthy.</p>
+                </div>
+                
+                <div class="insight-box">
+                    <div class="insight-title">
+                        <i class="fas fa-eye"></i> Artistic Insight
+                    </div>
+                    <p>Visit in the late afternoon when the sun illuminates the nave at a low angle, creating dramatic lighting effects that reveal textures and details often missed in harsher midday light. This is particularly beautiful for photography and for appreciating the play of light on marble surfaces.</p>
+                </div>
+                
+                <div class="experience-reflection">
+                    <div class="reflection-title">Personal Reflection</div>
+                    <p>As an art history student, my visit to St. Peter's was transformative. Standing before Michelangelo's Pietà, I understood Vasari's claim that it was a work "in which there is everything beautiful that can be made." The emotional intensity captured in marble is overwhelming. The scale of Bernini's Baldacchino must be experienced in person—photographs cannot convey its monumental presence. For anyone with a deep appreciation for art, this is not merely a tourist stop but a pilgrimage to one of Western civilization's greatest artistic achievements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

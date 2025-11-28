@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed menu guide and pricing for Bonvivant Restaurant - Complete brunch, cocktail and dinner menu options">
+    <meta name="keywords" content="Bonvivant Restaurant menu, brunch menu, cocktail menu, dinner menu, Berlin dining prices, restaurant guide">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note 2: Bonvivant Restaurant - 完整菜单指南与价格详情</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Bonvivant Restaurant - 完整菜单指南与价格详情">
+    <meta property="og:description" content="它们家有几种menu，供大家参考 - 详细的早午餐、鸡尾酒和晚餐菜单价格指南">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bonvivant Restaurant Menu Guide">
+    <meta name="twitter:description" content="Complete guide to Bonvivant Restaurant's brunch, cocktail and dinner menus and pricing options">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #2E8B57;
+        }
+
+        .stat-icon {
+            color: #2E8B57;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #2E8B57, #32CD32);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #2E8B57, #32CD32);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2E8B57;
+            margin-bottom: 5px;
+        }
+
+        .restaurant-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            background: #f0fff0;
+            padding: 12px;
+            border-left: 4px solid #2E8B57;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        /* Menu Cards */
+        .menu-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .menu-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+            align-items: start;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .menu-header {
+            background: linear-gradient(135deg, #2E8B57, #32CD32);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-number {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        .menu-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .menu-price {
+            font-size: 1.05rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .menu-body {
+            padding: 12px;
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-items li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f3f5;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .menu-items li:last-child {
+            border-bottom: none;
+        }
+
+        .dish-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        .dish-description {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.4;
+            margin-top: 2px;
+        }
+
+        .dietary-tags {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #666;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+
+        .price-highlight {
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            border: 1px solid #90EE90;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .price-highlight::before {
+            content: '💰';
+            margin-right: 5px;
+        }
+
+        /* Special Menu Card */
+        .special-menu {
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .special-menu::before {
+            content: '⭐';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+        }
+
+        .special-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #155724;
+            margin-bottom: 15px;
+        }
+
+        .special-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .special-pricing {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .price-option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #28a745;
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .price-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #155724;
+        }
+
+        /* Wine Menu Section */
+        .wine-section {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            border: 1px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .wine-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .wine-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #c8e6c9;
+        }
+
+        .wine-item:last-child {
+            border-bottom: none;
+        }
+
+        .wine-info {
+            flex: 1;
+        }
+
+        .wine-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .wine-details {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .wine-prices {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .menu-card {
+                margin-bottom: 20px;
+            }
+            
+            .menu-row {
+                grid-template-columns: 1fr;
+            }
+
+            .special-pricing {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .wine-prices {
+                flex-direction: column;
+                gap: 5px;
+                text-align: right;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">568</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">203</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">124</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note 2</h1>
+            <p class="note-subtitle">Bonvivant Restaurant - Complete Menu Guide & Pricing Details</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="restaurant-name">Bonvivant Restaurant</h2>
+                    <p class="restaurant-type">Complete Menu Guide & Pricing</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <div class="intro-text">
+                    Bonvivant Restaurant offers three different menu types throughout the day, which you can refer to for your visit.
+                </div>
+
+                <!-- Menu Cards Grid -->
+                <!-- Brunch and Dinner Menu Row -->
+                <div class="menu-row">
+                    <!-- Left Column: Brunch and Wine Menu -->
+                    <div>
+                    <!-- Brunch Menu -->
+                    <div class="menu-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="menu-header">
+                            <div class="menu-number">1</div>
+                            <h3 class="menu-title">Food - Brunch Menu</h3>
+                            <div class="menu-price">Available During Lunch Hours</div>
+                        </div>
+                        <div class="menu-body">
+                            <ul class="menu-items">
+                                <li>
+                                    <div class="dish-name">Fried Potatoes <span class="dietary-tags">(v, gf)</span> 9,50€</div>
+                                    <div class="dish-description">Truffle Espuma / Leek Oil / Herbs / Sesame</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Eggs Benedict on Sourdough Bread <span class="dietary-tags">(gf+)</span> 20€</div>
+                                    <div class="dish-description">Miso-Hollandaise / Spinach / Poached Eggs / Wild Herbs</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Green Shakshuka <span class="dietary-tags">(v+, gf+)</span> 18€</div>
+                                    <div class="dish-description">Spinach / Peas / Eggs / Goat Cheese / Sourdough Bread</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Grilled Tomato Sandwich <span class="dietary-tags">(gf+)</span> 19€</div>
+                                    <div class="dish-description">Sourdough Bread / Scamorza / Cherry Tomatoes / Chili Mayo / Chimichurri</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Crispy Fried Oyster Mushroom <span class="dietary-tags">(v, gf+)</span> 20€</div>
+                                    <div class="dish-description">Milkbread / Cucumber Kimchi / Lemon Cream / Chive Mayo</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Zen Master Breakfast Bowl <span class="dietary-tags">(v)</span> 18€</div>
+                                    <div class="dish-description">Green Spelt / Peas / Mint / Cauliflower / Peanuts / Beetroot</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Smashing Granola <span class="dietary-tags">(v, gf)</span> 15,50€</div>
+                                    <div class="dish-description">Cherry Sorbet / Vanilla Yoghurt / Mint / Peanuts / Hazelnuts</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Brioche Pancake 17€</div>
+                                    <div class="dish-description">White Chocolate / Ganache / Raspberry / Caramel</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Not a French Toast <span class="dietary-tags">(v)</span> 12€</div>
+                                    <div class="dish-description">Caramelized Milk Bread / Wheatgrass Cream / Mirabelle</div>
+                                </li>
+                            </ul>
+                            <div class="price-highlight">
+                                Gluten-free options with bread from AERA: 3€<br>
+                                Add-ons: Truffle 12€ / Poached Egg 3,50€ / Goat Cheese 4€ / Ice Cream 4€
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wine - Cocktail Menu -->
+                    <div class="menu-card" data-aos="fade-up" data-aos-delay="150" style="margin-top: 20px;">
+                        <div class="menu-header">
+                            <div class="menu-number">2</div>
+                            <h3 class="menu-title">Wine - Cocktail Menu</h3>
+                            <div class="menu-price">Premium Wine Selection</div>
+                        </div>
+                        <div class="menu-body">
+                            <div class="wine-section">
+                                <h4 class="wine-title">White Wines</h4>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Goldatzel, Rheingau, Riesling "Glanzstück" 2023</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.1L: 8€</span>
+                                        <span>0.75L: 44€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Gebrüder Mathis, Baden, Weissburgunder "Bonvivant" 2023</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.1L: 9€</span>
+                                        <span>0.75L: 49€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Wine of the Week</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.1L: 7,50€</span>
+                                        <span>0.75L: 43€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Gebrüder Mathis, Baden, Grauburgunder "Tuniberg" 2023</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 49€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Müller-Catoir, Pfalz, Muskateller "Bürgergarten" 2024</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 50€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Wolkenberg, Brandenburg, Schönburger 2020</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 52€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Peter Jakob Kühn, Rheingau, Riesling "Hallgarten Alte Rebe" 2023</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 59€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Peter Jakob Kühn, Rheingau, Riesling Kabinett "Lenchen" 2022</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 59€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Felix Mayer, Pfalz, Riesling "South, Der Schmutzige" 2021</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 69€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Odinstal, Pfalz, Rieslaner "240 N.N." 2020</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 74€</span>
+                                    </div>
+                                </div>
+                                <div class="wine-item">
+                                    <div class="wine-info">
+                                        <div class="wine-name">Odinstal, Pfalz, Auxerrois "350 N.N." 2023</div>
+                                    </div>
+                                    <div class="wine-prices">
+                                        <span>0.75L: 79€</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Right Column: Dinner Menu -->
+                    <div class="menu-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="menu-header">
+                            <div class="menu-number">3</div>
+                            <h3 class="menu-title">Dinner Menu</h3>
+                            <div class="menu-price">Fine Dining Experience</div>
+                        </div>
+                        <div class="menu-body">
+                            <div class="special-menu">
+                                <div class="special-title">Course Menu Options</div>
+                                <div class="special-description">Water & espresso always included</div>
+                                <div class="special-pricing">
+                                    <div class="price-option">
+                                        <div class="price-label">6-course menu</div>
+                                        <div class="price-value">130€</div>
+                                        <div style="font-size: 0.8rem; color: #999;">(without Douglas)</div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">7-course menu</div>
+                                        <div class="price-value">143€</div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">6-course drink pairing</div>
+                                        <div class="price-value">87€</div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">7-course drink pairing</div>
+                                        <div class="price-value">92€</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="menu-items">
+                                <li>
+                                    <div class="dish-name">Radish from Börde Gärtnerei</div>
+                                    <div class="dish-description">Juniper / Spreewald Cucumber / Rye Bread</div>
+                                    <div class="dish-description">Drink: Juniper / Cilantro / Seaweed / Soda</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Celeriac from Obstbau Riedel</div>
+                                    <div class="dish-description">Charcoal / Wheatgrass / Wild Herbs</div>
+                                    <div class="dish-description">Drink: Orange Peel / Camelina / Smoke Essence</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Buchteln</div>
+                                    <div class="dish-description">Asparagus butter / Walnut tapenade</div>
+                                    <div class="dish-description">Drink: Knärzje Kellerbier (Beer Made from Bread Leftovers)</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Kohlrabi from Der kleine Hof im Spreewald</div>
+                                    <div class="dish-description">Pepper Koji / Wood Sorrel / Green Plums</div>
+                                    <div class="dish-description">Drink: Gentian / Wood Sorrel / Apple</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Hen Of The Woods from Magdeburg</div>
+                                    <div class="dish-description">Watercress / Brioche / Truffle</div>
+                                    <div class="dish-description">Drink: Bourbon / Sherry / Mushroom</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Douglas Fir from The Monk Garden</div>
+                                    <div class="dish-description">Ginger / Pear / Celery</div>
+                                    <div class="dish-description">Drink: Berliner Weiße / Limoncello</div>
+                                </li>
+                                <li>
+                                    <div class="dish-name">Locust Flower from the Gleisdreieck Park</div>
+                                    <div class="dish-description">Strawberry / Rooibos Tea / Olive Oil</div>
+                                    <div class="dish-description">Drink: White Almond / Agricole / Rhubarb / Soda</div>
+                                </li>
+                            </ul>
+
+                            <div class="price-highlight">
+                                <strong>Nikodemus' Signature Dish: Erdäpfelkas vom Ökodorf Brodowin</strong><br>
+                                Wild Broccoli / Potato Yeast / Marjoram<br>
+                                <strong>29€</strong><br><br>
+                                <strong>Martin's Homemade Wild Herb Liqueur</strong><br>
+                                Chamomile or Dandelion<br>
+                                <strong>2cl - 7€</strong>
+                            </div>
+
+                            <!-- Dietary Legend -->
+                            <div class="special-menu" style="margin-top: 20px;">
+                                <div class="special-title">Dietary Information</div>
+                                <div class="special-description">
+                                    (v) = vegan | (v+) = vegan optional | (gf) = gluten-free | (gf+) = gluten-free optional
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add hover effects to menu cards
+            const menuCards = document.querySelectorAll('.menu-card');
+            menuCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Print functionality
+        function printNote() {
+            window.print();
+        }
+
+        // Share functionality (if needed)
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Bonvivant Restaurant Menu Guide',
+                    text: 'Complete guide to Bonvivant Restaurant\'s brunch, cocktail and dinner menus and pricing options',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

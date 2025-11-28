@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Planning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBp5EiZsAKkdTLwSi0YpG0tP_dADwfQCxI&libraries=places"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* 主题颜色 */
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --success-color: #22c55e;
+            --warning-color: #eab308;
+            --danger-color: #ef4444;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+        }
+
+        /* 美化滚动条 */
+        .left-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+        .left-panel::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+        .left-panel::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 3px;
+        }
+        .left-panel::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-600);
+        }
+
+        /* 交通方式按钮 */
+        .transport-mode {
+            background: white;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .transport-mode:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .transport-mode.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* 路线信息卡片 */
+        .route-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .route-info-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .route-info-card.driving-card {
+            grid-row: span 2;
+        }
+        .route-info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .route-info-card.active {
+            background-color: #4A90E2;
+            color: white;
+        }
+        .route-info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .route-info-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-size: 20px;
+        }
+        .route-info-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin: 0;
+        }
+        .route-info-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+        .route-details {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+        .route-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .route-detail-item:last-child {
+            margin-bottom: 0;
+        }
+        .route-detail-icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+        .taxi-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        .active .taxi-section {
+            border-top-color: rgba(255, 255, 255, 0.2);
+        }
+        /* 修改搜索按钮样式 */
+        .search-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        .search-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+        .search-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        html, body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .route-card:hover {
+            background-color: #f8faff;
+        }
+        .time-badge {
+            background: #ff6f00;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .route-line {
+            height: 2px;
+            background: linear-gradient(to right, #2196f3 50%, transparent 50%);
+            background-size: 10px 2px;
+        }
+        #container {
+            height: 100vh;
+            border-radius: 0.5rem;
+        }
+        .traffic-btn {
+            transition: all 0.3s ease;
+        }
+        .traffic-btn.active {
+            background-color: #2196f3;
+            color: white;
+            border-color: #2196f3;
+        }
+        .route-info-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .route-info-card.active {
+            background-color: #f0f9ff;
+            border-color: #2196f3;
+            box-shadow: 0 0 0 1px #2196f3;
+        }
+        .route-info-card:hover {
+            background-color: #f8faff;
+        }
+        .location-input-group {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .location-input-group:hover {
+            transform: translateX(4px);
+        }
+        .location-label {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        .location-label-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        .start-point .location-label-icon {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        .end-point .location-label-icon {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+        .via-point .location-label-icon {
+            background-color: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+        }
+        .location-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            transition: all 0.3s ease;
+        }
+        .location-input:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        .switch-btn {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            margin-left: 0.5rem;
+        }
+        .switch-btn:hover {
+            background-color: #f3f4f6;
+            transform: rotate(90deg);
+        }
+        .poi-card {
+            max-height: calc(100vh - 400px);
+            overflow-y: auto;
+        }
+        .poi-item:hover {
+            background-color: #f0f9ff;
+        }
+        .left-panel {
+            width: 400px;
+            height: 100vh;
+            overflow-y: auto;
+            background: white;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .right-panel {
+            flex: 1;
+            height: 100vh;
+        }
+        .transport-options {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .traffic-options {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            z-index: 10;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .custom-marker {
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid;
+        }
+        .marker-start {
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+        .marker-end {
+            color: #22c55e;
+            border-color: #22c55e;
+        }
+        .marker-via {
+            color: #eab308;
+            border-color: #eab308;
+        }
+        /* 添加输入框图标样式 */
+        .location-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .location-input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .location-input-icon.start {
+            color: var(--danger-color);
+        }
+        .location-input-icon.end {
+            color: var(--success-color);
+        }
+        .location-input-icon.via {
+            color: var(--warning-color);
+        }
+        .location-input {
+            padding-left: 40px !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- 左侧面板 -->
+        <div class="left-panel p-4">
+            <div class="bg-white rounded-lg">
+                <div class="flex flex-col space-y-4">
+                    <div class="location-input-group start-point">
+                        <div class="location-label">
+                            <div class="location-label-icon">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                            <span>Starting Point</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="location-input-wrapper">
+                                <div class="location-input-icon start">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <input type="text" id="startInput" value="Louvre Museum" class="location-input" placeholder="Enter starting point">
+                            </div>
+                            <button class="switch-btn" id="switchBtn">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="location-input-group end-point">
+                        <div class="location-label">
+                            <div class="location-label-icon">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                                </svg>
+                            </div>
+                            <span>Destination</span>
+                        </div>
+                        <div class="location-input-wrapper">
+                            <div class="location-input-icon end">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <input type="text" id="endInput" value="Eiffel Tower" class="location-input" placeholder="Enter destination">
+                        </div>
+                    </div>
+                    <div id="viaPoints" class="space-y-4">
+                        <!-- 途经点将在这里动态添加 -->
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <button id="addViaPoint" class="text-blue-600 hover:text-blue-800 text-sm flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            Add Via Point
+                        </button>
+                        <button id="searchBtn" class="search-btn">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            Search Route
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 路线信息卡片 -->
+                <div class="mt-6">
+                    <div id="routeInfo" class="space-y-4">
+                        <!-- 路线信息将在这里动态添加 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧地图 -->
+        <div class="right-panel relative">
+            <div id="container"></div>
+            
+            <!-- 交通方式选择 -->
+            <div class="transport-options p-2 flex space-x-2">
+                <button class="transport-mode active px-4 py-2 rounded-lg text-sm" data-mode="DRIVING">
+                    <span class="material-icons w-5 h-5 inline-block mr-1">directions_car</span>
+                    Driving
+                </button>
+                <button class="transport-mode px-4 py-2 rounded-lg text-sm" data-mode="TRANSIT">
+                    <span class="material-icons w-5 h-5 inline-block mr-1">train</span>
+                    Transit
+                </button>
+                <button class="transport-mode px-4 py-2 rounded-lg text-sm" data-mode="WALKING">
+                    <span class="material-icons w-5 h-5 inline-block mr-1">directions_walk</span>
+                    Walking
+                </button>
+            </div>
+
+            <!-- 路况显示开关 -->
+            <div class="traffic-options p-2">
+                <button id="trafficBtn" class="traffic-btn px-4 py-2 rounded-lg text-sm border">
+                    <svg class="w-5 h-5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Traffic
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let map, directionsService, directionsRenderer, trafficLayer;
+        let viaPoints = [];
+        let markers = [];
+        let currentMode = 'DRIVING';
+        let isTrafficVisible = false;
+
+        // 初始化地图
+        function initMap() {
+            // 创建地图实例
+            map = new google.maps.Map(document.getElementById('container'), {
+                center: { lat: 48.8566, lng: 2.3522 }, // 巴黎市中心
+                zoom: 13,
+                mapTypeControl: false,
+                fullscreenControl: false,
+                streetViewControl: false
+            });
+
+            // 初始化路线服务
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map,
+                suppressMarkers: true,
+                polylineOptions: {
+                    strokeColor: '#2196f3',
+                    strokeWeight: 5
+                }
+            });
+
+            // 初始化路况图层
+            trafficLayer = new google.maps.TrafficLayer();
+
+            // 为输入框添加地点自动完成
+            const startAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('startInput'),
+                { types: ['geocode', 'establishment'] }
+            );
+
+            const endAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('endInput'),
+                { types: ['geocode', 'establishment'] }
+            );
+
+            // 添加事件监听器
+            document.getElementById('searchBtn').addEventListener('click', calculateRoute);
+            document.getElementById('switchBtn').addEventListener('click', switchLocations);
+            document.getElementById('trafficBtn').addEventListener('click', toggleTraffic);
+            
+            // 为交通方式按钮添加事件监听
+            document.querySelectorAll('.transport-mode').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.transport-mode').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentMode = this.dataset.mode;
+                    calculateRoute();
+                });
+            });
+
+            // 添加途经点
+            document.getElementById('addViaPoint').addEventListener('click', function() {
+                const container = document.getElementById('viaPoints');
+                const newPoint = document.createElement('div');
+                newPoint.className = 'location-input-group via-point';
+                newPoint.innerHTML = `
+                    <div class="location-label">
+                        <div class="location-label-icon">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <span>Via Point ${container.children.length + 1}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="location-input-wrapper">
+                            <div class="location-input-icon via">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <input type="text" class="location-input via-point" placeholder="Enter via point">
+                        </div>
+                        <button class="delete-via-point switch-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                
+                // 为新的途经点添加自动完成
+                const input = newPoint.querySelector('input');
+                const autocomplete = new google.maps.places.Autocomplete(input, {
+                    types: ['geocode', 'establishment']
+                });
+
+                // 为删除按钮添加事件监听
+                const deleteBtn = newPoint.querySelector('.delete-via-point');
+                deleteBtn.addEventListener('click', function() {
+                    newPoint.remove();
+                    updateViaPointNumbers();
+                    calculateRoute();
+                });
+
+                container.appendChild(newPoint);
+                updateViaPointNumbers();
+            });
+
+            // 默认计算路线
+            calculateRoute();
+        }
+
+        // 更新途经点序号
+        function updateViaPointNumbers() {
+            const container = document.getElementById('viaPoints');
+            Array.from(container.children).forEach((point, index) => {
+                const label = point.querySelector('.location-label span');
+                label.textContent = `Via Point ${index + 1}`;
+            });
+        }
+
+        // 创建自定义标记
+        function createCustomMarker(text, className) {
+            const div = document.createElement('div');
+            div.className = `custom-marker ${className}`;
+            div.textContent = text;
+            return new google.maps.Marker({
+                icon: {
+                    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+                        `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="14" fill="white" stroke="${className === 'marker-start' ? '#ef4444' : className === 'marker-end' ? '#22c55e' : '#eab308'}" stroke-width="2"/>
+                            <text x="16" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="${className === 'marker-start' ? '#ef4444' : className === 'marker-end' ? '#22c55e' : '#eab308'}">${text}</text>
+                        </svg>`
+                    ),
+                    scaledSize: new google.maps.Size(32, 32),
+                    anchor: new google.maps.Point(16, 16)
+                }
+            });
+        }
+
+        // 更新地图标记
+        function updateMarkers(response) {
+            // 清除现有标记
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+
+            const route = response.routes[0];
+            const legs = route.legs;
+
+            // 添加起点标记
+            const startMarker = createCustomMarker('A', 'marker-start');
+            startMarker.setPosition(legs[0].start_location);
+            startMarker.setMap(map);
+            markers.push(startMarker);
+
+            // 添加途经点标记
+            for (let i = 0; i < legs.length - 1; i++) {
+                const viaMarker = createCustomMarker((i + 1).toString(), 'marker-via');
+                viaMarker.setPosition(legs[i].end_location);
+                viaMarker.setMap(map);
+                markers.push(viaMarker);
+            }
+
+            // 添加终点标记
+            const endMarker = createCustomMarker('B', 'marker-end');
+            endMarker.setPosition(legs[legs.length - 1].end_location);
+            endMarker.setMap(map);
+            markers.push(endMarker);
+        }
+
+        // 计算路线
+        function calculateRoute() {
+            const start = document.getElementById('startInput').value;
+            const end = document.getElementById('endInput').value;
+
+            if (!start || !end) {
+                alert('Please enter starting point and destination');
+                return;
+            }
+
+            const waypoints = Array.from(document.querySelectorAll('.via-point input')).map(input => ({
+                location: input.value,
+                stopover: true
+            })).filter(point => point.location);
+
+            const request = {
+                origin: start,
+                destination: end,
+                waypoints: waypoints,
+                travelMode: google.maps.TravelMode[currentMode],
+                optimizeWaypoints: true
+            };
+
+            directionsService.route(request, function(response, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                    updateRouteInfo(response);
+                    updateMarkers(response);
+                } else {
+                    alert('Unable to calculate route: ' + status);
+                }
+            });
+        }
+
+        // 更新路线信息
+        function updateRouteInfo(response) {
+            // 计算驾车路线
+            const drivingRequest = {
+                origin: document.getElementById('startInput').value,
+                destination: document.getElementById('endInput').value,
+                waypoints: Array.from(document.querySelectorAll('.via-point input')).map(input => ({
+                    location: input.value,
+                    stopover: true
+                })).filter(point => point.location),
+                travelMode: 'DRIVING',
+                optimizeWaypoints: true
+            };
+
+            // 计算公交路线
+            const transitRequest = {
+                origin: document.getElementById('startInput').value,
+                destination: document.getElementById('endInput').value,
+                travelMode: 'TRANSIT'
+            };
+
+            // 计算步行路线
+            const walkingRequest = {
+                origin: document.getElementById('startInput').value,
+                destination: document.getElementById('endInput').value,
+                travelMode: 'WALKING'
+            };
+
+            // 同时请求所有三种交通方式的路线
+            Promise.all([
+                new Promise((resolve, reject) => {
+                    directionsService.route(drivingRequest, (response, status) => {
+                        if (status === 'OK') resolve(response);
+                        else reject(status);
+                    });
+                }),
+                new Promise((resolve, reject) => {
+                    directionsService.route(transitRequest, (response, status) => {
+                        if (status === 'OK') resolve(response);
+                        else reject(status);
+                    });
+                }),
+                new Promise((resolve, reject) => {
+                    directionsService.route(walkingRequest, (response, status) => {
+                        if (status === 'OK') resolve(response);
+                        else reject(status);
+                    });
+                })
+            ]).then(([drivingResponse, transitResponse, walkingResponse]) => {
+                // 计算驾车路线数据
+                const drivingRoute = drivingResponse.routes[0];
+                let drivingTotalDistance = 0;
+                let drivingTotalDuration = 0;
+                drivingRoute.legs.forEach(leg => {
+                    drivingTotalDistance += leg.distance.value;
+                    drivingTotalDuration += leg.duration.value;
+                });
+                const drivingDistanceInKm = (drivingTotalDistance / 1000).toFixed(1);
+                const drivingDurationInMins = Math.round(drivingTotalDuration / 60);
+                const taxiFare = calculateTaxiFare(drivingTotalDistance);
+                
+                // 计算公交路线数据
+                const transitRoute = transitResponse.routes[0];
+                const transitDistance = (transitRoute.legs[0].distance.value / 1000).toFixed(1);
+                const transitDuration = Math.round(transitRoute.legs[0].duration.value / 60);
+                
+                // 计算步行路线数据
+                const walkingRoute = walkingResponse.routes[0];
+                const walkingDistance = (walkingRoute.legs[0].distance.value / 1000).toFixed(1);
+                const walkingDuration = Math.round(walkingRoute.legs[0].duration.value / 60);
+
+                // 修改换乘次数计算逻辑
+                let transfers = 0;
+                let lastTransitLine = null;
+                transitRoute.legs[0].steps.forEach(step => {
+                    if (step.travel_mode === 'TRANSIT') {
+                        const currentLine = step.transit.line.short_name || step.transit.line.name;
+                        if (lastTransitLine !== null && currentLine !== lastTransitLine) {
+                            transfers++;
+                        }
+                        lastTransitLine = currentLine;
+                    }
+                });
+
+                // 检查是否有途经点
+                const hasViaPoints = document.querySelectorAll('.via-point input').length > 0;
+
+                const routeInfo = document.getElementById('routeInfo');
+                routeInfo.innerHTML = `
+                    <div class="route-info-grid">
+                        <div class="route-info-card driving-card ${currentMode === 'DRIVING' ? 'active' : ''}" onclick="switchMode('DRIVING')">
+                            <div class="route-info-header">
+                                <div class="route-info-icon">🚗</div>
+                                <div>
+                                    <h3 class="route-info-title">Driving Route</h3>
+                                </div>
+
+                            </div>
+                            <div class="route-details">
+                                <div class="route-detail-item">
+                                    <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                    </svg>
+                                    Distance: ${drivingDistanceInKm} km
+                                </div>
+                                <div class="route-detail-item">
+                                    <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Time: ${drivingDurationInMins} minutes
+                                </div>
+                            </div>
+
+                            <div class="taxi-section">
+                                <div class="route-info-header">
+                                    <div class="route-info-icon">🚕</div>
+                                    <div>
+                                        <h3 class="route-info-title">Taxi Fare</h3>
+                                    </div>
+                                </div>
+                                <div class="route-details">
+                                    <div class="route-detail-item">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        Base fare: €5.00
+                                    </div>
+                                    <div class="route-detail-item">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                                        </svg>
+                                        Total fare: €${taxiFare}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="route-info-card ${currentMode === 'TRANSIT' ? 'active' : ''}" onclick="switchMode('TRANSIT')">
+                            <div class="route-info-header">
+                                <div class="route-info-icon">🚌</div>
+                                <div>
+                                    <h3 class="route-info-title">Transit Route</h3>
+                                </div>
+                            </div>
+                            <div class="route-details">
+                                ${hasViaPoints ? `
+                                    <div class="route-detail-item" style="color: #ef4444;">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        Transit routes with multiple destinations are not supported
+                                    </div>
+                                ` : hasTransitSteps(transitRoute.legs[0].steps) ? `
+                                    <div class="route-detail-item">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                        </svg>
+                                        Distance: ${transitDistance} km
+                                    </div>
+                                    <div class="route-detail-item">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        Time: ${transitDuration} minutes
+                                    </div>
+                                    <div class="route-detail-item">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8a2 2 0 012 2v10a2 2 0 01-2 2H8a2 2 0 01-2-2V9a2 2 0 012-2zm8 0V5a2 2 0 00-2-2H8a2 2 0 00-2 2v2h10z"/>
+                                        </svg>
+                                        Transfers: ${transfers} time(s)
+                                    </div>
+                                ` : `
+                                    <div class="route-detail-item" style="color: #ef4444;">
+                                        <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        No transit routes available for this route
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+
+                        <div class="route-info-card ${currentMode === 'WALKING' ? 'active' : ''}" onclick="switchMode('WALKING')">
+                            <div class="route-info-header">
+                                <div class="route-info-icon">🚶</div>
+                                <div>
+                                    <h3 class="route-info-title">Walking Route</h3>
+                                </div>
+                            </div>
+                            <div class="route-details">
+                                <div class="route-detail-item">
+                                    <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                    </svg>
+                                    Distance: ${walkingDistance} km
+                                </div>
+                                <div class="route-detail-item">
+                                    <svg class="route-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Time: ${walkingDuration} minutes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).catch(error => {
+                console.error('Error calculating routes:', error);
+            });
+        }
+
+        // 检查是否有公交步骤
+        function hasTransitSteps(steps) {
+            return steps.some(step => step.travel_mode === 'TRANSIT');
+        }
+
+        // 计算出租车费用
+        function calculateTaxiFare(distanceInMeters) {
+            const distanceInKm = distanceInMeters / 1000;
+            const baseFare = 5; // 起步价5欧元含1公里
+            const additionalFare = Math.max(0, distanceInKm - 1) * 2; // 每0.5公里1欧元
+            return (baseFare + additionalFare).toFixed(1);
+        }
+
+        // 切换起点和终点
+        function switchLocations() {
+            const startInput = document.getElementById('startInput');
+            const endInput = document.getElementById('endInput');
+            const temp = startInput.value;
+            startInput.value = endInput.value;
+            endInput.value = temp;
+            calculateRoute();
+        }
+
+        // 切换路况显示
+        function toggleTraffic() {
+            isTrafficVisible = !isTrafficVisible;
+            document.getElementById('trafficBtn').classList.toggle('active');
+            if (isTrafficVisible) {
+                trafficLayer.setMap(map);
+            } else {
+                trafficLayer.setMap(null);
+            }
+        }
+
+        // 切换交通方式
+        function switchMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.transport-mode').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            document.querySelectorAll('.route-info-card').forEach(card => {
+                card.classList.remove('active');
+                if (card.textContent.includes(mode === 'DRIVING' ? 'Driving' : mode === 'TRANSIT' ? 'Transit' : 'Walking')) {
+                    card.classList.add('active');
+                }
+            });
+            calculateRoute();
+        }
+
+        // 初始化地图
+        initMap();
+    </script>
+</body>
+</html> </html> 

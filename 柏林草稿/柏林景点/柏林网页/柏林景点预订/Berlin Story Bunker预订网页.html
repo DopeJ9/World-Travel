@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berlin Story Bunker Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .hero-section {
+            position: relative;
+            height: 30vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/PphXbcRmuoogioxTWKKcm9Hyn7g/?preview_type=16') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-weight: bold;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .booking-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .booking-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #D4AF37, #2C3E50, #D4AF37);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .booking-row {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .date-time-section {
+            flex: 1;
+            min-width: 0;
+            width: 50%;
+        }
+
+        .pricing-section {
+            flex: 1;
+            min-width: 0;
+            width: 50%;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection-title i {
+            color: #D4AF37;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Opening Hours Section */
+        .opening-hours {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .opening-hours h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .hours-info {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Date Selection */
+        .date-section {
+            margin-bottom: 2rem;
+        }
+
+        .calendar-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 15px;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .month-nav {
+            background: #2C3E50;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .month-nav:hover {
+            background: #D4AF37;
+            transform: scale(1.1);
+        }
+
+        .month-nav:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-top: 10px;
+        }
+
+        .day-header {
+            background: #2C3E50;
+            color: white;
+            padding: 8px 4px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .calendar-day {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 6px 4px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: #f5f5f5;
+            border-color: #2C3E50;
+        }
+
+        .calendar-day.selected {
+            background: #2C3E50;
+            color: white;
+            border-color: #2C3E50;
+        }
+
+        .calendar-day.empty {
+            background: #f8f8f8;
+            cursor: default;
+            color: #ccc;
+        }
+
+        .calendar-day.empty:hover {
+            background: #f8f8f8;
+            border-color: #e0e0e0;
+        }
+
+        /* Time Selection */
+        .time-section {
+            margin-bottom: 2rem;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            margin-top: 15px;
+        }
+
+        .time-slot {
+            background: white;
+            border: 2px solid #e5e5e5;
+            padding: 8px 4px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .time-slot .ticket-count {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            background: #2C3E50;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .time-slot.sold-out .ticket-count {
+            background: #d32f2f;
+        }
+
+        .time-slot:hover {
+            border-color: #2C3E50;
+            background: #f5f5f5;
+        }
+
+        .time-slot.selected {
+            background: #D4AF37;
+            color: white;
+            border-color: #D4AF37;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .time-slot.unavailable {
+            background: #f8f8f8;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #ddd;
+            font-size: 0.9rem;
+            font-weight: 500;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .time-slot.sold-out {
+            background: #ffebee;
+            color: #d32f2f;
+            cursor: not-allowed;
+            border-color: #ffcdd2;
+            opacity: 0.6;
+            font-size: 0.9rem;
+            font-weight: 500;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .time-slot.sold-out:hover {
+            background: #ffebee;
+            border-color: #ffcdd2;
+        }
+
+        /* Ticket Selection */
+        .ticket-section {
+            margin-bottom: 2rem;
+        }
+
+        .ticket-types {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ticket-type {
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .ticket-type:hover {
+            border-color: #2C3E50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ticket-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .ticket-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-right: 15px;
+        }
+
+        .ticket-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:first-child {
+            border-radius: 5px 0 0 5px;
+            border-right: none;
+        }
+
+        .quantity-btn:last-child {
+            border-radius: 0 5px 5px 0;
+            border-left: none;
+        }
+
+        .quantity-btn:hover {
+            background: #2C3E50;
+            color: white;
+            border-color: #2C3E50;
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 35px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            border-color: #2C3E50;
+        }
+
+        /* Total Price Section */
+        .total-price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #2C3E50, #34495E);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .total-price-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .price-message {
+            color: #D4AF37;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.8;
+            line-height: 1.3;
+            word-wrap: break-word;
+        }
+
+        .total-price {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .book-button {
+            background: linear-gradient(45deg, #D4AF37, #B8941F);
+            color: #2C3E50;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .book-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.4rem;
+            }
+            
+            .booking-container {
+                padding: 1.5rem;
+            }
+
+            .booking-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .date-time-section,
+            .pricing-section {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .total-price-section {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .total-price-info {
+                align-items: center;
+            }
+
+            .price-message {
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+
+            .total-price {
+                font-size: 1.3rem;
+            }
+
+            .book-button {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Berlin Story Bunker</h1>
+            <h2>Ticket Booking</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Opening Hours -->
+        <div class="opening-hours">
+            <h3>Opening Hours</h3>
+            <div class="hours-info">
+                Mo. - Su.: 10:00 am – 07:00 pm<br>
+                Last entrance 5:30 pm. Please arrive <strong>15 minutes early</strong> to ensure smooth check-in and ticket collection.
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="booking-container">
+                <div class="booking-row">
+                    <!-- Date & Time Selection -->
+                    <div class="date-time-section">
+                        <h3 class="subsection-title">
+                            <i class="fas fa-calendar-alt"></i> Choose Date & Time
+                        </h3>
+                    
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button class="month-nav" id="prev-month" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="month-title">August 2026</div>
+                                <button class="month-nav" id="next-month" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendar-grid">
+                                <!-- Calendar will be generated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="time-grid" id="time-grid">
+                            <!-- Time slots will be generated based on selected date -->
+                        </div>
+                    </div>
+
+                    <!-- Pricing & Ticket Selection -->
+                    <div class="pricing-section">
+                        <h3 class="subsection-title">
+                            <i class="fas fa-euro-sign"></i> Ticket Options
+                        </h3>
+                        
+                        <div class="ticket-types">
+                            <!-- Adult Ticket -->
+                            <div class="ticket-type">
+                                <div class="ticket-header">
+                                    <div class="ticket-name">Adult</div>
+                                    <div class="ticket-price">€12.00</div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="changeQuantity('adult', -1)">-</button>
+                                        <input type="number" class="quantity-input" id="adult-qty" value="0" min="0" onchange="if(validateTicketQuantity(this)) updateTotal()">
+                                        <button class="quantity-btn" onclick="changeQuantity('adult', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="ticket-description">
+                                    General admission for visitors 18 and over
+                                </div>
+                            </div>
+
+                            <!-- Children Ticket -->
+                            <div class="ticket-type">
+                                <div class="ticket-header">
+                                    <div class="ticket-name">Children (0-18 years)</div>
+                                    <div class="ticket-price">€9.00</div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="changeQuantity('children', -1)">-</button>
+                                        <input type="number" class="quantity-input" id="children-qty" value="0" min="0" onchange="if(validateTicketQuantity(this)) updateTotal()">
+                                        <button class="quantity-btn" onclick="changeQuantity('children', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="ticket-description">
+                                    Reduced price for children aged 0-18
+                                </div>
+                            </div>
+
+                            <!-- Reduced Ticket -->
+                            <div class="ticket-type">
+                                <div class="ticket-header">
+                                    <div class="ticket-name">Reduced (pupil/student)</div>
+                                    <div class="ticket-price">€9.00</div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="changeQuantity('reduced', -1)">-</button>
+                                        <input type="number" class="quantity-input" id="reduced-qty" value="0" min="0" onchange="if(validateTicketQuantity(this)) updateTotal()">
+                                        <button class="quantity-btn" onclick="changeQuantity('reduced', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="ticket-description">
+                                    Reduced price for pupils and students (ID required)
+                                </div>
+                            </div>
+
+                            <!-- Welcome Card Ticket -->
+                            <div class="ticket-type">
+                                <div class="ticket-header">
+                                    <div class="ticket-name">Adult (Berlin WelcomeCard)</div>
+                                    <div class="ticket-price">€9.00</div>
+                                    <div class="quantity-controls">
+                                        <button class="quantity-btn" onclick="changeQuantity('welcome', -1)">-</button>
+                                        <input type="number" class="quantity-input" id="welcome-qty" value="0" min="0" onchange="if(validateTicketQuantity(this)) updateTotal()">
+                                        <button class="quantity-btn" onclick="changeQuantity('welcome', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="ticket-description">
+                                    Reduced price for Berlin WelcomeCard holders
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Total Price and Book Button -->
+                <div class="total-price-section">
+                    <div class="total-price-info">
+                        <div class="price-message" id="price-message">Please select tickets</div>
+                        <div class="total-price" id="total-price">Total: €0.00</div>
+                    </div>
+                    <button class="book-button" id="book-btn" onclick="proceedToBooking()" disabled>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDate = null;
+        let selectedTime = null;
+
+        const prices = {
+            adult: 12.00,
+            children: 9.00,
+            reduced: 9.00,
+            welcome: 9.00
+        };
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        // Time slots based on operating hours - every 30 minutes
+        const timeSlots = {
+            weekday: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"],
+            saturday: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"],
+            sunday: ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"]
+        };
+
+        // Fixed ticket availability data for all dates and time slots
+        const fixedTicketAvailability = {
+            '2026-08-01': {
+                '10:00': 0, '10:30': 3, '11:00': 8, '11:30': 2, '12:00': 5, '12:30': 7,
+                '13:00': 1, '13:30': 4, '14:00': 6, '14:30': 0, '15:00': 9, '15:30': 3,
+                '16:00': 2, '16:30': 5, '17:00': 1, '17:30': 4
+            },
+            '2026-08-02': {
+                '10:00': 4, '10:30': 1, '11:00': 6, '11:30': 3, '12:00': 8, '12:30': 2,
+                '13:00': 5, '13:30': 0, '14:00': 7, '14:30': 4, '15:00': 3, '15:30': 6,
+                '16:00': 1, '16:30': 9, '17:00': 2, '17:30': 5
+            },
+            '2026-08-03': {
+                '10:00': 2, '10:30': 5, '11:00': 1, '11:30': 7, '12:00': 4, '12:30': 0,
+                '13:00': 6, '13:30': 3, '14:00': 8, '14:30': 2, '15:00': 5, '15:30': 1,
+                '16:00': 4, '16:30': 7, '17:00': 3, '17:30': 0
+            },
+            '2026-08-04': {
+                '10:00': 6, '10:30': 2, '11:00': 4, '11:30': 8, '12:00': 1, '12:30': 5,
+                '13:00': 3, '13:30': 7, '14:00': 0, '14:30': 4, '15:00': 2, '15:30': 6,
+                '16:00': 5, '16:30': 1, '17:00': 8, '17:30': 3
+            },
+            '2026-08-05': {
+                '10:00': 1, '10:30': 4, '11:00': 7, '11:30': 2, '12:00': 5, '12:30': 8,
+                '13:00': 3, '13:30': 0, '14:00': 6, '14:30': 1, '15:00': 4, '15:30': 7,
+                '16:00': 2, '16:30': 5, '17:00': 0, '17:30': 3
+            },
+            '2026-08-06': {
+                '10:00': 5, '10:30': 8, '11:00': 2, '11:30': 6, '12:00': 3, '12:30': 0,
+                '13:00': 7, '13:30': 4, '14:00': 1, '14:30': 5, '15:00': 8, '15:30': 2,
+                '16:00': 6, '16:30': 3, '17:00': 4, '17:30': 7
+            },
+            '2026-08-07': {
+                '10:00': 3, '10:30': 0, '11:00': 5, '11:30': 8, '12:00': 2, '12:30': 6,
+                '13:00': 4, '13:30': 1, '14:00': 7, '14:30': 3, '15:00': 0, '15:30': 4,
+                '16:00': 8, '16:30': 2, '17:00': 5, '17:30': 1
+            },
+            '2026-08-08': {
+                '10:00': 7, '10:30': 3, '11:00': 0, '11:30': 4, '12:00': 8, '12:30': 1,
+                '13:00': 5, '13:30': 2, '14:00': 6, '14:30': 0, '15:00': 3, '15:30': 7,
+                '16:00': 1, '16:30': 4, '17:00': 8, '17:30': 2
+            },
+            '2026-08-09': {
+                '10:00': 2, '10:30': 6, '11:00': 3, '11:30': 0, '12:00': 7, '12:30': 4,
+                '13:00': 1, '13:30': 5, '14:00': 8, '14:30': 2, '15:00': 6, '15:30': 0,
+                '16:00': 3, '16:30': 7, '17:00': 4, '17:30': 1
+            },
+            '2026-08-10': {
+                '10:00': 4, '10:30': 1, '11:00': 8, '11:30': 3, '12:00': 0, '12:30': 5,
+                '13:00': 2, '13:30': 6, '14:00': 4, '14:30': 7, '15:00': 1, '15:30': 3,
+                '16:00': 8, '16:30': 0, '17:00': 5, '17:30': 2
+            },
+            '2026-08-11': {
+                '10:00': 6, '10:30': 0, '11:00': 4, '11:30': 7, '12:00': 1, '12:30': 3,
+                '13:00': 8, '13:30': 2, '14:00': 5, '14:30': 0, '15:00': 7, '15:30': 4,
+                '16:00': 1, '16:30': 6, '17:00': 3, '17:30': 8
+            },
+            '2026-08-12': {
+                '10:00': 0, '10:30': 4, '11:00': 2, '11:30': 6, '12:00': 8, '12:30': 1,
+                '13:00': 5, '13:30': 3, '14:00': 0, '14:30': 7, '15:00': 4, '15:30': 2,
+                '16:00': 6, '16:30': 8, '17:00': 1, '17:30': 5
+            },
+            '2026-08-13': {
+                '10:00': 3, '10:30': 7, '11:00': 1, '11:30': 4, '12:00': 6, '12:30': 0,
+                '13:00': 8, '13:30': 2, '14:00': 5, '14:30': 3, '15:00': 0, '15:30': 6,
+                '16:00': 4, '16:30': 1, '17:00': 7, '17:30': 2
+            },
+            '2026-08-14': {
+                '10:00': 5, '10:30': 2, '11:00': 8, '11:30': 1, '12:00': 4, '12:30': 7,
+                '13:00': 3, '13:30': 0, '14:00': 6, '14:30': 2, '15:00': 5, '15:30': 8,
+                '16:00': 1, '16:30': 4, '17:00': 0, '17:30': 3
+            },
+            '2026-08-15': {
+                '10:00': 1, '10:30': 5, '11:00': 3, '11:30': 8, '12:00': 2, '12:30': 6,
+                '13:00': 4, '13:30': 0, '14:00': 7, '14:30': 1, '15:00': 3, '15:30': 5,
+                '16:00': 8, '16:30': 2, '17:00': 6, '17:30': 0
+            },
+            '2026-08-16': {
+                '10:00': 4, '10:30': 8, '11:00': 2, '11:30': 5, '12:00': 7, '12:30': 0,
+                '13:00': 3, '13:30': 6, '14:00': 1, '14:30': 4, '15:00': 8, '15:30': 2,
+                '16:00': 5, '16:30': 0, '17:00': 7, '17:30': 3
+            },
+            '2026-08-17': {
+                '10:00': 6, '10:30': 1, '11:00': 4, '11:30': 7, '12:00': 0, '12:30': 3,
+                '13:00': 8, '13:30': 2, '14:00': 5, '14:30': 6, '15:00': 1, '15:30': 4,
+                '16:00': 7, '16:30': 0, '17:00': 2, '17:30': 8
+            },
+            '2026-08-18': {
+                '10:00': 2, '10:30': 6, '11:00': 0, '11:30': 3, '12:00': 5, '12:30': 8,
+                '13:00': 1, '13:30': 4, '14:00': 7, '14:30': 2, '15:00': 6, '15:30': 0,
+                '16:00': 3, '16:30': 5, '17:00': 8, '17:30': 1
+            },
+            '2026-08-19': {
+                '10:00': 8, '10:30': 3, '11:00': 6, '11:30': 1, '12:00': 4, '12:30': 0,
+                '13:00': 7, '13:30': 2, '14:00': 5, '14:30': 8, '15:00': 1, '15:30': 3,
+                '16:00': 6, '16:30': 0, '17:00': 4, '17:30': 7
+            },
+            '2026-08-20': {
+                '10:00': 0, '10:30': 4, '11:00': 7, '11:30': 2, '12:00': 5, '12:30': 8,
+                '13:00': 3, '13:30': 6, '14:00': 1, '14:30': 4, '15:00': 7, '15:30': 0,
+                '16:00': 2, '16:30': 5, '17:00': 8, '17:30': 3
+            },
+            '2026-08-21': {
+                '10:00': 3, '10:30': 0, '11:00': 5, '11:30': 8, '12:00': 2, '12:30': 6,
+                '13:00': 4, '13:30': 1, '14:00': 7, '14:30': 3, '15:00': 0, '15:30': 4,
+                '16:00': 8, '16:30': 2, '17:00': 5, '17:30': 1
+            },
+            '2026-08-22': {
+                '10:00': 5, '10:30': 8, '11:00': 2, '11:30': 6, '12:00': 3, '12:30': 0,
+                '13:00': 7, '13:30': 4, '14:00': 1, '14:30': 5, '15:00': 8, '15:30': 2,
+                '16:00': 6, '16:30': 3, '17:00': 4, '17:30': 7
+            },
+            '2026-08-23': {
+                '10:00': 1, '10:30': 4, '11:00': 7, '11:30': 2, '12:00': 5, '12:30': 8,
+                '13:00': 3, '13:30': 0, '14:00': 6, '14:30': 1, '15:00': 4, '15:30': 7,
+                '16:00': 2, '16:30': 5, '17:00': 0, '17:30': 3
+            },
+            '2026-08-24': {
+                '10:00': 6, '10:30': 2, '11:00': 5, '11:30': 8, '12:00': 1, '12:30': 4,
+                '13:00': 7, '13:30': 3, '14:00': 0, '14:30': 6, '15:00': 2, '15:30': 5,
+                '16:00': 8, '16:30': 1, '17:00': 4, '17:30': 7
+            },
+            '2026-08-25': {
+                '10:00': 2, '10:30': 6, '11:00': 0, '11:30': 3, '12:00': 5, '12:30': 8,
+                '13:00': 1, '13:30': 4, '14:00': 7, '14:30': 2, '15:00': 6, '15:30': 0,
+                '16:00': 3, '16:30': 5, '17:00': 8, '17:30': 1
+            },
+            '2026-08-26': {
+                '10:00': 4, '10:30': 1, '11:00': 8, '11:30': 3, '12:00': 0, '12:30': 5,
+                '13:00': 2, '13:30': 6, '14:00': 4, '14:30': 7, '15:00': 1, '15:30': 3,
+                '16:00': 8, '16:30': 0, '17:00': 5, '17:30': 2
+            },
+            '2026-08-27': {
+                '10:00': 7, '10:30': 3, '11:00': 0, '11:30': 4, '12:00': 8, '12:30': 1,
+                '13:00': 5, '13:30': 2, '14:00': 6, '14:30': 0, '15:00': 3, '15:30': 7,
+                '16:00': 1, '16:30': 4, '17:00': 8, '17:30': 2
+            },
+            '2026-08-28': {
+                '10:00': 0, '10:30': 4, '11:00': 2, '11:30': 6, '12:00': 8, '12:30': 1,
+                '13:00': 5, '13:30': 3, '14:00': 0, '14:30': 7, '15:00': 4, '15:30': 2,
+                '16:00': 6, '16:30': 8, '17:00': 1, '17:30': 5
+            },
+            '2026-08-29': {
+                '10:00': 3, '10:30': 7, '11:00': 1, '11:30': 4, '12:00': 6, '12:30': 0,
+                '13:00': 8, '13:30': 2, '14:00': 5, '14:30': 3, '15:00': 0, '15:30': 6,
+                '16:00': 4, '16:30': 1, '17:00': 7, '17:30': 2
+            },
+            '2026-08-30': {
+                '10:00': 5, '10:30': 2, '11:00': 8, '11:30': 1, '12:00': 4, '12:30': 7,
+                '13:00': 3, '13:30': 0, '14:00': 6, '14:30': 2, '15:00': 5, '15:30': 8,
+                '16:00': 1, '16:30': 4, '17:00': 0, '17:30': 3
+            },
+            '2026-08-31': {
+                '10:00': 1, '10:30': 5, '11:00': 3, '11:30': 8, '12:00': 2, '12:30': 6,
+                '13:00': 4, '13:30': 0, '14:00': 7, '14:30': 1, '15:00': 3, '15:30': 5,
+                '16:00': 8, '16:30': 2, '17:00': 6, '17:30': 0
+            }
+        };
+
+        // Initialize the booking system
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateNavButtons();
+            // Set default date to August 1st, 2026
+            selectedDate = new Date(2026, 7, 1); // August 1, 2026 (month is 0-indexed)
+            generateTimeSlots();
+        });
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendar-grid');
+            const monthTitle = document.getElementById('month-title');
+            
+            monthTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            // Clear calendar
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, day);
+                
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.onclick = () => selectDate(day);
+                
+                // Highlight August 1st as default selected
+                if (day === 1 && currentMonth === 7 && currentYear === 2026) {
+                    dayElement.classList.add('selected');
+                }
+                
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Update navigation buttons
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-month');
+            const nextBtn = document.getElementById('next-month');
+            
+            // Only allow August 2026
+            prevBtn.disabled = (currentMonth === 7 && currentYear === 2026);
+            nextBtn.disabled = (currentMonth === 7 && currentYear === 2026);
+        }
+
+        function changeMonth(direction) {
+            // Only allow August 2026
+            return;
+        }
+
+        function selectDate(day) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            selectedDate = new Date(currentYear, currentMonth, day);
+            
+            // Clear selected time and ticket quantities when changing date
+            selectedTime = null;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            clearTicketQuantities();
+            
+            // Generate available time slots for this date
+            generateTimeSlots();
+            updateBookButton();
+        }
+
+        function generateTimeSlots() {
+            const timeGrid = document.getElementById('time-grid');
+            timeGrid.innerHTML = '';
+            
+            if (!selectedDate) return;
+            
+            const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            let availableSlots = [];
+            
+            if (dayOfWeek >= 1 && dayOfWeek <= 5) { // Monday to Friday
+                availableSlots = timeSlots.weekday;
+            } else if (dayOfWeek === 6) { // Saturday
+                availableSlots = timeSlots.saturday;
+            } else if (dayOfWeek === 0) { // Sunday
+                availableSlots = timeSlots.sunday;
+            }
+            
+            if (availableSlots.length === 0) {
+                const noToursDiv = document.createElement('div');
+                noToursDiv.style.gridColumn = '1 / -1';
+                noToursDiv.style.textAlign = 'center';
+                noToursDiv.style.color = '#666';
+                noToursDiv.textContent = 'No time slots available for this date';
+                timeGrid.appendChild(noToursDiv);
+                return;
+            }
+            
+            // Get the date string for the selected date
+            const dateString = `2026-08-${selectedDate.getDate().toString().padStart(2, '0')}`;
+            const availability = fixedTicketAvailability[dateString] || {};
+            
+            availableSlots.forEach(time => {
+                const timeSlot = document.createElement('div');
+                const remainingTickets = availability[time] || 0;
+                
+                if (remainingTickets === 0) {
+                    timeSlot.className = 'time-slot sold-out';
+                    timeSlot.innerHTML = `<div>${time}</div><div class="ticket-count">0</div>`;
+                } else {
+                    timeSlot.className = 'time-slot';
+                    timeSlot.innerHTML = `<div>${time}</div><div class="ticket-count">${remainingTickets}</div>`;
+                    timeSlot.onclick = () => selectTime(time);
+                }
+                
+                timeGrid.appendChild(timeSlot);
+            });
+        }
+
+        function selectTime(time) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time
+            const clickedSlot = event.target.closest('.time-slot');
+            if (clickedSlot) {
+                clickedSlot.classList.add('selected');
+            }
+            selectedTime = time;
+            
+            // Clear ticket quantities when changing time slot
+            clearTicketQuantities();
+        }
+
+        function changeQuantity(type, change) {
+            const input = document.getElementById(`${type}-qty`);
+            const currentValue = parseInt(input.value);
+            const newValue = Math.max(0, currentValue + change);
+            
+            // Check if user is trying to increase quantity
+            if (change > 0 && newValue > currentValue) {
+                // Get current total tickets from all types
+                const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+                const childrenQty = parseInt(document.getElementById('children-qty').value) || 0;
+                const reducedQty = parseInt(document.getElementById('reduced-qty').value) || 0;
+                const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+                
+                // Calculate new total tickets
+                let newTotalTickets = adultQty + childrenQty + reducedQty + welcomeQty;
+                if (type === 'adult') {
+                    newTotalTickets = newValue + childrenQty + reducedQty + welcomeQty;
+                } else if (type === 'children') {
+                    newTotalTickets = adultQty + newValue + reducedQty + welcomeQty;
+                } else if (type === 'reduced') {
+                    newTotalTickets = adultQty + childrenQty + newValue + welcomeQty;
+                } else if (type === 'welcome') {
+                    newTotalTickets = adultQty + childrenQty + reducedQty + newValue;
+                }
+                
+                // Get remaining tickets for selected time slot
+                const remainingTickets = getRemainingTicketsForSelectedTime();
+                
+                if (remainingTickets !== null && newTotalTickets > remainingTickets) {
+                    alert(`Cannot add more tickets. Only ${remainingTickets} tickets remaining for this time slot.`);
+                    return; // Don't update the quantity
+                }
+            }
+            
+            input.value = newValue;
+            updateTotal();
+        }
+
+        function getRemainingTicketsForSelectedTime() {
+            if (!selectedDate || !selectedTime) {
+                return null;
+            }
+            
+            const dateString = `2026-08-${selectedDate.getDate().toString().padStart(2, '0')}`;
+            const availability = fixedTicketAvailability[dateString];
+            
+            if (!availability) {
+                return null;
+            }
+            
+            return availability[selectedTime] || 0;
+        }
+
+        function validateTicketQuantity(inputElement) {
+            const type = inputElement.id.replace('-qty', '');
+            const inputValue = parseInt(inputElement.value) || 0;
+            
+            // Get current total tickets from all types
+            const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+            const childrenQty = parseInt(document.getElementById('children-qty').value) || 0;
+            const reducedQty = parseInt(document.getElementById('reduced-qty').value) || 0;
+            const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+            
+            // Calculate new total tickets
+            let newTotalTickets = adultQty + childrenQty + reducedQty + welcomeQty;
+            if (type === 'adult') {
+                newTotalTickets = inputValue + childrenQty + reducedQty + welcomeQty;
+            } else if (type === 'children') {
+                newTotalTickets = adultQty + inputValue + reducedQty + welcomeQty;
+            } else if (type === 'reduced') {
+                newTotalTickets = adultQty + childrenQty + inputValue + welcomeQty;
+            } else if (type === 'welcome') {
+                newTotalTickets = adultQty + childrenQty + reducedQty + inputValue;
+            }
+            
+            // Get remaining tickets for selected time slot
+            const remainingTickets = getRemainingTicketsForSelectedTime();
+            
+            if (remainingTickets !== null && newTotalTickets > remainingTickets) {
+                alert(`Cannot add more tickets. Only ${remainingTickets} tickets remaining for this time slot.`);
+                // Calculate the maximum allowed value for this specific ticket type
+                const otherTickets = (type === 'adult' ? childrenQty + reducedQty + welcomeQty : 
+                                    type === 'children' ? adultQty + reducedQty + welcomeQty : 
+                                    type === 'reduced' ? adultQty + childrenQty + welcomeQty : 
+                                    adultQty + childrenQty + reducedQty);
+                const maxAllowedForThisType = Math.max(0, remainingTickets - otherTickets);
+                inputElement.value = Math.min(inputValue, maxAllowedForThisType);
+                return false;
+            }
+            
+            return true;
+        }
+
+        function updateTotal() {
+            const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+            const childrenQty = parseInt(document.getElementById('children-qty').value) || 0;
+            const reducedQty = parseInt(document.getElementById('reduced-qty').value) || 0;
+            const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+            
+            let total = 0;
+            let breakdownHTML = '';
+            
+            if (adultQty > 0) {
+                const subtotal = adultQty * prices.adult;
+                total += subtotal;
+                breakdownHTML += `Adult (${adultQty}): €${subtotal.toFixed(2)}`;
+            }
+            
+            if (childrenQty > 0) {
+                const subtotal = childrenQty * prices.children;
+                total += subtotal;
+                if (breakdownHTML) breakdownHTML += ', ';
+                breakdownHTML += `Children (${childrenQty}): €${subtotal.toFixed(2)}`;
+            }
+            
+            if (reducedQty > 0) {
+                const subtotal = reducedQty * prices.reduced;
+                total += subtotal;
+                if (breakdownHTML) breakdownHTML += ', ';
+                breakdownHTML += `Reduced (${reducedQty}): €${subtotal.toFixed(2)}`;
+            }
+            
+            if (welcomeQty > 0) {
+                const subtotal = welcomeQty * prices.welcome;
+                total += subtotal;
+                if (breakdownHTML) breakdownHTML += ', ';
+                breakdownHTML += `Welcome Card (${welcomeQty}): €${subtotal.toFixed(2)}`;
+            }
+            
+            if (total === 0) {
+                document.getElementById('price-message').textContent = 'Please select tickets';
+                document.getElementById('price-message').style.opacity = '0.8';
+            } else {
+                document.getElementById('price-message').textContent = breakdownHTML;
+                document.getElementById('price-message').style.opacity = '1';
+            }
+            
+            document.getElementById('total-price').textContent = `Total: €${total.toFixed(2)}`;
+            
+            updateBookButton();
+        }
+
+        function updateBookButton() {
+            const bookBtn = document.getElementById('book-btn');
+            const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+            const childrenQty = parseInt(document.getElementById('children-qty').value) || 0;
+            const reducedQty = parseInt(document.getElementById('reduced-qty').value) || 0;
+            const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+            const hasTickets = adultQty > 0 || childrenQty > 0 || reducedQty > 0 || welcomeQty > 0;
+            const hasDateTime = selectedDate && selectedTime;
+            
+            if (hasTickets && hasDateTime) {
+                bookBtn.disabled = false;
+            } else {
+                bookBtn.disabled = true;
+            }
+        }
+
+        function proceedToBooking() {
+            const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+            const childrenQty = parseInt(document.getElementById('children-qty').value) || 0;
+            const reducedQty = parseInt(document.getElementById('reduced-qty').value) || 0;
+            const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+            
+            if (!selectedDate || !selectedTime) {
+                alert('Please select date and time');
+                return;
+            }
+            
+            if (adultQty === 0 && childrenQty === 0 && reducedQty === 0 && welcomeQty === 0) {
+                alert('Please select at least one ticket');
+                return;
+            }
+            
+            // Simulate booking process
+            const bookBtn = document.getElementById('book-btn');
+            bookBtn.textContent = 'Processing...';
+            bookBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Booking successful! You will receive a confirmation email shortly.');
+                bookBtn.textContent = 'Book Now';
+                bookBtn.disabled = false;
+                
+                // Reset form
+                resetForm();
+            }, 2000);
+        }
+
+        function clearTicketQuantities() {
+            document.getElementById('adult-qty').value = 0;
+            document.getElementById('children-qty').value = 0;
+            document.getElementById('reduced-qty').value = 0;
+            document.getElementById('welcome-qty').value = 0;
+            
+            updateTotal();
+            updateBookButton();
+        }
+
+        function resetForm() {
+            selectedDate = null;
+            selectedTime = null;
+            
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            clearTicketQuantities();
+        }
+    </script>
+</body>
+</html>

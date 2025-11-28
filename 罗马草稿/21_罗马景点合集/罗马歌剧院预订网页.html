@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teatro dell'Opera di Roma - Biglietti e Programmazione</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-image-section {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: white;
+            text-align: center;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+
+
+        .coming-soon {
+            margin-bottom: 40px;
+        }
+
+        .coming-soon h2 {
+            font-size: 1.8rem;
+            color: #666;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .calendar-link {
+            float: right;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: -5px;
+        }
+
+        .calendar-link:hover {
+            color: #999;
+        }
+
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .date-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .date-circle.july { background-color: #8B0000; }
+        .date-circle.august { background-color: #DC143C; }
+        .date-circle.september { background-color: #B22222; }
+
+        .event-month {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .event-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .event-time {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .pricing-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .pricing-header {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .pricing-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .pricing-row {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pricing-row:hover {
+            background-color: #f9f9f9;
+        }
+
+        .pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-row.selected {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+
+        .sector-name {
+            font-weight: bold;
+            color: #FF8C00;
+            flex: 1;
+            font-size: 1.1rem;
+        }
+
+        .sector-type {
+            color: #666;
+            margin: 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .sector-price {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1rem;
+            margin-right: 15px;
+        }
+
+        .radio-button {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .radio-button.selected {
+            border-color: #ffc107;
+        }
+
+        .radio-button.selected::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: #ffc107;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .booking-footer {
+            padding: 30px 20px;
+            text-align: center;
+            background: #f9f9f9;
+        }
+
+        .book-button {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .ticket-quantity-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 30px;
+        }
+
+        .ticket-quantity-label {
+            color: #FF8C00;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:first-child {
+            border-radius: 5px 0 0 5px;
+            border-right: none;
+        }
+
+        .quantity-btn:last-child {
+            border-radius: 0 5px 5px 0;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            border-left: none;
+            border-color: #8B0000;
+        }
+
+        .quantity-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .quantity-btn:last-child:hover {
+            background: linear-gradient(135deg, #A0000A, #E6204A);
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .quantity-input:focus {
+            border-color: #FF8C00;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 250px;
+            }
+
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .events-container {
+                flex-direction: column;
+            }
+            
+            .event-card {
+                min-width: auto;
+            }
+            
+            .coming-soon h2 {
+                font-size: 1.5rem;
+            }
+            
+            .calendar-link {
+                float: none;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Image Section -->
+        <div class="hero-image-section">
+            <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/LeBNbviCsoTKEbxjXyKcASnQnsg/?preview_type=16" 
+                 alt="Teatro dell'Opera di Roma" 
+                 class="hero-image">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Teatro dell'Opera di Roma</h1>
+                <p class="hero-subtitle">Programmazione e Biglietti</p>
+            </div>
+        </div>
+
+
+
+        <div class="coming-soon">
+            <h2>Coming Soon <a href="#" class="calendar-link">VEDI CALENDARIO ></a></h2>
+            
+            <div class="events-container">
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="date-circle august">1</div>
+                        <div class="event-month">Agosto</div>
+                    </div>
+                    <div class="event-title">CARACALLA FESTIVAL</div>
+                    <div class="event-subtitle">LA TRAVIATA</div>
+                    <div>CARACALLA</div>
+                    <div class="event-time">ORE 21:00</div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="date-circle august">2</div>
+                        <div class="event-month">Agosto</div>
+                    </div>
+                    <div class="event-title">CARACALLA FESTIVAL</div>
+                    <div class="event-subtitle">LA TRAVIATA</div>
+                    <div>CARACALLA</div>
+                    <div class="event-time">ORE 21:00</div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="date-circle august">3</div>
+                        <div class="event-month">Agosto</div>
+                    </div>
+                    <div class="event-title">CARACALLA FESTIVAL</div>
+                    <div class="event-subtitle">LA TRAVIATA</div>
+                    <div>CARACALLA</div>
+                    <div class="event-time">ORE 21:00</div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="date-circle august">7</div>
+                        <div class="event-month">Agosto</div>
+                    </div>
+                    <div class="event-title">CARACALLA FESTIVAL</div>
+                    <div class="event-subtitle">CARMINA BURANA</div>
+                    <div>CARACALLA</div>
+                    <div class="event-time">ORE 21:30</div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="date-circle september">4</div>
+                        <div class="event-month">Settembre</div>
+                    </div>
+                    <div class="event-title">MOSTRA</div>
+                    <div class="event-subtitle">AL COSTANZI<br>L'OPENING DEL ROMAEUROPA FESTIVAL CON IL BALLET NACIONAL DE ESPAÑA</div>
+                    <div class="event-time">ORE 20:00</div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="date-circle september">5</div>
+                        <div class="event-month">Settembre</div>
+                    </div>
+                    <div class="event-title">MOSTRA</div>
+                    <div class="event-subtitle">AL COSTANZI<br>L'OPENING DEL ROMAEUROPA FESTIVAL CON IL BALLET NACIONAL DE ESPAÑA</div>
+                    <div class="event-time">ORE 20:00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ticket-quantity-section">
+            <div class="ticket-quantity-label">Per favore seleziona il numero di biglietti desiderati</div>
+            <div class="quantity-selector">
+                <button class="quantity-btn" onclick="decreaseQuantity()">−</button>
+                <input type="number" class="quantity-input" id="ticketQuantity" value="1" min="1" max="10" readonly>
+                <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+            </div>
+        </div>
+
+        <div class="pricing-section">
+            <div class="pricing-header">
+                <h3>Seleziona il tuo posto</h3>
+                <div class="pricing-subtitle">Scegli il settore e acquista i biglietti</div>
+            </div>
+
+            <div class="pricing-row" onclick="selectSector(this)">
+                <div class="sector-name">Poltronissima</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 130,00</div>
+                <div class="radio-button"></div>
+            </div>
+
+            <div class="pricing-row selected" onclick="selectSector(this)">
+                <div class="sector-name">Poltrona</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 110,00</div>
+                <div class="radio-button selected"></div>
+            </div>
+
+            <div class="pricing-row" onclick="selectSector(this)">
+                <div class="sector-name">Settore A</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 85,00</div>
+                <div class="radio-button"></div>
+            </div>
+
+            <div class="pricing-row" onclick="selectSector(this)">
+                <div class="sector-name">Settore B</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 65,00</div>
+                <div class="radio-button"></div>
+            </div>
+
+            <div class="pricing-row" onclick="selectSector(this)">
+                <div class="sector-name">Settore C</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 50,00</div>
+                <div class="radio-button"></div>
+            </div>
+
+            <div class="pricing-row" onclick="selectSector(this)">
+                <div class="sector-name">Settore D</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 30,00</div>
+                <div class="radio-button"></div>
+            </div>
+
+            <div class="pricing-row" onclick="selectSector(this)">
+                <div class="sector-name">Settore E</div>
+                <div class="sector-type">Intero</div>
+                <div class="sector-price">€ 25,00</div>
+                <div class="radio-button"></div>
+            </div>
+
+            <!-- Important Arrival Notice -->
+            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 15px 20px; text-align: left;">
+                <div style="color: #8B0000; font-size: 0.9rem; font-weight: 500; margin-bottom: 5px;">
+                    <i class="fas fa-info-circle" style="margin-right: 6px;"></i>IMPORTANTE
+                </div>
+                <div style="color: #495057; font-size: 0.85rem; line-height: 1.3;">
+                    Vi preghiamo di arrivare <strong>30 minuti prima</strong> dello spettacolo per garantire un ingresso senza problemi.
+                </div>
+            </div>
+            
+            <div class="booking-footer">
+                <button class="book-button" onclick="proceedToBooking()">Procedi con l'Acquisto</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        function selectSector(row) {
+            // Remove selected class from all rows
+            const allRows = document.querySelectorAll('.pricing-row');
+            allRows.forEach(r => {
+                r.classList.remove('selected');
+                const radio = r.querySelector('.radio-button');
+                radio.classList.remove('selected');
+            });
+
+            // Add selected class to clicked row
+            row.classList.add('selected');
+            const radio = row.querySelector('.radio-button');
+            radio.classList.add('selected');
+        }
+
+        function increaseQuantity() {
+            const input = document.getElementById('ticketQuantity');
+            const currentValue = parseInt(input.value);
+            const maxValue = parseInt(input.max);
+            
+            if (currentValue < maxValue) {
+                input.value = currentValue + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('ticketQuantity');
+            const currentValue = parseInt(input.value);
+            const minValue = parseInt(input.min);
+            
+            if (currentValue > minValue) {
+                input.value = currentValue - 1;
+            }
+        }
+
+        function proceedToBooking() {
+            const selectedRow = document.querySelector('.pricing-row.selected');
+            const quantity = document.getElementById('ticketQuantity').value;
+            
+            if (selectedRow) {
+                const sectorName = selectedRow.querySelector('.sector-name').textContent;
+                const priceText = selectedRow.querySelector('.sector-price').textContent;
+                const price = parseFloat(priceText.replace('€ ', '').replace(',', '.'));
+                const totalPrice = (price * parseInt(quantity)).toFixed(2);
+                
+                alert(`Hai selezionato:\n${sectorName} - ${priceText}\nQuantità: ${quantity} bigliett${quantity > 1 ? 'i' : 'o'}\nTotale: € ${totalPrice.replace('.', ',')}\n\nProcedendo con l'acquisto...`);
+            } else {
+                alert('Seleziona prima un settore per procedere con l\'acquisto.');
+            }
+        }
+
+        // Add smooth scrolling for calendar link
+        document.querySelector('.calendar-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.pricing-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+
+        // Add click animation to event cards
+        document.querySelectorAll('.event-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

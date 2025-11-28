@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galleria degli Uffizi Visit Guide - Florence's Premier Renaissance Art Gallery">
+    <meta name="keywords" content="Uffizi Gallery, Florence art, Renaissance masterpieces, Botticelli, museum guide">
+    <meta name="author" content="Travel Guide">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Galleria degli Uffizi - Complete Visit Guide</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"> 
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #3498db;
+        }
+
+        .stat-icon {
+            color: #3498db;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .guide-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guide-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .guide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .guide-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .guide-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .location-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .visit-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Itinerary Section */
+        .itinerary-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 2px;
+        }
+
+        .itinerary-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .itinerary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .itinerary-card.short {
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .itinerary-card.classic {
+            border-left: 5px solid #E91E63;
+        }
+
+        .itinerary-card.complete {
+            border-left: 5px solid #FF9800;
+        }
+
+        .itinerary-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .itinerary-badge {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            margin-right: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .itinerary-badge.short {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+        }
+
+        .itinerary-badge.classic {
+            background: linear-gradient(135deg, #E91E63, #C2185B);
+        }
+
+        .itinerary-badge.complete {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+
+        .itinerary-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .itinerary-duration {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .itinerary-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Gallery Map Section */
+        .gallery-map {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .map-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 3px dashed #3498db;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            color: #2980b9;
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+        }
+
+        .map-placeholder p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 1px solid #4caf50;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        .tips-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .tip-item strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tip-item p {
+            color: #555;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Footer Section */
+        .guide-footer {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .social-stats {
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .guide-header {
+                padding: 30px 20px;
+            }
+
+            .guide-title {
+                font-size: 1.5rem;
+            }
+
+            .guide-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-placeholder {
+                height: 300px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">3,850</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">2,420</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">1,560</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="guide-header" data-aos="fade-down">
+            <h1 class="guide-title">Galleria degli Uffizi Visit Note 1</h1>
+            <p class="guide-subtitle">Your Complete Guide to Florence's Premier Art Gallery</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="guide-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="location-name">Galleria degli Uffizi</h2>
+                    <p class="visit-type">Renaissance Art Museum & Cultural Landmark</p>
+                </div>
+            </div>
+
+            <!-- Itinerary Options -->
+            <div class="itinerary-section">
+                <h3 class="section-title">Choose Your Itinerary</h3>
+                
+                <!-- Short Itinerary -->
+                <div class="itinerary-card short">
+                    <div class="itinerary-header">
+                        <span class="itinerary-badge short">Short Itinerary</span>
+                        <span class="itinerary-title"></span>
+                    </div>
+                    <div class="itinerary-duration">ABOUT 1½ - 2 HOURS.</div>
+                    <div class="itinerary-description">
+                        ONLY THE 2ND FLOOR (Exit down the Lanzi Staircase). To see the greatest masterpieces of the Renaissance, which make the Gallery world-renowned. If you leave through this exit, you will miss the Cloakroom, the Audioguide Return Desk and the Main Museum Shop.
+                    </div>
+                </div>
+
+                <!-- Classic Itinerary -->
+                <div class="itinerary-card classic">
+                    <div class="itinerary-header">
+                        <span class="itinerary-badge classic">Classic Itinerary</span>
+                        <span class="itinerary-title"></span>
+                    </div>
+                    <div class="itinerary-duration">MORE THAN 2 HOURS.</div>
+                    <div class="itinerary-description">
+                        (Descent from 2nd to 1st floor through the Lanzi Staircase) For those who wish to visit all the rooms of the gallery dedicated to Italian and European art from the 13th to the 17th centuries.
+                    </div>
+                </div>
+
+                <!-- Complete Itinerary -->
+                <div class="itinerary-card complete">
+                    <div class="itinerary-header">
+                        <span class="itinerary-badge complete">Complete Itinerary</span>
+                        <span class="itinerary-title"></span>
+                    </div>
+                    <div class="itinerary-duration">MORE THAN 3 HOURS.</div>
+                    <div class="itinerary-description">
+                        (Descent from 2nd to 1st floor through the Lanzi Staircase) For those who wish to visit all the rooms, including the world-renowned Self-Portrait Collection.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Map Section -->
+            <div class="gallery-map">
+                <h3 class="map-title">
+                    <i class="fas fa-map-marked-alt"></i> Gallery Floor Plan & Route Guide
+                </h3>
+                <div style="width: 100%; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/FfXsb46hjoZws3xLtE4cMCwUnfb/?preview_type=16" 
+                         alt="Uffizi Gallery Floor Plan and Itinerary Routes" 
+                         style="width: 100%; height: auto; display: block;">
+                </div>
+            </div>
+
+
+        </main>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.guide-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Add interactive animations
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.itinerary-card, .tip-item').forEach((item, index) => {
+                item.style.transform = 'translateY(20px)';
+                item.style.opacity = '0';
+                item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(item);
+            });
+        }
+
+        // Initialize animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', observeElements);
+    </script>
+</body>
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menu guide for Katz Orange - Contemporary German restaurant menu in Berlin">
+    <meta name="keywords" content="Katz Orange, Berlin dining, German restaurant, contemporary menu, Berlin food">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Katz Orange - Restaurant Menu</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Katz Orange - Restaurant Menu">
+    <meta property="og:description" content="Contemporary German restaurant menu - Modern dishes and specialties">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Katz Orange Menu">
+    <meta name="twitter:description" content="Complete menu guide for Katz Orange restaurant">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffeee0 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #D2691E;
+        }
+
+        .stat-icon {
+            color: #D2691E;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #D2691E, #FF8C00);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(210, 105, 30, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #D2691E, #FF8C00);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #D2691E;
+            margin-bottom: 5px;
+        }
+
+        .restaurant-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Two Column Menu Layout */
+        .menu-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .menu-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .menu-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #D2691E;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #D2691E;
+        }
+
+        .menu-category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #D2691E;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-items li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .menu-items li:last-child {
+            border-bottom: none;
+        }
+
+        .dish-info {
+            flex: 1;
+        }
+
+        .dish-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        .dish-description {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.4;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        .dish-price {
+            font-weight: 600;
+            color: #D2691E;
+            font-size: 1.05rem;
+            margin-left: 15px;
+            white-space: nowrap;
+        }
+
+        /* Special styling for wine section */
+        .wine-section {
+            background: linear-gradient(135deg, #fff8f0, #ffeee0);
+            border: 1px solid #D2691E;
+        }
+
+        .wine-section .category-title {
+            color: #8B4513;
+        }
+
+        /* Family feast section */
+        .family-feast {
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+            border: 2px solid #4682B4;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .family-feast-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #4682B4;
+            margin-bottom: 10px;
+        }
+
+        .family-feast-subtitle {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .family-feast-details {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .menu-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .menu-items li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .dish-price {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+
+            .menu-columns {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">1,247</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">423</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">198</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">🍊 Katz Orange</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="restaurant-name">Katz Orange</h2>
+                    <p class="restaurant-type">Contemporary German Restaurant · Berlin Mitte</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <!-- Menu Section -->
+                <div class="menu-section" data-aos="fade-up">
+                    <h3 class="menu-section-title">Menu</h3>
+
+                    <!-- Water -->
+                    <div class="menu-category">
+                        <h4 class="category-title">Water</h4>
+                        <ul class="menu-items">
+                            <li>
+                                <div class="dish-info">
+                                    <div class="dish-name">LEOGANT Water Still and Sparkling</div>
+                                </div>
+                                <div class="dish-price">3.90 p.P</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div class="menu-columns">
+                        <!-- Left Column -->
+                        <div class="menu-column">
+                            <!-- Appetizers -->
+                            <div class="menu-category">
+                                <h4 class="category-title">Appetizers</h4>
+                                <ul class="menu-items">
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Homemade Sourdough Bread</div>
+                                            <div class="dish-description">whipped butter</div>
+                                        </div>
+                                        <div class="dish-price">6</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Watermelon</div>
+                                            <div class="dish-description">tomato, feta, verbena</div>
+                                        </div>
+                                        <div class="dish-price">14</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Buffalo Burrata</div>
+                                            <div class="dish-description">apricot, fennel, lentil</div>
+                                        </div>
+                                        <div class="dish-price">15</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Corn Gazpacho</div>
+                                            <div class="dish-description">cheddar dumplings</div>
+                                        </div>
+                                        <div class="dish-price">13</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Ceviche from the Salmon Trout</div>
+                                        </div>
+                                        <div class="dish-price">15</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Fresh Cut Pommes Frites</div>
+                                            <div class="dish-description">with homemade dips:</div>
+                                        </div>
+                                        <div class="dish-price">7.5</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name"></div>
+                                            <div class="dish-description">ketchup / aioli verde / goat cheese-apricot / anchovy-dijon</div>
+                                        </div>
+                                        <div class="dish-price">2</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Main Courses -->
+                            <div class="menu-category">
+                                <h4 class="category-title">Main Courses</h4>
+                                <ul class="menu-items">
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Candy on Bone</div>
+                                            <div class="dish-description">12 hours slow-cooked at low temperature, served in its own braising stock with lemon-garlic yogurt</div>
+                                        </div>
+                                        <div class="dish-price"></div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Duroc Pork "Katz Orange"</div>
+                                            <div class="dish-description">pickled vegetables</div>
+                                        </div>
+                                        <div class="dish-price">28</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Dry Aged Beef Brisket</div>
+                                            <div class="dish-description">fennel, ponzu, plum</div>
+                                        </div>
+                                        <div class="dish-price">30</div>
+                                    </li>
+                                </ul>
+                                <p style="text-align: center; font-style: italic; color: #666; margin-top: 15px;">with seconds for the hungry</p>
+                            </div>
+
+                            <!-- Sides -->
+                            <div class="menu-category">
+                                <h4 class="category-title">Sides</h4>
+                                <ul class="menu-items">
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Potato-Chanterelle Tart</div>
+                                            <div class="dish-description">smoke, marjoram</div>
+                                        </div>
+                                        <div class="dish-price">9</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Corn Purée</div>
+                                            <div class="dish-description">currants</div>
+                                        </div>
+                                        <div class="dish-price">8</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Tataki-Onion</div>
+                                            <div class="dish-description">salt-lemon crust</div>
+                                        </div>
+                                        <div class="dish-price">7.5</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Noodle Salad</div>
+                                            <div class="dish-description">zucchini, pumpkin seeds</div>
+                                        </div>
+                                        <div class="dish-price">8</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Caesar Salad</div>
+                                        </div>
+                                        <div class="dish-price">7.5</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="menu-column">
+                            <!-- More Appetizers -->
+                            <div class="menu-category">
+                                <h4 class="category-title">More Appetizers</h4>
+                                <ul class="menu-items">
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Pulpo "Hot Dog"</div>
+                                            <div class="dish-description">chipotle, crispy chicken skin</div>
+                                        </div>
+                                        <div class="dish-price">16</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Guinea Fowl - Karaage</div>
+                                            <div class="dish-description">porcini mushroom, jalapeño</div>
+                                        </div>
+                                        <div class="dish-price">16</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Spare Ribs from Mecklenburg Free-Range Pork</div>
+                                            <div class="dish-description">cantaloupe melon, gremolata</div>
+                                        </div>
+                                        <div class="dish-price">16</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Additional Main Dishes -->
+                            <div class="menu-category">
+                                <h4 class="category-title">Additional Main Dishes</h4>
+                                <ul class="menu-items">
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Roasted Cauliflower</div>
+                                            <div class="dish-description">smoked Linda potato, béarnaise</div>
+                                        </div>
+                                        <div class="dish-price">23</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Aubergine</div>
+                                            <div class="dish-description">miso, paprika, thai basil</div>
+                                        </div>
+                                        <div class="dish-price">24</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Tagliata of Flank Steak</div>
+                                            <div class="dish-description">tandoori-cauliflower, peach chutney</div>
+                                        </div>
+                                        <div class="dish-price">32</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Homemade Chicken Bratwurst</div>
+                                            <div class="dish-description">yellow pea, pointed cabbage, saffron mustard</div>
+                                        </div>
+                                        <div class="dish-price">25</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Salmon from Jutland</div>
+                                            <div class="dish-description">bean, adjika, parmesan</div>
+                                        </div>
+                                        <div class="dish-price">28</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Desserts -->
+                            <div class="menu-category">
+                                <h4 class="category-title">Desserts</h4>
+                                <ul class="menu-items">
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Buffalo Milk Shaved Ice</div>
+                                            <div class="dish-description">toppings</div>
+                                        </div>
+                                        <div class="dish-price">13.5</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Crème Brûlée</div>
+                                            <div class="dish-description">lavender, cherry, tea sorbet</div>
+                                        </div>
+                                        <div class="dish-price">13.5</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Lime Parfait</div>
+                                            <div class="dish-description">raspberry, popcorn</div>
+                                        </div>
+                                        <div class="dish-price">12</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Petits Fours according to Daily Offer</div>
+                                        </div>
+                                        <div class="dish-price">8</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name">Cassis Sorbet</div>
+                                        </div>
+                                        <div class="dish-price">5</div>
+                                    </li>
+                                    <li>
+                                        <div class="dish-info">
+                                            <div class="dish-name"></div>
+                                            <div class="dish-description">with crémant</div>
+                                        </div>
+                                        <div class="dish-price">13</div>
+                                    </li>
+                                </ul>
+                                
+                                <!-- Price Note -->
+                                <div style="text-align: center; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-style: italic; color: #666;">
+                                    <p>Preise in EURO inkl. MwSt.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Print functionality
+        function printNote() {
+            window.print();
+        }
+
+        // Share functionality (if needed)
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Katz Orange Menu',
+                    text: 'Check out the menu at Katz Orange - Contemporary German Restaurant',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

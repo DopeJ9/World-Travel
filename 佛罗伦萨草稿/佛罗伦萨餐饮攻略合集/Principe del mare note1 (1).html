@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Principe del mare complete menu with prices - Comprehensive dining guide for Florence">
+    <meta name="keywords" content="Principe del mare, Florence menu, Italian cuisine, restaurant prices, fine dining, dining guide, seafood">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note 1: Principe del mare - Complete Menu & Prices Guide</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Principe del mare - Complete Menu & Prices Guide">
+    <meta property="og:description" content="Complete menu and prices for Principe del mare including seafood specialties and dining experience">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Principe del mare Menu Guide">
+    <meta name="twitter:description" content="Complete menu and prices for Principe del mare with detailed dining information")
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #8B0000;
+        }
+
+        .stat-icon {
+            color: #8B0000;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .venue-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #8B0000;
+            margin-bottom: 5px;
+        }
+
+        .visit-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: #8B0000;
+            font-weight: 600;
+            text-align: center;
+            background: linear-gradient(135deg, #fff5f5, #ffeaa7);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #8B0000;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .menu-section {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .menu-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .menu-column {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .menu-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8B0000;
+            text-align: center;
+        }
+
+        .menu-subsection {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .menu-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .menu-subsection-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-info {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .menu-item-description {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: #8B0000;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+
+
+        .special-menu-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .special-menu-box::before {
+            content: '⭐';
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: white;
+            padding: 0 10px;
+            font-size: 1.5rem;
+        }
+
+        .wine-pairing {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border: 1px solid #ff9800;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(255, 152, 0, 0.15);
+        }
+
+        .wine-pairing::before {
+            content: '🍷';
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.1rem;
+        }
+
+        .wine-pairing-title {
+            font-weight: 600;
+            color: #e65100;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wine-pairing-price {
+            font-weight: 700;
+            color: #ff9800;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '📋';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+
+        /* Picture Placeholder */
+        .picture-placeholder {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            border: 2px dashed #999;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        .picture-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+
+        /* Footer Section */
+        .note-footer {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .rating-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.3rem;
+        }
+
+        .visit-date {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .social-stats {
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .stat-item {
+                font-size: 0.8rem;
+                gap: 6px;
+            }
+
+            .note-header {
+                padding: 30px 20px;
+            }
+
+            .note-title {
+                font-size: 1.4rem;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .menu-section {
+                padding: 20px;
+            }
+
+            .menu-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .menu-column {
+                padding: 20px;
+            }
+
+            .menu-subsection {
+                padding: 20px;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-item-info {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+
+            .tags {
+                justify-content: flex-start;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">850</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">240</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">165</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note 1</h1>
+            <p class="note-subtitle">Principe del mare - Complete Menu & Prices Guide</p>
+            <div style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; margin-top: 15px; display: inline-block;">
+                <i class="fas fa-star" style="margin-right: 5px;"></i>
+                <span style="font-weight: 600; font-size: 0.9rem;">Seafood Specialties</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="venue-name">Principe del mare</h2>
+                    <p class="visit-type">Complete Menu with Prices - Seafood Restaurant Guide</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <!-- ANTIPASTI Section -->
+                <div class="menu-section">
+                    <h2 class="menu-section-title">ANTIPASTI</h2>
+                    
+                    <div class="menu-columns">
+                        <!-- Left Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">BOCCONCINI DI TONNO</div>
+                                    <div class="menu-item-description">Tuna morsels with cauliflower cream and caramelized onions</div>
+                                </div>
+                                <div class="menu-item-price">€16</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">GAMBERI IN TEMPURA</div>
+                                    <div class="menu-item-description">Tempura prawns with sweet and sour sauce</div>
+                                </div>
+                                <div class="menu-item-price">€16</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">POLPO CON LETTO DI RUCOLA</div>
+                                    <div class="menu-item-description">Octopus with a bed of rocket salad and baked truffled burrata</div>
+                                </div>
+                                <div class="menu-item-price">€18</div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">TARTARE DI GAMBERO ROSSO</div>
+                                    <div class="menu-item-description">Blue prawn tartare with celery, apples, lime juice, olive oil, salt and pepper</div>
+                                </div>
+                                <div class="menu-item-price">€17</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">CALAMARI SALTATI</div>
+                                    <div class="menu-item-description">Sautéed calamari with ricotta and pistachios</div>
+                                </div>
+                                <div class="menu-item-price">€15</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">LINGUINE AL POLPO</div>
+                                    <div class="menu-item-description">Linguine with octopus, lemon zest and cherry tomatoes</div>
+                                </div>
+                                <div class="menu-item-price">€17</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRIMI Section -->
+                <div class="menu-section">
+                    <h2 class="menu-section-title">PRIMI</h2>
+                    
+                    <div class="menu-columns">
+                        <!-- Left Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">RISO MARE</div>
+                                    <div class="menu-item-description">A classic seafood risotto made with Arborio rice, shrimp, mussels, and calamari, finished with a touch of saffron</div>
+                                </div>
+                                <div class="menu-item-price">€16</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">SPAGHETTI PRINCIPE DEL MARE</div>
+                                    <div class="menu-item-description">Spaghetti with clams, cherry tomatoes, basil pesto and pine nuts</div>
+                                </div>
+                                <div class="menu-item-price">€18</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">CALAMARATA CON ZUCCHINE</div>
+                                    <div class="menu-item-description">Calamarata with zucchini, shrimp, calamari, cherry tomatoes and saffron</div>
+                                </div>
+                                <div class="menu-item-price">€16</div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">TAGLIATELLE AGLI AGRUMI</div>
+                                    <div class="menu-item-description">Tagliatelle with citrus, scampi and mint</div>
+                                </div>
+                                <div class="menu-item-price">€17</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">RISOTTO DI MARE</div>
+                                    <div class="menu-item-description">Seafood risotto</div>
+                                </div>
+                                <div class="menu-item-price">€16</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECONDI PIATTI Section -->
+                <div class="menu-section">
+                    <h2 class="menu-section-title">SECONDI PIATTI</h2>
+                    
+                    <div class="menu-columns">
+                        <!-- Left Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">TONNO ALLA GRIGLIA</div>
+                                    <div class="menu-item-description">Grilled tuna with sautéed carrots</div>
+                                </div>
+                                <div class="menu-item-price">€20</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">OMBRINA AL FORNO ALL'ISOLANA</div>
+                                    <div class="menu-item-description">Baked ombrina in Isolana style with vegetables</div>
+                                </div>
+                                <div class="menu-item-price">€20</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">PESCE SPADA MARINATO ALL'ARANCIA</div>
+                                    <div class="menu-item-description">Orange-marinated swordfish with toasted almonds and roasted potatoes</div>
+                                </div>
+                                <div class="menu-item-price">€22</div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">CARTOCCIO DI BRANZINO</div>
+                                    <div class="menu-item-description">Sea bass in parchment with shrimp, calamari, mussels, clams, thyme and cherry tomatoes</div>
+                                </div>
+                                <div class="menu-item-price">€22</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">FRITTURA MISTA</div>
+                                    <div class="menu-item-description">Mixed fried calamari, shrimps and vegetables</div>
+                                </div>
+                                <div class="menu-item-price">€18</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">ZUPPA DI MARE</div>
+                                    <div class="menu-item-description">Seafood soup (for 2 people)</div>
+                                </div>
+                                <div class="menu-item-price">€30</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DOLCI Section -->
+                <div class="menu-section">
+                    <h2 class="menu-section-title">DOLCI</h2>
+                    
+                    <div class="menu-columns">
+                        <!-- Left Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">SOUFFLÉ AL CIOCCOLATO</div>
+                                    <div class="menu-item-description">Chocolate soufflé</div>
+                                </div>
+                                <div class="menu-item-price">€7</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">TIRAMISU</div>
+                                    <div class="menu-item-description">A traditional Italian dessert made with layers of espresso-soaked ladyfingers and mascarpone cream, dusted with cocoa powder</div>
+                                </div>
+                                <div class="menu-item-price">€8</div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="menu-column">
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">TORTA DI MELE</div>
+                                    <div class="menu-item-description">Apple pie</div>
+                                </div>
+                                <div class="menu-item-price">€7</div>
+                            </div>
+
+                            <div class="menu-item">
+                                <div class="menu-item-info">
+                                    <div class="menu-item-name">CANTUCCI DI PRATO</div>
+                                    <div class="menu-item-description">Cantucci with Vin Santo</div>
+                                </div>
+                                <div class="menu-item-price">€7</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DINING EXPERIENCE -->
+                <div class="highlight-box">
+                    <strong>Dining Experience:</strong><br>
+                    Fast, friendly, and attentive service with professional staff. Located in a quiet neighborhood with excellent ambiance, featuring modern minimalist style perfect for romantic dinners and family dining. Complimentary Limoncello often provided after meals.
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Recommendations:</strong><br>
+                    • Recommended stay duration: 1–2 hours to fully enjoy the seafood delicacies (around 2 hours is typical for elderly guests).<br>
+                    • Make reservations in advance, especially on weekends<br>
+                    • Seafood dishes pair perfectly with white wine<br>
+                    • Book through TheFork to enjoy 20%-50% discount offers!
+                </div>
+
+            </article>
+        </main>
+
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Print functionality
+        function printNote() {
+            window.print();
+        }
+
+        // Share functionality
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Principe del mare Menu Guide',
+                    text: 'Check out the complete menu and prices for Principe del mare seafood restaurant',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berlin Bunker Travel Guide - Quick Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: white;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stat-item .icon {
+            font-size: 20px;
+            color: #dc2626;
+        }
+
+        .stat-item .number {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .stat-item .label {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .header-section {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .main-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .title-icon {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .title-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .subtitle-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .subtitle-icon {
+            width: 20px;
+            height: 20px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .intro-text {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .route-section {
+            margin: 25px 0;
+        }
+
+        .route-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .route-item h4 {
+            color: #dc2626;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .route-item p {
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        .experience-section {
+            margin: 25px 0;
+        }
+
+        .experience-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            gap: 15px;
+        }
+
+        .experience-icon {
+            width: 30px;
+            height: 30px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .experience-content {
+            flex: 1;
+            line-height: 1.7;
+        }
+
+        .tips-section {
+            background: #d1fae5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .tips-icon {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .tips-content h3 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .tips-content ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tips-content li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .image-section {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 200px;
+            height: 150px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (max-width: 768px) {
+            .title-text {
+                font-size: 1.8em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .social-stats {
+                gap: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .image-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-title {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Statistics -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <span class="icon">❤️</span>
+                <span class="number">420</span>
+                <span class="label">Likes</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">🔖</span>
+                <span class="number">280</span>
+                <span class="label">Saves</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">💬</span>
+                <span class="number">150</span>
+                <span class="label">Comments</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">📤</span>
+                <span class="number">95</span>
+                <span class="label">Shares</span>
+            </div>
+        </div>
+
+        <!-- Main Title Section -->
+        <div class="header-section">
+            <div class="main-title">
+                <div class="title-icon">✓</div>
+                <h1 class="title-text">Guide 1 | Berlin Bunker Quick Tour Route</h1>
+            </div>
+            
+            <div class="subtitle-section">
+                <div class="subtitle-item">
+                    <div class="subtitle-icon">🎯</div>
+                    <span>Target Audience: Time-constrained travelers interested in WWII and Cold War history</span>
+                </div>
+                <div class="subtitle-item">
+                    <div class="subtitle-icon">🚀</div>
+                    <span>Type: Extreme Speed Tour</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Extreme Speed Tour Section -->
+            <div class="section-header">
+                <div class="section-icon">⭐</div>
+                <h2 class="section-title">Extreme Speed Tour of Berlin Bunker</h2>
+            </div>
+
+            <div class="intro-text">
+As a history enthusiast, I highly recommend this 2-hour bunker experience. Although time is limited, it allows you to deeply feel the shelter life of Berlin citizens during WWII - a truly impactful historical experience! 😊
+            </div>
+
+            <!-- Route Planning Overview -->
+            <div class="section-header">
+                <div class="section-icon">📍</div>
+                <h2 class="section-title">Route Planning Overview</h2>
+            </div>
+
+            <div class="route-section">
+                <div class="route-item">
+                    <h4>Tour 1: Dunkle Welten (WWII/History)</h4>
+Directly choose the most classic WWII bunker tour, starting from Gesundbrunnen metro station.</p>
+Upon entering the air-raid shelter, the damp, cold air and thick concrete walls hit you immediately. The oppressive space instantly transports you back to the 1940s.</p>
+The exhibition tells the story of Berlin under bombardment. The iron gates and tightly arranged benches under dim lighting give you a visceral sense of how citizens squeezed into narrow spaces to survive.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>Quick Visit to Permanent Exhibition</h4>
+Take a quick overview of the bunker museum's core exhibition areas.</p>
+Focus on the display panels and original photos related to the rise and fall of the Nazi regime, from Hitler's youth to the final Battle of Berlin in WWII - a clear historical thread will quickly connect.</p>
+                </div>
+            </div>
+
+            <!-- Sensory Experience and Tour Experience -->
+            <div class="section-header">
+                <div class="section-icon">🎭</div>
+                <h2 class="section-title">Sensory Experience and Tour Experience</h2>
+            </div>
+
+            <div class="experience-section">
+                <div class="experience-item">
+                    <div class="experience-icon">🌫️</div>
+                    <div class="experience-content">The underground space has dim lighting and stagnant air, with footsteps echoing conspicuously in the silence.</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-icon">📢</div>
+                    <div class="experience-content">The guide will appropriately share numbers about "how many people took shelter here," creating a strong sense of immersion.</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-icon">⏰</div>
+                    <div class="experience-content">In this 2-hour immersive experience, although you can't carefully read all the documents, you'll gain an intuitive sense of "historical oppression."</div>
+                </div>
+            </div>
+
+            <!-- Helpful Tips -->
+            <div class="tips-section">
+                <div class="tips-icon">💡</div>
+                <div class="tips-content">
+                    <h3>Helpful Tips</h3>
+                    <ul>
+                        <li>Tour 1 has age restrictions: Children under 7 are not allowed to participate</li>
+                        <li>Please wear comfortable shoes as some passages are narrow and stairs are steep</li>
+                        <li>There are many photography restrictions, so focus on the immersive experience</li>
+                        <li>It's recommended to book tickets in advance to avoid waiting in line on-site</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

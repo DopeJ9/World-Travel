@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katz Orange - Berlin Reservations</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(210, 105, 30, 0.15);
+            height: 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-name-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .restaurant-name-overlay h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .restaurant-name-overlay p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(210, 105, 30, 0.6), rgba(255, 140, 0, 0.4));
+            z-index: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* Restaurant Info */
+        .restaurant-info {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+        }
+
+        .restaurant-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #D2691E;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            color: #D2691E;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 2px;
+            min-width: 20px;
+        }
+
+        .info-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .info-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+        }
+
+        .booking-form h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #D2691E;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D2691E;
+            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .simple-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(210, 105, 30, 0.15);
+            border: 1px solid rgba(255, 140, 0, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav-btn {
+            background: #D2691E;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .month-nav-btn:hover {
+            background: #FF8C00;
+            transform: scale(1.1);
+        }
+
+        .month-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #D2691E;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .day-header {
+            background: #D2691E;
+            color: white;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .calendar-day {
+            background: #fff8f0;
+            border: 1px solid #ffeee0;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin: 1px;
+        }
+
+        .calendar-day:hover {
+            background: #ffe4b5;
+            border-color: #FF8C00;
+        }
+
+        .calendar-day.selected {
+            background: #D2691E;
+            color: white;
+            border-color: #D2691E;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+
+        .calendar-day.empty:hover {
+            background: transparent;
+        }
+
+        .calendar-day.closed {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .calendar-day.closed:hover {
+            background: #f0f0f0;
+            border-color: #ffeee0;
+        }
+
+        /* Time Slots Styles */
+        .time-slots-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(210, 105, 30, 0.15);
+            border: 1px solid rgba(255, 140, 0, 0.2);
+        }
+
+        .time-section h4 {
+            color: #D2691E;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #fff8f0;
+            border: 2px solid #ffeee0;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .time-slot:hover {
+            background: #ffe4b5;
+            border-color: #FF8C00;
+        }
+
+        .time-slot.selected {
+            background: #D2691E;
+            color: white;
+            border-color: #D2691E;
+        }
+
+        .time-slot.disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #ffeee0;
+            opacity: 0.5;
+        }
+
+        .time-slot.disabled:hover {
+            background: #f5f5f5;
+            border-color: #ffeee0;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #D2691E, #FF8C00);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(210, 105, 30, 0.3);
+        }
+
+        /* Special Features */
+        .special-features {
+            background: linear-gradient(135deg, #fff8f0, #ffeee0);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #D2691E;
+        }
+
+        .special-features h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #D2691E;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #D2691E;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            color: #D2691E;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .restaurant-name-overlay h1 {
+                font-size: 2.5rem;
+            }
+
+            .restaurant-name-overlay p {
+                font-size: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-section {
+                height: 250px;
+            }
+        }
+
+        /* Animation */
+        .animate__animated {
+            animation-duration: 0.8s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section animate__animated animate__fadeIn">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Katz Orange Restaurant Interior" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="restaurant-name-overlay">
+                <h1>🍊 Katz Orange</h1>
+                <p>Contemporary German Cuisine in a Historic Brewery</p>
+            </div>
+        </div>
+
+        <!-- Special Features -->
+        <div class="special-features animate__animated animate__fadeInUp">
+            <h3>Experience Katz Orange</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏛️</div>
+                    <h4>Historic Setting</h4>
+                    <p>Dine in a beautifully restored brewery building, where history meets modern culinary excellence</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🍽️</div>
+                    <h4>Contemporary German</h4>
+                    <p>Traditional German flavors reimagined with modern techniques and international influences</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🍸</div>
+                    <h4>Craft Cocktails</h4>
+                    <p>Expertly crafted cocktails that perfectly complement our innovative cuisine</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Restaurant Information -->
+            <div class="restaurant-info animate__animated animate__fadeInLeft">
+                <h2>Restaurant Information</h2>
+                
+                <div class="info-item">
+                    <i class="fas fa-clock info-icon"></i>
+                    <div class="info-content">
+                        <h3>Opening Hours</h3>
+                        <p><strong>Every day</strong><br>6:00 PM – 1:00 AM</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt info-icon"></i>
+                    <div class="info-content">
+                        <h3>Location</h3>
+                        <p>Bergstraße 22, 10115 Berlin<br>Located in Berlin Mitte</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-utensils info-icon"></i>
+                    <div class="info-content">
+                        <h3>Cuisine Style</h3>
+                        <p>Contemporary German cuisine that blends traditional and modern flavors, housed in a beautifully restored historic brewery</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-users info-icon"></i>
+                    <div class="info-content">
+                        <h3>Dining Experience</h3>
+                        <p>Perfect for romantic dinners, business meals, and special celebrations in our historic brewery setting</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-parking info-icon"></i>
+                    <div class="info-content">
+                        <h3>Getting There</h3>
+                        <p>Easily accessible by public transport. Nearest stations: Rosenthaler Platz (U8) and Weinmeisterstraße (U8)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="booking-form animate__animated animate__fadeInRight">
+                <h2>Make a Reservation</h2>
+                <form id="reservationForm">
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="month-nav-btn" id="prevMonth" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="monthTitle">August 2026</div>
+                                <button type="button" class="month-nav-btn" id="nextMonth" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated here -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time *</label>
+                        <div class="time-slots-container">
+                            <div class="time-section" id="dinnerSection">
+                                <h4>Dinner Service</h4>
+                                <div class="time-slots" id="dinnerSlots">
+                                    <div class="time-slot" data-time="18:00">6:00 PM</div>
+                                    <div class="time-slot" data-time="18:30">6:30 PM</div>
+                                    <div class="time-slot" data-time="19:00">7:00 PM</div>
+                                    <div class="time-slot" data-time="19:30">7:30 PM</div>
+                                    <div class="time-slot" data-time="20:00">8:00 PM</div>
+                                    <div class="time-slot" data-time="20:30">8:30 PM</div>
+                                    <div class="time-slot" data-time="21:00">9:00 PM</div>
+                                    <div class="time-slot" data-time="21:30">9:30 PM</div>
+                                    <div class="time-slot" data-time="22:00">10:00 PM</div>
+                                    <div class="time-slot" data-time="22:30">10:30 PM</div>
+                                    <div class="time-slot" data-time="23:00">11:00 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTime" name="time" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-calendar-check"></i> Make Reservation
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info animate__animated animate__fadeInUp">
+            <h3>Contact Information</h3>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+49 30 983 20 430</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>reservations@katzorange.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>www.katzorange.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calendar functionality
+        let currentMonth = 7; // August (0-indexed)
+        let currentYear = 2026;
+        let selectedDateString = '';
+        let selectedTimeString = '';
+
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+        function renderCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            monthTitle.textContent = monthNames[currentMonth] + ' ' + currentYear;
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, day);
+                const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
+                
+                // Check if date is in the past
+                if (date < today) {
+                    dayElement.className = 'calendar-day closed';
+                    dayElement.title = 'Past date';
+                } else {
+                    dayElement.className = 'calendar-day';
+                    dayElement.onclick = () => selectDate(day, dayOfWeek);
+                }
+                
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevMonth');
+            const nextBtn = document.getElementById('nextMonth');
+            
+            // Only allow August 2026 - disable all navigation
+            prevBtn.disabled = true;
+            nextBtn.disabled = true;
+            
+            return;
+        }
+
+        function selectDate(day, dayOfWeek) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            
+            // Set selected date value
+            const monthNum = currentMonth + 1;
+            selectedDateString = `${currentYear}.${monthNum}.${day}`;
+            document.getElementById('selectedDate').value = selectedDateString;
+            
+            // Update time slots availability
+            updateTimeSlots(selectedDateString, dayOfWeek);
+        }
+
+        function updateTimeSlots(dateString, dayOfWeek) {
+            const timeSlots = document.querySelectorAll('.time-slot');
+            
+            // Reset all time slots
+            timeSlots.forEach(slot => {
+                slot.classList.remove('disabled', 'selected');
+                slot.onclick = () => selectTime(slot.dataset.time, slot.textContent);
+            });
+        }
+
+        function selectTime(time, displayTime) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Add selection to clicked slot
+            event.target.classList.add('selected');
+            
+            selectedTimeString = displayTime || event.target.textContent;
+            document.getElementById('selectedTime').value = selectedTimeString;
+        }
+
+        function changeMonth(direction) {
+            // Disabled for August 2026 only
+            return;
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCalendar();
+
+            // Form submission
+            document.getElementById('reservationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Simple validation
+                if (!data.date || !data.time) {
+                    alert('Please select both date and time.');
+                    return;
+                }
+
+                // Simulate booking confirmation
+                alert(`Your reservation request for ${data.date} at ${data.time} has been submitted. We will contact you shortly to confirm your booking at Katz Orange.`);
+                
+                // Reset form
+                this.reset();
+                selectedDateString = '';
+                selectedTimeString = '';
+                renderCalendar();
+            });
+        });
+
+        // Add animation on scroll
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.animate__animated');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animate__fadeInUp');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

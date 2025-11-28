@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neues Museum Berlin Deep Tour Guide: Contemplative Experience Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stat-item .icon {
+            font-size: 16px;
+            color: #dc2626;
+        }
+
+        .header-banner {
+            background: #dc2626;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .header-banner h1 {
+            font-family: 'Times New Roman', serif;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .header-banner .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .venue-overview {
+            color: #dc2626;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .indented-text {
+            margin-left: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #dc2626;
+            font-size: 1em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .highlight-box.green {
+            background: #d1fae5;
+        }
+
+        .highlight-box .icon-circle {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .highlight-box.green .icon-circle {
+            background: #10b981;
+        }
+
+        .highlight-box .content {
+            flex: 1;
+        }
+
+        .highlight-box h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .route-section {
+            margin: 25px 0;
+        }
+
+        .route-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .route-item h4 {
+            color: #dc2626;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .route-item p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .special-note {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .final-thoughts {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .final-thoughts .icon-circle {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .final-thoughts .content {
+            flex: 1;
+        }
+
+        .final-thoughts h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .final-thoughts p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header-banner h1 {
+                font-size: 1.8em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .social-stats {
+                gap: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 社交统计数据 -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <span class="icon">❤️</span>
+                <span>280 Likes</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">💬</span>
+                <span>95 Comments</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">📤</span>
+                <span>42 Shares</span>
+            </div>
+        </div>
+
+        <!-- 主标题横幅 -->
+        <div class="header-banner">
+            <h1>Neues Museum Berlin Travel Guide Notes 2</h1>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="main-content">
+            <!-- 场馆概览部分 -->
+            <div class="section-header">
+                <div class="section-icon">!</div>
+                <div>
+                    <h2 class="section-title">Neues Museum Berlin</h2>
+                </div>
+            </div>
+
+            <h3 class="venue-overview">🎯 Target Audience</h3>
+            
+            <div class="indented-text">
+                Those interested in art and ancient civilization details<br>
+                Want to experience history through the combination of exhibits and space<br>
+                Willing to spend time pausing and contemplating
+            </div>
+
+            <!-- 游览路径 -->
+            <div class="route-section">
+                <h3 class="venue-overview">🗺️ Tour Route</h3>
+                
+                <div class="route-item">
+                    <h4>Second Floor Ancient Egypt Gallery</h4>
+                    <p>Enter the museum's core space.</p>
+                    <p><strong>Nefertiti Bust:</strong></p>
+                    <p>Allow 15-20 minutes to examine closely, feel that gaze spanning three millennia.</p>
+                    <p>She is not only a masterpiece of art, but also a politically controversial artifact.</p>
+                    <p>Then slowly view the gold ornaments, divine statues, and mural fragments, experiencing ancient Egypt's dual world of "life and eternity."</p>
+                    <p><strong>Note the spatial design:</strong> Exposed brick walls, soft lighting, deliberately minimalist layout that gives you space for contemplation.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>First Floor Prehistory and Early History Section</h4>
+                    <p>Slowly examine stone tools and pottery, feeling humanity's early exploration of tools and order.</p>
+                    <p><strong>The burial section is worth lingering in,</strong> where urns and reconstructed models evoke thoughts of ancient people's daily life and death rituals.</p>
+                    <p>If you read the text explanations carefully, you'll discover connections between the exhibits and prehistoric sites around Berlin.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>Basement Classical Civilization Section</h4>
+                    <p>Follow the exhibition sequence to view Greek, Roman, and Etruscan artifacts.</p>
+                    <p>The sculptures and inscriptions are not ornate, but rather remind us: these once belonged to real life.</p>
+                    <p>Take time before the reliefs or inscriptions to contemplate the weight of writing and civilization.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>Golden Hat</h4>
+                    <p>Another "mysterious artifact" in the entire museum.</p>
+                    <p>Carefully observe the surface patterns and imagine how ancient people used it to record time.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>Free Pause and Second Look</h4>
+                    <p>The special quality of the Neues Museum lies in its "blank spaces" and "silence."</p>
+                    <p>You can choose to pause before a weathered wall, or return to Nefertiti's gallery to experience the difference of a second gaze.</p>
+                </div>
+            </div>
+
+            <!-- Deep Tour Tips -->
+            <div class="highlight-box">
+                <div class="icon-circle">💡</div>
+                <div class="content">
+                    <h3>Deep Tour Recommendations:</h3>
+                    <p>Reserve sufficient time, recommend at least 3-4 hours</p>
+                    <p>Choose less crowded time periods, avoid weekends and holidays</p>
+                    <p>Bring a notebook to record feelings and thoughts</p>
+                    <p>Maintain quietness and respect other visitors' contemplative space</p>
+                </div>
+            </div>
+
+            <!-- Visit Experience -->
+            <div class="highlight-box green">
+                <div class="icon-circle">⭐</div>
+                <div class="content">
+                    <h3>🌟 Experience Summary:</h3>
+                    <p>A deep tour allows you to feel not just "viewing exhibits," but spending time with time itself.</p>
+                    <p>This is a museum suitable for meditation, a place that makes you slow down.</p>
+                    <p>When you leave, you'll feel you've experienced a "quiet conversation" with ancient civilizations and your inner self.</p>
+                </div>
+            </div>
+
+            <!-- Final Thoughts -->
+            <div class="final-thoughts">
+                <div class="icon-circle">💡</div>
+                <div class="content">
+                    <h3>Deep Experience Insights:</h3>
+                    <p>In our fast-paced modern life, the Neues Museum offers a rare opportunity to "slow down." Every artifact carries the weight of time, every space speaks of history's silence. This deep tour is not only an exploration of ancient civilizations, but also a return to one's inner world.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

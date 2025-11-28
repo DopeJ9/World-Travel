@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDR Museum Travel Guide - Quick Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: white;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stat-item .icon {
+            font-size: 20px;
+            color: #dc2626;
+        }
+
+        .stat-item .number {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .stat-item .label {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .header-section {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .main-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .title-icon {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .title-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .subtitle-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .subtitle-icon {
+            width: 20px;
+            height: 20px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .intro-text {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .route-section {
+            margin: 25px 0;
+        }
+
+        .route-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .route-item h4 {
+            color: #dc2626;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .route-item p {
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        .experience-section {
+            margin: 25px 0;
+        }
+
+        .experience-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            gap: 15px;
+        }
+
+        .experience-icon {
+            width: 30px;
+            height: 30px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .experience-content {
+            flex: 1;
+            line-height: 1.7;
+        }
+
+        .tips-section {
+            background: #d1fae5;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .tips-icon {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .tips-content h3 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .tips-content ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tips-content li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .image-section {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 200px;
+            height: 150px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        @media (max-width: 768px) {
+            .title-text {
+                font-size: 1.8em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .social-stats {
+                gap: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+
+            .image-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-title {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Statistics -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <span class="icon">❤️</span>
+                <span class="number">680</span>
+                <span class="label">Likes</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">🔖</span>
+                <span class="number">420</span>
+                <span class="label">Saves</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">💬</span>
+                <span class="number">180</span>
+                <span class="label">Comments</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">📤</span>
+                <span class="number">95</span>
+                <span class="label">Shares</span>
+            </div>
+        </div>
+
+        <!-- Main Title Section -->
+        <div class="header-section">
+            <div class="main-title">
+                <div class="title-icon">✓</div>
+                <h1 class="title-text">🕐 DDR Museum Travel Guide - Express Edition</h1>
+            </div>
+            
+            <div class="subtitle-section">
+                <div class="subtitle-item">
+                    <div class="subtitle-icon">🎯</div>
+                    <span>Target Audience: Time-constrained travelers wanting to quickly experience the unique atmosphere of DDR (German Democratic Republic)</span>
+                </div>
+                <div class="subtitle-item">
+                    <div class="subtitle-icon">🚀</div>
+                    <span>Type: Historical Experience Express Tour</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Quick Tour Section -->
+            <div class="section-header">
+                <div class="section-icon">⭐</div>
+                <h2 class="section-title">DDR Museum Quick Experience</h2>
+            </div>
+
+            <div class="intro-text">
+                As a history enthusiast, I highly recommend this 1-hour DDR Museum experience. Although time is limited, it allows you to quickly feel the unique atmosphere of East Germany during the Cold War era—a daily historical experience that feels both "strange and familiar"! 😊
+            </div>
+
+            <!-- Route Planning Overview -->
+            <div class="section-header">
+                <div class="section-icon">📍</div>
+                <h2 class="section-title">Tour Route & Experience</h2>
+            </div>
+
+            <div class="route-section">
+                <div class="route-item">
+                    <h4>1. Quick Entry</h4>
+                    <p>The museum entrance is hidden across from Berlin Cathedral, seemingly unassuming. The moment you step into the underground space, it's like walking through a historical tunnel, immediately entering the other side of the Cold War era.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>2. East German Apartment Experience</h4>
+                    <p>Head straight to the most representative "East German Family Apartment." Vintage sofas, televisions, dining tables, and kitchen utensils are all there. Touching those furniture and appliances feels like really visiting a DDR citizen's home.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>3. Featured Interactive Exhibits</h4>
+                    <p><strong>🚗 Trabant Car Simulator:</strong> Experience the car that everyone dreamed of but had to wait years in line for.</p>
+                    <p><strong>👮 Stasi Interrogation Scene:</strong> Briefly sit in the chair and feel the tense atmosphere, quickly experiencing the oppression of the East German era.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>4. Gallery Walkthrough</h4>
+                    <p>Select highlights from the 18 exhibition halls: themes like education, fashion, leisure, and entertainment. Look at clothing and toys to experience a sense of the era that feels both "strange and familiar."</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>5. Riverside Break at Exit</h4>
+                    <p>The riverside view near the exit is excellent. You can stop and sit for a while, feeling the contrast between returning from a "closed world" to modern Berlin.</p>
+                </div>
+            </div>
+
+            <!-- Sensory Experience and Tour Experience -->
+            <div class="section-header">
+                <div class="section-icon">🎭</div>
+                <h2 class="section-title">Overall Experience</h2>
+            </div>
+
+            <div class="experience-section">
+                <div class="experience-item">
+                    <div class="experience-icon">⏰</div>
+                    <div class="experience-content">The 1-hour tour is compact but impactful. The biggest feeling visitors get is the "strange familiarity of daily life"—it's clearly Europe from decades ago, yet there's a sense of familiarity that's both distant and close to modern life.</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-icon">🏠</div>
+                    <div class="experience-content">The East German apartment is extremely authentic, with every detail making you feel as if you're truly in that era—the experience feels very real.</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-icon">🚗</div>
+                    <div class="experience-content">The Trabant car simulator is a must-experience activity that deeply conveys the longing and waiting that East German people had for cars at that time.</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-icon">🌊</div>
+                    <div class="experience-content">The contrast between returning from the underground historical space to the modern riverside landscape makes you deeply appreciate the changes of history and the progress of the times.</div>
+                </div>
+            </div>
+
+            <!-- Helpful Tips -->
+            <div class="tips-section">
+                <div class="tips-icon">💡</div>
+                <div class="tips-content">
+                    <h3>Practical Tips</h3>
+                    <ul>
+                        <li>Book tickets online in advance to avoid wasting time in queues</li>
+                        <li>Focus on experiencing the East German apartment and Trabant car simulator—these are the most representative interactive exhibits</li>
+                        <li>You can touch most exhibits, but please handle them gently to protect the historical artifacts</li>
+                        <li>The souvenir shop at the exit has unique DDR-themed merchandise worth checking out</li>
+                        <li>The riverside rest area is a great place for photos, offering beautiful views of Berlin Cathedral</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

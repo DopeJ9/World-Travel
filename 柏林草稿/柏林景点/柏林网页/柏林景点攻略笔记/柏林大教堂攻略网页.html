@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berlin Cathedral Travel Guide - Quick Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            background: #fce7f3;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stat-item .icon {
+            font-size: 16px;
+            color: #dc2626;
+        }
+
+        .stat-item .number {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stat-item .label {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+        }
+
+        .header-banner::before {
+            content: "✓";
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .header-banner h1 {
+            font-family: 'Times New Roman', serif;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .header-banner .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .info-section h3 {
+            color: #dc2626;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 10px 0;
+            gap: 10px;
+        }
+
+        .info-item .icon {
+            width: 20px;
+            height: 20px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-item .content {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .tips-section {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .tips-section .icon {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .tips-section .content h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .tips-section .content p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .route-section {
+            margin: 25px 0;
+        }
+
+        .route-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .route-header .icon {
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .route-header h2 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .route-subtitle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .route-subtitle .icon {
+            width: 30px;
+            height: 30px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .route-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+            position: relative;
+        }
+
+        .route-item .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .route-item .step-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .route-item .step-icon {
+            width: 30px;
+            height: 30px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .route-item .step-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        .route-item .time-badge {
+            background: #fce7f3;
+            color: #333;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .route-item .description {
+            margin: 10px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .highlights-section {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .highlights-section .icon {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .highlights-section .content h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .highlights-section .content p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .image-section {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+
+        .image-placeholder {
+            width: 200px;
+            height: 150px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header-banner h1 {
+                font-size: 1.8em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .social-stats {
+                gap: 20px;
+            }
+            
+            .route-header h2 {
+                font-size: 1.5em;
+            }
+
+            .image-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 社交统计数据 -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <span class="icon">❤️</span>
+                <span class="number">850</span>
+                <span class="label">Likes</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">💬</span>
+                <span class="number">320</span>
+                <span class="label">Comments</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">🔖</span>
+                <span class="number">180</span>
+                <span class="label">Saves</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">📤</span>
+                <span class="number">95</span>
+                <span class="label">Shares</span>
+            </div>
+        </div>
+
+        <!-- 主标题横幅 -->
+        <div class="header-banner">
+            <h1>Travel Guide | Berlin Cathedral Visit | Quick Overview</h1>
+            <div class="subtitle">Compact Museum Island day trip - see the highlights and capture great photos in a short time</div>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="main-content">
+            <!-- 基本信息 -->
+            <div class="info-section">
+                <h3>Target Audience</h3>
+                <div class="info-item">
+                    <div class="icon">👥</div>
+                    <div class="content">Visitors with tight Museum Island day trip schedules who want to see the highlights and capture great photos in a short time.</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">💡</div>
+                    <div class="content">Recommended visiting times: Morning or evening (soft lighting and best atmosphere).</div>
+                </div>
+            </div>
+
+            <!-- 入场与导览提示 -->
+            <div class="tips-section">
+                <div class="icon">📍</div>
+                <div class="content">
+                    <h3>Entry & Tour Tips</h3>
+                    <p>• Entry: Berlin Cathedral has multiple entrances. We recommend using the main entrance and avoiding peak hours.</p>
+                    <p>• Audio Guide: Audio guides are available for rent on-site with Chinese language options. They automatically adjust content based on your location, helping you better understand the cathedral's history.</p>
+                </div>
+            </div>
+
+            <!-- 路线规划 -->
+            <div class="route-section">
+                <div class="route-header">
+                    <div class="icon">🚀</div>
+                    <h2>Route Planning (Complete Connected Itinerary)</h2>
+                </div>
+                
+                <div class="route-subtitle">
+                    <div class="icon">🚶</div>
+                    <span>Route Planning (Head straight to highlights, no backtracking)</span>
+                </div>
+
+                <div class="route-item">
+                    <div class="step-header">
+                        <div class="step-title">
+                            <div class="step-icon">⛪</div>
+                            <span class="step-name">Ground Floor Main Cathedral</span>
+                        </div>
+                    </div>
+                    <div class="description">
+                        After entering, take a leisurely stroll through the nave, admiring the magnificent interior: columns, murals, gilded capitals, and the main altar. Walk slowly, don't rush - you'll be rewarded by observing the details carefully.
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <div class="step-header">
+                        <div class="step-title">
+                            <div class="step-icon">🏛️</div>
+                            <span class="step-name">Second Floor Model Exhibition Area</span>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Quickly browse through design sketches and models from different periods of the cathedral's history, along with some photos of WWII damage, to quickly establish the historical context of the cathedral.
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <div class="step-header">
+                        <div class="step-title">
+                            <div class="step-icon">🏗️</div>
+                            <span class="step-name">Dome Ascent (Stairs)</span>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Climb the dome stairs to enjoy a 360° panoramic view of Berlin, while getting a close-up look at the dome mosaics. Take some cityscape photos as souvenirs.
+                    </div>
+                </div>
+
+                <div class="route-item">
+                    <div class="step-header">
+                        <div class="step-title">
+                            <div class="step-icon">⚰️</div>
+                            <span class="step-name">Crypt (Royal Sarcophagi)</span>
+                        </div>
+                    </div>
+                    <div class="description">
+                        Brief visit to the Hohenzollern royal sarcophagi to feel the weight of history.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 体感与氛围 -->
+            <div class="info-section">
+                <h3>Atmosphere & Experience</h3>
+                <div class="info-item">
+                    <div class="icon">✨</div>
+                    <div class="content">The cathedral's lighting and materials create a solemn yet not oppressive feeling; the lighting in early morning and evening is particularly enchanting.</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">👁️</div>
+                    <div class="content">The golden details in the main hall create a feeling of being "gently embraced by the eyes," while the crypt is more serene and solemn.</div>
+                </div>
+            </div>
+
+            <!-- 快拍与小技巧 -->
+            <div class="info-section">
+                <h3>Quick Photography & Tips</h3>
+                <div class="info-item">
+                    <div class="icon">📸</div>
+                    <div class="content">Early morning/evening lighting is best.</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">📷</div>
+                    <div class="content">Bring a portable tripod (check venue regulations), use long exposure for stable city night shots or dome interior details.</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">🎭</div>
+                    <div class="content">Use pigeons or passersby in motion to make photos more dynamic; avoid crowds or use them as compositional elements.</div>
+                </div>
+            </div>
+
+            <!-- 亮点总结 -->
+            <div class="highlights-section">
+                <div class="icon">✨</div>
+                <div class="content">
+                    <h3>Highlights Summary</h3>
+                    <p>• 2-hour quick tour of Berlin Cathedral highlights, climb to the top for city views - compact yet fulfilling!</p>
+                    <p>• The cathedral's interior lighting is excellent for photography! If you have more time, you can slowly appreciate every detail. But even for time-pressed visitors, seeing the main attractions is incredibly satisfying!</p>
+                </div>
+            </div>
+
+            <!-- 实用贴士 -->
+            <div class="info-section">
+                <h3>Practical Tips</h3>
+                <div class="info-item">
+                    <div class="icon">👔</div>
+                    <div class="content">Dress appropriately (cathedral is a religious site).</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">🪑</div>
+                    <div class="content">The cathedral has rest areas where you can sit and rest before climbing to the dome.</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">📷</div>
+                    <div class="content">Follow venue photography rules - there may be restrictions in the dome and certain sensitive areas.</div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">🎧</div>
+                    <div class="content">For a deeper experience with limited time, choose a short audio guide segment to focus on one or two key sections.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

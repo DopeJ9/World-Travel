@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Travel Navigator - Premium Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2d3436;
+            --accent-color: #e17055;
+            --text-light: #ffffff;
+            --text-dark: #2d3436;
+            --card-bg: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: -80px auto 50px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Grid Layout */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        /* City Card */
+        .city-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            position: relative;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            group: city-card;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        /* Card Image Area */
+        .card-image {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s ease;
+            z-index: 1;
+        }
+
+        .city-card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
+        }
+
+        .city-card:hover .card-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.95) 100%);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Card Content */
+        .card-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: var(--text-light);
+        }
+
+        .city-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .city-title {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .city-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            font-weight: 300;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .city-card:hover .city-title,
+        .city-card:hover .city-subtitle {
+            transform: translateY(0);
+        }
+
+        /* Links Section (Hidden by default, shown on hover) */
+        .city-links {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .city-card:hover .city-links {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 10px;
+        }
+
+        .link-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        .link-btn:hover {
+            background: white;
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .link-btn i {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .link-btn.primary {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            grid-column: span 2;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .link-btn.primary:hover {
+            background: #d65d42;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #636e72;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .cities-grid { grid-template-columns: 1fr; }
+            .city-card { height: 450px; }
+            .city-links {
+                max-height: none;
+                opacity: 1;
+                margin-top: 15px;
+            }
+            .city-title, .city-subtitle { transform: translateY(0); }
+            .card-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.9) 100%); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>World Travel Navigator</h1>
+        <p>Six iconic cities. One seamless journey. Discover the heart of Europe.</p>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="cities-grid">
+            
+            <!-- Paris Card -->
+            <div class="city-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">France</div>
+                <div class="card-content">
+                    <h2 class="city-title">Paris</h2>
+                    <p class="city-subtitle">The City of Light & Romance</p>
+                    
+                    <div class="city-links">
+                        <div class="link-btn primary" onclick="openPage('巴黎草稿/巴黎必玩景点合集.html')">
+                            <i class="fas fa-star"></i> Top Attractions
+                        </div>
+                        <div class="link-btn" onclick="openPage('巴黎草稿/巴黎餐厅汇总网页.html')">
+                            <i class="fas fa-utensils"></i> Dining
+                        </div>
+                        <div class="link-btn" onclick="openPage('巴黎草稿/酒店预订.html')">
+                            <i class="fas fa-bed"></i> Hotels
+                        </div>
+                        <div class="link-btn" onclick="openPage('地图.html')">
+                            <i class="fas fa-map-marked-alt"></i> Map
+                        </div>
+                        <div class="link-btn" onclick="openPage('巴黎草稿/巴黎景点参观攻略合集.html')">
+                            <i class="fas fa-book-open"></i> Guides
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rome Card -->
+            <div class="city-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1996&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Italy</div>
+                <div class="card-content">
+                    <h2 class="city-title">Rome</h2>
+                    <p class="city-subtitle">The Eternal City</p>
+                    
+                    <div class="city-links">
+                        <div class="link-btn primary" onclick="openPage('罗马草稿/21_罗马景点合集/Rome_Attractions_Guide.html')">
+                            <i class="fas fa-landmark"></i> Attractions
+                        </div>
+                        <div class="link-btn" onclick="openPage('罗马草稿/23_罗马餐饮预订合集/Rome_Dining_Guide.html')">
+                            <i class="fas fa-utensils"></i> Dining
+                        </div>
+                        <div class="link-btn" onclick="openPage('罗马草稿/罗马酒店预订.html')">
+                            <i class="fas fa-bed"></i> Hotels
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Florence Card -->
+            <div class="city-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1543429776-2782fc8e1acd?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Italy</div>
+                <div class="card-content">
+                    <h2 class="city-title">Florence</h2>
+                    <p class="city-subtitle">Cradle of the Renaissance</p>
+                    
+                    <div class="city-links">
+                        <div class="link-btn primary" onclick="openPage('佛罗伦萨草稿/佛罗伦萨景点合集/佛罗伦萨汇总-景点.html')">
+                            <i class="fas fa-palette"></i> Attractions
+                        </div>
+                        <div class="link-btn" onclick="openPage('佛罗伦萨草稿/佛罗伦萨餐厅/佛罗伦萨餐饮汇总网页.html')">
+                            <i class="fas fa-wine-glass"></i> Dining
+                        </div>
+                        <div class="link-btn" onclick="openPage('佛罗伦萨草稿/佛罗伦萨酒店预订.html')">
+                            <i class="fas fa-bed"></i> Hotels
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barcelona Card -->
+            <div class="city-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Spain</div>
+                <div class="card-content">
+                    <h2 class="city-title">Barcelona</h2>
+                    <p class="city-subtitle">Gaudí's Architectural Wonderland</p>
+                    
+                    <div class="city-links">
+                        <div class="link-btn primary" onclick="openPage('巴塞罗那草稿/巴塞罗那景点汇总网页.html')">
+                            <i class="fas fa-church"></i> Attractions
+                        </div>
+                        <div class="link-btn" onclick="openPage('巴塞罗那草稿/巴塞罗那餐饮汇总网页.html')">
+                            <i class="fas fa-utensils"></i> Dining
+                        </div>
+                        <div class="link-btn" onclick="openPage('巴塞罗那草稿/巴塞罗那酒店汇总.html')">
+                            <i class="fas fa-bed"></i> Hotels
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Berlin Card -->
+            <div class="city-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Germany</div>
+                <div class="card-content">
+                    <h2 class="city-title">Berlin</h2>
+                    <p class="city-subtitle">History Meets Modernity</p>
+                    
+                    <div class="city-links">
+                        <div class="link-btn primary" onclick="openPage('柏林草稿/柏林景点/柏林景点汇总网页.html')">
+                            <i class="fas fa-monument"></i> Attractions
+                        </div>
+                        <div class="link-btn" onclick="openPage('柏林草稿/柏林餐厅/Berlin_餐厅网页汇总.html')">
+                            <i class="fas fa-beer"></i> Dining
+                        </div>
+                        <div class="link-btn" onclick="openPage('柏林草稿/Berlin_Hotels_Collection.html')">
+                            <i class="fas fa-bed"></i> Hotels
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vienna Card -->
+            <div class="city-card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=2072&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Austria</div>
+                <div class="card-content">
+                    <h2 class="city-title">Vienna</h2>
+                    <p class="city-subtitle">The City of Music</p>
+                    
+                    <div class="city-links">
+                        <div class="link-btn primary" onclick="openPage('维也纳合集/维也纳网页合集/Vienna_Attractions_Guide.html')">
+                            <i class="fas fa-music"></i> Attractions
+                        </div>
+                        <div class="link-btn" onclick="openPage('维也纳合集/维也纳网页合集/Vienna_Dining_Guide.html')">
+                            <i class="fas fa-utensils"></i> Dining
+                        </div>
+                        <div class="link-btn" onclick="openPage('维也纳合集/维也纳网页合集/hotel information.html')">
+                            <i class="fas fa-bed"></i> Hotels
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 World Travel Navigator. Designed for your journey.</p>
+    </footer>
+
+    <script>
+        function openPage(url) {
+            // 简单的点击反馈
+            const btn = event.currentTarget;
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+                window.open(url, '_blank');
+            }, 150);
+        }
+
+        // 简单的滚动显现效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.city-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease-out';
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
+

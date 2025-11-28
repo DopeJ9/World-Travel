@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotels in Florence - World Travel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(45deg, #8b4513 0%, #cd853f 50%, #daa520 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23cd853f" width="1200" height="800"/><polygon fill="%23daa520" points="0,800 400,600 800,700 1200,500 1200,800"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(180deg, transparent 0%, white 100%);
+        }
+
+        .hero-title {
+            font-size: 3.2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-section {
+            padding: 80px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .intro-title {
+            font-size: 2.1em;
+            color: #8b4513;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .intro-text {
+            font-size: 1.05em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .hotels-showcase {
+            padding: 0;
+            background: #fff;
+        }
+
+        .hotel-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hotel-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .hotel-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .hotel-image {
+            background: linear-gradient(45deg, #cd853f, #daa520);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6em;
+            color: rgba(255,255,255,0.3);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hotel-content {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            position: relative;
+        }
+
+        .hotel-card:nth-child(odd) .hotel-content {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .hotel-name {
+            font-size: 1.9em;
+            font-weight: 300;
+            color: #8b4513;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hotel-location {
+            font-size: 0.95em;
+            color: #7f8c8d;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .stars {
+            color: #daa520;
+            margin-right: 10px;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .hotel-price {
+            font-size: 2.1em;
+            font-weight: 400;
+            color: #cd853f;
+            margin-bottom: 25px;
+        }
+
+        .hotel-description {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .amenities-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 0.9em;
+            color: #34495e;
+        }
+
+        .amenity-icon {
+            font-size: 1.1em;
+            margin-right: 10px;
+            width: 22px;
+        }
+
+        .hotel-card:hover {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .hotel-card:hover .hotel-image {
+            background: linear-gradient(45deg, #8b4513, #cd853f);
+        }
+
+        .price-highlight {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(205, 133, 63, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 1024px) {
+            .hotel-card {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            
+            .hotel-card:nth-child(even) {
+                direction: ltr;
+            }
+            
+            .hotel-content {
+                padding: 40px;
+            }
+            
+            .hero-title {
+                font-size: 2.2em;
+            }
+            
+            .intro-section {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .amenities-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .hotel-content {
+                padding: 30px 20px;
+            }
+            
+            .hero-section {
+                padding: 60px 20px;
+            }
+            
+            .hero-title {
+                font-size: 1.8em;
+            }
+            
+            .hotel-name {
+                font-size: 1.6em;
+            }
+            
+            .hotel-price {
+                font-size: 1.8em;
+            }
+            
+            .intro-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="hero-title">FLORENCE HOTELS</h1>
+        <p class="hero-subtitle">Experience the Renaissance Capital in Ultimate Luxury</p>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2 class="intro-title">Florence's Finest Accommodations</h2>
+            <p class="intro-text">
+                Discover an exclusive collection of Florence's most prestigious hotels, where ancient artistic heritage meets contemporary luxury. 
+                From boutique charm to world-class amenities, each property offers a unique gateway to the wonders of the Renaissance capital.
+            </p>
+        </div>
+
+        <div class="hotels-showcase">
+            <!-- Four Seasons Hotel Firenze -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/YB5LbL6fFoZPgXx3dQecznzdnEf/?preview_type=16" alt="Four Seasons Hotel Firenze">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Four Seasons Hotel Firenze</h2>
+                    <p class="hotel-location">Florence City Center, Historic Garden District</p>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-text">5-Star Luxury Hotel</span>
+                    </div>
+                    <div class="hotel-price">€2300<small>/night</small></div>
+                    <p class="hotel-description">
+                        A pinnacle of luxury housed within a 15th-century Renaissance palace, featuring 11 acres of private gardens.
+                        Four Seasons perfectly combines historic charm with modern luxury, offering an unparalleled Florence experience.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🌸</span>
+                            Private Garden Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💆</span>
+                            Premium Spa Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🏊</span>
+                            Outdoor Pool
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍷</span>
+                            Michelin Restaurant
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚗</span>
+                            Luxury Concierge
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">👔</span>
+                            Personal Butler Service
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The St. Regis Florence -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/MLsVbu09XoT39Sxo1J4c48xDnAe/?preview_type=16" alt="The St. Regis Florence">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">The St. Regis Florence</h2>
+                    <p class="hotel-location">Arno River, Historic City Center</p>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-text">5-Star Luxury Hotel</span>
+                    </div>
+                    <div class="hotel-price">€2800<small>/night</small></div>
+                    <p class="hotel-description">
+                        A legendary luxury hotel along the Arno River with stunning views of Ponte Vecchio and Uffizi Gallery.
+                        St. Regis is renowned for its impeccable service and refined Italian elegance.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🥂</span>
+                            Champagne Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🛁</span>
+                            Marble Bathrooms
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🎨</span>
+                            Art Collection
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍾</span>
+                            Rooftop Bar
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚁</span>
+                            Helicopter Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💼</span>
+                            24-Hour Butler
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- W Florence -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/JwUfboPffoJqb1xxDsGcWinvnpb/?preview_type=16" alt="W Florence">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">W Florence</h2>
+                    <p class="hotel-location">Piazza della Repubblica, Fashion District</p>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-text">5-Star Fashion Hotel</span>
+                    </div>
+                    <div class="hotel-price">€1400<small>/night</small></div>
+                    <p class="hotel-description">
+                        Perfect fusion of modern design and classic architecture, located in Florence's bustling Piazza della Repubblica.
+                        W Florence redefines luxury accommodation with its avant-garde design style and vibrant atmosphere.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🎵</span>
+                            Live DJ Performances
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🏋️</span>
+                            24-Hour Fitness Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍸</span>
+                            Rooftop Cocktail Bar
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💻</span>
+                            Business Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🐕</span>
+                            Pet-Friendly Services
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">📶</span>
+                            High-Speed WiFi
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portrait Firenze -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/WlgubzpaCoMcj5xDBfCcXJKFnxe/?preview_type=16" alt="Portrait Firenze">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Portrait Firenze</h2>
+                    <p class="hotel-location">On Ponte Vecchio, Arno River Views</p>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="rating-text">5-Star Boutique Hotel</span>
+                    </div>
+                    <div class="hotel-price">€4000<small>/night</small></div>
+                    <p class="hotel-description">
+                        The world's only luxury hotel located on the famous Ponte Vecchio, offering unique panoramic views of the Arno River.
+                        Portrait Firenze is meticulously crafted by the Ferragamo family, representing the highest standard of Italian luxury.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🌅</span>
+                            River View Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💎</span>
+                            Personal Shopping
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🎨</span>
+                            Art Tour Services
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍷</span>
+                            Private Sommelier
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚗</span>
+                            Ferragamo Car Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">👗</span>
+                            Fashion Styling
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Torre Guelfa -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/C367bZdlpov1q5xzMKGcyAVon7d/?preview_type=16" alt="Hotel Torre Guelfa">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Hotel Torre Guelfa</h2>
+                    <p class="hotel-location">Historic City Center, Medieval Tower</p>
+                    <div class="hotel-rating">
+                        <span class="stars">⭐⭐⭐⭐</span>
+                        <span class="rating-text">4-Star Boutique Hotel</span>
+                    </div>
+                    <div class="hotel-price">€500<small>/night</small></div>
+                    <p class="hotel-description">
+                        A boutique hotel housed in a 13th-century tower, maintaining the perfect balance between medieval charm and modern comfort.
+                        From the tower top, guests can overlook the entire historic Florence, making it an ideal choice for experiencing historical ambiance.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🏰</span>
+                            Historic Tower Rooms
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🌆</span>
+                            Panoramic City Terrace
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">📚</span>
+                            Classical Library
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍳</span>
+                            Tuscan Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚶</span>
+                            Walking Tour Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">📶</span>
+                            Free WiFi
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for better user experience
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth hover effects
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            
+            hotelCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply animation to hotel cards
+            hotelCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principe del mare - Restaurant Reservation</title>
+    <style>
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #4A2C2A;
+    background-color: #FDF5E6;
+}
+
+/* Header section */
+.page-header {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
+}
+
+.restaurant-name {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    color: #FFF8DC;
+}
+
+/* Main content area */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Content grid layout */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Information cards */
+.info-card {
+    background: #F5E6D3;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #DEB887;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(139, 69, 19, 0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #CD853F;
+}
+
+.card-header i {
+    color: #8B4513;
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.card-header h2 {
+    color: #654321;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Information items */
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.info-item i {
+    color: #8B4513;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    margin-top: 5px;
+    min-width: 20px;
+}
+
+.info-content strong {
+    display: block;
+    color: #654321;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.info-content p {
+    color: #5D4E37;
+    line-height: 1.5;
+}
+
+/* Time slots */
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.time-label {
+    font-weight: 600;
+    color: #654321;
+}
+
+.time-value {
+    color: #CD853F;
+    font-weight: 500;
+}
+
+/* Reservation section */
+.reservation-section {
+    background: #F5E6D3;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+    border: 1px solid #DEB887;
+}
+
+.reservation-form {
+    margin-top: 20px;
+}
+
+/* Date and time selection area */
+.datetime-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.date-selection label,
+.time-selection label {
+    display: block;
+    font-weight: 600;
+    color: #654321;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* Calendar styles */
+.calendar-container {
+    background: #FAEBD7;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
+    border: 1px solid #DEB887;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-nav {
+    background: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-nav:hover {
+    background: #A0522D;
+}
+
+.current-month {
+    font-weight: 600;
+    color: #654321;
+    font-size: 1.2rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-weight: 600;
+    color: #654321;
+    padding: 10px 5px;
+    background: #E6D3C1;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.calendar-day {
+    text-align: center;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.calendar-day:hover {
+    background: #CD853F;
+    color: white;
+}
+
+.calendar-day.selected {
+    background: #8B4513;
+    color: white;
+}
+
+.calendar-day.other-month {
+    color: #ccc;
+}
+
+.calendar-day.today {
+    border: 2px solid transparent;
+}
+
+/* Meal time selection */
+.meal-section {
+    margin-bottom: 25px;
+    background: #FAEBD7;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
+    border: 1px solid #DEB887;
+}
+
+.meal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #654321;
+    font-size: 1.1rem;
+}
+
+.meal-header i {
+    color: #8B4513;
+    margin-right: 8px;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.time-slot-btn {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    text-align: center;
+}
+
+.time-slot-btn:hover {
+    border-color: #8B4513;
+    color: #8B4513;
+}
+
+.time-slot-btn.selected {
+    background: #8B4513;
+    color: white;
+    border-color: #8B4513;
+}
+
+.time-slot-btn.booked {
+    background: #f8f9fa;
+    color: #6c757d;
+    border-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.8;
+    position: relative;
+}
+
+.time-slot-btn.booked::after {
+    content: 'FULL';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.6rem;
+    background: #e9ecef;
+    color: #6c757d;
+    padding: 1px 3px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.time-slot-btn.booked:hover {
+    background: #f8f9fa;
+    color: #6c757d;
+    border-color: #e9ecef;
+    transform: none;
+}
+
+/* Guest information area */
+.guest-info-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #654321;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #CD853F;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Reservation button */
+.reservation-btn {
+    width: 100%;
+    background: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.reservation-btn:hover {
+    background: #A0522D;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.3);
+}
+
+.reservation-btn i {
+    font-size: 1.3rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .datetime-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .guest-info-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .restaurant-name {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    
+    
+    .main-content {
+        padding: 20px 15px;
+    }
+    
+    .info-card,
+    .reservation-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .restaurant-name {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .calendar-grid {
+        gap: 3px;
+    }
+    
+    .calendar-day {
+        padding: 8px 3px;
+        font-size: 0.9rem;
+    }
+    
+    .time-slot-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation effects */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-card,
+.reservation-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #8B4513;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1 class="restaurant-name">PRINCIPE DEL MARE</h1>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Two Column Layout -->
+        <div class="content-grid">
+            <!-- Left: Restaurant Information -->
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>Restaurant Information</h2>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="info-content">
+                        <strong>Address</strong>
+                        <p>Via del Mare, 123, 00100 Roma, Italia</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="info-content">
+                        <strong>Opening Hours</strong>
+                        <p>11:00 AM - 11:59 PM</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right: Policies & Requirements -->
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>Policies & Requirements</h2>
+                </div>
+
+
+                <div class="info-item">
+                    <i class="fas fa-star"></i>
+                    <div class="info-content">
+                        <strong>Dining Experience</strong>
+                        <p>Principe del mare offers authentic Mediterranean cuisine, focusing on fresh seafood and seasonal ingredients, presenting innovative culinary art in an elegant seaside setting.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-bell"></i>
+                    <div class="info-content">
+                        <strong>Special Requests</strong>
+                        <p>For dietary requirements, celebrations, or special seating needs, please contact us when making your reservation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-section">
+            <div class="card-header">
+                <i class="fas fa-utensils"></i>
+                <h2>Reserve a Table</h2>
+            </div>
+
+            <form class="reservation-form" id="reservationForm">
+                <!-- Date and Time Selection -->
+                <div class="datetime-section">
+                    <div class="date-selection">
+                        <label for="reservationDate">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="calendar-nav" id="prevMonth">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <span class="current-month" id="currentMonth">August 2026</span>
+                                <button type="button" class="calendar-nav" id="nextMonth">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="time-selection">
+                        <label>Select Time *</label>
+                        
+                        <!-- Lunch Time Slots -->
+                        <div class="meal-section">
+                            <div class="meal-header">
+                                <i class="fas fa-cog"></i>
+                                <span>Lunch</span>
+                            </div>
+                            <div class="time-slots">
+                                <button type="button" class="time-slot-btn" data-time="11:30">11:35 AM</button>
+                                <button type="button" class="time-slot-btn" data-time="12:00">12:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="12:30">12:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="13:00">1:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="13:30">1:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="14:00">2:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="14:30">2:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="15:00">3:00 PM</button>
+                            </div>
+                        </div>
+
+                        <!-- Dinner Time Slots -->
+                        <div class="meal-section">
+                            <div class="meal-header">
+                                <i class="fas fa-moon"></i>
+                                <span>Dinner</span>
+                            </div>
+                            <div class="time-slots">
+                                <button type="button" class="time-slot-btn" data-time="17:00">5:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="17:30">5:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="18:00">6:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="18:30">6:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="19:00">7:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="19:30">7:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="20:00">8:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="20:30">8:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="21:00">9:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="21:30">9:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="22:00">10:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="22:30">10:30 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="23:00">11:00 PM</button>
+                                <button type="button" class="time-slot-btn" data-time="23:30">11:30 PM</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="reservation-btn">
+                    <i class="fas fa-calendar-check"></i>
+                    Confirm Reservation
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+// Global variables
+let currentDate = new Date(2026, 7, 1); // August 1, 2026 (months start from 0)
+let selectedDate = null;
+let selectedTime = null;
+
+// Deterministic random function based on date
+function getDateBasedRandom(seed) {
+    // Simple linear congruential generator for deterministic randomness
+    const a = 1664525;
+    const c = 1013904223;
+    const m = Math.pow(2, 32);
+    return (a * seed + c) % m;
+}
+
+// Generate booked time slots for a specific date
+function getBookedTimeSlots(date) {
+    // Create a seed based on the date
+    const dateString = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    let seed = 0;
+    for (let i = 0; i < dateString.length; i++) {
+        seed += dateString.charCodeAt(i);
+    }
+    
+    // Available time slots
+    const allTimeSlots = [
+        '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+        '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+        '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
+        '20:00', '20:30', '21:00', '21:30', '22:00', '22:30'
+    ];
+    
+    // Generate random number of booked slots (2-6 slots per day)
+    const randomNum = getDateBasedRandom(seed);
+    const numBookedSlots = 2 + (randomNum % 5); // 2-6 booked slots
+    
+    const bookedSlots = [];
+    let currentSeed = seed;
+    
+    // Select random slots to be booked
+    for (let i = 0; i < numBookedSlots; i++) {
+        currentSeed = getDateBasedRandom(currentSeed);
+        const slotIndex = currentSeed % allTimeSlots.length;
+        const selectedSlot = allTimeSlots[slotIndex];
+        
+        // Avoid duplicates
+        if (!bookedSlots.includes(selectedSlot)) {
+            bookedSlots.push(selectedSlot);
+        } else {
+            // If duplicate, try next slot
+            const nextIndex = (slotIndex + 1) % allTimeSlots.length;
+            if (!bookedSlots.includes(allTimeSlots[nextIndex])) {
+                bookedSlots.push(allTimeSlots[nextIndex]);
+            }
+        }
+    }
+    
+    return bookedSlots.sort();
+}
+
+// DOM elements
+const calendarGrid = document.getElementById('calendarGrid');
+const currentMonthElement = document.getElementById('currentMonth');
+const prevMonthBtn = document.getElementById('prevMonth');
+const nextMonthBtn = document.getElementById('nextMonth');
+const timeSlotButtons = document.querySelectorAll('.time-slot-btn');
+const reservationForm = document.getElementById('reservationForm');
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCalendar();
+    initializeTimeSlots();
+    initializeForm();
+    
+    // Initialize time slots for today if no date is selected
+    if (!selectedDate) {
+        const today = new Date(2026, 7, 1); // August 1, 2026 as template
+        updateTimeSlotsForDate(today);
+    }
+});
+
+// Calendar functionality
+function initializeCalendar() {
+    updateCalendar();
+    
+    prevMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        updateCalendar();
+    });
+    
+    nextMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        updateCalendar();
+    });
+}
+
+function updateCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    // Update month display
+    currentMonthElement.textContent = `${month + 1}/${year}`;
+    
+    // Clear calendar grid
+    calendarGrid.innerHTML = '';
+    
+    // Add day headers
+    const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayHeaders.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'calendar-day-header';
+        dayHeader.textContent = day;
+        calendarGrid.appendChild(dayHeader);
+    });
+    
+    // Get first and last day of the month
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const firstDayOfWeek = firstDay.getDay();
+    const daysInMonth = lastDay.getDate();
+    
+    // Add previous month dates (grayed out)
+    const prevMonth = new Date(year, month - 1, 0);
+    for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+        const dayElement = createDayElement(prevMonth.getDate() - i, true);
+        calendarGrid.appendChild(dayElement);
+    }
+    
+    // Add current month dates
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = createDayElement(day, false);
+        calendarGrid.appendChild(dayElement);
+    }
+    
+    // Add next month dates (fill to 42 cells)
+    const totalCells = calendarGrid.children.length;
+    const remainingCells = 42 - totalCells;
+    for (let day = 1; day <= remainingCells; day++) {
+        const dayElement = createDayElement(day, true);
+        calendarGrid.appendChild(dayElement);
+    }
+}
+
+function createDayElement(day, isOtherMonth) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+    dayElement.textContent = day;
+    
+    if (isOtherMonth) {
+        dayElement.classList.add('other-month');
+    } else {
+        // Check if it's today (using August 1, 2026 as template "today")
+        const templateToday = new Date(2026, 7, 1); // August 1, 2026
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth();
+        
+        if (day === templateToday.getDate() && 
+            currentYear === templateToday.getFullYear() && 
+            currentMonth === templateToday.getMonth()) {
+            dayElement.classList.add('today');
+        }
+        
+        // Add click event
+        dayElement.addEventListener('click', () => {
+            // Remove previously selected date
+            document.querySelectorAll('.calendar-day.selected').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Select current date
+            dayElement.classList.add('selected');
+            selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+            
+            // Update hidden date field in form
+            updateSelectedDate();
+            
+            // Update time slots for the selected date
+            updateTimeSlotsForDate(selectedDate);
+        });
+    }
+    
+    return dayElement;
+}
+
+function updateSelectedDate() {
+    if (selectedDate) {
+        const dateInput = document.getElementById('reservationDate');
+        if (dateInput) {
+            dateInput.value = selectedDate.toISOString().split('T')[0];
+        }
+    }
+}
+
+// Time selection functionality
+function initializeTimeSlots() {
+    timeSlotButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Don't allow selection of booked slots
+            if (button.classList.contains('booked')) {
+                return;
+            }
+            
+            // Remove previously selected time
+            timeSlotButtons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Select current time
+            button.classList.add('selected');
+            selectedTime = button.dataset.time;
+            
+            // Update hidden time field in form
+            updateSelectedTime();
+        });
+    });
+}
+
+// Update time slots based on selected date
+function updateTimeSlotsForDate(date) {
+    if (!date) return;
+    
+    const bookedSlots = getBookedTimeSlots(date);
+    
+    timeSlotButtons.forEach(button => {
+        const timeSlot = button.dataset.time;
+        
+        // Remove previous states
+        button.classList.remove('selected', 'booked');
+        
+        // Check if this slot is booked
+        if (bookedSlots.includes(timeSlot)) {
+            button.classList.add('booked');
+            button.disabled = true;
+        } else {
+            button.disabled = false;
+        }
+    });
+    
+    // Clear selected time if it's now booked
+    if (selectedTime && bookedSlots.includes(selectedTime)) {
+        selectedTime = null;
+        updateSelectedTime();
+    }
+}
+
+function updateSelectedTime() {
+    if (selectedTime) {
+        const timeInput = document.getElementById('reservationTime');
+        if (timeInput) {
+            timeInput.value = selectedTime;
+        }
+    }
+}
+
+// Form functionality
+function initializeForm() {
+    // Add hidden date and time fields
+    addHiddenFields();
+    
+    // Form submission handling
+    reservationForm.addEventListener('submit', handleFormSubmit);
+    
+    // Form validation
+    addFormValidation();
+}
+
+function addHiddenFields() {
+    // Add hidden date field
+    const dateInput = document.createElement('input');
+    dateInput.type = 'hidden';
+    dateInput.id = 'reservationDate';
+    dateInput.name = 'reservationDate';
+    reservationForm.appendChild(dateInput);
+    
+    // Add hidden time field
+    const timeInput = document.createElement('input');
+    timeInput.type = 'hidden';
+    timeInput.id = 'reservationTime';
+    timeInput.name = 'reservationTime';
+    reservationForm.appendChild(timeInput);
+}
+
+function addFormValidation() {
+    const requiredFields = reservationForm.querySelectorAll('[required]');
+    
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', validateField);
+        field.addEventListener('input', clearFieldError);
+    });
+}
+
+function validateField(event) {
+    const field = event.target;
+    const value = field.value.trim();
+    
+    // Remove previous error styles
+    field.classList.remove('error');
+    
+    if (!value) {
+        showFieldError(field, 'This field is required');
+        return false;
+    }
+    
+    // Email validation
+    if (field.type === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            showFieldError(field, 'Please enter a valid email address');
+            return false;
+        }
+    }
+    
+    // Phone number validation
+    if (field.type === 'tel' && value) {
+        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+        if (!phoneRegex.test(value) || value.length < 8) {
+            showFieldError(field, 'Please enter a valid phone number');
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+function showFieldError(field, message) {
+    field.classList.add('error');
+    
+    // Remove previous error message
+    const existingError = field.parentNode.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+    
+    // Add error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.style.color = '#e74c3c';
+    errorDiv.style.fontSize = '0.9rem';
+    errorDiv.style.marginTop = '5px';
+    field.parentNode.appendChild(errorDiv);
+}
+
+function clearFieldError(event) {
+    const field = event.target;
+    field.classList.remove('error');
+    
+    const errorMessage = field.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.remove();
+    }
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    // Validate date and time selection
+    if (!selectedDate) {
+        alert('Please select a reservation date');
+        return;
+    }
+    
+    if (!selectedTime) {
+        alert('Please select a reservation time');
+        return;
+    }
+    
+    // Validate all required fields
+    const requiredFields = reservationForm.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        if (!validateField({ target: field })) {
+            isValid = false;
+        }
+    });
+    
+    if (!isValid) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    // Show loading state
+    showLoadingState();
+    
+    // Simulate submission process
+    setTimeout(() => {
+        hideLoadingState();
+        showSuccessMessage();
+        resetForm();
+    }, 2000);
+}
+
+function showLoadingState() {
+    const submitBtn = reservationForm.querySelector('.reservation-btn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    submitBtn.classList.add('loading');
+}
+
+function hideLoadingState() {
+    const submitBtn = reservationForm.querySelector('.reservation-btn');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Reservation';
+    submitBtn.classList.remove('loading');
+}
+
+function showSuccessMessage() {
+    // Create success message modal
+    const modal = document.createElement('div');
+    modal.className = 'success-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h3>Reservation Successful!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Your reservation has been successfully submitted. We will confirm the reservation details with you via email or phone within 24 hours.</p>
+                <div class="booking-details">
+                    <h4>Reservation Details:</h4>
+                    <p><strong>Restaurant:</strong>Principe del mare</p>
+                    <p><strong>Date:</strong>${formatDate(selectedDate)}</p>
+                    <p><strong>Time:</strong>${selectedTime}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn" onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    `;
+    
+    // Add modal styles
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    `;
+    
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: modalSlideIn 0.3s ease-out;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .modal-header i {
+            color: #8B4513;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .modal-header h3 {
+            color: #654321;
+            margin: 0;
+        }
+        .booking-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .booking-details h4 {
+            color: #654321;
+            margin-bottom: 10px;
+        }
+        .booking-details p {
+            margin: 5px 0;
+            color: #5D4E37;
+        }
+        .modal-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .modal-btn {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .modal-btn:hover {
+            background: #A0522D;
+        }
+    `;
+    
+    document.head.appendChild(style);
+    document.body.appendChild(modal);
+}
+
+function closeModal() {
+    const modal = document.querySelector('.success-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function resetForm() {
+    // Reset form
+    reservationForm.reset();
+    
+    // Reset selection state
+    selectedDate = null;
+    selectedTime = null;
+    
+    // Clear calendar selection
+    document.querySelectorAll('.calendar-day.selected').forEach(el => {
+        el.classList.remove('selected');
+    });
+    
+    // Clear time selection and reset all time slots
+    timeSlotButtons.forEach(btn => {
+        btn.classList.remove('selected', 'booked');
+        btn.disabled = false;
+    });
+    
+    // Clear error messages
+    document.querySelectorAll('.error-message').forEach(el => {
+        el.remove();
+    });
+    
+    document.querySelectorAll('.error').forEach(el => {
+        el.classList.remove('error');
+    });
+}
+
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return `${month}/${day}/${year}`;
+}
+
+// Add some interactive effects
+document.addEventListener('DOMContentLoaded', function() {
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.info-card, .reservation-section');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Add click effects to buttons
+    const buttons = document.querySelectorAll('button, .time-slot-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+});
+
+// Add keyboard navigation support
+document.addEventListener('keydown', function(event) {
+    // ESC key to close modal
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Add form auto-save functionality (optional)
+function autoSaveForm() {
+    const formData = new FormData(reservationForm);
+    const data = {};
+    
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    
+    if (selectedDate) {
+        data.selectedDate = selectedDate.toISOString();
+    }
+    
+    if (selectedTime) {
+        data.selectedTime = selectedTime;
+    }
+    
+    localStorage.setItem('principeDelMareReservation', JSON.stringify(data));
+}
+
+function loadSavedForm() {
+    const savedData = localStorage.getItem('principeDelMareReservation');
+    if (savedData) {
+        try {
+            const data = JSON.parse(savedData);
+            
+            // Restore form data
+            Object.keys(data).forEach(key => {
+                const field = reservationForm.querySelector(`[name="${key}"]`);
+                if (field && key !== 'selectedDate' && key !== 'selectedTime') {
+                    field.value = data[key];
+                }
+            });
+            
+            // Restore date selection
+            if (data.selectedDate) {
+                const date = new Date(data.selectedDate);
+                selectedDate = date;
+                
+                // Update time slots for the restored date
+                updateTimeSlotsForDate(selectedDate);
+                
+                // Restore calendar selection
+                const dayElement = document.querySelector(`.calendar-day:not(.other-month)`);
+                if (dayElement && dayElement.textContent == date.getDate()) {
+                    dayElement.classList.add('selected');
+                }
+            }
+            
+            // Restore time selection (only if it's not booked)
+            if (data.selectedTime && selectedDate) {
+                const bookedSlots = getBookedTimeSlots(selectedDate);
+                if (!bookedSlots.includes(data.selectedTime)) {
+                    selectedTime = data.selectedTime;
+                    const timeBtn = document.querySelector(`[data-time="${data.selectedTime}"]`);
+                    if (timeBtn && !timeBtn.classList.contains('booked')) {
+                        timeBtn.classList.add('selected');
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error restoring saved form data:', error);
+        }
+    }
+}
+
+// Restore saved data when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    loadSavedForm();
+    
+    // Periodically auto-save form
+    setInterval(autoSaveForm, 30000); // Save every 30 seconds
+});
+    </script>
+</body>
+</html>

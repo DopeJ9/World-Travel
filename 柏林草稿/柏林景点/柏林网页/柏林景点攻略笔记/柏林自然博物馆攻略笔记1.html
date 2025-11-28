@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berlin Natural History Museum Travel Guide: 2-Hour Express Tour</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 15px;
+            color: #333;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+
+        .header {
+            background: #f5f5dc;
+            color: #8b7355;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1em;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            font-size: 0.9em;
+            font-weight: 400;
+        }
+
+        .stat-item span:first-child {
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .section h2 {
+            color: #8b7355;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .highlight-box {
+            background: #f5f5dc;
+            color: #8b7355;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #d4af37;
+        }
+
+        .highlight-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+
+        .route-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .route-steps li {
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 45px;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .route-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #d4af37;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+            font-size: 0.8em;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 18px;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            border-top: 3px solid #d4af37;
+        }
+
+        .tip-card h4 {
+            color: #8b7355;
+            margin-bottom: 10px;
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        .info-box {
+            background: #f5f5dc;
+            color: #8b7355;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 15px 0;
+            text-align: center;
+            border: 1px solid #d4af37;
+        }
+
+        .info-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+
+        .price-highlight {
+            font-size: 1.8em;
+            font-weight: 300;
+            margin: 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .time-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .time-item {
+            background: rgba(255,255,255,0.3);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 5px;
+            min-width: 180px;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        .footer {
+            background: #f5f5dc;
+            color: #8b7355;
+            text-align: center;
+            padding: 18px;
+            font-size: 0.8em;
+            font-weight: 300;
+        }
+
+        .target-audience {
+            background: #e8f4fd;
+            color: #1e3a8a;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #3b82f6;
+        }
+
+        .target-audience h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #1e3a8a;
+        }
+
+        .duration-box {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #22c55e;
+        }
+
+        .duration-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #166534;
+        }
+
+        .experience-section {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #f59e0b;
+        }
+
+        .experience-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #92400e;
+        }
+
+        .bonus-section {
+            background: #fce7f3;
+            color: #be185d;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #ec4899;
+        }
+
+        .bonus-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #be185d;
+        }
+
+        .overall-feeling {
+            background: #f3e8ff;
+            color: #7c3aed;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #a855f7;
+        }
+
+        .overall-feeling h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #7c3aed;
+        }
+
+        .opening-hours {
+            background: #fff7ed;
+            color: #ea580c;
+            padding: 18px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border: 1px solid #fb923c;
+        }
+
+        .opening-hours h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #ea580c;
+        }
+
+        .opening-hours ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .opening-hours li {
+            margin-bottom: 5px;
+        }
+
+        .closed-day {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        /* Dinosaur-themed animations and effects */
+        .dino-animation {
+            animation: dinoMove 3s ease-in-out infinite;
+        }
+
+        @keyframes dinoMove {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .fossil-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .fossil-glow:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .dino-footprint {
+            position: relative;
+        }
+
+        .dino-footprint::before {
+            content: "🦕";
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+            animation: dinoMove 2s ease-in-out infinite;
+        }
+
+        .museum-entrance {
+            background: linear-gradient(135deg, #f5f5dc 0%, #e8d5b7 100%);
+            border: 2px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .museum-entrance::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .specimen-jar {
+            background: linear-gradient(45deg, #f0f8ff 0%, #e6f3ff 100%);
+            border: 1px solid #87ceeb;
+            position: relative;
+        }
+
+        .specimen-jar::after {
+            content: "🧪";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.1em;
+            opacity: 0.7;
+        }
+
+        .dino-skeleton {
+            background: linear-gradient(135deg, #fff8dc 0%, #f5deb3 100%);
+            border-left: 4px solid #daa520;
+            position: relative;
+        }
+
+        .dino-skeleton::before {
+            content: "🦴";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.3em;
+            opacity: 0.6;
+        }
+
+        .evolution-path {
+            background: linear-gradient(90deg, #98fb98 0%, #90ee90 50%, #87ceeb 100%);
+            border: 1px solid #32cd32;
+            position: relative;
+        }
+
+        .evolution-path::before {
+            content: "🦅";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.1em;
+            animation: fly 3s ease-in-out infinite;
+        }
+
+        @keyframes fly {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            25% { transform: translateX(5px) translateY(-3px); }
+            50% { transform: translateX(0px) translateY(-5px); }
+            75% { transform: translateX(-5px) translateY(-3px); }
+        }
+
+        .playground-fun {
+            background: linear-gradient(45deg, #ffb6c1 0%, #ffc0cb 100%);
+            border: 1px solid #ff69b4;
+            position: relative;
+        }
+
+        .playground-fun::before {
+            content: "🎪";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .pulse-effect {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .fossil-texture {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(139, 115, 85, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 115, 85, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(139, 115, 85, 0.1) 0%, transparent 50%);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .time-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-stats {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                padding: 6px 10px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦕 Berlin Natural History Museum Guide 1</h1>
+            <p class="subtitle">Berlin Natural History Museum · Regular Visitors · Express Tour</p>
+            
+            <div class="social-stats">
+                <div class="stat-item">
+                    <span>👍</span>
+                    <span>1.2K</span>
+                </div>
+                <div class="stat-item">
+                    <span>⭐</span>
+                    <span>980</span>
+                </div>
+                <div class="stat-item">
+                    <span>💬</span>
+                    <span>245</span>
+                </div>
+                <div class="stat-item">
+                    <span>📤</span>
+                    <span>420</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="target-audience">
+                <h3>🎯 Target Audience</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Families passing through Berlin on independent travel</li>
+                    <li>Parents looking to spend half a day with kids</li>
+                    <li>Visitors who want to see dinosaurs and star exhibits</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>✨ Tour Route & Experience</h2>
+                <ol class="route-steps">
+                    <li class="dino-skeleton fossil-glow dino-footprint"><strong>Entrance Hall: Diplodocus Skeleton</strong><br>
+                        Right at the entrance, you'll see the huge Diplodocus fossil, the largest preserved in Europe.<br>
+                        Kids will look up and go "Wow!" instantly amazed.</li>
+                    <li class="dino-skeleton fossil-glow"><strong>Dinosaur Exhibition Area</strong><br>
+                        See various dinosaur skulls, kids can take photos while imagining themselves in "Jurassic Park".<br>
+                        No need to examine every fossil in detail, just focus on the highlights.</li>
+                    <li class="evolution-path"><strong>Archaeopteryx Fossil</strong><br>
+                        This is one of the world's most famous fossils, perfect for telling kids the story of "dinosaur to bird evolution".</li>
+                    <li class="specimen-jar"><strong>Glass Jar Specimen Collection</strong><br>
+                        Over 270,000 jars of preserved specimens, strange and mysterious.<br>
+                        Kids will find it fascinating, adults might find it a bit "creepy".</li>
+                    <li class="evolution-path"><strong>Quick Bird Exhibition Area (if time permits)</strong><br>
+                        Claims to cover 90% of the world's birds, kids can learn about many new bird species.</li>
+                </ol>
+            </div>
+
+            <div class="bonus-section playground-fun">
+                <h3>🎁 Bonus Recommendation</h3>
+                <p><strong>Children's Playground Disabledpark:</strong> Right next to the museum, with slides, sandpits, and unique equipment. Perfect for kids to burn off energy after seeing the dinosaurs!</p>
+            </div>
+
+            <div class="overall-feeling fossil-texture">
+                <h3>🌟 Overall Experience</h3>
+                <p>The museum is not large, smaller than those in London or Vienna, but the star exhibits are impressive enough.<br>
+                The route is compact, perfect for 2 hours with kids - educational without being exhausting.</p>
+            </div>
+
+            <div class="section">
+                <h2>⚠️ Practical Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card dino-skeleton fossil-glow">
+                        <h4>👶 Family Tips</h4>
+                        <p>2 hours is perfect, won't tire out the kids. The Diplodocus skeleton is a must-see highlight!</p>
+                    </div>
+                    <div class="tip-card specimen-jar">
+                        <h4>📸 Photo Suggestions</h4>
+                        <p>Diplodocus skeleton, Archaeopteryx fossil, and glass jar collection are excellent photo spots.</p>
+                    </div>
+                    <div class="tip-card evolution-path">
+                        <h4>🎒 Tour Order</h4>
+                        <p>Follow the recommended route, focus on star exhibits, others can be quickly browsed.</p>
+                    </div>
+                    <div class="tip-card playground-fun">
+                        <h4>🎪 Follow-up Plans</h4>
+                        <p>After the visit, head to the nearby children's playground to let the kids burn off energy.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p>🌟 Special Forces Travel Guide - Making every trip efficient and amazing!</p>
+        </div>
+    </div>
+</body>
+</html>

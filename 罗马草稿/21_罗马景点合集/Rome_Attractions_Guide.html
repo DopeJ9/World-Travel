@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rome Must-Visit Attractions Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .page-title {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #d35400, #e67e22);
+            border-radius: 10px;
+            color: white;
+            font-size: 2.5em;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .attraction {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .attraction:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .attraction::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+        }
+        /* Ancient Roman Sites - Golden */
+        .attraction.ancient::before {
+            background: linear-gradient(to bottom, #d4af37, #f1c40f);
+        }
+        .attraction.ancient:hover {
+            border-color: #d4af37;
+        }
+        .attraction.ancient .attraction-number {
+            background: #d4af37;
+        }
+        .attraction.ancient .attraction-type i {
+            color: #d4af37;
+        }
+        .attraction.ancient .booking-link {
+            background: linear-gradient(45deg, #d4af37, #f1c40f);
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+        }
+        .attraction.ancient .booking-link:hover {
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Churches - Deep Blue */
+        .attraction.church::before {
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+        }
+        .attraction.church:hover {
+            border-color: #2c3e50;
+        }
+        .attraction.church .attraction-number {
+            background: #2c3e50;
+        }
+        .attraction.church .attraction-type i {
+            color: #2c3e50;
+        }
+        .attraction.church .booking-link {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
+        }
+        .attraction.church .booking-link:hover {
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
+        }
+        
+        /* Piazzas - Rose */
+        .attraction.piazza::before {
+            background: linear-gradient(to bottom, #e17055, #fd79a8);
+        }
+        .attraction.piazza:hover {
+            border-color: #e17055;
+        }
+        .attraction.piazza .attraction-number {
+            background: #e17055;
+        }
+        .attraction.piazza .attraction-type i {
+            color: #e17055;
+        }
+        .attraction.piazza .booking-link {
+            background: linear-gradient(45deg, #e17055, #fd79a8);
+            box-shadow: 0 2px 8px rgba(225, 112, 85, 0.3);
+        }
+        .attraction.piazza .booking-link:hover {
+            box-shadow: 0 4px 12px rgba(225, 112, 85, 0.4);
+        }
+        
+        /* Entertainment - Orange */
+        .attraction.entertainment::before {
+            background: linear-gradient(to bottom, #f39c12, #e67e22);
+        }
+        .attraction.entertainment:hover {
+            border-color: #f39c12;
+        }
+        .attraction.entertainment .attraction-number {
+            background: #f39c12;
+        }
+        .attraction.entertainment .attraction-type i {
+            color: #f39c12;
+        }
+        .attraction.entertainment .booking-link {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+        }
+        .attraction.entertainment .booking-link:hover {
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+        }
+        
+        /* Vatican - Purple */
+        .attraction.vatican::before {
+            background: linear-gradient(to bottom, #6c5ce7, #a29bfe);
+        }
+        .attraction.vatican:hover {
+            border-color: #6c5ce7;
+        }
+        .attraction.vatican .attraction-number {
+            background: #6c5ce7;
+        }
+        .attraction.vatican .attraction-type i {
+            color: #6c5ce7;
+        }
+        .attraction.vatican .booking-link {
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
+        }
+        .attraction.vatican .booking-link:hover {
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.4);
+        }
+        
+        .attraction-number {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .attraction h2 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 1.4em;
+            padding-right: 40px;
+            font-family: 'Playfair Display', serif;
+        }
+        .attraction-type {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            color: #666;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .attraction-type i {
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        .attraction-description {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        .booking-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+        .booking-link:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+        .booking-link i {
+            margin-right: 6px;
+        }
+        .attraction-full {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border: 2px solid #f39c12;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);
+        }
+        .attraction-full::before {
+            background: linear-gradient(to bottom, #f39c12, #e67e22, #d63031);
+            width: 6px;
+        }
+        @media (max-width: 768px) {
+            .attractions-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .attraction {
+                padding: 15px;
+            }
+            .page-title {
+                font-size: 2em;
+                padding: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-title">
+            Rome Must-Visit Attractions Guide
+        </div>
+        
+        <div class="attractions-grid">
+            <div class="attraction ancient">
+                <div class="attraction-number">1</div>
+                <h2>Colosseum</h2>
+                <div class="attraction-type"><i class="fas fa-monument"></i>Ancient Roman Site</div>
+                <div class="attraction-description">
+                    The iconic amphitheater that hosted gladiatorial contests and public spectacles. A symbol of Imperial Rome and one of the New Seven Wonders of the World.
+                </div>
+                <a href="A1_罗马斗兽场预订网页.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Tickets
+                </a>
+            </div>
+
+            <div class="attraction ancient">
+                <div class="attraction-number">2</div>
+                <h2>Roman Forum</h2>
+                <div class="attraction-type"><i class="fas fa-columns"></i>Ancient Roman Site</div>
+                <div class="attraction-description">
+                    The heart of ancient Rome's political, commercial and judicial life. Walk through the ruins where emperors once ruled and senators debated.
+                </div>
+                <a href="A2_古罗马广场预订网页.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Tickets
+                </a>
+            </div>
+
+            <div class="attraction ancient">
+                <div class="attraction-number">3</div>
+                <h2>Palatine Hill</h2>
+                <div class="attraction-type"><i class="fas fa-mountain"></i>Ancient Roman Site</div>
+                <div class="attraction-description">
+                    According to legend, the birthplace of Rome where Romulus and Remus were found. Home to imperial palaces with stunning views over the Forum.
+                </div>
+                <a href="A3_Palatine_Hill_Tickets.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Tickets
+                </a>
+            </div>
+
+            <div class="attraction piazza">
+                <div class="attraction-number">4</div>
+                <h2>Spanish Steps</h2>
+                <div class="attraction-type"><i class="fas fa-stairs"></i>Historic Square</div>
+                <div class="attraction-description">
+                    The famous Baroque stairway of 135 steps, built in the 18th century, connecting Piazza di Spagna with the Trinità dei Monti church.
+                </div>
+                <a href="B1_西班牙广场预订.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Visit
+                </a>
+            </div>
+
+            <div class="attraction church">
+                <div class="attraction-number">5</div>
+                <h2>Trinity Church</h2>
+                <div class="attraction-type"><i class="fas fa-church"></i>Sacred Site</div>
+                <div class="attraction-description">
+                    A Roman Catholic church at the top of the Spanish Steps, built in the late Renaissance period with French influence, known for its striking frescoes.
+                </div>
+                <a href="B2_天主教堂预订网页.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Visit
+                </a>
+            </div>
+
+            <div class="attraction ancient">
+                <div class="attraction-number">6</div>
+                <h2>Pantheon</h2>
+                <div class="attraction-type"><i class="fas fa-eye"></i>Ancient Temple</div>
+                <div class="attraction-description">
+                    The best-preserved Roman building, dedicated to all gods. Famous for its massive dome with an oculus opening to the sky.
+                </div>
+                <a href="C1万神殿预订网页.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Tickets
+                </a>
+            </div>
+
+            <div class="attraction entertainment">
+                <div class="attraction-number">7</div>
+                <h2>Rome Opera House</h2>
+                <div class="attraction-type"><i class="fas fa-masks-theater"></i>Cultural Venue</div>
+                <div class="attraction-description">
+                    Teatro dell’Opera di Roma, originally opened in 1880 as Teatro Costanzi, today the premier opera house of Rome with world-class performances.
+                </div>
+                <a href="罗马歌剧院预订网页.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Show
+                </a>
+            </div>
+
+            <div class="attraction vatican">
+                <div class="attraction-number">8</div>
+                <h2>Vatican Museums</h2>
+                <div class="attraction-type"><i class="fas fa-university"></i>Vatican Site</div>
+                <div class="attraction-description">
+                    Explore one of the world's greatest art collections, including the Sistine Chapel with Michelangelo's masterpieces. Home to priceless Renaissance and ancient artifacts.
+                </div>
+                <a href="D1梵蒂冈博物馆预订网页.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Tickets
+                </a>
+            </div>
+
+            <div class="attraction vatican">
+                <div class="attraction-number">9</div>
+                <h2>Saint Peter's Basilica</h2>
+                <div class="attraction-type"><i class="fas fa-church"></i>Vatican Site</div>
+                <div class="attraction-description">
+                    The heart of Christianity and a universal symbol of spirituality. Visit the magnificent basilica and optionally climb to Michelangelo's dome for breathtaking views.
+                </div>
+                <a href="D2圣彼得堡大教堂.html" class="booking-link">
+                    <i class="fas fa-ticket-alt"></i>Book Visit
+                </a>
+            </div>
+
+        </div>
+
+        <div class="page-title" style="margin-top: 40px; font-size: 2em; background: linear-gradient(45deg, #27ae60, #2ecc71);">
+            Attraction Guides & Tips
+        </div>
+
+        <div class="attractions-grid">
+            <div class="attraction ancient">
+                <div class="attraction-number">G1</div>
+                <h2>Colosseum Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    Comprehensive guide to visiting the Colosseum including best times, ticket options, and what to expect during your visit.
+                </div>
+                <a href="../22_罗马景点攻略笔记/罗马斗兽场攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i> Guide 1
+                </a>
+            </div>
+
+            <div class="attraction ancient">
+                <div class="attraction-number">G2</div>
+                <h2>Pantheon Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    Expert tips for visiting the Pantheon, including historical context and the best photography spots.
+                </div>
+                <a href="../22_罗马景点攻略笔记/万神殿攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 1
+                </a>
+                <a href="../22_罗马景点攻略笔记/万神殿攻略笔记2.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 2
+                </a>
+            </div>
+
+            <div class="attraction church">
+                <div class="attraction-number">G3</div>
+                <h2>Trinity Church Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    Detailed guide to Trinità dei Monti church, including its art, history, and significance in Roman culture.
+                </div>
+                <a href="../22_罗马景点攻略笔记/天主三一教堂攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i> Guide 1
+                </a>
+            </div>
+
+            <div class="attraction entertainment">
+                <div class="attraction-number">G4</div>
+                <h2>Roman Theater Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    Explore Rome's ancient theaters and modern performance venues with our comprehensive cultural guide.
+                </div>
+                <a href="../22_罗马景点攻略笔记/罗马剧场攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 1
+                </a>
+                <a href="../22_罗马景点攻略笔记/罗马剧场攻略笔记2.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 2
+                </a>
+            </div>
+
+            <div class="attraction piazza">
+                <div class="attraction-number">G5</div>
+                <h2>Spanish Steps Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    Complete guide to visiting the iconic Spanish Steps, including best photo spots and nearby attractions.
+                </div>
+                <a href="../22_罗马景点攻略笔记/西班牙广场攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 1
+                </a>
+                <a href="../22_罗马景点攻略笔记/西班牙广场攻略笔记2.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 2
+                </a>
+            </div>
+
+            <div class="attraction vatican">
+                <div class="attraction-number">G6</div>
+                <h2>Vatican Museums Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    Essential guide to navigating the Vatican Museums, including the Sistine Chapel and must-see masterpieces.
+                </div>
+                <a href="../22_罗马景点攻略笔记/梵蒂冈博物馆攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 1
+                </a>
+                <a href="../22_罗马景点攻略笔记/梵蒂冈博物馆攻略笔记2.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 2
+                </a>
+            </div>
+
+            <div class="attraction vatican">
+                <div class="attraction-number">G7</div>
+                <h2>Saint Peter's Basilica Guide</h2>
+                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
+                <div class="attraction-description">
+                    In-depth guide to Saint Peter's Basilica, including dome climbing tips and spiritual significance.
+                </div>
+                <a href="../22_罗马景点攻略笔记/圣彼得堡大教堂攻略笔记1.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 1
+                </a>
+                <a href="../22_罗马景点攻略笔记/圣彼得堡大教堂攻略笔记2.html" class="booking-link">
+                    <i class="fas fa-map"></i>Guide 2
+                </a>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathedral of Florence - Book Your Visit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/YUBdbngYmo8BuCxXZh3c48ubn9g/?preview_type=16');
+            background-size: cover;
+            background-position: center;
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .booking-section {
+            background: #f5f5dc;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: -5rem auto 2rem;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            color: #8b4513;
+        }
+
+        .section-title i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .opening-hours {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .hours-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hours-card h3 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        .hours-card h3 i {
+            margin-right: 0.5rem;
+            color: #d4af37;
+        }
+
+        .free-entry {
+            background: #101010;
+            color: rgba(255, 255, 255, 0.93);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .booking-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .date-selection, .pass-selection {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .calendar {
+            margin-top: 0.8rem;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .calendar-nav {
+            background: #d4af37;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.2rem;
+            max-width: 320px;
+        }
+
+        .calendar-day {
+            padding: 0.4rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .calendar-day:hover {
+            background: #f0f0f0;
+        }
+
+        .calendar-day.selected {
+            background: #8b4513;
+            color: white;
+        }
+
+        .calendar-day.other-month {
+            color: #ccc;
+        }
+
+        .pass-options {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .pass-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f5f5dc;
+            position: relative;
+        }
+
+        .pass-card:hover {
+            border-color: #d4af37;
+        }
+
+        .pass-card.selected {
+            border-color: #8b4513;
+            background: #f5f5dc;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+        }
+
+        .pass-card h3 {
+            color: #8b4513;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .pass-price {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #8b4513;
+        }
+
+        .pass-includes {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .pass-includes:last-child {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: #8b4513;
+        }
+
+        .pass-language {
+            font-size: 0.85rem;
+            color: #8b4513;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .date-time-container {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .time-slots-container {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .time-slots-title {
+            color: #8b4513;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .time-slot-btn {
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .time-slot-btn:hover {
+            background: #d4af37;
+            color: white;
+            border-color: #8b4513;
+        }
+
+        .time-slot-btn.selected {
+            background: #8b4513;
+            color: white;
+            border-color: #d4af37;
+        }
+
+        .time-slots-note {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .important-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #856404;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .guided-tours {
+            display: block;
+            margin-bottom: 0;
+        }
+
+        .tour-options {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto auto;
+            gap: 1rem;
+        }
+
+        .tour-options h3 {
+            grid-column: 1 / -1;
+            margin-bottom: 1rem;
+        }
+
+        .tour-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tour-card h4 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .time-slot {
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            background: #d4af37;
+            color: white;
+        }
+
+        .time-slot.selected {
+            background: #8b4513;
+            color: white;
+        }
+
+        .time-note {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            font-style: italic;
+        }
+
+        .time-slot-separator {
+            display: flex;
+            align-items: center;
+            color: #8b4513;
+            font-weight: bold;
+            padding: 0 0.3rem;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .quantity-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quantity-info .age-range {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            background: #d4af37;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-display {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .price-display {
+            font-weight: bold;
+            color: #8b4513;
+            font-size: 1.1rem;
+            margin-left: 0.5rem;
+        }
+
+        .total-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .total-cost {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 1rem;
+        }
+
+        .book-now-btn {
+            background: #8b4513;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .book-now-btn:hover {
+            background: #654321;
+            transform: translateY(-2px);
+        }
+
+        .book-now-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .important-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .important-info h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .important-info ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .important-info li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .important-info li:before {
+            content: "•";
+            color: #856404;
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .opening-hours {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .hours-card {
+                min-height: 130px;
+                padding: 1rem;
+            }
+            
+            .hours-card h3 {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booking-content, .guided-tours {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .opening-hours {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, auto);
+                gap: 0.8rem;
+            }
+            
+            .hours-card {
+                min-height: 120px;
+                padding: 1rem;
+            }
+            
+            .hours-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .hours-card p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Cathedral of Florence</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Booking Section -->
+        <div class="booking-section">
+            <h2 class="section-title">
+                <i class="fas fa-ticket-alt"></i>
+                Opening Hours
+            </h2>
+
+            <!-- Opening Hours -->
+            <div class="opening-hours">
+                <div class="hours-card">
+                    <h3><i class="fas fa-dome"></i> Dome</h3>
+                    <p>Monday - Friday: 8:15 AM - 6:45 PM</p>
+                    <p>Saturday: 8:15 AM - 4:30 PM</p>
+                    <p>Sunday: 12:45 PM - 4:30 PM</p>
+                </div>
+                <div class="hours-card">
+                    <h3><i class="fas fa-bell"></i> Bell Tower</h3>
+                    <p style="margin-top: -0.3rem;">Daily: 8:15 AM - 6:45 PM (last slot)</p>
+                </div>
+                <div class="hours-card">
+                    <h3><i class="fas fa-church"></i> Cathedral</h3>
+                    <p>Monday - Saturday: 10:15 AM - 3:45 PM</p>
+                    <p>Sunday: Closed for religious celebrations</p>
+                    <span class="free-entry">Free-entry</span>
+                </div>
+                <div class="hours-card">
+                    <h3><i class="fas fa-water"></i> Baptistery</h3>
+                    <p>Daily: 8:30 AM - 7:30 PM</p>
+                    <p>First Sunday of month: 8:30 AM - 1:30 PM</p>
+                </div>
+                <div class="hours-card">
+                    <h3><i class="fas fa-university"></i> Museum</h3>
+                    <p>Daily: 8:30 AM - 7:00 PM</p>
+                    <p>First Tuesday of month: Closed</p>
+                </div>
+                <div class="hours-card">
+                    <h3><i class="fas fa-cross"></i> Santa Reparata</h3>
+                    <p>Monday - Saturday: 10:15 AM - 4:00 PM</p>
+                    <p>Sunday: 1:30 PM - 4:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Important Notice -->
+            <div class="important-notice" style="margin: 2rem 0;">
+                <i class="fas fa-exclamation-triangle" style="color: #dc3545; margin-right: 0.5rem;"></i>
+                <strong>IMPORTANT NOTICE:</strong> Please arrive 10 minutes before your chosen time.
+            </div>
+
+            <!-- Date and Pass Selection -->
+            <div class="booking-content">
+                <!-- Left Column: Date Selection and Guided Tours -->
+                <div class="left-column">
+                    <!-- Date Selection -->
+                    <div class="date-selection">
+                        <h3 class="section-title">
+                            <i class="fas fa-calendar"></i>
+                            Select Visit Date
+                        </h3>
+                        <div class="date-time-container">
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <button class="calendar-nav" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                                    <h4>August</h4>
+                                    <button class="calendar-nav" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-grid">
+                                    <div class="calendar-day">Sun</div>
+                                    <div class="calendar-day">Mon</div>
+                                    <div class="calendar-day">Tue</div>
+                                    <div class="calendar-day">Wed</div>
+                                    <div class="calendar-day">Thu</div>
+                                    <div class="calendar-day">Fri</div>
+                                    <div class="calendar-day">Sat</div>
+                                    <div class="calendar-day other-month">26</div>
+                                    <div class="calendar-day other-month">27</div>
+                                    <div class="calendar-day other-month">28</div>
+                                    <div class="calendar-day other-month">29</div>
+                                    <div class="calendar-day other-month">30</div>
+                                    <div class="calendar-day other-month">31</div>
+                                    <div class="calendar-day selected" onclick="selectDate(this, '1')">1</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '2')">2</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '3')">3</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '4')">4</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '5')">5</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '6')">6</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '7')">7</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '8')">8</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '9')">9</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '10')">10</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '11')">11</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '12')">12</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '13')">13</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '14')">14</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '15')">15</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '16')">16</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '17')">17</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '18')">18</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '19')">19</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '20')">20</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '21')">21</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '22')">22</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '23')">23</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '24')">24</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '25')">25</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '26')">26</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '27')">27</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '28')">28</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '29')">29</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '30')">30</div>
+                                    <div class="calendar-day" onclick="selectDate(this, '31')">31</div>
+                                    <div class="calendar-day other-month">1</div>
+                                    <div class="calendar-day other-month">2</div>
+                                    <div class="calendar-day other-month">3</div>
+                                    <div class="calendar-day other-month">4</div>
+                                    <div class="calendar-day other-month">5</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Time Slots -->
+                            <div class="time-slots-container" id="timeSlots" style="display: none;">
+                                <h4 class="time-slots-title">Available Times for August <span id="selectedDateDisplay">1</span></h4>
+                                <p class="time-slots-note">
+                                    <i class="fas fa-exclamation-triangle" style="color: #dc3545; margin-right: 0.5rem;"></i>
+                                    Time slots are mandatory for the <strong>Brunelleschi Pass</strong>, <strong>Giotto Pass</strong>, and <strong>Ghiberti Pass</strong>. Please note that the reserved time slot applies only to your first site entry; subsequent visits to the other sites included in the pass can be made freely within the pass validity period.
+                                </p>
+                                <p class="time-slots-note">
+                                    <i class="fas fa-info-circle" style="color: #8b4513; margin-right: 0.5rem;"></i>
+                                    <strong>Important Notice:</strong> The <strong>Brunelleschi Pass</strong>, <strong>Giotto Pass</strong>, and <strong>Ghiberti Pass</strong> are valid for 3 consecutive days. Each site included in the pass can be visited once during this period.
+                                </p>
+                                <div class="time-slots-grid" id="timeSlotsGrid">
+                                    <!-- Time slots will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guided Tours -->
+                    <div class="guided-tours">
+                        <div class="tour-options">
+                            <h3 class="section-title">
+                                <i class="fas fa-microphone"></i>
+                                Guided Tours
+                            </h3>
+                            <div style="grid-column: 1 / -1; background: #fef5e7; border-left: 4px solid #d4af37; padding: 1rem; border-radius: 6px; margin-bottom: 0.5rem;">
+                                <i class="fas fa-clock" style="color: #8b4513; margin-right: 0.5rem;"></i>
+                                <strong style="color: #8b4513;">Duration:</strong> Guided tours typically last approximately 1 hour.
+                            </div>
+                            <div class="tour-card">
+                                <h4>Dome - Guided Tour (Italian)</h4>
+                                <p>Monday to Saturday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">14:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">15:00</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Dome - Guided Tour (English)</h4>
+                                <p>Monday to Saturday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">11:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">12:30</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Cathedral Guided Tour (Italian)</h4>
+                                <p>Tuesday to Thursday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">16:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">16:45</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Cathedral Guided Tour (English)</h4>
+                                <p>Tuesday to Thursday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">14:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">14:45</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Baptistery's Restoration Site - Guided Tour (Italian)</h4>
+                                <p>Saturday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">15:30</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">16:30</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Baptistery's Restoration Site - Guided Tour (English)</h4>
+                                <p>Saturday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">11:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">12:00</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Baptistery & Museum - Guided Tour (Italian)</h4>
+                                <p>Monday, Thursday, Saturday, Sunday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">11:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">12:30</span>
+                                </div>
+                            </div>
+                            <div class="tour-card">
+                                <h4>Baptistery & Museum - Guided Tour (English)</h4>
+                                <p>Monday, Thursday, Saturday, Sunday</p>
+                                <p class="time-note">Available Start Times:</p>
+                                <div class="time-slots">
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">16:00</span>
+                                    <span class="time-slot-separator">or</span>
+                                    <span class="time-slot selected" onclick="selectTimeSlot(this)">16:30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Pass Selection and Pricing -->
+                <div class="pass-selection">
+                    <!-- Pass Selection -->
+                    <div>
+                        <h3 class="section-title">
+                            <i class="fas fa-ticket-alt"></i>
+                            Select Pass Type
+                        </h3>
+                        <div class="pass-options">
+                            <div class="pass-card selected" onclick="selectPass(this, 'brunelleschi', 30)">
+                                <h3>Brunelleschi Pass</h3>
+                                <div class="pass-price">€30 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Includes: Dome, Bell Tower, Museum, Baptistery, Santa Reparata</div>
+                                <div class="pass-includes">Ages 7-14: €12 | Ages 0-6: Free</div>
+                            </div>
+                            <div class="pass-card" onclick="selectPass(this, 'giotto', 20)">
+                                <h3>Giotto Pass</h3>
+                                <div class="pass-price">€20 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Includes: Bell Tower, Museum, Baptistery, Santa Reparata</div>
+                                <div class="pass-includes">Ages 7-14: €7 | Ages 0-6: Free</div>
+                            </div>
+                            <div class="pass-card" onclick="selectPass(this, 'ghiberti', 15)">
+                                <h3>Ghiberti Pass</h3>
+                                <div class="pass-price">€15 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Includes: Museum, Baptistery, Santa Reparata</div>
+                                <div class="pass-includes">Ages 7-14: €5 | Ages 0-6: Free</div>
+                            </div>
+                            <div class="pass-card" onclick="selectPass(this, 'dome-guided', 50)">
+                                <h3>Dome - Guided Tour</h3>
+                                <div class="pass-language">Language: Italian & English</div>
+                                <div class="pass-price">€50 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Reduced (7-14 years): €30 | Free (0-6 years): €0</div>
+                            </div>
+                            <div class="pass-card" onclick="selectPass(this, 'baptistery-restoration', 65)">
+                                <h3>Baptistery's Restoration Site - Guided Tour</h3>
+                                <div class="pass-language">Language: Italian & English</div>
+                                <div class="pass-price">€65 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Full: €65</div>
+                            </div>
+                            <div class="pass-card" onclick="selectPass(this, 'cathedral-guided', 17)">
+                                <h3>Cathedral - Guided Tour</h3>
+                                <div class="pass-language">Language: Italian & English</div>
+                                <div class="pass-price">€17 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Reduced (7-14 years): €7 | Free (0-6 years): €0</div>
+                            </div>
+                            <div class="pass-card" onclick="selectPass(this, 'baptistery-museum', 25)">
+                                <h3>Baptistery & Museum - Guided Tour</h3>
+                                <div class="pass-language">Language: Italian & English</div>
+                                <div class="pass-price">€25 <span style="font-size: 0.8rem; color: #666;">per person</span></div>
+                                <div class="pass-includes">Reduced (7-14 years): €15 | Free (0-6 years): €0</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Booking Button -->
+        <div class="total-section" style="text-align: center; padding: 2rem;">
+            <button class="book-now-btn" onclick="bookNow()">
+                <i class="fas fa-shopping-cart"></i>
+                Book Now
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPass = 'brunelleschi';
+        let selectedPassPrice = 30;
+        let quantities = { adult: 0, youth: 0, child: 0 };
+
+        function selectDate(element, dateValue) {
+            // Only process clicks on actual dates (not other-month days)
+            if (element.classList.contains('other-month')) {
+                return;
+            }
+            
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            // Update selected date display
+            document.getElementById('selectedDateDisplay').textContent = dateValue;
+            
+            // Show time slots container
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            timeSlotsContainer.style.display = 'block';
+            
+            // Generate and display time slots
+            generateTimeSlots();
+        }
+
+        function generateTimeSlots() {
+            const timeSlotsGrid = document.getElementById('timeSlotsGrid');
+            
+            // Define 12 time slots from 08:15 to 19:30
+            const timeSlots = [
+                '08:15', '08:30', '09:30', '10:15', 
+                '11:15', '12:00', '12:45', '13:30', 
+                '14:30', '15:30', '17:00', '18:00'
+            ];
+            
+            // Clear existing time slots
+            timeSlotsGrid.innerHTML = '';
+            
+            // Create time slot buttons
+            timeSlots.forEach(time => {
+                const timeButton = document.createElement('button');
+                timeButton.className = 'time-slot-btn';
+                timeButton.textContent = time;
+                timeButton.onclick = () => selectTimeSlot(timeButton);
+                timeSlotsGrid.appendChild(timeButton);
+            });
+        }
+
+        function selectTimeSlot(element) {
+            document.querySelectorAll('.time-slot-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+
+        function selectPass(element, passType, price) {
+            document.querySelectorAll('.pass-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            selectedPass = passType;
+            selectedPassPrice = price;
+            
+            // Show/hide time slots based on pass type
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            const requiresTimeSlot = ['brunelleschi', 'giotto', 'ghiberti'].includes(passType);
+            
+            if (requiresTimeSlot) {
+                timeSlotsContainer.style.display = 'block';
+                generateTimeSlots();
+            } else {
+                timeSlotsContainer.style.display = 'none';
+            }
+            
+            updatePrices();
+            updateTotal();
+        }
+
+        function selectTimeSlot(element) {
+            element.classList.toggle('selected');
+        }
+
+        function changeQuantity(type, change) {
+            quantities[type] = Math.max(0, quantities[type] + change);
+            document.getElementById(type + '-qty').textContent = quantities[type];
+            updateTotal();
+        }
+
+        function updatePrices() {
+            // 更新Adult价格显示
+            const adultPriceDisplay = document.querySelector('.quantity-selector .price-display');
+            if (selectedPass === 'guided-tours') {
+                adultPriceDisplay.textContent = '€50';
+            } else {
+                adultPriceDisplay.textContent = `€${selectedPassPrice}`;
+            }
+
+            // 更新Youth价格显示
+            const youthPrice = getYouthPrice();
+            const youthPriceDisplay = document.querySelectorAll('.quantity-selector .price-display')[1];
+            if (selectedPass === 'guided-tours') {
+                youthPriceDisplay.textContent = '€30';
+            } else {
+                youthPriceDisplay.textContent = `€${youthPrice}`;
+            }
+
+            // Child价格始终是Free
+            const childPriceDisplay = document.querySelectorAll('.quantity-selector .price-display')[2];
+            childPriceDisplay.textContent = 'Free';
+        }
+
+        function getYouthPrice() {
+            switch(selectedPass) {
+                case 'brunelleschi': return 12;
+                case 'giotto': return 7;
+                case 'ghiberti': return 5;
+                case 'guided-tours': return 30;
+                default: return 0;
+            }
+        }
+
+        function updateTotal() {
+            let total = 0;
+            
+            if (selectedPass === 'guided-tours') {
+                // 导览价格：Adult €50, Youth €30, Child Free
+                total = (quantities.adult * 50) + (quantities.youth * 30);
+            } else {
+                const adultPrice = selectedPassPrice;
+                const youthPrice = getYouthPrice();
+                total = (quantities.adult * adultPrice) + (quantities.youth * youthPrice);
+            }
+            
+            document.querySelector('.total-cost').textContent = `Total Cost: €${total}`;
+        }
+
+        function changeMonth(direction) {
+            // This would implement month navigation
+            console.log('Change month:', direction);
+        }
+
+        function bookNow() {
+            alert('Booking functionality would be implemented here!');
+        }
+
+        // 页面加载时初始化价格显示和时间段
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePrices();
+            updateTotal();
+            // Show time slots for default selected date (August 1)
+            document.getElementById('timeSlots').style.display = 'block';
+            generateTimeSlots();
+        });
+    </script>
+</body>
+</html>

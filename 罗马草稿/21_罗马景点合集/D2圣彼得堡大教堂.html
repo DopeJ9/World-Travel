@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basilica of Saint Peter - Official Tickets Booking</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-image-section {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: white;
+            text-align: center;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .booking-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 35px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #8B4513;
+            margin-bottom: 25px;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            border-radius: 2px;
+        }
+
+        .important-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            color: #856404;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .important-notice h3 {
+            color: #9a1529;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .important-notice strong {
+            color: #8e1c1c;
+        }
+
+        .visiting-hours {
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .visiting-hours h3 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .ticket-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .date-time-section {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .pricing-section {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .subsection-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .month-nav {
+            background: #8B4513;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .month-nav:hover {
+            background: #CD853F;
+            transform: scale(1.1);
+        }
+
+        .month-nav:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #8B4513;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .day-header {
+            background: #8B4513;
+            color: white;
+            padding: 8px 4px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .calendar-day {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 8px 4px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day:hover {
+            background: #f5f5f5;
+            border-color: #8B4513;
+        }
+
+        .calendar-day.selected {
+            background: #8B4513;
+            color: white;
+            border-color: #8B4513;
+        }
+
+        .calendar-day.empty {
+            background: #f8f8f8;
+            cursor: default;
+            color: #ccc;
+        }
+
+        .calendar-day.empty:hover {
+            background: #f8f8f8;
+            border-color: #e0e0e0;
+        }
+
+        .time-slots-container {
+            margin-top: 20px;
+        }
+
+        .time-period {
+            margin-bottom: 25px;
+        }
+
+        .time-period:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-period-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: white;
+            border: 2px solid #e5e5e5;
+            padding: 12px 8px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            border-color: #8B4513;
+            background: #f5f5f5;
+        }
+
+        .time-slot.selected {
+            background: #8B4513;
+            color: white;
+            border-color: #8B4513;
+        }
+
+        .time-slot.dome-only {
+            background: #e8f2ff;
+            border-color: #a8c8ec;
+            color: #2c5aa0;
+        }
+
+        .time-slot.dome-only:hover {
+            background: #d1e7ff;
+            border-color: #7ba7d9;
+        }
+
+        .time-slot.dome-only.selected {
+            background: #4285f4;
+            color: white;
+            border-color: #4285f4;
+        }
+
+        .time-slot.sold-out {
+            background: #f8f8f8;
+            color: #999;
+            border-color: #ddd;
+            cursor: not-allowed;
+            position: relative;
+            text-decoration: line-through;
+        }
+
+        .time-slot.sold-out::after {
+            content: "Sold Out";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .time-slot.sold-out:hover {
+            background: #f8f8f8;
+            border-color: #ddd;
+            transform: none;
+        }
+
+        .ticket-types {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ticket-type {
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .ticket-type:hover {
+            border-color: #8B4513;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
+        }
+
+        .ticket-type.selected {
+            border-color: #8B4513;
+            background: #f8f5f1;
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+        }
+
+        .ticket-type input[type="radio"] {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            transform: scale(1.2);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-right: 40px;
+        }
+
+        .ticket-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .ticket-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B4513;
+            text-align: right;
+        }
+
+        .price-from {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .ticket-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .ticket-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ticket-features li {
+            color: #555;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .ticket-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .total-section {
+            background: white;
+            border: 2px solid #8B4513;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B4513;
+            margin-bottom: 20px;
+        }
+
+        .book-button {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .book-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 250px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .ticket-selection {
+                grid-template-columns: 1fr;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                min-height: 30px;
+                font-size: 0.8rem;
+            }
+
+            .day-header {
+                padding: 6px 2px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Image Section -->
+        <div class="hero-image-section" data-aos="fade-down">
+            <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/Q2Ejb8tWxozhMfxHSbfcbPspn3f/?preview_type=16" 
+                 alt="Basilica of Saint Peter Vatican" 
+                 class="hero-image">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Basilica of Saint Peter</h1>
+                <p class="hero-subtitle">Vatican City - Official Tickets & Dome Access</p>
+            </div>
+        </div>
+
+        <!-- Important Notice Section -->
+        <div class="booking-section" data-aos="fade-up">
+            <div class="important-notice">
+                <h3><i class="fas fa-exclamation-triangle"></i> IMPORTANT NOTICE</h3>
+                <p><strong</strong></p>
+                <p>Please arrive <strong>15 minutes early</strong> to ensure smooth check-in and ticket collection at the Vatican entrance.</p>
+                
+                <!-- Opening Hours integrated in the important notice -->
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px; border: 1px solid #ddd;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-door-open" style="color: #8B4513;"></i>
+                        <span style="font-weight: 600; color: #8B4513; font-size: 0.9rem;">Basilica Opening Hours:</span>
+                        <span style="font-size: 0.9rem; color: #333;">Daily: 7:00 - 19:10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Selection Section -->
+        <div class="booking-section" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-ticket-alt"></i> Select Your Visit
+            </h2>
+            <div class="ticket-selection">
+                <!-- Date & Time Selection -->
+                <div class="date-time-section">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-calendar-alt"></i> Choose Date & Time
+                    </h3>
+                    
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="month-nav" id="prev-month" onclick="changeMonth(-1)">‹</button>
+                            <div class="month-title" id="month-title">August 2026</div>
+                            <button class="month-nav" id="next-month" onclick="changeMonth(1)">›</button>
+                        </div>
+                        <div class="calendar-grid" id="calendar-grid">
+                            <!-- Calendar will be generated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="time-slots-container" id="time-slots-container">
+                        <!-- Time slots will be generated based on selected date -->
+                    </div>
+                    
+                    <div style="margin-top: 15px; padding: 15px; background: #f9f9f9; border-radius: 8px; font-size: 0.85rem;">
+                        <div style="font-weight: 600; color: #8B4513; margin-bottom: 8px;">Time Slot Legend:</div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 12px; height: 12px; background: white; border: 2px solid #e5e5e5; border-radius: 3px;"></div>
+                                <span>Basilica only</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 12px; height: 12px; background: #e8f2ff; border: 2px solid #a8c8ec; border-radius: 3px;"></div>
+                                <span>Dome available</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <div style="width: 12px; height: 12px; background: #f5f5f5; border: 2px solid #ddd; border-radius: 3px; opacity: 0.6;"></div>
+                                <span>Sold out</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing & Ticket Selection -->
+                <div class="pricing-section">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-euro-sign"></i> TICKET OPTIONS
+                    </h3>
+                    
+                    <div class="ticket-types">
+                        <!-- Basic Basilica -->
+                        <div class="ticket-type" onclick="selectTicket(this, 'basilica')">
+                            <input type="radio" name="ticket" value="basilica">
+                            <div class="ticket-header">
+                                <div class="ticket-name">The Basilica</div>
+                                <div class="ticket-price">
+                                    <span class="price-from">From</span><br>
+                                    <span>€7</span>
+                                </div>
+                            </div>
+                            <div class="ticket-description">
+                                Visit St. Peter's Basilica, the heart of Christianity and a universal symbol of spirituality. Follow the instructions of the Digital Audioguide to discover this extraordinary place and its history.
+                            </div>
+                            <ul class="ticket-features">
+                                <li>Access to Saint Peter's Basilica</li>
+                                <li>Digital Audio Guide included</li>
+                                <li>Personalized visiting hours</li>
+                            </ul>
+                        </div>
+
+                        <!-- Dome with Stairs -->
+                        <div class="ticket-type" onclick="selectTicket(this, 'dome-stairs')">
+                            <input type="radio" name="ticket" value="dome-stairs">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Basilica + Dome with Stairs</div>
+                                <div class="ticket-price">
+                                    <span class="price-from">From</span><br>
+                                    <span>€17</span>
+                                </div>
+                            </div>
+                            <div class="ticket-description">
+                                <strong>INCLUDES ACCESS AND VISIT TO THE BASILICA</strong><br><br>
+                                Don't miss the opportunity to discover the wonder of Saint Peter's Dome from a unique perspective. Admire up close the beauty of its magnificent mosaics and experience the emotion of observing every detail of this masterpiece with the same eyes as the artist who brought it to life: Michelangelo Buonarroti. Live as a privileged spectator in this place where art and spirituality merge harmoniously, leaving an indelible mark on your heart.
+                                <br><br>
+                                The offer includes access and a visit to Saint Peter's Basilica with a Digital Audio Guide (to be completed 90 minutes before the scheduled entry time to the Dome).
+                            </div>
+                            <ul class="ticket-features">
+                                <li>Personalised visiting hours</li>
+                                <li>Stairs to the terrace level</li>
+                                <li>Visit to the inner Ring and outer Ring of the Dome</li>
+                            </ul>
+                        </div>
+
+                        <!-- Dome with Elevator -->
+                        <div class="ticket-type" onclick="selectTicket(this, 'dome-elevator')">
+                            <input type="radio" name="ticket" value="dome-elevator">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Basilica + Dome with Lift</div>
+                                <div class="ticket-price">
+                                    <span class="price-from">From</span><br>
+                                    <span>€22</span>
+                                </div>
+                            </div>
+                            <div class="ticket-description">
+                                <strong>INCLUDES ACCESS AND VISIT TO THE BASILICA</strong><br><br>
+                                Don't miss the opportunity to discover the wonder of Saint Peter's Dome from a unique perspective. Admire up close the beauty of its magnificent mosaics and experience the emotion of observing every detail of this masterpiece with the same eyes as the artist who brought it to life: Michelangelo Buonarroti. Live as a privileged spectator in this place where art and spirituality merge harmoniously, leaving an indelible mark on your heart.
+                                <br><br>
+                                The offer includes access and a visit to Saint Peter's Basilica with a Digital Audio Guide (to be completed 90 minutes before the scheduled entry time to the Dome).
+                            </div>
+                            <ul class="ticket-features">
+                                <li>Personalised visiting hours</li>
+                                <li>Lift ride to the terrace level</li>
+                                <li>Visit to the inner Ring and outer Ring of the Dome</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking -->
+            <div class="total-section">
+                <div class="total-price" id="total-price" style="display: none;">
+                    Total: €0
+                </div>
+                <button class="book-button" id="book-btn" onclick="proceedToBooking()" disabled>
+                    Select Date, Time & Ticket
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedTicket = null;
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        // Available time slots organized by period
+        const timeSlots = {
+            morning: [
+                "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", 
+                "10:00", "10:30", "11:00", "11:30"
+            ],
+            afternoon: [
+                "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", 
+                "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", 
+                "18:00", "18:30"
+            ]
+        };
+
+        const ticketPrices = {
+            'basilica': 7,
+            'dome-stairs': 17,
+            'dome-elevator': 22
+        };
+
+        // Dome ticket available times (10:30 - 16:30, no full hours)
+        const domeAvailableTimes = [
+            "10:30", "11:30", "12:30", "13:30", "14:30", "15:30", "16:30"
+        ];
+
+        // Fixed sold out times based on date to ensure consistency
+        function getSoldOutTimes(date) {
+            const day = date.getDate();
+            const month = date.getMonth();
+            const year = date.getFullYear();
+            
+            // All available time slots
+            const allTimeSlots = [
+                "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", 
+                "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+                "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", 
+                "16:00", "16:30", "17:00", "17:30", "18:00", "18:30"
+            ];
+            
+            // Time slots that should NEVER be sold out
+            const protectedTimes = ["09:00", "10:00", "15:00","16:30"];
+            
+            // Filter out protected times from available slots for sold out selection
+            const availableForSoldOut = allTimeSlots.filter(time => !protectedTimes.includes(time));
+            
+            // Create a pseudo-random seed based on the date
+            const seed = day + month * 31 + year * 365;
+            
+            // Use the seed to select 4-6 time slots to be sold out
+            const soldOutCount = 4 + (seed % 3); // 4, 5, or 6 sold out slots
+            const soldOut = [];
+            
+            // Generate deterministic "random" indices from non-protected slots
+            for (let i = 0; i < soldOutCount; i++) {
+                const randomIndex = (seed + i * 17 + i * i * 7) % availableForSoldOut.length;
+                const timeSlot = availableForSoldOut[randomIndex];
+                if (!soldOut.includes(timeSlot)) {
+                    soldOut.push(timeSlot);
+                }
+            }
+            
+            return soldOut;
+        }
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendar-grid');
+            const monthTitle = document.getElementById('month-title');
+            
+            monthTitle.textContent = `${monthNames[currentMonth]}`;
+            
+            // Clear calendar
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.onclick = () => selectDate(day);
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Update navigation buttons
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-month');
+            const nextBtn = document.getElementById('next-month');
+            
+            // Allow navigation between months (you can customize this)
+            prevBtn.disabled = false;
+            nextBtn.disabled = false;
+        }
+
+        function changeMonth(direction) {
+            currentMonth += direction;
+            
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            
+            generateCalendar();
+                            // Reset selections when month changes
+                selectedDate = null;
+                selectedTime = null;
+                document.getElementById('time-slots-container').innerHTML = '';
+                updateBookButton();
+        }
+
+        function selectDate(day) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            selectedDate = new Date(currentYear, currentMonth, day);
+            
+            // Generate available time slots for this date
+            generateTimeSlots();
+            updateBookButton();
+        }
+
+        function generateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('time-slots-container');
+            timeSlotsContainer.innerHTML = '';
+            
+            if (!selectedDate) return;
+            
+            const soldOutTimes = getSoldOutTimes(selectedDate);
+            
+            // Generate Morning slots
+            const morningSection = document.createElement('div');
+            morningSection.className = 'time-period';
+            
+            const morningTitle = document.createElement('div');
+            morningTitle.className = 'time-period-title';
+            morningTitle.innerHTML = '<i class="fas fa-sun"></i> Morning';
+            morningSection.appendChild(morningTitle);
+            
+            const morningGrid = document.createElement('div');
+            morningGrid.className = 'time-grid';
+            
+            timeSlots.morning.forEach(time => {
+                const timeSlot = createTimeSlot(time, soldOutTimes);
+                morningGrid.appendChild(timeSlot);
+            });
+            
+            morningSection.appendChild(morningGrid);
+            timeSlotsContainer.appendChild(morningSection);
+            
+            // Generate Afternoon slots
+            const afternoonSection = document.createElement('div');
+            afternoonSection.className = 'time-period';
+            
+            const afternoonTitle = document.createElement('div');
+            afternoonTitle.className = 'time-period-title';
+            afternoonTitle.innerHTML = '<i class="fas fa-sun"></i> Afternoon';
+            afternoonSection.appendChild(afternoonTitle);
+            
+            const afternoonGrid = document.createElement('div');
+            afternoonGrid.className = 'time-grid';
+            
+            timeSlots.afternoon.forEach(time => {
+                const timeSlot = createTimeSlot(time, soldOutTimes);
+                afternoonGrid.appendChild(timeSlot);
+            });
+            
+            afternoonSection.appendChild(afternoonGrid);
+            timeSlotsContainer.appendChild(afternoonSection);
+        }
+
+        function createTimeSlot(time, soldOutTimes) {
+            const timeSlot = document.createElement('div');
+            timeSlot.className = 'time-slot';
+            timeSlot.textContent = time;
+            
+            // Check if sold out
+            if (soldOutTimes.includes(time)) {
+                timeSlot.classList.add('sold-out');
+                return timeSlot;
+            }
+            
+            // Check if dome-only time (10:30 - 16:30, no full hours)
+            if (domeAvailableTimes.includes(time)) {
+                timeSlot.classList.add('dome-only');
+            }
+            
+            timeSlot.onclick = () => selectTime(timeSlot, time);
+            return timeSlot;
+        }
+
+        function selectTime(element, time) {
+            // Don't allow selection of sold out times
+            if (element.classList.contains('sold-out')) {
+                return;
+            }
+            
+            // Check if dome ticket is selected and time is not available for dome
+            if ((selectedTicket === 'dome-stairs' || selectedTicket === 'dome-elevator') && 
+                !domeAvailableTimes.includes(time)) {
+                alert('Dome visits are only available between 10:30 and 16:30. Please select a time slot highlighted in pink.');
+                return;
+            }
+            
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            selectedTime = time;
+            updateBookButton();
+        }
+
+        function selectTicket(element, ticketType) {
+            // Remove previous selection
+            document.querySelectorAll('.ticket-type').forEach(ticket => {
+                ticket.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            
+            // Select the radio button
+            const radio = element.querySelector('input[type="radio"]');
+            radio.checked = true;
+            
+            // Check if changing to dome ticket and current time is not valid
+            if ((ticketType === 'dome-stairs' || ticketType === 'dome-elevator') && 
+                selectedTime && !domeAvailableTimes.includes(selectedTime)) {
+                // Clear invalid time selection
+                selectedTime = null;
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+                alert('Dome visits are only available between 10:30 and 16:30. Please select a new time slot highlighted in pink.');
+            }
+            
+            selectedTicket = ticketType;
+            updateTotalPrice();
+            updateBookButton();
+        }
+
+        function updateTotalPrice() {
+            const totalPriceEl = document.getElementById('total-price');
+            if (selectedTicket) {
+                totalPriceEl.textContent = `Total: €${ticketPrices[selectedTicket]}`;
+                totalPriceEl.style.display = 'block';
+            } else {
+                totalPriceEl.style.display = 'none';
+            }
+        }
+
+        function updateBookButton() {
+            const bookBtn = document.getElementById('book-btn');
+            const hasAllSelections = selectedDate && selectedTime && selectedTicket;
+            
+            bookBtn.disabled = !hasAllSelections;
+            
+            if (hasAllSelections) {
+                bookBtn.textContent = 'Book Now';
+            } else {
+                const missing = [];
+                if (!selectedDate) missing.push('Date');
+                if (!selectedTime) missing.push('Time');
+                if (!selectedTicket) missing.push('Ticket');
+                bookBtn.textContent = `Select ${missing.join(', ')}`;
+            }
+        }
+
+        function proceedToBooking() {
+            if (!selectedDate || !selectedTime || !selectedTicket) return;
+            
+            const dateStr = selectedDate.toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric',
+                year: 'numeric'
+            });
+            
+            const ticketNames = {
+                'basilica': 'The Basilica',
+                'dome-stairs': 'Basilica + Dome with Stairs',
+                'dome-elevator': 'Basilica + Dome with Lift'
+            };
+            
+            alert(`Booking Confirmation!\n\nDate: ${dateStr}\nTime: ${selectedTime}\nTicket: ${ticketNames[selectedTicket]}\nPrice: €${ticketPrices[selectedTicket]}\n\nProceed to payment...`);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateBookButton();
+            
+            // Initialize AOS if available
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>

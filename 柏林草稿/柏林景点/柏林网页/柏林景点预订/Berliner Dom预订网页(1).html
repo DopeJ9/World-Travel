@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berliner Dom - Ticket Booking</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-image-section {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding: 30px 40px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            text-align: left;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            text-align: left;
+            opacity: 0.95;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            font-weight: 400;
+        }
+
+        .booking-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 25px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #2C3E50, #3498db);
+            border-radius: 2px;
+        }
+
+        .visiting-hours {
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .visiting-hours h3 {
+            color: #2C3E50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .day-hours {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .day-title {
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .day-schedule {
+            color: #555;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .tour-guide-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #e5e5e5;
+        }
+
+        .tour-guide-info h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tour-guide-info .fas {
+            color: #3498db;
+        }
+
+        .ticket-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .date-time-section {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .pricing-section {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .subsection-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav {
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .month-nav:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        .month-nav:disabled {
+            background: #f8f8f8;
+            color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            border-color: #eee;
+        }
+
+        .month-nav.next {
+            background: #8B4513;
+            color: white;
+            border-color: #8B4513;
+        }
+
+        .month-nav.next:hover {
+            background: #A0522D;
+            border-color: #A0522D;
+        }
+
+        .month-nav.next:disabled {
+            background: #ccc;
+            border-color: #ccc;
+        }
+
+        .date-selector {
+            background: white;
+            border: 2px solid #8B4513;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .time-slot {
+            background: white;
+            border: 2px solid #e5e5e5;
+            padding: 12px 8px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            border-color: #2C3E50;
+            background: #f5f5f5;
+        }
+
+        .time-slot.selected {
+            background: #2C3E50;
+            color: white;
+            border-color: #2C3E50;
+        }
+
+        .time-slot.unavailable {
+            background: #f8f8f8;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #ddd;
+        }
+
+        .time-slot.closed {
+            background: #ffebee;
+            color: #d32f2f;
+            cursor: not-allowed;
+            border-color: #ffcdd2;
+        }
+
+        .time-slot.sold-out {
+            background: #ffebee;
+            color: #d32f2f;
+            cursor: not-allowed;
+            border-color: #ffcdd2;
+            opacity: 0.8;
+            position: relative;
+        }
+
+        .time-slot.sold-out::after {
+            content: "Sold Out";
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            color: white;
+            background: #d32f2f;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transform: rotate(15deg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .time-slot.sold-out.weekday {
+            background: #ffebee;
+            color: #d32f2f;
+            border-color: #ffcdd2;
+        }
+
+        .time-slot.sold-out.weekday::after {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .time-slot.sold-out.saturday {
+            background: #ffebee;
+            color: #d32f2f;
+            border-color: #ffcdd2;
+        }
+
+        .time-slot.sold-out.saturday::after {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .time-slot.sold-out.sunday {
+            background: #ffebee;
+            color: #d32f2f;
+            border-color: #ffcdd2;
+        }
+
+        .time-slot.sold-out.sunday::after {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .ticket-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 15px;
+        }
+
+        /* First row: Adult, Students/Discount, Welcome Card */
+        .ticket-type:nth-child(1),
+        .ticket-type:nth-child(2),
+        .ticket-type:nth-child(3) {
+            grid-row: 1;
+        }
+
+        .ticket-type:nth-child(1) {
+            grid-column: 1;
+        }
+
+        .ticket-type:nth-child(2) {
+            grid-column: 2;
+        }
+
+        .ticket-type:nth-child(3) {
+            grid-column: 3;
+        }
+
+        /* Second row: Family Ticket, Reduced Family Ticket */
+        .ticket-type:nth-child(4),
+        .ticket-type:nth-child(5) {
+            grid-row: 2;
+        }
+
+        .ticket-type:nth-child(4) {
+            grid-column: 1 / 2.5; /* Span 1.5 columns */
+        }
+
+        .ticket-type:nth-child(5) {
+            grid-column: 2.5 / 4; /* Span 1.5 columns */
+        }
+
+        .ticket-type {
+            background: white;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .ticket-type:hover {
+            border-color: #2C3E50;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .ticket-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .ticket-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2C3E50;
+            text-align: right;
+        }
+
+        .ticket-description {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:first-child {
+            border-radius: 5px 0 0 5px;
+            border-right: none;
+        }
+
+        .quantity-btn:last-child {
+            border-radius: 0 5px 5px 0;
+            background: linear-gradient(135deg, #2C3E50, #3498db);
+            color: white;
+            border-left: none;
+            border-color: #2C3E50;
+        }
+
+        .quantity-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .quantity-btn:last-child:hover {
+            background: linear-gradient(135deg, #34495e, #5dade2);
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 35px;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .quantity-input:focus {
+            border-color: #2C3E50;
+        }
+
+        .audio-guide-section {
+            background: #e8f4fd;
+            border: 1px solid #b3d9ff;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .audio-guide-title {
+            color: #2C3E50;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .audio-guide-description {
+            color: #555;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .audio-guide-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 15px;
+            color: #856404;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .audio-guide-price {
+            color: #2C3E50;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .audio-guide-option {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .audio-guide-option:hover {
+            border-color: #2C3E50;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
+        }
+
+        .audio-guide-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .audio-guide-option-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .audio-guide-option-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2C3E50;
+        }
+
+        .total-section {
+            background: white;
+            border: 2px solid #2C3E50;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 20px;
+        }
+
+        .price-breakdown {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .price-item:last-child {
+            margin-bottom: 0;
+            font-weight: 600;
+            border-top: 1px solid #ddd;
+            padding-top: 5px;
+        }
+
+        .book-button {
+            background: linear-gradient(135deg, #2C3E50, #3498db);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
+        }
+
+        .book-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .booking-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+            background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+        }
+
+        /* Fallback icons if Font Awesome doesn't load */
+        .fas.fa-clock::before { content: "🕐"; }
+        .fas.fa-ticket-alt::before { content: "🎫"; }
+        .fas.fa-calendar-alt::before { content: "📅"; }
+        .fas.fa-euro-sign::before { content: "€"; }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                height: 300px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .ticket-selection {
+                grid-template-columns: 1fr;
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                min-height: 30px;
+                font-size: 0.8rem;
+            }
+
+            .day-header {
+                padding: 6px 2px;
+                font-size: 0.7rem;
+            }
+
+            .booking-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .reset-button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            /* Mobile layout for ticket types */
+            .ticket-types {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto auto;
+                gap: 12px;
+            }
+
+            .ticket-type:nth-child(1),
+            .ticket-type:nth-child(2),
+            .ticket-type:nth-child(3),
+            .ticket-type:nth-child(4),
+            .ticket-type:nth-child(5) {
+                grid-row: auto;
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Image Section -->
+        <div class="hero-image-section">
+            <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/YXBgbPstbo7WaGxFjD9crAuNnUb/?preview_type=16" alt="Berliner Dom" class="hero-image">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Berliner Dom</h1>
+                <p class="hero-subtitle">Ticket Booking</p>
+            </div>
+        </div>
+
+        <!-- Operating Hours Section -->
+        <div class="booking-section">
+            <h2 class="section-title">
+                <i class="fas fa-clock"></i> Opening Hours
+            </h2>
+            <div class="visiting-hours">
+                
+                <div class="hours-grid">
+                    <div class="day-hours">
+                        <div class="day-title" style="display: inline;">Monday - Friday</div>
+                        <div class="day-schedule" style="display: inline; margin-left: 10px;">9:00 AM - 7:00 PM</div>
+                    </div>
+                    
+                    <div class="day-hours">
+                        <div class="day-title" style="display: inline;">Saturday</div>
+                        <div class="day-schedule" style="display: inline; margin-left: 10px;">9:00 AM - 5:00 PM</div>
+                    </div>
+                    
+                    <div class="day-hours">
+                        <div class="day-title" style="display: inline;">Sunday</div>
+                        <div class="day-schedule" style="display: inline; margin-left: 10px;">12:00 PM - 5:00 PM</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #666; font-style: italic; padding: 10px; background-color: #f8f9fa; border-radius: 8px;">
+                    Please arrive 15 minutes early to ensure smooth check-in and ticket collection.
+                </div>
+                
+                <div style="text-align: center; margin-top: 10px; font-size: 0.9rem; color: #2C5282; font-weight: 500; padding: 10px; background-color: #EBF8FF; border-left: 3px solid #4299E1; border-radius: 8px;">
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i>
+                    On weekdays (Monday-Friday), closing hours may be extended by up to 90 mins.
+                </div>
+                
+                <!-- Tour Guide Information -->
+                <div class="tour-guide-info">
+                    <h3 style="color: #2C3E50; margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-info-circle"></i> Tour Guide Times/Exhibition (Time Range)
+                    </h3>
+                    <div style="background: #e8f4fd; border: 1px solid #b3d9ff; border-radius: 8px; padding: 15px; color: #2C3E50; font-size: 0.95rem; line-height: 1.5;">
+                        The admission price includes the 20-minute site tours, which start daily (Monday to Saturday) at 12.30 pm, 1.30 pm and 2.30 pm. On Sunday they take place at 12.15 pm, 1.15 pm and 2.15 pm.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Selection Section -->
+        <div class="booking-section">
+            <h2 class="section-title">
+                <i class="fas fa-ticket-alt"></i> Select Your Visit
+            </h2>
+            <div class="ticket-selection">
+                <!-- Date & Time Selection -->
+                <div class="date-time-section">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-calendar-alt"></i> Choose Date & Time
+                    </h3>
+                    
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="month-nav" id="prev-month" onclick="changeMonth(-1)">‹</button>
+                            <div class="date-selector" id="date-selector">
+                                August 1 (Sat)
+                            </div>
+                            <button class="month-nav next" id="next-month" onclick="changeMonth(1)">›</button>
+                        </div>
+                    </div>
+
+                    <div class="time-grid" id="time-grid">
+                        <!-- Time slots will be generated based on selected date -->
+                    </div>
+                </div>
+
+                <!-- Pricing & Ticket Selection -->
+                <div class="pricing-section">
+                    <h3 class="subsection-title">
+                        <i class="fas fa-euro-sign"></i> Ticket Options
+                    </h3>
+                    
+                    <div class="ticket-types">
+                        <!-- Adult Ticket -->
+                        <div class="ticket-type">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Adult</div>
+                                <div class="ticket-price">€10.00</div>
+                            </div>
+                            <div class="ticket-description">
+                                Ticket for 1 person.
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('adult', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="adult-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('adult', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Student/Disabled Ticket -->
+                        <div class="ticket-type">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Students / Discount for persons with disabilities</div>
+                                <div class="ticket-price">€7.50</div>
+                            </div>
+                            <div class="ticket-description">
+                                Ticket for 1 person with proof of eligibility required (valid student ID, disability ID card, or equivalent documentation must be presented at entry).
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('student', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="student-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('student', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Welcome Card -->
+                        <div class="ticket-type">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Welcome Card</div>
+                                <div class="ticket-price">€7.00</div>
+                            </div>
+                            <div class="ticket-description">
+                                Ticket for 1 person with Berlin WelcomeCard (proof required).
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('welcome', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="welcome-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('welcome', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Family Ticket -->
+                        <div class="ticket-type">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Family Ticket</div>
+                                <div class="ticket-price">€10.00</div>
+                            </div>
+                            <div class="ticket-description">
+                                Ticket for 1 adult and up to 3 children under 18 years.
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('family', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="family-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('family', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reduced Family Ticket -->
+                        <div class="ticket-type">
+                            <div class="ticket-header">
+                                <div class="ticket-name">Reduced Family Ticket</div>
+                                <div class="ticket-price">€7.50</div>
+                            </div>
+                            <div class="ticket-description">
+                                Ticket for 1 adult (with proof of eligibility required: disability ID card, or equivalent documentation must be presented at entry) and up to 3 children under 18 years.
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('reduced-family', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="reduced-family-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('reduced-family', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Audio Guide Section -->
+                    <div class="audio-guide-section">
+                        <div class="audio-guide-title">Audio Guide</div>
+                        <div class="audio-guide-description">
+                            Berlin Cathedral has audio guides in various languages: German, English, French, Spanish, Italian, Russian and Polish. You can use these to take an independent tour of Berlin Cathedral.
+                        </div>
+                        <div class="audio-guide-note">
+                            <strong>Please note:</strong> Audio Guides are not included in the ticket price and cost extra. Not available for children under 6 years old.
+                        </div>
+                        
+                        <!-- Regular Audio Guide -->
+                        <div class="audio-guide-option">
+                            <div class="audio-guide-option-header">
+                                <div class="audio-guide-option-name">Audio Guide (Regular Price)</div>
+                                <div class="audio-guide-option-price">€5.00</div>
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('audio-guide-regular', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="audio-guide-regular-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('audio-guide-regular', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Reduced Audio Guide -->
+                        <div class="audio-guide-option">
+                            <div class="audio-guide-option-header">
+                                <div class="audio-guide-option-name">Audio Guide (Reduced Price)</div>
+                                <div class="audio-guide-option-price">€3.50</div>
+                            </div>
+                            <div class="quantity-selector">
+                                <span>Quantity:</span>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="changeQuantity('audio-guide-reduced', -1)">-</button>
+                                    <input type="number" class="quantity-input" id="audio-guide-reduced-qty" value="0" min="0" max="10" onchange="updateTotal()">
+                                    <button class="quantity-btn" onclick="changeQuantity('audio-guide-reduced', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total and Booking -->
+            <div class="total-section">
+                <div class="price-breakdown" id="price-breakdown">
+                    <div class="price-item">
+                        <span>Please select tickets</span>
+                        <span>€0.00</span>
+                    </div>
+                </div>
+                <div class="total-price" id="total-price">Total: €0.00</div>
+                <div class="booking-buttons">
+                    <button class="book-button" id="book-btn" onclick="proceedToBooking()" disabled>
+                        Book Now
+                    </button>
+                    <button class="reset-button" id="reset-btn" onclick="resetToOriginalState()">
+                        Reset Selection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDate = new Date(2026, 7, 1); // Default to August 1, 2026
+        let selectedTime = null;
+        let currentDay = 1; // Current selected day
+
+        const prices = {
+            adult: 10.00,
+            student: 7.50,
+            welcome: 7.00,
+            family: 10.00,
+            'reduced-family': 7.50,
+            'audio-guide-regular': 5.00,
+            'audio-guide-reduced': 3.50
+        };
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        // Time slots based on operating hours (30-minute intervals)
+        const timeSlots = {
+            weekday: ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00"],
+            saturday: ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"],
+            sunday: ["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"]
+        };
+
+        // Sold out time slots for each specific day in August 2026
+        const soldOutSlotsByDate = {
+            // August 1 (Saturday)
+            1: ["10:00", "12:00", "14:00", "16:00"],
+            // August 2 (Sunday)
+            2: ["12:30", "14:30", "16:30"],
+            // August 3 (Monday)
+            3: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+            // August 4 (Tuesday)
+            4: ["10:30", "12:30", "14:30", "16:30", "18:30"],
+            // August 5 (Wednesday)
+            5: ["9:30", "11:30", "13:30", "15:30", "17:30"],
+            // August 6 (Thursday)
+            6: ["10:00", "12:00", "14:00", "16:00", "18:00"],
+            // August 7 (Friday)
+            7: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+            // August 8 (Saturday)
+            8: ["10:30", "12:30", "14:30", "16:30"],
+            // August 9 (Sunday)
+            9: ["12:00", "14:00", "16:00"],
+            // August 10 (Monday)
+            10: ["9:30", "11:30", "13:30", "15:30", "17:30"],
+            // August 11 (Tuesday)
+            11: ["10:00", "12:00", "14:00", "16:00", "18:00"],
+            // August 12 (Wednesday)
+            12: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+            // August 13 (Thursday)
+            13: ["10:30", "12:30", "14:30", "16:30", "18:30"],
+            // August 14 (Friday)
+            14: ["9:30", "11:30", "13:30", "15:30", "17:30"],
+            // August 15 (Saturday)
+            15: ["10:00", "12:00", "14:00", "16:00"],
+            // August 16 (Sunday)
+            16: ["12:30", "14:30", "16:30"],
+            // August 17 (Monday)
+            17: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+            // August 18 (Tuesday)
+            18: ["10:30", "12:30", "14:30", "16:30", "18:30"],
+            // August 19 (Wednesday)
+            19: ["9:30", "11:30", "13:30", "15:30", "17:30"],
+            // August 20 (Thursday)
+            20: ["10:00", "12:00", "14:00", "16:00", "18:00"],
+            // August 21 (Friday)
+            21: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+            // August 22 (Saturday)
+            22: ["10:30", "12:30", "14:30", "16:30"],
+            // August 23 (Sunday)
+            23: ["12:00", "14:00", "16:00"],
+            // August 24 (Monday)
+            24: ["9:30", "11:30", "13:30", "15:30", "17:30"],
+            // August 25 (Tuesday)
+            25: ["10:00", "12:00", "14:00", "16:00", "18:00"],
+            // August 26 (Wednesday)
+            26: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"],
+            // August 27 (Thursday)
+            27: ["10:30", "12:30", "14:30", "16:30", "18:30"],
+            // August 28 (Friday)
+            28: ["9:30", "11:30", "13:30", "15:30", "17:30"],
+            // August 29 (Saturday)
+            29: ["10:00", "12:00", "14:00", "16:00"],
+            // August 30 (Sunday)
+            30: ["12:30", "14:30", "16:30"],
+            // August 31 (Monday)
+            31: ["9:00", "11:00", "13:00", "15:00", "17:00", "19:00"]
+        };
+
+        function generateCalendar() {
+            // Update navigation buttons
+            updateNavButtons();
+        }
+
+
+        function updateDateSelector() {
+            const dateSelector = document.getElementById('date-selector');
+            const monthName = monthNames[currentMonth];
+            const dayOfWeek = dayNames[selectedDate.getDay()];
+            dateSelector.textContent = `${monthName} ${currentDay} (${dayOfWeek})`;
+        }
+
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-month');
+            const nextBtn = document.getElementById('next-month');
+            
+            // Disable prev button if on first day (August 1)
+            prevBtn.disabled = (currentDay === 1);
+            
+            // Disable next button if on last day (August 31)
+            nextBtn.disabled = (currentDay === 31);
+        }
+
+        function changeMonth(direction) {
+            // Change day instead of month
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const newDay = currentDay + direction;
+            
+            if (newDay >= 1 && newDay <= daysInMonth) {
+                currentDay = newDay;
+                selectedDate = new Date(currentYear, currentMonth, currentDay);
+                
+                // Clear previous time selection
+                selectedTime = null;
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+                
+                // Update date selector display
+                updateDateSelector();
+                
+                // Update navigation buttons
+                updateNavButtons();
+                
+                // Generate available time slots for this date
+                generateTimeSlots();
+                updateBookButton();
+            }
+        }
+
+        function selectDate(day, element) {
+            currentDay = day;
+            selectedDate = new Date(currentYear, currentMonth, day);
+            
+            // Update date selector display
+            updateDateSelector();
+            
+            // Update navigation buttons
+            updateNavButtons();
+            
+            // Generate available time slots for this date
+            generateTimeSlots();
+            updateBookButton();
+        }
+
+        function generateTimeSlots() {
+            const timeGrid = document.getElementById('time-grid');
+            timeGrid.innerHTML = '';
+            
+            if (!selectedDate) return;
+            
+            const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            const dayOfMonth = selectedDate.getDate();
+            let availableSlots = [];
+            let soldOutSlotsForDay = [];
+            
+            // Get available slots based on day of week
+            if (dayOfWeek >= 1 && dayOfWeek <= 5) { // Monday to Friday
+                availableSlots = timeSlots.weekday;
+            } else if (dayOfWeek === 6) { // Saturday
+                availableSlots = timeSlots.saturday;
+            } else if (dayOfWeek === 0) { // Sunday
+                availableSlots = timeSlots.sunday;
+            }
+            
+            // Get sold out slots for specific date
+            soldOutSlotsForDay = soldOutSlotsByDate[dayOfMonth] || [];
+            
+            if (availableSlots.length === 0) {
+                const noToursDiv = document.createElement('div');
+                noToursDiv.style.gridColumn = '1 / -1';
+                noToursDiv.style.textAlign = 'center';
+                noToursDiv.style.color = '#666';
+                noToursDiv.style.fontStyle = 'italic';
+                noToursDiv.style.padding = '20px';
+                noToursDiv.textContent = 'Closed';
+                noToursDiv.className = 'time-slot closed';
+                timeGrid.appendChild(noToursDiv);
+                return;
+            }
+            
+            availableSlots.forEach(time => {
+                const timeSlot = document.createElement('div');
+                const isSoldOut = soldOutSlotsForDay.includes(time);
+                
+                if (isSoldOut) {
+                    // Add different classes based on day type
+                    let dayTypeClass = '';
+                    if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+                        dayTypeClass = 'weekday';
+                    } else if (dayOfWeek === 6) {
+                        dayTypeClass = 'saturday';
+                    } else if (dayOfWeek === 0) {
+                        dayTypeClass = 'sunday';
+                    }
+                    
+                    timeSlot.className = `time-slot sold-out ${dayTypeClass}`;
+                    timeSlot.textContent = time;
+                    timeSlot.style.cursor = 'not-allowed';
+                } else {
+                    timeSlot.className = 'time-slot';
+                    timeSlot.textContent = time;
+                    timeSlot.onclick = () => selectTime(timeSlot, time);
+                }
+                
+                timeGrid.appendChild(timeSlot);
+            });
+        }
+
+        function selectTime(element, time) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            selectedTime = time;
+            
+            updateBookButton();
+        }
+
+        function changeQuantity(type, change) {
+            const input = document.getElementById(type + '-qty');
+            if (!input) return;
+            
+            const currentValue = parseInt(input.value) || 0;
+            const newValue = Math.max(0, Math.min(10, currentValue + change));
+            input.value = newValue;
+            
+            // Trigger change event
+            input.dispatchEvent(new Event('change'));
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            let breakdown = '';
+            
+            const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+            const studentQty = parseInt(document.getElementById('student-qty').value) || 0;
+            const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+            const familyQty = parseInt(document.getElementById('family-qty').value) || 0;
+            const reducedFamilyQty = parseInt(document.getElementById('reduced-family-qty').value) || 0;
+            const audioGuideRegularQty = parseInt(document.getElementById('audio-guide-regular-qty').value) || 0;
+            const audioGuideReducedQty = parseInt(document.getElementById('audio-guide-reduced-qty').value) || 0;
+            
+            if (adultQty > 0) {
+                const subtotal = adultQty * prices.adult;
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Adult (${adultQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (studentQty > 0) {
+                const subtotal = studentQty * prices.student;
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Students/Disabled (${studentQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (welcomeQty > 0) {
+                const subtotal = welcomeQty * prices.welcome;
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Welcome Card (${welcomeQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (familyQty > 0) {
+                const subtotal = familyQty * prices.family;
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Family Ticket (${familyQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (reducedFamilyQty > 0) {
+                const subtotal = reducedFamilyQty * prices['reduced-family'];
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Reduced Family Ticket (${reducedFamilyQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (audioGuideRegularQty > 0) {
+                const subtotal = audioGuideRegularQty * prices['audio-guide-regular'];
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Audio Guide (Regular) (${audioGuideRegularQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (audioGuideReducedQty > 0) {
+                const subtotal = audioGuideReducedQty * prices['audio-guide-reduced'];
+                total += subtotal;
+                breakdown += `<div class="price-item"><span>Audio Guide (Reduced) (${audioGuideReducedQty})</span><span>€${subtotal.toFixed(2)}</span></div>`;
+            }
+            
+            if (total === 0) {
+                breakdown = '<div class="price-item"><span>Please select tickets</span><span>€0.00</span></div>';
+            } else {
+                breakdown += `<div class="price-item"><span><strong>Total</strong></span><span><strong>€${total.toFixed(2)}</strong></span></div>`;
+            }
+            
+            document.getElementById('price-breakdown').innerHTML = breakdown;
+            document.getElementById('total-price').textContent = `Total: €${total.toFixed(2)}`;
+            
+            // Update book button state
+            updateBookButton();
+        }
+
+        function updateBookButton() {
+            const bookBtn = document.getElementById('book-btn');
+            if (!bookBtn) return;
+            
+            // Check if any tickets are selected
+            let hasTickets = false;
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            for (let input of quantityInputs) {
+                const value = parseInt(input.value) || 0;
+                if (value > 0) {
+                    hasTickets = true;
+                    break;
+                }
+            }
+            
+            const isReady = selectedDate && selectedTime && hasTickets;
+            
+            bookBtn.disabled = !isReady;
+            
+            // Visual feedback
+            if (isReady) {
+                bookBtn.style.opacity = '1';
+                bookBtn.style.cursor = 'pointer';
+                bookBtn.style.backgroundColor = '#2C3E50';
+            } else {
+                bookBtn.style.opacity = '0.6';
+                bookBtn.style.cursor = 'not-allowed';
+                bookBtn.style.backgroundColor = '#ccc';
+            }
+        }
+
+        function proceedToBooking() {
+            const dateStr = selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+            
+            // Get ticket details
+            const adultQty = parseInt(document.getElementById('adult-qty').value) || 0;
+            const studentQty = parseInt(document.getElementById('student-qty').value) || 0;
+            const welcomeQty = parseInt(document.getElementById('welcome-qty').value) || 0;
+            const familyQty = parseInt(document.getElementById('family-qty').value) || 0;
+            const reducedFamilyQty = parseInt(document.getElementById('reduced-family-qty').value) || 0;
+            const audioGuideRegularQty = parseInt(document.getElementById('audio-guide-regular-qty').value) || 0;
+            const audioGuideReducedQty = parseInt(document.getElementById('audio-guide-reduced-qty').value) || 0;
+            
+            let ticketDetails = '';
+            if (adultQty > 0) ticketDetails += `Adult: ${adultQty} tickets\n`;
+            if (studentQty > 0) ticketDetails += `Students/Disabled: ${studentQty} tickets\n`;
+            if (welcomeQty > 0) ticketDetails += `Welcome Card: ${welcomeQty} tickets\n`;
+            if (familyQty > 0) ticketDetails += `Family Ticket: ${familyQty} tickets\n`;
+            if (reducedFamilyQty > 0) ticketDetails += `Reduced Family Ticket: ${reducedFamilyQty} tickets\n`;
+            if (audioGuideRegularQty > 0) ticketDetails += `Audio Guide (Regular): ${audioGuideRegularQty} units\n`;
+            if (audioGuideReducedQty > 0) ticketDetails += `Audio Guide (Reduced): ${audioGuideReducedQty} units\n`;
+            
+            const totalPrice = document.getElementById('total-price').textContent;
+            
+            // Show booking confirmation
+            const confirmed = confirm(`Booking Confirmation!\n\nDate: ${dateStr}\nTime: ${selectedTime}\n\nTicket Details:\n${ticketDetails}\n${totalPrice}\n\nBooking successful! Click OK to return to homepage.`);
+            
+            if (confirmed) {
+                resetToOriginalState();
+            }
+        }
+
+        // Reset to original state
+        function resetToOriginalState() {
+            // Reset selected date and time
+            selectedDate = new Date(2026, 7, 1);
+            selectedTime = null;
+            currentDay = 1;
+            
+            // Clear time slot selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Reset all quantity inputs to 0
+            const quantityInputs = [
+                'adult-qty', 'student-qty', 'welcome-qty', 'family-qty', 
+                'reduced-family-qty', 'audio-guide-regular-qty', 'audio-guide-reduced-qty'
+            ];
+            
+            quantityInputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.value = 0;
+                }
+            });
+            
+            // Update date selector and time slots
+            updateDateSelector();
+            updateNavButtons();
+            generateTimeSlots();
+            
+            // Update total and button state
+            updateTotal();
+            updateBookButton();
+            
+            // Scroll to top of page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Force update button state
+        function forceUpdateButton() {
+            setTimeout(() => {
+                updateBookButton();
+            }, 100);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDateSelector();
+            updateNavButtons();
+            generateTimeSlots();
+            updateTotal();
+            updateBookButton();
+            
+            // Add event listeners for quantity inputs
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('input', function() {
+                    const value = Math.max(0, Math.min(10, parseInt(this.value) || 0));
+                    this.value = value;
+                    updateTotal();
+                    forceUpdateButton();
+                });
+                
+                input.addEventListener('change', function() {
+                    const value = Math.max(0, Math.min(10, parseInt(this.value) || 0));
+                    this.value = value;
+                    updateTotal();
+                    forceUpdateButton();
+                });
+            });
+            
+            // Add click listeners to quantity buttons
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    forceUpdateButton();
+                });
+            });
+            
+            // Add global click listener for debugging
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('calendar-day') || 
+                    e.target.classList.contains('time-slot') ||
+                    e.target.classList.contains('quantity-btn')) {
+                    forceUpdateButton();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

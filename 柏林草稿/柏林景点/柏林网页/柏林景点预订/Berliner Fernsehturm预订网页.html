@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berliner Fernsehturm Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .hero-section {
+            position: relative;
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/OSkEbj4NPoBmadxYIPIcUYgUn3e/?preview_type=16') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            margin-bottom: 1rem;
+        }
+
+
+
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 1.5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .ticket-section .section-title,
+        .tour-guide-section .section-title,
+        .restaurant-section .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .ticket-section .section-subtitle,
+        .tour-guide-section .section-subtitle,
+        .restaurant-section .section-subtitle {
+            font-size: 0.7rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Ticket Selection */
+        .ticket-section {
+            margin-bottom: 1rem;
+        }
+
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-grid-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-card {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.8rem;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .ticket-card.featured {
+            border-color: #007bff;
+            position: relative;
+        }
+
+        .ticket-card.featured::before {
+            content: "POPULAR";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #007bff;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .ticket-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            color: #333;
+        }
+
+        .ticket-features {
+            margin: 0.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .feature-item.available {
+            color: #28a745;
+        }
+
+        .feature-item.unavailable {
+            color: #dc3545;
+        }
+
+        .feature-item i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .ticket-pricing {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            padding: 0.4rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .price-new {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
+        }
+
+        .quantity-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0 0.8rem;
+        }
+
+        .quantity-btn:hover {
+            background: #0056b3;
+        }
+
+        .quantity-display {
+            font-size: 1rem;
+            font-weight: bold;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        /* Tour Guide Tickets */
+        .tour-guide-section {
+            margin: 0.5rem 0;
+        }
+
+        .tour-ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .tour-ticket {
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            padding: 0.8rem;
+            background: white;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tour-ticket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #28a745 0%, #20c997 50%, #28a745 100%);
+        }
+
+        .tour-ticket:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(40, 167, 69, 0.25);
+            border-color: #20c997;
+        }
+
+        .tour-ticket h4 {
+            color: #1e7e34;
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .tour-ticket h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            border-radius: 1px;
+        }
+
+        .tour-description {
+            margin: 0.4rem 0;
+            color: #495057;
+            line-height: 1.4;
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 0.4rem;
+            border-radius: 4px;
+            border-left: 3px solid #28a745;
+        }
+
+        .tour-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e7e34;
+            text-align: right;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+            position: relative;
+        }
+
+        .tour-price::before {
+            content: '€';
+            color: #28a745;
+            font-size: 0.9rem;
+            margin-right: 2px;
+        }
+
+        .tour-price-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+
+        .tour-price-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .restaurant-price-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+
+        .restaurant-price-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Special styling for different tour types */
+        .tour-ticket:nth-child(1) {
+            border-color: #28a745;
+        }
+
+        .tour-ticket:nth-child(1)::before {
+            background: linear-gradient(90deg, #28a745 0%, #20c997 50%, #28a745 100%);
+        }
+
+        .tour-ticket:nth-child(1):hover {
+            border-color: #20c997;
+            box-shadow: 0 15px 35px rgba(40, 167, 69, 0.25);
+        }
+
+        .tour-ticket:nth-child(2) {
+            border-color: #fd7e14;
+            background: white;
+        }
+
+        .tour-ticket:nth-child(2)::before {
+            background: linear-gradient(90deg, #fd7e14 0%, #ff9800 50%, #fd7e14 100%);
+        }
+
+        .tour-ticket:nth-child(2):hover {
+            border-color: #ff9800;
+            box-shadow: 0 15px 35px rgba(253, 126, 20, 0.25);
+        }
+
+        .tour-ticket:nth-child(2) h4 {
+            color: #e65100;
+        }
+
+        .tour-ticket:nth-child(2) h4::after {
+            background: linear-gradient(90deg, #fd7e14, #ff9800);
+        }
+
+        .tour-ticket:nth-child(2) .tour-description {
+            border-left-color: #fd7e14;
+        }
+
+        .tour-ticket:nth-child(2) .tour-price {
+            background: linear-gradient(135deg, #fd7e14, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tour-ticket:nth-child(2) .tour-price::before {
+            color: #fd7e14;
+        }
+
+        /* Restaurant Ticket */
+        .restaurant-section {
+            margin: 0.5rem 0;
+        }
+
+        .restaurant-ticket {
+            border: 2px solid #ffc107;
+            border-radius: 6px;
+            padding: 0.6rem;
+            background: white;
+        }
+
+        .restaurant-ticket h4 {
+            color: #856404;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .restaurant-price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #856404;
+            text-align: right;
+        }
+
+        /* Total Price */
+        .total-section {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 0.8rem 0;
+            text-align: center;
+        }
+
+        .total-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            margin: 0.6rem 0;
+        }
+
+        .price-breakdown {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Date and Time Selection Container */
+        .datetime-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        /* Date Selection */
+        .date-section {
+            margin: 0;
+        }
+
+        .date-section .section-title,
+        .time-section .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .date-section .section-subtitle,
+        .time-section .section-subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav {
+            background: #f5f5f5;
+            color: #666;
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .month-nav:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        .month-nav:disabled {
+            background: #f8f8f8;
+            color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            border-color: #eee;
+        }
+
+        .month-nav.next {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .month-nav.next:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .month-nav.next:disabled {
+            background: #ccc;
+            border-color: #ccc;
+        }
+
+
+        .date-selector {
+            background: white;
+            border: 2px solid #007bff;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        /* Operating Hours Info */
+        .operating-hours-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border-radius: 12px;
+            padding: 8px 15px;
+            margin: 10px 0 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .operating-hours-info:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .hours-icon {
+            margin-right: 12px;
+        }
+
+        .hours-icon i {
+            font-size: 1.4rem;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .hours-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hours-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            margin-bottom: 2px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hours-time-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .hours-time-icon {
+            font-size: 1.1rem;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            margin-right: 8px;
+        }
+
+        .hours-time {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hours-note {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 0.4rem;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .calendar-day {
+            padding: 0.4rem;
+            text-align: center;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-size: 0.75rem;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-day:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .calendar-day.selected {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .calendar-day.unavailable {
+            background: #f8f9fa;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.sold-out {
+            background: #dc3545;
+            color: white;
+            cursor: not-allowed;
+            border-color: #dc3545;
+        }
+
+        /* Time Selection */
+        .time-section {
+            margin: 0;
+        }
+
+
+        .time-slot {
+            padding: 10px 8px;
+            text-align: center;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .ticket-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            z-index: 10;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .ticket-count.available {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .ticket-count.low {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            box-shadow: 0 3px 8px rgba(255, 193, 7, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+
+        .ticket-count.sold-out {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            box-shadow: 0 3px 8px rgba(108, 117, 125, 0.4);
+            animation: none;
+        }
+
+        .time-slot:hover .ticket-count {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .time-slot:hover .ticket-count.available {
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.6);
+        }
+
+        .time-slot:hover .ticket-count.low {
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.6);
+        }
+
+        .time-slot:hover {
+            border-color: #007bff;
+            background: #f5f5f5;
+        }
+
+        .time-slot.selected {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .time-slot.unavailable {
+            background: #f8f9fa;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #dc3545;
+        }
+
+        .time-slot.sold-out {
+            background: #dc3545;
+            color: white;
+            cursor: not-allowed;
+            border-color: #dc3545;
+        }
+
+        .time-slot.closed {
+            background: #6c757d;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        /* Booking Button */
+        .booking-section {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .book-now-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 12px rgba(220, 53, 69, 0.3);
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.4rem;
+            }
+
+
+            .ticket-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tour-ticket-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .datetime-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .time-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .operating-hours-info {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px 15px;
+            }
+
+            .hours-icon {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+
+            .hours-text {
+                align-items: center;
+            }
+        }
+
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 2rem; }
+        .mt-3 { margin-top: 2rem; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Berliner Fernsehturm</h1>
+            <h2>Ticket Booking</h2>
+        </div>
+    </section>
+
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Date and Time Selection -->
+            <div class="datetime-container">
+                <!-- Date Selection -->
+                <section class="date-section">
+                    <h2 class="section-title">Select Date & Time</h2>
+                    
+                    <div class="operating-hours-info">
+                        <div class="hours-text">
+                            <span class="hours-label">Operating Hours</span>
+                            <div class="hours-time-container">
+                                <i class="fas fa-clock hours-time-icon"></i>
+                                <span class="hours-time">Daily: 09:00 - 23:00</span>
+                            </div>
+                            <span class="hours-note">Please arrive <strong>15 minutes early</strong> to ensure smooth check-in and ticket collection.</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #fff9e6; color: #856404; border-radius: 8px; padding: 12px 15px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border-left: 4px solid #ffc107; border: 1px solid #ffe69c;">
+                        <p style="margin: 0; font-size: 0.85rem; line-height: 1.5;">
+                            <i class="fas fa-info-circle" style="margin-right: 8px; color: #ffc107;"></i>
+                            <strong>Important Notice:</strong> The available ticket count shown for each time slot applies to <strong>all ticket types</strong>, including standard tickets, premium tickets, and restaurant tickets with meals & drinks.
+                        </p>
+                    </div>
+                    
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="month-nav" id="prev-month" onclick="changeMonth(-1)">‹</button>
+                            <div class="date-selector" id="date-selector">
+                                August 1 (Fri)
+                            </div>
+                            <button class="month-nav next" id="next-month" onclick="changeMonth(1)">›</button>
+                        </div>
+                        
+                        <div class="time-grid" id="time-grid">
+                            <!-- Time slots will be generated based on selected date -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ticket Selection -->
+                <section class="ticket-section">
+                    <h2 class="section-title">BEST PRICE ALWAYS ONLINE</h2>
+                    <p class="section-subtitle">Buy your ticket online and save money on every ticket</p>
+                    
+                    <div class="ticket-grid-vertical">
+                        <!-- Standard Ticket -->
+                        <div class="ticket-card">
+                            <h3 class="ticket-title">STANDARD TICKET</h3>
+                            <p class="mb-2">Admission</p>
+                            
+                            <div class="ticket-features">
+                                <div class="feature-item available">
+                                    <i class="fas fa-check"></i>
+                                    Observation deck admission
+                                </div>
+                                <div class="feature-item unavailable">
+                                    <i class="fas fa-times"></i>
+                                    1x Berlin's Odyssee VR Experience (choose one of two films)
+                                </div>
+                                <div class="feature-item unavailable">
+                                    <i class="fas fa-times"></i>
+                                    1x Drink of this selection at Sphere Bar
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-pricing">
+                                <div class="price-info">
+                                    <span class="price-old">€30.50</span>
+                                    <span class="price-new">€25.00</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="adjustQuantity('standard', -1)">-</button>
+                                    <span class="quantity-display" id="standard-qty">0</span>
+                                    <button class="quantity-btn" onclick="adjustQuantity('standard', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premium Ticket -->
+                        <div class="ticket-card featured">
+                            <h3 class="ticket-title">PREMIUM TICKET</h3>
+                            <p class="mb-2">Admission + VR</p>
+                            
+                            <div class="ticket-features">
+                                <div class="feature-item available">
+                                    <i class="fas fa-check"></i>
+                                    Observation deck admission
+                                </div>
+                                <div class="feature-item available">
+                                    <i class="fas fa-check"></i>
+                                    1x Berlin's Odyssee VR Experience (choose one of two films)
+                                </div>
+                                <div class="feature-item unavailable">
+                                    <i class="fas fa-times"></i>
+                                    1x Drink of this selection at Sphere Bar
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-pricing">
+                                <div class="price-info">
+                                    <span class="price-old">€41.50</span>
+                                    <span class="price-new">€36.50</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="adjustQuantity('premium', -1)">-</button>
+                                    <span class="quantity-display" id="premium-qty">0</span>
+                                    <button class="quantity-btn" onclick="adjustQuantity('premium', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premium Deluxe Ticket -->
+                        <div class="ticket-card">
+                            <h3 class="ticket-title">PREMIUM DELUXE TICKET</h3>
+                            <p class="mb-2">Admission + Drink + VR</p>
+                            
+                            <div class="ticket-features">
+                                <div class="feature-item available">
+                                    <i class="fas fa-check"></i>
+                                    Observation deck admission
+                                </div>
+                                <div class="feature-item available">
+                                    <i class="fas fa-check"></i>
+                                    1x Berlin's Odyssee VR Experience (choose one of two films)
+                                </div>
+                                <div class="feature-item available">
+                                    <i class="fas fa-check"></i>
+                                    1x Drink of this selection at Sphere Bar
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-pricing">
+                                <div class="price-info">
+                                    <span class="price-old">€52.00</span>
+                                    <span class="price-new">€47.00</span>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="adjustQuantity('deluxe', -1)">-</button>
+                                    <span class="quantity-display" id="deluxe-qty">0</span>
+                                    <button class="quantity-btn" onclick="adjustQuantity('deluxe', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+
+                <!-- Tour Guide Tickets -->
+                <div class="tour-guide-section">
+                    <h3 class="section-title">Berlin TV Tower Entry Tickets with Meals & Drinks</h3>
+                    
+                    <div class="tour-ticket-grid">
+                        <div class="tour-ticket">
+                            <h4>"TRIPLE B! THE VIEW OVER BERLIN, BOULETTE & BREW" BY TIM RAUE</h4>
+                            <p class="mb-2">Admission + Drink + Snack</p>
+                            <div class="tour-description">
+                                <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Admission to the observation platform incl. Sphere Bar</p>
+                                <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Juicy boulette with mustard cream & sweet-sour cornichons by Tim Raue and a refreshing drink (BRLO beer or a glass of sparkling wine)</p>
+                            </div>
+                            <div class="tour-price-container">
+                                <div class="tour-price-info">
+                                    <div class="tour-price">43.00</div>
+                                    <div style="font-size: 0.7rem; color: #666; margin-top: 0.2rem;">incl. 19% VAT</div>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="adjustQuantity('tour1', -1)">-</button>
+                                    <span class="quantity-display" id="tour1-qty">0</span>
+                                    <button class="quantity-btn" onclick="adjustQuantity('tour1', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tour-ticket">
+                            <h4>"S'N'S! SPARKLING & SPICY BERLIN" BY TIM RAUE</h4>
+                            <p class="mb-2">Admission + Drink + Snack</p>
+                            <div class="tour-description">
+                                <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Admission to the observation platform incl. Sphere Bar</p>
+                                <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Spicy Berlin Currywurst with Schrippe by Tim Raue and a refreshing drink (BRLO beer or a glass of sparkling wine)</p>
+                            </div>
+                            <div class="tour-price-container">
+                                <div class="tour-price-info">
+                                    <div class="tour-price">43.00</div>
+                                    <div style="font-size: 0.7rem; color: #666; margin-top: 0.2rem;">incl. 19% VAT</div>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="adjustQuantity('tour2', -1)">-</button>
+                                    <span class="quantity-display" id="tour2-qty">0</span>
+                                    <button class="quantity-btn" onclick="adjustQuantity('tour2', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant Ticket -->
+                <div class="restaurant-section">
+                    <h3 class="section-title">Restaurant Experience</h3>
+                    <div class="restaurant-ticket">
+                        <h4>RESTAURANT TICKET</h4>
+                        <p class="mb-2">Entry + Time Slot</p>
+                        <div class="tour-description">
+                            <p style="font-weight: bold; color: #856404; margin-bottom: 0.5rem;">✓ Inclusions</p>
+                            <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Fast-track entrance ticket</p>
+                            <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>High-speed elevator ride</p>
+                            <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>360° views of Berlin</p>
+                            <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Admission to the restaurant Sphere Tim Raue (curated by Michelin-starred chef, Tim Raue)</p>
+                            <p><i class="fas fa-check" style="color: #28a745; margin-right: 8px;"></i>Table reservation</p>
+                            <p style="font-weight: bold; color: #dc3545; margin-top: 0.5rem; margin-bottom: 0.5rem;">✗ Exclusions</p>
+                            <p><i class="fas fa-times" style="color: #dc3545; margin-right: 8px;"></i>Food and drinks (to be chosen from menu via à la carte and paid onsite)</p>
+                        </div>
+                        <div class="restaurant-price-container">
+                            <div class="restaurant-price-info">
+                                <span style="text-decoration: line-through; color: #999; margin-right: 0.5rem;">€33.50</span>
+                                <span>€28.50</span>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="adjustQuantity('restaurant', -1)">-</button>
+                                <span class="quantity-display" id="restaurant-qty">0</span>
+                                <button class="quantity-btn" onclick="adjustQuantity('restaurant', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Price -->
+                <div class="total-section">
+                    <h3>Total Price</h3>
+                    <div class="total-price" id="total-price">€0.00</div>
+                    <div class="price-breakdown" id="price-breakdown">Select tickets to see breakdown</div>
+                </div>
+            </section>
+
+            <!-- Booking Button -->
+            <section class="booking-section">
+                <button class="book-now-btn" onclick="bookNow()">
+                    Book Now
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Ticket quantities and prices
+        const ticketData = {
+            standard: { price: 25.00, qty: 0 },
+            premium: { price: 36.50, qty: 0 },
+            deluxe: { price: 47.00, qty: 0 },
+            tour1: { price: 43.00, qty: 0 },
+            tour2: { price: 43.00, qty: 0 },
+            restaurant: { price: 28.50, qty: 0 }
+        };
+
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDate = new Date(2026, 7, 1); // Default to August 1, 2026
+        let selectedTime = null;
+        let currentDay = 1; // Current selected day
+
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        // All available time slots
+        const allTimeSlots = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
+            '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+            '18:00', '18:30', '19:00', '19:30', '20:00', '20:30',
+            '21:00', '21:30', '22:00', '22:30'
+        ];
+
+        // Generate fixed ticket counts with specified ratios
+        // 10% = 0 tickets, 70% = 1-5 tickets, 20% = >5 tickets
+        function generateFixedTicketCounts() {
+            const ticketCounts = {};
+            const timeSlots = allTimeSlots;
+            
+            // Create a deterministic pattern for each day
+            const dayPatterns = {
+                1: [0, 2, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3],
+                2: [1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0],
+                3: [4, 1, 2, 0, 3, 4, 1, 2, 0, 3, 4, 1, 2, 0, 3, 4, 1, 2, 0, 3, 4, 1, 2, 0, 3, 4, 1, 2],
+                4: [2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4],
+                5: [3, 4, 1, 2, 0, 3, 4, 1, 2, 0, 3, 4, 1, 2, 0, 3, 2, 1, 4, 0, 3, 2, 2, 3, 0, 3, 4, 1],
+                6: [0, 2, 3, 4, 1, 0, 2, 3, 4, 1, 0, 2, 3, 4, 1, 0, 2, 3, 4, 1, 0, 2, 3, 4, 1, 0, 2, 3],
+                7: [4, 1, 0, 3, 2, 4, 1, 0, 3, 2, 4, 1, 0, 3, 2, 4, 1, 0, 3, 2, 4, 1, 0, 3, 2, 4, 1, 0],
+                8: [1, 3, 4, 0, 2, 1, 3, 4, 0, 2, 1, 3, 4, 0, 2, 1, 3, 4, 0, 2, 1, 3, 4, 0, 2, 1, 3, 4],
+                9: [2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1],
+                10: [3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2],
+                11: [0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4],
+                12: [4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1],
+                13: [1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0],
+                14: [2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3],
+                15: [3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2],
+                16: [0, 1, 4, 2, 3, 0, 1, 4, 2, 3, 0, 1, 4, 2, 3, 0, 1, 4, 2, 3, 0, 1, 4, 2, 3, 0, 1, 4],
+                17: [4, 3, 1, 0, 2, 4, 3, 1, 0, 2, 4, 3, 1, 0, 2, 4, 3, 1, 0, 2, 4, 3, 1, 0, 2, 4, 3, 1],
+                18: [1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0, 4, 3, 1, 2, 0],
+                19: [2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3],
+                20: [3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2],
+                21: [0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4],
+                22: [4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1],
+                23: [1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0],
+                24: [2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3],
+                25: [3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2],
+                26: [0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4],
+                27: [4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1, 0, 3, 4, 2, 1],
+                28: [1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0, 4, 2, 1, 3, 0],
+                29: [2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3, 1, 4, 2, 0, 3],
+                30: [3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2, 0, 1, 3, 4, 2],
+                31: [0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4, 3, 2, 0, 1, 4]
+            };
+            
+            // Generate ticket counts for all August 2026 dates
+            for (let day = 1; day <= 31; day++) {
+                const date = `2026-08-${day.toString().padStart(2, '0')}`;
+                ticketCounts[date] = {};
+                
+                const pattern = dayPatterns[day];
+                
+                timeSlots.forEach((time, index) => {
+                    // Use direct index since pattern length matches timeSlots length
+                    const ticketCount = pattern[index];
+                    ticketCounts[date][time] = ticketCount;
+                });
+            }
+            
+            return ticketCounts;
+        }
+
+        // Generate all ticket counts
+        const ticketCounts = generateFixedTicketCounts();
+
+        function updateDateSelector() {
+            const dateSelector = document.getElementById('date-selector');
+            const monthName = monthNames[currentMonth];
+            const dayOfWeek = dayNames[selectedDate.getDay()];
+            dateSelector.textContent = `${monthName} ${currentDay} (${dayOfWeek})`;
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-month');
+            const nextBtn = document.getElementById('next-month');
+            
+            // Disable prev button if on first day (August 1)
+            prevBtn.disabled = (currentDay === 1);
+            
+            // Disable next button if on last day (August 31)
+            nextBtn.disabled = (currentDay === 31);
+        }
+
+        function changeMonth(direction) {
+            // Change day instead of month
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const newDay = currentDay + direction;
+            
+            if (newDay >= 1 && newDay <= daysInMonth) {
+                currentDay = newDay;
+                selectedDate = new Date(currentYear, currentMonth, currentDay);
+                
+                // Clear previous time selection
+                selectedTime = null;
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+                
+                // Update date selector display
+                updateDateSelector();
+                
+                // Update navigation buttons
+                updateNavButtons();
+                
+                // Generate available time slots for this date
+                // Use consistent date string format: YYYY-MM-DD
+                const dateString = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+                generateTimeSlots(dateString);
+            }
+        }
+
+        function generateTimeSlots(date) {
+            const timeSlotsContainer = document.getElementById('time-grid');
+            timeSlotsContainer.innerHTML = '';
+            
+            const dateTicketCounts = ticketCounts[date] || {};
+            
+            
+            allTimeSlots.forEach(time => {
+                const timeSlot = document.createElement('div');
+                timeSlot.className = 'time-slot';
+                timeSlot.textContent = time;
+                
+                const ticketCount = dateTicketCounts[time] || 0;
+                
+                // Create ticket count badge
+                const ticketBadge = document.createElement('div');
+                ticketBadge.className = 'ticket-count';
+                
+                if (ticketCount === 0) {
+                    ticketBadge.classList.add('sold-out');
+                    ticketBadge.textContent = '0';
+                    timeSlot.classList.add('sold-out');
+                    timeSlot.title = 'Sold Out';
+                } else if (ticketCount >= 1 && ticketCount <= 4) {
+                    ticketBadge.classList.add('low');
+                    ticketBadge.textContent = ticketCount;
+                    timeSlot.onclick = () => selectTime(timeSlot, time);
+                    timeSlot.title = `⚠️ Only ${ticketCount} tickets left!`;
+                } else if (ticketCount >= 5 && ticketCount <= 10) {
+                    ticketBadge.classList.add('available');
+                    ticketBadge.textContent = ticketCount;
+                    timeSlot.onclick = () => selectTime(timeSlot, time);
+                    timeSlot.title = `✅ ${ticketCount} tickets available`;
+                } else {
+                    ticketBadge.classList.add('available');
+                    ticketBadge.textContent = ticketCount;
+                    timeSlot.onclick = () => selectTime(timeSlot, time);
+                    timeSlot.title = `✅ ${ticketCount} tickets available`;
+                }
+                
+                timeSlot.appendChild(ticketBadge);
+                timeSlotsContainer.appendChild(timeSlot);
+            });
+            
+            // Add closed slot at the end
+            const closedSlot = document.createElement('div');
+            closedSlot.className = 'time-slot closed';
+            closedSlot.textContent = 'CLOSED';
+            timeSlotsContainer.appendChild(closedSlot);
+        }
+
+        function showTicketLimitAlert(ticketType, maxTickets) {
+            const ticketName = getTicketName(ticketType);
+            alert(`Sorry, you cannot add more ${ticketName} tickets.\n\nOnly ${maxTickets} tickets are available for the selected time slot.`);
+        }
+
+        function adjustQuantity(ticketType, change) {
+            const newQty = ticketData[ticketType].qty + change;
+            
+            // Check if trying to increase quantity
+            if (change > 0) {
+                // Check if this is a main ticket, tour guide ticket, or restaurant ticket that needs availability check
+                const needsAvailabilityCheck = ['standard', 'premium', 'deluxe', 'tour1', 'tour2', 'restaurant'].includes(ticketType);
+                
+                if (needsAvailabilityCheck && selectedDate && selectedTime) {
+                    // Convert selectedDate to string format for ticketCounts lookup
+                    // Use consistent date string format: YYYY-MM-DD
+                    const dateString = `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1).toString().padStart(2, '0')}-${selectedDate.getDate().toString().padStart(2, '0')}`;
+                    
+                    // Get available tickets for the selected time slot
+                    const availableTickets = ticketCounts[dateString] && ticketCounts[dateString][selectedTime] ? ticketCounts[dateString][selectedTime] : 0;
+                    
+                    
+                    // Calculate total tickets already selected for this time slot
+                    const totalSelectedTickets = Object.values(ticketData).reduce((sum, data) => sum + data.qty, 0);
+                    
+                    // Check if adding this ticket would exceed availability
+                    if (totalSelectedTickets + change > availableTickets) {
+                        showTicketLimitAlert(ticketType, availableTickets);
+                        return; // Don't increase the quantity
+                    }
+                }
+            }
+            
+            // Proceed with quantity adjustment if within limits
+            if (newQty >= 0) {
+                ticketData[ticketType].qty = newQty;
+                document.getElementById(ticketType + '-qty').textContent = newQty;
+                updateTotal();
+            }
+        }
+
+        function updateTotal() {
+            let total = 0;
+            let breakdown = [];
+
+            for (const [type, data] of Object.entries(ticketData)) {
+                if (data.qty > 0) {
+                    const subtotal = data.qty * data.price;
+                    total += subtotal;
+                    breakdown.push(`${data.qty} × €${data.price.toFixed(2)} (${type})`);
+                }
+            }
+
+            document.getElementById('total-price').textContent = `€${total.toFixed(2)}`;
+            document.getElementById('price-breakdown').textContent = 
+                breakdown.length > 0 ? breakdown.join(' + ') : 'Select tickets to see breakdown';
+        }
+
+        function selectDate(element, date) {
+            // Extract day from date string
+            const day = parseInt(date.split('-')[2]);
+            currentDay = day;
+            selectedDate = new Date(currentYear, currentMonth, day);
+            
+            // Check if selected tickets exceed available tickets for any time slot on this date
+            const totalSelectedTickets = Object.values(ticketData).reduce((sum, data) => sum + data.qty, 0);
+            
+            if (totalSelectedTickets > 0) {
+                // Check if there are any time slots with enough tickets
+                let hasAvailableSlot = false;
+                let maxAvailableTickets = 0;
+                
+                allTimeSlots.forEach(time => {
+                    const availableTickets = ticketCounts[date] && ticketCounts[date][time] ? ticketCounts[date][time] : 0;
+                    if (availableTickets >= totalSelectedTickets) {
+                        hasAvailableSlot = true;
+                    }
+                    maxAvailableTickets = Math.max(maxAvailableTickets, availableTickets);
+                });
+                
+                if (!hasAvailableSlot) {
+                    alert(`You have selected ${totalSelectedTickets} tickets, but the maximum available tickets for any time slot on this date is ${maxAvailableTickets}.\n\nPlease reduce your ticket quantity before selecting this date.`);
+                    return;
+                }
+            }
+            
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Add selection to clicked date
+            element.classList.add('selected');
+            
+            // Update date selector display
+            updateDateSelector();
+            
+            // Update navigation buttons
+            updateNavButtons();
+            
+            // Clear previous time selection
+            selectedTime = null;
+            
+            // Generate time slots for the selected date
+            generateTimeSlots(date);
+        }
+
+        function selectTime(element, time) {
+            // Check if time slot is sold out or closed
+            if (element.classList.contains('sold-out')) {
+                alert('This time slot is sold out. Please select another time.');
+                return;
+            }
+            
+            if (element.classList.contains('closed')) {
+                alert('This time slot is closed. Please select another time.');
+                return;
+            }
+            
+            // Check if selected tickets exceed available tickets for this time slot
+            if (selectedDate) {
+                // Convert selectedDate to string format for ticketCounts lookup
+                // Use consistent date string format: YYYY-MM-DD
+                const dateString = `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1).toString().padStart(2, '0')}-${selectedDate.getDate().toString().padStart(2, '0')}`;
+                const availableTickets = ticketCounts[dateString] && ticketCounts[dateString][time] ? ticketCounts[dateString][time] : 0;
+                const totalSelectedTickets = Object.values(ticketData).reduce((sum, data) => sum + data.qty, 0);
+                
+                if (totalSelectedTickets > availableTickets) {
+                    alert(`You have selected ${totalSelectedTickets} tickets, but only ${availableTickets} tickets are available for this time slot.\n\nPlease reduce your ticket quantity before selecting this time.`);
+                    return;
+                }
+            }
+            
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time
+            element.classList.add('selected');
+            selectedTime = time;
+        }
+
+        function bookNow() {
+            if (selectedDate && selectedTime) {
+                const totalTickets = Object.values(ticketData).reduce((sum, data) => sum + data.qty, 0);
+                
+                if (totalTickets > 0) {
+                    showBookingConfirmation();
+                } else {
+                    alert('Please select at least one ticket before booking.');
+                }
+            } else {
+                alert('Please select both date and time before booking.');
+            }
+        }
+
+        function showBookingConfirmation() {
+            // Get booking details
+            const totalPrice = document.getElementById('total-price').textContent;
+            const priceBreakdown = document.getElementById('price-breakdown').textContent;
+            
+            // Create booking summary
+            let bookingSummary = `Booking Confirmation\n\n`;
+            bookingSummary += `Date: ${selectedDate}\n`;
+            bookingSummary += `Time: ${selectedTime}\n\n`;
+            bookingSummary += `Tickets:\n`;
+            
+            // Add ticket details
+            for (const [type, data] of Object.entries(ticketData)) {
+                if (data.qty > 0) {
+                    const ticketName = getTicketName(type);
+                    bookingSummary += `• ${ticketName}: ${data.qty} × €${data.price.toFixed(2)}\n`;
+                }
+            }
+            
+            bookingSummary += `\nTotal: ${totalPrice}\n`;
+            bookingSummary += `\nThank you for your booking!`;
+            
+            // Show confirmation dialog
+            if (confirm(bookingSummary)) {
+                // User clicked OK, refresh the homepage
+                location.reload();
+            }
+            // If user clicked Cancel, do nothing (stay on current page)
+        }
+
+        function getTicketName(type) {
+            const ticketNames = {
+                'standard': 'Standard Ticket',
+                'premium': 'Premium Ticket',
+                'deluxe': 'Premium Deluxe Ticket',
+                'tour1': 'Triple B! Tour by Tim Raue',
+                'tour2': 'S\'N\'S! Tour by Tim Raue',
+                'restaurant': 'Restaurant Ticket'
+            };
+            return ticketNames[type] || type;
+        }
+
+
+        // Initialize total display
+        updateTotal();
+        
+
+        // Set default selected date to August 1st
+        function initializeDefaultDate() {
+            // Set as selected date
+            selectedDate = new Date(2026, 7, 1);
+            currentDay = 1;
+            currentYear = 2026;
+            currentMonth = 7; // August (0-indexed)
+            // Update date selector and navigation
+            updateDateSelector();
+            updateNavButtons();
+            // Generate time slots for August 1st using consistent format
+            const dateString = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${currentDay.toString().padStart(2, '0')}`;
+            generateTimeSlots(dateString);
+            
+            // Ensure the page shows August 1st time slots on load
+            console.log('Initializing with August 1st time slots:', dateString);
+        }
+        
+        // Initialize default date and time slots
+        initializeDefaultDate();
+    </script>
+</body>
+</html>

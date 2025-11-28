@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柏林新博物馆旅游攻略: 2小时限时速览版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stat-item .icon {
+            font-size: 16px;
+            color: #dc2626;
+        }
+
+        .header-banner {
+            background: #dc2626;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .header-banner h1 {
+            font-family: 'Times New Roman', serif;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .header-banner .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        .venue-overview {
+            color: #dc2626;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dc2626;
+        }
+
+        .indented-text {
+            margin-left: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #dc2626;
+            font-size: 1em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .highlight-box.green {
+            background: #d1fae5;
+        }
+
+        .highlight-box .icon-circle {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .highlight-box.green .icon-circle {
+            background: #10b981;
+        }
+
+        .highlight-box .content {
+            flex: 1;
+        }
+
+        .highlight-box h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .route-section {
+            margin: 25px 0;
+        }
+
+        .route-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #dc2626;
+        }
+
+        .route-item h4 {
+            color: #dc2626;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .route-item p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .special-note {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .final-thoughts {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .final-thoughts .icon-circle {
+            width: 30px;
+            height: 30px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .final-thoughts .content {
+            flex: 1;
+        }
+
+        .final-thoughts h3 {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .final-thoughts p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header-banner h1 {
+                font-size: 1.8em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .social-stats {
+                gap: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 社交统计数据 -->
+        <div class="social-stats">
+            <div class="stat-item">
+                <span class="icon">❤️</span>
+                <span>320 Likes</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">💬</span>
+                <span>150 Comments</span>
+            </div>
+            <div class="stat-item">
+                <span class="icon">📤</span>
+                <span>85 Shares</span>
+            </div>
+        </div>
+
+        <!-- 主标题横幅 -->
+        <div class="header-banner">
+            <h1>Neues Museum Berlin Travel Guide Notes 1</h1>
+        </div>
+
+        <!-- 主要内容 -->
+        <div class="main-content">
+            <!-- 场馆概览部分 -->
+            <div class="section-header">
+                <div class="section-icon">!</div>
+                <div>
+                    <h2 class="section-title">Neues Museum Berlin</h2>
+                </div>
+            </div>
+
+            <h3 class="venue-overview">Venue Overview</h3>
+            
+            <div class="indented-text">
+                Perfect for visitors with tight schedules on Museum Island who can only spare 2 hours, first-time Berlin visitors who want to see the "must-see exhibits" without missing the museum's treasures. Approximately 2 hours to quickly browse the main exhibits without detours.
+            </div>
+
+            <!-- 游览路径 -->
+            <div class="route-section">
+                <div class="route-item">
+                    <h4>Head Straight to Ancient Egypt Gallery (2nd Floor)</h4>
+                    <p>The quietest and most immersive exhibition area in the museum.</p>
+                    <p>Main target: Nefertiti bust - she is the soul of the entire museum and the most controversial exhibit (Egypt has long demanded its return). Her gentle yet determined expression is enough to make you pause for ten minutes.</p>
+                    <p>Others can be quickly browsed: tomb models, mural fragments, daily artifacts - just a brief overview.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>Prehistory and Early History Section (1st Floor)</h4>
+                    <p>The highlight is the burial area: urns and reconstructed burial site models that quickly convey the "simplicity" of early human life.</p>
+                    <p>Recommended stay: about 15 minutes.</p>
+                </div>
+
+                <div class="route-item">
+                    <h4>Classical Civilization Section (Basement)</h4>
+                    <p>Just look at a few representative sculptures and reliefs, no need to examine each one in detail.</p>
+                    <p>If time is tight, you can skip this section entirely.</p>
+                    <p>Must-see second treasure: Golden Hat - as thin as a cicada's wing, only 0.6mm thick, with patterns that remain undeciphered to this day. Standing in front of the display case, you'll feel a sense of curiosity about this "unsolved mystery."</p>
+                </div>
+            </div>
+
+            <!-- 特别提醒 -->
+            <div class="highlight-box">
+                <div class="icon-circle">💡</div>
+                <div class="content">
+                    <h3>Museum Tip:</h3>
+                    <p>Nefertiti bust: The only exhibit where close-up photography is prohibited, museum staff will be watching closely.</p>
+                    <p>It's recommended to book tickets online in advance to avoid queuing</p>
+                    <p>Flash photography is prohibited throughout the museum</p>
+                </div>
+            </div>
+
+            <!-- 到达体验 -->
+            <div class="highlight-box green">
+                <div class="icon-circle">⭐</div>
+                <div class="content">
+                    <h3>Visit Experience:</h3>
+                    <p>For a 2-hour quick tour, the core is "heading straight to Nefertiti." The museum area is not large, with a peaceful atmosphere, perfect for quiet immersion in limited time.</p>
+                </div>
+            </div>
+
+            <!-- 最终感想 -->
+            <div class="final-thoughts">
+                <div class="icon-circle">💡</div>
+                <div class="content">
+                    <h3>Final Thoughts:</h3>
+                    <p>When you leave, you'll feel: although you didn't see everything, "it was worth the visit."</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

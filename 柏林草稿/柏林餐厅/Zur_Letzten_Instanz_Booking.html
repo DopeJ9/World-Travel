@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zur Letzten Instanz - Berlin Reservations</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
+            height: 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-name-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(139, 69, 19, 0.85);
+            color: #fff8dc;
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(218, 165, 32, 0.3);
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+            color: #fff8dc;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 248, 220, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #8b4513;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: #cd853f;
+        }
+
+        /* Restaurant Info */
+        .info-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff8dc, #ffe4b5);
+            border-radius: 12px;
+            border-left: 4px solid #cd853f;
+        }
+
+        .info-item h3 {
+            color: #8b4513;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            color: #654321;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .hour-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
+            border: 1px solid rgba(205, 133, 63, 0.2);
+        }
+
+        .hour-label {
+            font-weight: 600;
+            color: #8b4513;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .hour-time {
+            color: #cd853f;
+            font-size: 0.85rem;
+        }
+
+        .closed-item {
+            background: rgba(200, 200, 200, 0.3);
+            color: #666;
+        }
+
+        .closed-item .hour-time {
+            color: #666;
+        }
+
+        /* Historic Badge */
+        .historic-badge {
+            background: linear-gradient(135deg, #daa520, #ffd700);
+            color: #8b4513;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(218, 165, 32, 0.3);
+            margin-bottom: 10px;
+        }
+
+        /* Dress Code & Rules */
+        .rules-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .rules-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+            color: #654321;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li i {
+            color: #cd853f;
+            width: 16px;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            background: rgba(255, 248, 220, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            grid-column: span 2;
+        }
+
+        .simple-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.15);
+            border: 1px solid rgba(205, 133, 63, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav-btn {
+            background: #8b4513;
+            color: #fff8dc;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .month-nav-btn:hover {
+            background: #cd853f;
+            transform: scale(1.1);
+        }
+
+        .month-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #8b4513;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .day-header {
+            background: #8b4513;
+            color: #fff8dc;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .calendar-day {
+            background: #fff8dc;
+            border: 1px solid #deb887;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin: 1px;
+        }
+
+        .calendar-day:hover {
+            background: #ffe4b5;
+            border-color: #cd853f;
+        }
+
+        .calendar-day.selected {
+            background: #8b4513;
+            color: #fff8dc;
+            border-color: #8b4513;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+
+        .calendar-day.empty:hover {
+            background: transparent;
+        }
+
+        .calendar-day.closed {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .calendar-day.closed:hover {
+            background: #f0f0f0;
+            border-color: #deb887;
+        }
+
+        /* Time Slots Styles */
+        .time-slots-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.15);
+            border: 1px solid rgba(205, 133, 63, 0.2);
+        }
+
+        .time-section {
+            margin-bottom: 20px;
+        }
+
+        .time-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-section-title {
+            font-weight: 600;
+            color: #8b4513;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #fff8dc;
+            border: 2px solid #deb887;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-slot:hover {
+            background: #ffe4b5;
+            border-color: #cd853f;
+        }
+
+        .time-slot.selected {
+            background: #8b4513;
+            color: #fff8dc;
+            border-color: #8b4513;
+        }
+
+        .time-slot.disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .time-slot.disabled:hover {
+            background: #f5f5f5;
+            border-color: #deb887;
+        }
+
+        .time-slot.unavailable {
+            background: #ffe6e6;
+            color: #666;
+            cursor: not-allowed;
+            border-color: #ffcccc;
+            position: relative;
+            flex-direction: column;
+            padding: 8px 5px;
+        }
+
+        .time-slot.unavailable:hover {
+            background: #ffe6e6;
+            border-color: #ffcccc;
+        }
+
+        .time-slot.unavailable::after {
+            content: 'Unavailable';
+            display: block;
+            font-size: 0.65rem;
+            color: #cc0000;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #8b4513;
+            font-size: 0.95rem;
+        }
+
+        /* Reserve Button */
+        .reserve-button {
+            background: linear-gradient(135deg, #8b4513, #cd853f);
+            color: #fff8dc;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .reserve-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 69, 19, 0.4);
+        }
+
+        .reserve-button:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(255, 248, 220, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 20px;
+            color: #8b4513;
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: #cd853f;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .restaurant-name-overlay {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+            }
+
+            .restaurant-name {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-form {
+                grid-column: span 1;
+            }
+
+            .simple-form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                min-height: 40px;
+                font-size: 0.9rem;
+                padding: 10px 5px;
+            }
+
+            .day-header {
+                padding: 8px 5px;
+                font-size: 0.8rem;
+            }
+
+            .time-slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .time-slot {
+                min-height: 40px;
+                font-size: 0.8rem;
+                padding: 10px 5px;
+            }
+
+            .time-slot.unavailable {
+                min-height: 50px;
+                padding: 6px 5px;
+            }
+
+            .time-slot.unavailable::after {
+                font-size: 0.6rem;
+                margin-top: 1px;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&h=300&fit=crop" 
+                 alt="Zur Letzten Instanz Berlin Historic Restaurant" 
+                 class="hero-image">
+            <div class="restaurant-name-overlay">
+                <h1 class="restaurant-name">ZUR LETZTEN INSTANZ</h1>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Restaurant Information -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    Restaurant Information
+                </h2>
+
+                <div class="info-item">
+                    <div class="historic-badge">
+                        <i class="fas fa-crown"></i>
+                        Founded in 1621
+                    </div>
+                    <h3><i class="fas fa-utensils"></i> Restaurant Type</h3>
+                    <p><strong>Historic German Restaurant</strong><br>
+                    Experience authentic German cuisine in Berlin's oldest restaurant, where Napoleon and Beethoven once dined.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                    <p>Zur Letzten Instanz 1-3, 10179 Berlin, Germany<br>
+                    Located in the historic old town of East Berlin</p>
+                </div>
+
+
+                <div class="info-item">
+                    <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                    <div class="hours-grid">
+                        <div class="hour-item">
+                            <div class="hour-label">Monday</div>
+                            <div class="hour-time">5:30 PM - 11:00 PM</div>
+                        </div>
+                        <div class="hour-item">
+                            <div class="hour-label">Tuesday - Saturday (Lunch)</div>
+                            <div class="hour-time">12:00 PM - 3:30 PM</div>
+                        </div>
+                        <div class="hour-item">
+                            <div class="hour-label">Tuesday - Saturday (Dinner)</div>
+                            <div class="hour-time">5:30 PM - 11:00 PM</div>
+                        </div>
+                        <div class="hour-item closed-item">
+                            <div class="hour-label">Sunday</div>
+                            <div class="hour-time">Closed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policies & Specialties -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-star"></i>
+                    Historic Experience
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-calendar-check"></i> Reservations</h3>
+                    <p><strong>Reservations recommended!</strong> Experience dining in Berlin's most historic restaurant, established over 400 years ago.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-landmark"></i> Historic Atmosphere</h3>
+                    <p>Dine where legends once sat. Napoleon Bonaparte and Ludwig van Beethoven are among the famous guests who have enjoyed meals at our historic tables.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-concierge-bell"></i> Dining Experience</h3>
+                    <p>Savor refined German cuisine in an authentic historic setting. Our signature pork knuckle is marinated and grilled to perfection with crispy skin and tender meat.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form fade-in">
+            <h2 class="card-title">
+                <i class="fas fa-utensils"></i>
+                Make a Reservation
+            </h2>
+
+            <form id="reservationForm">
+                <div class="simple-form-grid">
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="month-nav-btn" id="prevMonth" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="monthTitle">August 2026</div>
+                                <button type="button" class="month-nav-btn" id="nextMonth" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time *</label>
+                        <div class="time-slots-container">
+                            <div class="time-section" id="lunchSection">
+                                <div class="time-section-title">
+                                    <i class="fas fa-sun"></i>
+                                    Lunch (Tuesday - Saturday)
+                                </div>
+                                <div class="time-slots-grid" id="lunchSlots">
+                                    <div class="time-slot disabled" data-time="12:00" data-meal="lunch" onclick="selectTime('12:00', 'lunch')">12:00 PM</div>
+                                    <div class="time-slot disabled" data-time="12:30" data-meal="lunch" onclick="selectTime('12:30', 'lunch')">12:30 PM</div>
+                                    <div class="time-slot disabled" data-time="13:00" data-meal="lunch" onclick="selectTime('13:00', 'lunch')">1:00 PM</div>
+                                    <div class="time-slot disabled" data-time="13:30" data-meal="lunch" onclick="selectTime('13:30', 'lunch')">1:30 PM</div>
+                                    <div class="time-slot disabled" data-time="14:00" data-meal="lunch" onclick="selectTime('14:00', 'lunch')">2:00 PM</div>
+                                    <div class="time-slot disabled" data-time="14:30" data-meal="lunch" onclick="selectTime('14:30', 'lunch')">2:30 PM</div>
+                                    <div class="time-slot disabled" data-time="15:00" data-meal="lunch" onclick="selectTime('15:00', 'lunch')">3:00 PM</div>
+                                    <div class="time-slot disabled" data-time="15:30" data-meal="lunch" onclick="selectTime('15:30', 'lunch')">3:30 PM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="time-section" id="dinnerSection">
+                                <div class="time-section-title">
+                                    <i class="fas fa-moon"></i>
+                                    Dinner (Monday - Saturday)
+                                </div>
+                                <div class="time-slots-grid" id="dinnerSlots">
+                                    <div class="time-slot disabled" data-time="17:30" data-meal="dinner" onclick="selectTime('17:30', 'dinner')">5:30 PM</div>
+                                    <div class="time-slot disabled" data-time="18:00" data-meal="dinner" onclick="selectTime('18:00', 'dinner')">6:00 PM</div>
+                                    <div class="time-slot disabled" data-time="18:30" data-meal="dinner" onclick="selectTime('18:30', 'dinner')">6:30 PM</div>
+                                    <div class="time-slot disabled" data-time="19:00" data-meal="dinner" onclick="selectTime('19:00', 'dinner')">7:00 PM</div>
+                                    <div class="time-slot disabled" data-time="19:30" data-meal="dinner" onclick="selectTime('19:30', 'dinner')">7:30 PM</div>
+                                    <div class="time-slot disabled" data-time="20:00" data-meal="dinner" onclick="selectTime('20:00', 'dinner')">8:00 PM</div>
+                                    <div class="time-slot disabled" data-time="20:30" data-meal="dinner" onclick="selectTime('20:30', 'dinner')">8:30 PM</div>
+                                    <div class="time-slot disabled" data-time="21:00" data-meal="dinner" onclick="selectTime('21:00', 'dinner')">9:00 PM</div>
+                                    <div class="time-slot disabled" data-time="21:30" data-meal="dinner" onclick="selectTime('21:30', 'dinner')">9:30 PM</div>
+                                    <div class="time-slot disabled" data-time="22:00" data-meal="dinner" onclick="selectTime('22:00', 'dinner')">10:00 PM</div>
+                                    <div class="time-slot disabled" data-time="22:30" data-meal="dinner" onclick="selectTime('22:30', 'dinner')">10:30 PM</div>
+                                    <div class="time-slot disabled" data-time="23:00" data-meal="dinner" onclick="selectTime('23:00', 'dinner')">11:00 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTime" name="time" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="reserve-button">
+                    <i class="fas fa-calendar-plus"></i>
+                    Make Reservation
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+49 30 242 5528</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@zurletzteninstanz.de</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>East Berlin, Germany</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDateValue = null;
+        let selectedTimeValue = null;
+        let selectedDayOfWeek = null;
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        // Fixed unavailable slots for August 2026 (1-2 slots per day)
+        const fixedUnavailableSlots = {
+            '2026-08-01': ['19:00', '20:30'],      // Saturday - Dinner
+            '2026-08-02': [],                       // Sunday - Closed
+            '2026-08-03': [],                       // Monday - Dinner only
+            '2026-08-04': ['12:30', '19:30'],      // Tuesday - Lunch & Dinner
+            '2026-08-05': ['13:00', '20:00'],      // Wednesday - Lunch & Dinner
+            '2026-08-06': ['14:30', '18:30'],      // Thursday - Lunch & Dinner
+            '2026-08-07': ['12:00', '21:00'],      // Friday - Lunch & Dinner
+            '2026-08-08': ['13:30', '19:00'],      // Saturday - Lunch & Dinner
+            '2026-08-09': [],                       // Sunday - Closed
+            '2026-08-10': ['18:00'],               // Monday - Dinner only
+            '2026-08-11': ['12:30', '20:30'],      // Tuesday - Lunch & Dinner
+            '2026-08-12': ['14:00', '19:30'],      // Wednesday - Lunch & Dinner
+            '2026-08-13': ['13:00', '21:30'],      // Thursday - Lunch & Dinner
+            '2026-08-14': ['15:00', '18:30'],      // Friday - Lunch & Dinner
+            '2026-08-15': ['12:00', '20:00'],      // Saturday - Lunch & Dinner
+            '2026-08-16': [],                       // Sunday - Closed
+            '2026-08-17': ['19:00'],               // Monday - Dinner only
+            '2026-08-18': ['13:30', '21:00'],      // Tuesday - Lunch & Dinner
+            '2026-08-19': ['12:30', '20:30'],      // Wednesday - Lunch & Dinner
+            '2026-08-20': ['14:30', '18:00'],      // Thursday - Lunch & Dinner
+            '2026-08-21': ['13:00', '22:00'],      // Friday - Lunch & Dinner
+            '2026-08-22': ['15:30', '19:30'],      // Saturday - Lunch & Dinner
+            '2026-08-23': [],                       // Sunday - Closed
+            '2026-08-24': ['20:00'],               // Monday - Dinner only
+            '2026-08-25': ['12:00', '21:30'],      // Tuesday - Lunch & Dinner
+            '2026-08-26': ['14:00', '18:30'],      // Wednesday - Lunch & Dinner
+            '2026-08-27': ['13:30', '20:00'],      // Thursday - Lunch & Dinner
+            '2026-08-28': ['15:00', '19:00'],      // Friday - Lunch & Dinner
+            '2026-08-29': ['12:30', '22:30'],      // Saturday - Lunch & Dinner
+            '2026-08-30': [],                       // Sunday - Closed
+            '2026-08-31': ['18:30']                // Monday - Dinner only
+        };
+
+        // Get fixed unavailable slots for a specific date
+        function getUnavailableSlotsForDate(dateString, dayOfWeek) {
+            return fixedUnavailableSlots[dateString] || [];
+        }
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            monthTitle.textContent = monthNames[currentMonth] + ' ' + currentYear;
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, day);
+                const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
+                
+                // Check if date is in the past
+                if (date < today) {
+                    dayElement.className = 'calendar-day closed';
+                    dayElement.title = 'Past date';
+                }
+                // Check if restaurant is closed (Sunday = 0)
+                else if (dayOfWeek === 0) {
+                    dayElement.className = 'calendar-day closed';
+                    dayElement.title = 'Restaurant is closed on Sundays';
+                } else {
+                    dayElement.className = 'calendar-day';
+                    dayElement.onclick = () => selectDate(day, dayOfWeek);
+                }
+                
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevMonth');
+            const nextBtn = document.getElementById('nextMonth');
+            
+            // Only allow August 2026 - disable all navigation
+            prevBtn.disabled = true;
+            nextBtn.disabled = true;
+        }
+
+        function changeMonth(direction) {
+            // Only August 2026 is allowed - prevent month changes
+            return;
+        }
+
+        function selectDate(day, dayOfWeek) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            
+            // Set selected date value
+            const month = String(currentMonth + 1).padStart(2, '0');
+            const dayStr = String(day).padStart(2, '0');
+            selectedDateValue = `${currentYear}-${month}-${dayStr}`;
+            selectedDayOfWeek = dayOfWeek;
+            document.getElementById('selectedDate').value = selectedDateValue;
+            
+            // Update time slots based on selected day
+            updateTimeSlots();
+            
+            // Clear time selection
+            selectedTimeValue = null;
+            document.getElementById('selectedTime').value = '';
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+        }
+
+        function updateTimeSlots() {
+            const lunchSlots = document.querySelectorAll('#lunchSlots .time-slot');
+            const dinnerSlots = document.querySelectorAll('#dinnerSlots .time-slot');
+            
+            if (!selectedDayOfWeek && selectedDayOfWeek !== 0) {
+                // No date selected - disable all slots
+                lunchSlots.forEach(slot => {
+                    slot.classList.add('disabled');
+                    slot.classList.remove('unavailable');
+                });
+                dinnerSlots.forEach(slot => {
+                    slot.classList.add('disabled');
+                    slot.classList.remove('unavailable');
+                });
+                return;
+            }
+            
+            // Get unavailable slots for the selected date
+            const unavailable = getUnavailableSlotsForDate(selectedDateValue, selectedDayOfWeek);
+            
+            // Lunch: Tuesday (2) - Saturday (6), 12:00 PM - 3:30 PM
+            const isLunchDay = selectedDayOfWeek >= 2 && selectedDayOfWeek <= 6;
+            lunchSlots.forEach(slot => {
+                const timeValue = slot.getAttribute('data-time');
+                slot.classList.remove('disabled', 'unavailable');
+                
+                if (isLunchDay) {
+                    // Check if this slot is unavailable
+                    if (unavailable.includes(timeValue)) {
+                        slot.classList.add('unavailable');
+                    }
+                } else {
+                    slot.classList.add('disabled');
+                }
+            });
+            
+            // Dinner: Monday (1) - Saturday (6), 5:30 PM - 11:00 PM
+            const isDinnerDay = selectedDayOfWeek >= 1 && selectedDayOfWeek <= 6;
+            dinnerSlots.forEach(slot => {
+                const timeValue = slot.getAttribute('data-time');
+                slot.classList.remove('disabled', 'unavailable');
+                
+                if (isDinnerDay) {
+                    // Check if this slot is unavailable
+                    if (unavailable.includes(timeValue)) {
+                        slot.classList.add('unavailable');
+                    }
+                } else {
+                    slot.classList.add('disabled');
+                }
+            });
+        }
+
+        function selectTime(time, meal) {
+            const timeSlot = event.target;
+            
+            // Don't allow selection of disabled or unavailable slots
+            if (timeSlot.classList.contains('disabled')) {
+                alert('This time slot is not available for the selected date. Please choose a different date or time.');
+                return;
+            }
+            
+            if (timeSlot.classList.contains('unavailable')) {
+                alert('Sorry, this time slot is already fully booked. Please choose a different time.');
+                return;
+            }
+            
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time slot
+            timeSlot.classList.add('selected');
+            
+            // Set selected time value
+            selectedTimeValue = time;
+            document.getElementById('selectedTime').value = selectedTimeValue;
+        }
+
+        // Form Validation and Submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.date || !data.time) {
+                alert('Please select both date and time.');
+                return;
+            }
+            
+            // Check if selected date is on a closed day
+            const selectedDate = new Date(data.date);
+            const dayOfWeek = selectedDate.getDay();
+            
+            if (dayOfWeek === 0) {
+                alert('Sorry, Zur Letzten Instanz is closed on Sundays. Please select a different date.');
+                return;
+            }
+            
+            // Format date for display
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const displayDate = selectedDate.toLocaleDateString('en-US', dateOptions);
+            
+            // Determine meal type
+            let mealType = '';
+            const hour = parseInt(data.time.split(':')[0]);
+            if (hour < 16) {
+                mealType = 'Lunch';
+            } else {
+                mealType = 'Dinner';
+            }
+            
+            // Success message
+            alert(`Reservation Confirmed!\n\n${mealType}\nDate: ${displayDate}\nTime: ${data.time}\n\nThank you for choosing Zur Letzten Instanz!\nWe look forward to serving you authentic German cuisine in our historic restaurant founded in 1621.`);
+            
+            // Reset form
+            this.reset();
+            selectedDateValue = null;
+            selectedTimeValue = null;
+            selectedDayOfWeek = null;
+            generateCalendar(); // Regenerate to clear selection
+            updateTimeSlots();
+        });
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateTimeSlots();
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize first element as visible
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

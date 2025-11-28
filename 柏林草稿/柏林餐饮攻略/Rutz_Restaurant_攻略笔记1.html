@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rutz Restaurant Guide - Berlin's Michelin Three-Star Restaurant, Germany's only three-star + green star restaurant featuring acid-driven Northern German cuisine">
+    <meta name="keywords" content="Rutz, Berlin restaurant, Michelin three-star, Marco Müller, German cuisine, sustainable dining">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Guide Note 1: Rutz - Berlin's Michelin Three-Star Restaurant (Germany's Only Three-Star + Green Star)</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Rutz - Berlin's Michelin Three-Star Restaurant (Germany's Only Three-Star + Green Star)">
+    <meta property="og:description" content="Berlin's sharpest yet gentlest restaurant—acidity runs throughout, yet never loses balance. A journey that redefines your understanding of 'flavor structure'.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rutz Michelin Three-Star Restaurant Experience">
+    <meta name="twitter:description" content="Germany's only three-star + green star restaurant featuring acid-driven Northern German cuisine">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: linear-gradient(135deg, #faf8f5 0%, #f0ebe3 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #8B4513;
+        }
+
+        .stat-icon {
+            color: #8B4513;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* Two Column Layout */
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #8B4513, #CD853F);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #8B4513;
+            margin-bottom: 5px;
+        }
+
+        .restaurant-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .article-content h3 {
+            color: #8B4513;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .article-content h4 {
+            color: #555;
+            font-size: 1.15rem;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .article-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .article-content li {
+            margin-bottom: 8px;
+        }
+
+        .article-content blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #8B4513;
+            padding: 12px 16px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .article-content p:first-of-type {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+            background: #fff8f0;
+            padding: 16px;
+            border-left: 4px solid #8B4513;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        /* Highlight Boxes */
+        .info-box {
+            background: linear-gradient(135deg, #fff8f0, #ffe6cc);
+            border: 1px solid #8B4513;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .info-box::before {
+            content: '⭐';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .experience-box {
+            background: linear-gradient(135deg, #fef5e7, #fdebd0);
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .experience-box::before {
+            content: '🍽';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .recommendation-box {
+            background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+            border: 1px solid #DAA520;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .recommendation-box::before {
+            content: '🥇';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .neutral-box {
+            background: linear-gradient(135deg, #f5f5f5, #ebebeb);
+            border: 1px solid #999;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .neutral-box::before {
+            content: '😐';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, #fff8f0, #ffe6d0);
+            border: 1px solid #FF8C00;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .time-box::before {
+            content: '⏱️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e6f7e6, #d4edda);
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '🌿';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, #e6f3ff, #cce6ff);
+            border: 2px solid #4682B4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(70, 130, 180, 0.2);
+        }
+
+        .tips-box::before {
+            content: '📋';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .social-stats {
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .stat-item {
+                font-size: 0.8rem;
+                gap: 6px;
+            }
+
+            .note-header {
+                padding: 30px 20px;
+            }
+
+            .note-title {
+                font-size: 1.4rem;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Special styling for dish items */
+        .dish-item {
+            margin-bottom: 15px;
+        }
+
+        .dish-item h4 {
+            color: #8B4513;
+            margin-bottom: 6px;
+        }
+
+        .dish-item blockquote {
+            background: #fafafa;
+            border-left: 3px solid #CD853F;
+            padding: 10px 14px;
+            margin: 6px 0;
+            font-size: 0.98rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">892</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">356</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-share stat-icon"></i>
+                <span class="stat-number">187</span>
+                <span>Shares</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">🍷 Guide Note 1</h1>
+            <p class='note-subtitle'>Rutz - Berlin's Michelin Three-Star Restaurant (Germany's Only Three-Star + Green Star)</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="restaurant-name">Rutz Restaurant</h2>
+                    <p class="restaurant-type">Friedrichstraße · Chef Marco Müller · Acid-driven Northern German cuisine × Creative experimentation × Sustainable philosophy</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+                <p>"Rutz is Berlin's sharpest yet gentlest restaurant—acidity runs throughout, yet never loses balance. It's not a meal that pleases the palate, but a journey that redefines your understanding of 'flavor structure'."</p>
+
+                <div class="experience-box">
+                    <strong>🍽 User Experience</strong><br><br>
+                    Rutz is that kind of three-star restaurant with <strong>"quiet exterior hiding sharp edges"</strong>. The exterior is so understated you might miss it, while the interior atmosphere is comfortable and unpretentious. The dining process feels more like a carefully orchestrated "flavor journey": layers from sour, salty, sweet, bitter to umami are delicately unfolded.<br><br>
+                    The restaurant's overall style centers on <strong>"high acidity + distinct layers"</strong>. Almost every dish contains acidic elements, but the acidity is intelligent and logical—the kind that awakens taste buds and draws out structural complexity.<br><br>
+                    If you seek rich creaminess or mild flavors, this place might be too "sharp"; but if you enjoy exploring flavor logic and savoring the complexity of sweet-sour interactions, Rutz will amaze you.
+                </div>
+
+                <div class="two-column-layout">
+                    <!-- Left Column: Dishes -->
+                    <div class="column">
+                        <div class="recommendation-box">
+                            <strong>🥇 Highly Recommended Dishes</strong><br><br>
+                            
+                            <div class="dish-item">
+                                <h4>🥬 Beetroot × Wasabi × Sumac Caramel Cream Sauce</h4>
+                                <blockquote>
+                                    One of the universally recognized signature dishes. Sour, spicy, and sweet flavors intertwine with extremely clear layers. Even diners who don't typically enjoy beetroot are often "converted" by this dish.
+                                </blockquote>
+                            </div>
+
+                            <div class="dish-item">
+                                <h4>🐮 Wagyu × Kohlrabi Oil × Bone Marrow Foam</h4>
+                                <blockquote>
+                                    Rich texture without being greasy, excellent balance between acidity and fattiness, a masterpiece combining technique and creativity.
+                                </blockquote>
+                            </div>
+
+                            <div class="dish-item">
+                                <h4>🍋 Non-Alcoholic Pairing</h4>
+                                <blockquote>
+                                    A surprising experience strongly recommended by many diners. Beverages and dishes create "flavor progression," such as the layered sweet-sour of <strong>Lemon & Tomato</strong> and Sumac powder accents, all extending the flavor profile longer.
+                                </blockquote>
+                            </div>
+
+                        </div>
+
+                        <div class="neutral-box">
+                            <strong>😐 Mixed Reviews or Milder Dishes</strong><br><br>
+                            • <strong>Yellowtail Mackerel</strong>: Some diners find the fish slightly too delicate, with the floral and acidic elements from tomato and marigold somewhat overshadowing its natural richness.<br><br>
+                            • <strong>Some mid-course vegetable dishes</strong>: Creative but weak memorable points, more like "flavor buffer segments."<br><br>
+                            • Service occasionally has flaws (such as new servers giving unskilled introductions, requesting tips at checkout, etc.), but overall still maintains three-star standards.
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Practical Information -->
+                    <div class="column">
+                        <div class="time-box">
+                            <strong>🕰️ Recommended Visit Duration</strong><br><br>
+                            <strong>Full Tasting Menu</strong>: ⏱ <strong>Approximately 2 hours</strong><br>
+                            Slow-paced rhythm, like a complete flavor narrative.<br><br>
+                            <strong>Short menu or lunch version</strong> (if available): ⏱ Approximately 1 hours<br><br>
+                            Generous intervals between courses, suitable for relaxed dining; recommend choosing the complete tasting menu to experience the chef's flavor logic "gradation."
+                        </div>
+
+                        <div class="highlight-box">
+                            <strong>🌿 Experience Highlights</strong><br><br>
+                            • <strong>Germany's only three-star + green star</strong>: Combining high-end dining with environmental philosophy.<br><br>
+                            • <strong>Flavor philosophy starting from acidity</strong>: Each dish tells a story of taste.<br><br>
+                            • <strong>Ingredients sourced from Germany and Nordic regions</strong>, focusing on "locality × sustainability."<br><br>
+                            • Beverage pairings are extremely thoughtful—colors, ingredients, and dishes form continuous flow.<br><br>
+                            • Can choose to sit near the wine cellar on the first floor or near the kitchen on the second floor, each offering unique experiences.
+                        </div>
+
+                        <div class="tips-box">
+                            <strong>📋 Pro Tips</strong><br><br>
+                            Advance reservation required; recommend Business Casual attire; can choose first floor (near wine cellar) or second floor (near kitchen for more immersive experience)
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Print functionality
+        function printNote() {
+            window.print();
+        }
+
+        // Share functionality (if needed)
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Rutz Michelin Three-Star Restaurant Experience',
+                    text: 'Check out this detailed Rutz restaurant guide - Germany\'s only three-star + green star restaurant',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+

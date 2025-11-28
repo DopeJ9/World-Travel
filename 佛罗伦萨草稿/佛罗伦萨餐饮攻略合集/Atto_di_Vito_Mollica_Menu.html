@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATTO di Vito Mollica - Menu</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f8f6f0 0%, #f0ebe2 100%);
+            min-height: 100vh;
+            color: #2c1810;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(44, 24, 16, 0.1);
+        }
+
+        .restaurant-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c1810;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 3px;
+        }
+
+        .restaurant-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #8b4513;
+            margin-bottom: 20px;
+        }
+
+        .menu-date {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Menu Layout */
+        .menu-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .menu-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 35px rgba(44, 24, 16, 0.15);
+            border: 2px solid rgba(139, 69, 19, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2c1810, #8b4513, #2c1810);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c1810;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #8b4513;
+        }
+
+        .section-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Menu Items */
+        .menu-item {
+            margin-bottom: 20px;
+            padding: 18px;
+            background: rgba(250, 240, 230, 0.6);
+            border-radius: 15px;
+            border-left: 4px solid #8b4513;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 24, 16, 0.15);
+            background: rgba(250, 240, 230, 0.9);
+        }
+
+        .item-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: #4a3728;
+            line-height: 1.5;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #8b4513;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Special Sections */
+        .tasting-menu {
+            border: 3px solid #8b4513;
+            background: rgba(245, 222, 179, 0.3);
+        }
+
+        .tasting-menu .section-title {
+            color: #8b4513;
+            font-size: 2rem;
+        }
+
+        .price-highlight {
+            background: rgba(139, 69, 19, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            border: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .price-highlight .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c1810;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Additional Info */
+        .additional-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            border: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .cheese-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(245, 222, 179, 0.2);
+            border-radius: 15px;
+            border: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .cheese-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cheese-item {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #4a3728;
+            font-size: 0.9rem;
+        }
+
+        /* Decorative Elements */
+        .decorative-element {
+            text-align: center;
+            margin: 20px 0;
+            color: #8b4513;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .menu-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .menu-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .restaurant-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .restaurant-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .menu-section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section fade-in">
+            <h1 class="restaurant-title">ATTO</h1>
+            <p class="restaurant-subtitle">di Vito Mollica</p>
+            <p class="menu-date">Florence Fine Dining Menu</p>
+        </div>
+
+        <!-- Menu Layout -->
+        <div class="menu-layout">
+            <!-- Left Section - Carte style Impératore -->
+            <div class="menu-section tasting-menu fade-in">
+                <h2 class="section-title">Carte style Impératore</h2>
+                <p class="section-subtitle">Imperial Style Tasting Menu</p>
+
+                <div class="menu-item">
+                    <div class="item-number">I</div>
+                    <div class="item-name">MISO GLAZED AUBERGINE</div>
+                    <div class="item-description">CHOCOLATE AND RASPBERRIES (F)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">II</div>
+                    <div class="item-name">SOFT LEEK, SUMMER MUSHROOMS</div>
+                    <div class="item-description">GRAN DE' MAGI CHEESE (G,I,L)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">III</div>
+                    <div class="item-name">FIELD HERBS RISOTTO</div>
+                    <div class="item-description">QUAIL RAGOUT AND ALMONDS (G,H,I,L)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">IV</div>
+                    <div class="item-name">BARBECUED PIGEON</div>
+                    <div class="item-description">ABETONE BLUEBERRIES AND WALNUTS (G,H,I,L)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-description">OR<br><strong>SOFT SUCKLING LAMB, CARROTS, CHAMOMILE AND SHEEP' MILK KEFIR (G,L)</strong></div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">BREAD PUFF, CONFIT FIGS</div>
+                    <div class="item-description">STRAWBERRY GRAPE JUS AND FIG YOGURT ICE CREAM (A,G)</div>
+                </div>
+
+                <div class="price-highlight">
+                    <div class="price">180</div>
+                </div>
+
+                <div class="cheese-section">
+                    <div class="cheese-title">In addition</div>
+                    <div class="item-description">THREE AGED CHEESES:</div>
+                    <div class="cheese-item">BLU DI MONTECCHIO, COMTE 30 MONTHS,<br>L'ALFIERE DE' MAGI</div>
+                    <div class="item-price">20</div>
+                </div>
+            </div>
+
+            <!-- Middle Section - Grand Tour de Mare -->
+            <div class="menu-section fade-in">
+                <h2 class="section-title">Grand Tour de Mare</h2>
+                <p class="section-subtitle">Ocean Grand Tour</p>
+
+                <div class="menu-item">
+                    <div class="item-number">I</div>
+                    <div class="item-name">ROYAL OYSTER</div>
+                    <div class="item-description">CUCUMBER SODA AND CAVIAR (D,N)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">II</div>
+                    <div class="item-name">SEA URCHIN</div>
+                    <div class="item-description">WITH SOFT WHITE POTATOES (D,G,N)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">III</div>
+                    <div class="item-name">MONKFISH CHEEK "DIAVOLA" STYLE</div>
+                    <div class="item-description">CRUNCHY CODFISH WITH TARTARE SAUCE (C,D)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">IV</div>
+                    <div class="item-name">WARM AND COLD FISH AND SEAFOOD</div>
+                    <div class="item-description">SAFFRON AND CACCIUCCO SAUCE (B,D,G,L,N)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">V</div>
+                    <div class="item-name">GRILLED LANGOUSTINES</div>
+                    <div class="item-description">PEACH AND TOMATO EXTRACT AND CHAMPAGNE SAUCE (B,D,G,L)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">VI</div>
+                    <div class="item-name">RICOTTA CHEESE GNOCCHETTI, BASIL</div>
+                    <div class="item-description">STEAMED LOBSTER AND ROCKFISH REDUCTION (A,B,D,G)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">VII</div>
+                    <div class="item-name">DOVER SOLE IN NOISETTE BUTTER</div>
+                    <div class="item-description">WITH COURGETTES "SCAPECE" STYLE (C,D,G,N)</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-description">OR<br><strong>AS HIDA-WAGYU SIRLOIN, BRAISED LETTUCE, PEANUTS AND SABA SAUCE (E,G,H,L) EXTRA 45</strong></div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-number">VIII</div>
+                    <div class="item-name">RASPBERRY VARIATION</div>
+                    <div class="item-description">LEMONGRASS SAUCE AND BASIL ICE CREAM (A,C,G)</div>
+                </div>
+
+                <div class="price-highlight">
+                    <div class="price">210</div>
+                </div>
+            </div>
+
+            <!-- Right Section - A LA CARTE -->
+            <div class="menu-section fade-in">
+                <h2 class="section-title">A LA CARTE</h2>
+
+                <div class="decorative-element">✦ Starters ✦</div>
+
+                <div class="menu-item">
+                    <div class="item-name">WARM AND COLD FISH AND SEAFOOD</div>
+                    <div class="item-description">SAFFRON AND CACCIUCCO SAUCE (B,D,G,L,N)</div>
+                    <div class="item-price">54</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">MISO GLAZED AUBERGINE</div>
+                    <div class="item-description">CHOCOLATE AND RASPBERRIES (F)</div>
+                    <div class="item-price">42</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">GRILLED LANGOUSTINES</div>
+                    <div class="item-description">PEACH AND TOMATO EXTRACT AND CHAMPAGNE SAUCE (B,D,G,L)</div>
+                    <div class="item-price">58</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">SOFT LEEK, SUMMER MUSHROOMS</div>
+                    <div class="item-description">AND GRAN DE' MAGI CHEESE (G,I,L)</div>
+                    <div class="item-price">42</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">FOIE GRAS TERRINE</div>
+                    <div class="item-description">CERTALDO ONION COMPOTE AND FICOTTO (A,C,G,L)</div>
+                    <div class="item-price">48</div>
+                </div>
+
+                <div class="decorative-element">✦ First courses ✦</div>
+
+                <div class="menu-item">
+                    <div class="item-name">CAPPELLETTI STUFFED</div>
+                    <div class="item-description">WITH ROBIOLA DI ROCCAVERANO CHEESE, NETTLES AND MORELS (A,C,G)</div>
+                    <div class="item-price">42</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">FIELD HERBS RISOTTO</div>
+                    <div class="item-description">WITH QUAIL RAGOUT AND ALMONDS (G,H,I,L)</div>
+                    <div class="item-price">45</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">RICOTTA CHEESE GNOCCHETTI, BASIL</div>
+                    <div class="item-description">STEAMED LOBSTER AND ROCKFISH REDUCTION (A,B,D,G)</div>
+                    <div class="item-price">52</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">LINGUINE PASTA</div>
+                    <div class="item-description">WITH LOCAL CLAMS AND OSCIETRA ROYAL CAVIAR (A,D,G)</div>
+                    <div class="item-price">62</div>
+                </div>
+
+                <div class="decorative-element">✦ Main courses ✦</div>
+
+                <div class="menu-item">
+                    <div class="item-name">DOVER SOLE IN NOISETTE BUTTER</div>
+                    <div class="item-description">WITH COURGETTES "SCAPECE" STYLE (C,D,G,N)</div>
+                    <div class="item-price">65</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">SEARED TUNA BELLY</div>
+                    <div class="item-description">WITH SWISS CHARD, TAGGIASCA OLIVES AND GREEN HORSERADISH (D,G,L)</div>
+                    <div class="item-price">65</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">SOFT SUCKLING LAMB, CARROTS</div>
+                    <div class="item-description">CHAMOMILE AND SHEEP MILK KEFIR (G,L)</div>
+                    <div class="item-price">60</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">BARBECUED PIGEON</div>
+                    <div class="item-description">WITH ABETONE BLUEBERRIES AND WALNUTS (G,H,I,L)</div>
+                    <div class="item-price">65</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-name">AS HIDA-WAGYU SIRLOIN</div>
+                    <div class="item-description">BRAISED LETTUCE, PEANUTS AND SABA SAUCE (E,G,H,L)</div>
+                    <div class="item-price">88</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="additional-info fade-in">
+            <div class="decorative-element">❈ ❈ ❈</div>
+            <p class="price-note">THE TASTING MENUS AND THE WINE PAIRINGS ARE INTENDED FOR ALL GUESTS</p>
+            <p class="price-note" style="margin-top: 15px; font-weight: 600; color: #8b4513;">NOTICE: RECOMMENDED DINING TIME 2-3 HOURS</p>
+            <div class="decorative-element">❈ ❈ ❈</div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Initialize first element as visible
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+
+        // Menu item hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
