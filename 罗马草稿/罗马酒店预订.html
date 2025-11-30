@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotels in Rome - World Travel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(45deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23c0392b" width="1200" height="800"/><polygon fill="%238e44ad" points="0,800 400,600 800,700 1200,500 1200,800"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(180deg, transparent 0%, white 100%);
+        }
+
+        .hero-title {
+            font-size: 3.2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-section {
+            padding: 80px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .intro-title {
+            font-size: 2.1em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .intro-text {
+            font-size: 1.05em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .hotels-showcase {
+            padding: 0;
+            background: #fff;
+        }
+
+        .hotel-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hotel-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .hotel-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .hotel-image {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6em;
+            color: rgba(255,255,255,0.3);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hotel-content {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            position: relative;
+        }
+
+        .hotel-card:nth-child(odd) .hotel-content {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        .hotel-name {
+            font-size: 1.9em;
+            font-weight: 300;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hotel-location {
+            font-size: 0.95em;
+            color: #7f8c8d;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .hotel-price {
+            font-size: 2.1em;
+            font-weight: 400;
+            color: #c0392b;
+            margin-bottom: 25px;
+        }
+
+        .hotel-description {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .amenities-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 0.9em;
+            color: #34495e;
+        }
+
+        .amenity-icon {
+            font-size: 1.1em;
+            margin-right: 10px;
+            width: 22px;
+        }
+
+        .hotel-card:hover {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .hotel-card:hover .hotel-image {
+            background: linear-gradient(45deg, #c0392b, #8e44ad);
+        }
+
+        .price-highlight {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(192, 57, 43, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 1024px) {
+            .hotel-card {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            
+            .hotel-card:nth-child(even) {
+                direction: ltr;
+            }
+            
+            .hotel-content {
+                padding: 40px;
+            }
+            
+            .hero-title {
+                font-size: 2.2em;
+            }
+            
+            .intro-section {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .amenities-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .hotel-content {
+                padding: 30px 20px;
+            }
+            
+            .hero-section {
+                padding: 60px 20px;
+            }
+            
+            .hero-title {
+                font-size: 1.8em;
+            }
+            
+            .hotel-name {
+                font-size: 1.6em;
+            }
+            
+            .hotel-price {
+                font-size: 1.8em;
+            }
+            
+            .intro-title {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="hero-title">ROMA HOTELS</h1>
+        <p class="hero-subtitle">Experience the Eternal City in Ultimate Comfort</p>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2 class="intro-title">Rome's Finest Accommodations</h2>
+            <p class="intro-text">
+                Discover an exclusive collection of Rome's most prestigious hotels, where ancient history meets contemporary luxury. 
+                From boutique charm to world-class amenities, each property offers a unique gateway to the wonders of the Eternal City.
+            </p>
+        </div>
+
+        <div class="hotels-showcase">
+            <!-- The Guardian Hotel -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/NfGIbHPnMooMcCxGKy4c4WWvnob/?preview_type=16" alt="The Guardian Hotel">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">The Guardian Hotel</h2>
+                    <p class="hotel-location">Rome City Center</p>
+                    <div class="hotel-price">€200<small>/night</small></div>
+                    <p class="hotel-description">
+                        A boutique hotel offering contemporary comfort in the heart of ancient Rome. 
+                        The Guardian combines modern amenities with classic Italian hospitality.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍳</span>
+                            Complimentary Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🏋️</span>
+                            Fitness Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚗</span>
+                            Free Parking
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🐕</span>
+                            Pet Friendly
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">📶</span>
+                            Free WiFi
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚌</span>
+                            Airport Shuttle
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grand Hotel Palatino -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/NJVYbhqMBomwrRxqgQtc4aSanfb/?preview_type=16" alt="Grand Hotel Palatino">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Grand Hotel Palatino</h2>
+                    <p class="hotel-location">Near Colosseum</p>
+                    <div class="hotel-price">€300<small>/night</small></div>
+                    <p class="hotel-description">
+                        Historic elegance meets modern luxury steps away from the iconic Colosseum. 
+                        Experience Rome's grandeur with rooftop views and exceptional service.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍳</span>
+                            Gourmet Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🏋️</span>
+                            Fitness Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🛁</span>
+                            Hot Tub
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚗</span>
+                            Valet Parking
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🍷</span>
+                            Rooftop Bar
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚌</span>
+                            Airport Shuttle
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The St. Regis Rome -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/ZCzsbZjwLopnuExqLmOclhuqnwf/?preview_type=16" alt="The St. Regis Rome">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">The St. Regis Rome</h2>
+                    <p class="hotel-location">Via Vittorio Veneto, Luxury Shopping District</p>
+                    <div class="hotel-price">€600<small>/night</small></div>
+                    <p class="hotel-description">
+                        Timeless luxury on Rome's most glamorous street. The St. Regis offers bespoke service 
+                        and opulent accommodations in the heart of the Dolce Vita district.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🥂</span>
+                            Champagne Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💆</span>
+                            Full Spa Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🛁</span>
+                            Luxury Bath
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🐕</span>
+                            Pet Butler Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚁</span>
+                            Helicopter Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">👔</span>
+                            Personal Butler
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bvlgari Hotel Roma -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/Gf0lb5744olUeAxFPMScsoaXn4d/?preview_type=16" alt="Bvlgari Hotel Roma">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Bvlgari Hotel Roma</h2>
+                    <p class="hotel-location">Near Piazza di Spagna, Exclusive City Views</p>
+                    <div class="hotel-price">€2500<small>/night</small></div>
+                    <p class="hotel-description">
+                        Ultimate luxury redefined. The Bvlgari Hotel Roma represents the pinnacle of 
+                        sophistication with unparalleled service and breathtaking views of ancient Rome.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">👨‍🍳</span>
+                            Michelin Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🏊</span>
+                            Private Pool
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💎</span>
+                            Luxury Spa
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🐕</span>
+                            Premium Pet Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚁</span>
+                            Private Helicopter
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">💼</span>
+                            Personal Concierge
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel de Russie -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/E5YlbGj5UoIlSrxobrwcp3Imn8b/?preview_type=16" alt="Hotel de Russie">
+                </div>
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Hotel de Russie</h2>
+                    <p class="hotel-location">Piazza del Popolo, Garden Sanctuary</p>
+                    <div class="hotel-price">€1500<small>/night</small></div>
+                    <p class="hotel-description">
+                        An oasis of tranquility in bustling Rome. Hotel de Russie combines luxurious accommodations 
+                        with stunning terraced gardens and unmatched hospitality.
+                    </p>
+                    <div class="amenities-showcase">
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🌸</span>
+                            Garden Breakfast
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🧘</span>
+                            Wellness Center
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🛁</span>
+                            Thermal Bath
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🐕</span>
+                            Pet Garden
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">🚗</span>
+                            Luxury Car Service
+                        </div>
+                        <div class="amenity-item">
+                            <span class="amenity-icon">✈️</span>
+                            Private Transfer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for better user experience
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth hover effects
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            
+            hotelCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply animation to hotel cards
+            hotelCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
