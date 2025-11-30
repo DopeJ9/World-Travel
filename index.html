@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,14 +89,27 @@
         }
 
         .section-header {
-            text-align: center;
+            /* 修改：左对齐，增加间距 */
+            text-align: left; 
             margin-bottom: 40px;
             color: var(--text-dark);
+            margin-top: 100px; /* 增加顶部间距 */
+            padding-left: 10px; /* 稍微往右一点点，不要紧贴屏幕边缘 */
+            border-left: 5px solid var(--accent-color); /* 增加一个左侧装饰线 */
+            padding-left: 20px;
         }
 
         .section-header h2 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            color: #2d3436;
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #636e72;
+            font-weight: 300;
         }
 
         /* Grid Layout */
@@ -183,6 +196,7 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 4;
         }
 
         .city-title {
@@ -206,14 +220,14 @@
             transform: translateY(0);
         }
 
-        /* Links Section (Hidden by default, shown on hover) */
+        /* Links Section */
         .city-links {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
             transition: all 0.5s ease;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
         }
 
@@ -227,16 +241,19 @@
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 12px 15px;
+            padding: 12px 5px;
             border-radius: 12px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 5px;
             transition: all 0.3s ease;
             cursor: pointer;
             backdrop-filter: blur(5px);
+            text-align: center;
         }
 
         .link-btn:hover {
@@ -247,21 +264,46 @@
 
         .link-btn i {
             font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
         }
 
-        .link-btn.primary {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            grid-column: span 2;
-            justify-content: center;
+        /* Coming Soon Specific Styles */
+        .city-card.coming-soon {
+            filter: grayscale(100%);
+            cursor: default;
+        }
+        
+        .city-card.coming-soon:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .city-card.coming-soon .card-image {
+             transform: none;
+        }
+
+        .city-card.coming-soon:hover .card-overlay {
+            backdrop-filter: none;
+        }
+
+        .coming-soon-label {
+            display: none;
+            font-size: 1.2rem;
             font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid white;
+            padding: 10px 20px;
+            margin-top: 20px;
         }
 
-        .link-btn.primary:hover {
-            background: #d65d42;
-            color: white;
+        .city-card.coming-soon:hover .coming-soon-label {
+            display: inline-block;
+            animation: fadeInUp 0.3s ease-out;
+        }
+        
+        .city-card.coming-soon:hover .city-title,
+        .city-card.coming-soon:hover .city-subtitle {
+            transform: translateY(0);
         }
 
         /* Footer */
@@ -303,6 +345,7 @@
             }
             .city-title, .city-subtitle { transform: translateY(0); }
             .card-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.9) 100%); }
+            .section-header { text-align: center; padding-left: 0; border-left: none; }
         }
     </style>
 </head>
@@ -311,7 +354,7 @@
     <!-- Hero Section -->
     <header class="hero">
         <h1>World Travel Navigator</h1>
-        <p>Six iconic cities. One seamless journey. Discover the heart of Europe.</p>
+        <p>Explore the world's most beautiful destinations. One journey at a time.</p>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down fa-2x"></i>
         </div>
@@ -319,33 +362,34 @@
 
     <!-- Main Content -->
     <div class="container">
+        
+        <!-- Section: Ready to Explore -->
+        <div class="section-header">
+            <h2>Ready to Explore</h2>
+            <div class="section-subtitle">Curated guides for your next adventure</div>
+        </div>
+
         <div class="cities-grid">
             
-            <!-- Paris Card -->
+            <!-- Berlin Card -->
             <div class="city-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop');"></div>
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=2070&auto=format&fit=crop');"></div>
                 <div class="card-overlay"></div>
-                <div class="city-badge">France</div>
+                <div class="city-badge">Germany</div>
                 <div class="card-content">
-                    <h2 class="city-title">Paris</h2>
-                    <p class="city-subtitle">The City of Light & Romance</p>
+                    <h2 class="city-title">Berlin</h2>
+                    <p class="city-subtitle">History Meets Modernity</p>
                     
                     <div class="city-links">
-                        <div class="link-btn primary" onclick="openPage('巴黎草稿/巴黎必玩景点合集.html')">
-                            <i class="fas fa-star"></i> Top Attractions
-                        </div>
-                        <div class="link-btn" onclick="openPage('巴黎草稿/巴黎餐厅汇总网页.html')">
+                        <a href="柏林草稿/柏林景点/柏林景点汇总网页.html" class="link-btn">
+                            <i class="fas fa-landmark"></i> Attractions
+                        </a>
+                        <a href="柏林草稿/柏林餐厅/Berlin_餐厅网页汇总.html" class="link-btn">
                             <i class="fas fa-utensils"></i> Dining
-                        </div>
-                        <div class="link-btn" onclick="openPage('巴黎草稿/酒店预订.html')">
+                        </a>
+                        <a href="柏林草稿/Berlin_Hotels_Collection.html" class="link-btn">
                             <i class="fas fa-bed"></i> Hotels
-                        </div>
-                        <div class="link-btn" onclick="openPage('地图.html')">
-                            <i class="fas fa-map-marked-alt"></i> Map
-                        </div>
-                        <div class="link-btn" onclick="openPage('巴黎草稿/巴黎景点参观攻略合集.html')">
-                            <i class="fas fa-book-open"></i> Guides
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -360,15 +404,15 @@
                     <p class="city-subtitle">The Eternal City</p>
                     
                     <div class="city-links">
-                        <div class="link-btn primary" onclick="openPage('罗马草稿/21_罗马景点合集/Rome_Attractions_Guide.html')">
+                        <a href="罗马草稿/21_罗马景点合集/Rome_Attractions_Guide.html" class="link-btn">
                             <i class="fas fa-landmark"></i> Attractions
-                        </div>
-                        <div class="link-btn" onclick="openPage('罗马草稿/23_罗马餐饮预订合集/Rome_Dining_Guide.html')">
+                        </a>
+                        <a href="罗马草稿/23_罗马餐饮预订合集/Rome_Dining_Guide.html" class="link-btn">
                             <i class="fas fa-utensils"></i> Dining
-                        </div>
-                        <div class="link-btn" onclick="openPage('罗马草稿/罗马酒店预订.html')">
+                        </a>
+                        <a href="罗马草稿/罗马酒店预订.html" class="link-btn">
                             <i class="fas fa-bed"></i> Hotels
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -383,15 +427,39 @@
                     <p class="city-subtitle">Cradle of the Renaissance</p>
                     
                     <div class="city-links">
-                        <div class="link-btn primary" onclick="openPage('佛罗伦萨草稿/佛罗伦萨景点合集/佛罗伦萨汇总-景点.html')">
+                        <a href="佛罗伦萨草稿/佛罗伦萨景点合集/佛罗伦萨汇总-景点.html" class="link-btn">
                             <i class="fas fa-palette"></i> Attractions
-                        </div>
-                        <div class="link-btn" onclick="openPage('佛罗伦萨草稿/佛罗伦萨餐厅/佛罗伦萨餐饮汇总网页.html')">
+                        </a>
+                        <a href="佛罗伦萨草稿/佛罗伦萨餐厅/佛罗伦萨餐饮汇总网页.html" class="link-btn">
                             <i class="fas fa-wine-glass"></i> Dining
-                        </div>
-                        <div class="link-btn" onclick="openPage('佛罗伦萨草稿/佛罗伦萨酒店预订.html')">
+                        </a>
+                        <a href="佛罗伦萨草稿/佛罗伦萨酒店预订.html" class="link-btn">
                             <i class="fas fa-bed"></i> Hotels
-                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vienna Card -->
+            <div class="city-card">
+                <!-- 换了更稳定的维也纳图片 (Operahouse) -->
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=2072&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Austria</div>
+                <div class="card-content">
+                    <h2 class="city-title">Vienna</h2>
+                    <p class="city-subtitle">The City of Music</p>
+                    
+                    <div class="city-links">
+                        <a href="维也纳合集/维也纳网页合集/Vienna_Attractions_Guide.html" class="link-btn">
+                            <i class="fas fa-music"></i> Attractions
+                        </a>
+                        <a href="维也纳合集/维也纳网页合集/Vienna_Dining_Guide.html" class="link-btn">
+                            <i class="fas fa-utensils"></i> Dining
+                        </a>
+                        <a href="维也纳合集/维也纳网页合集/hotel information.html" class="link-btn">
+                            <i class="fas fa-bed"></i> Hotels
+                        </a>
                     </div>
                 </div>
             </div>
@@ -406,62 +474,76 @@
                     <p class="city-subtitle">Gaudí's Architectural Wonderland</p>
                     
                     <div class="city-links">
-                        <div class="link-btn primary" onclick="openPage('巴塞罗那草稿/巴塞罗那景点汇总网页.html')">
+                        <a href="巴塞罗那草稿/巴塞罗那景点汇总网页.html" class="link-btn">
                             <i class="fas fa-church"></i> Attractions
-                        </div>
-                        <div class="link-btn" onclick="openPage('巴塞罗那草稿/巴塞罗那餐饮汇总网页.html')">
+                        </a>
+                        <a href="巴塞罗那草稿/巴塞罗那餐饮汇总网页.html" class="link-btn">
                             <i class="fas fa-utensils"></i> Dining
-                        </div>
-                        <div class="link-btn" onclick="openPage('巴塞罗那草稿/巴塞罗那酒店汇总.html')">
+                        </a>
+                        <a href="巴塞罗那草稿/巴塞罗那酒店汇总.html" class="link-btn">
                             <i class="fas fa-bed"></i> Hotels
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Berlin Card -->
-            <div class="city-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=2070&auto=format&fit=crop');"></div>
+        </div>
+
+
+        <!-- Section: Coming Soon -->
+        <div class="section-header">
+            <h2>Coming Soon</h2>
+            <div class="section-subtitle">Future destinations in preparation</div>
+        </div>
+
+        <div class="cities-grid">
+            
+            <!-- Milan Card (Coming Soon) -->
+            <div class="city-card coming-soon">
+                <!-- 换了更稳定的米兰图片 -->
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1529154036614-a60975f5c760?q=80&w=2076&auto=format&fit=crop');"></div>
                 <div class="card-overlay"></div>
-                <div class="city-badge">Germany</div>
+                <div class="city-badge">Italy</div>
                 <div class="card-content">
-                    <h2 class="city-title">Berlin</h2>
-                    <p class="city-subtitle">History Meets Modernity</p>
-                    
-                    <div class="city-links">
-                        <div class="link-btn primary" onclick="openPage('柏林草稿/柏林景点/柏林景点汇总网页.html')">
-                            <i class="fas fa-monument"></i> Attractions
-                        </div>
-                        <div class="link-btn" onclick="openPage('柏林草稿/柏林餐厅/Berlin_餐厅网页汇总.html')">
-                            <i class="fas fa-beer"></i> Dining
-                        </div>
-                        <div class="link-btn" onclick="openPage('柏林草稿/Berlin_Hotels_Collection.html')">
-                            <i class="fas fa-bed"></i> Hotels
-                        </div>
-                    </div>
+                    <h2 class="city-title">Milan</h2>
+                    <p class="city-subtitle">Fashion Capital & The Last Supper</p>
+                    <div class="coming-soon-label">Coming Soon</div>
                 </div>
             </div>
 
-            <!-- Vienna Card -->
-            <div class="city-card">
-                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=2072&auto=format&fit=crop');"></div>
+            <!-- Paris Card (Coming Soon) -->
+            <div class="city-card coming-soon">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop');"></div>
                 <div class="card-overlay"></div>
-                <div class="city-badge">Austria</div>
+                <div class="city-badge">France</div>
                 <div class="card-content">
-                    <h2 class="city-title">Vienna</h2>
-                    <p class="city-subtitle">The City of Music</p>
-                    
-                    <div class="city-links">
-                        <div class="link-btn primary" onclick="openPage('维也纳合集/维也纳网页合集/Vienna_Attractions_Guide.html')">
-                            <i class="fas fa-music"></i> Attractions
-                        </div>
-                        <div class="link-btn" onclick="openPage('维也纳合集/维也纳网页合集/Vienna_Dining_Guide.html')">
-                            <i class="fas fa-utensils"></i> Dining
-                        </div>
-                        <div class="link-btn" onclick="openPage('维也纳合集/维也纳网页合集/hotel information.html')">
-                            <i class="fas fa-bed"></i> Hotels
-                        </div>
-                    </div>
+                    <h2 class="city-title">Paris</h2>
+                    <p class="city-subtitle">The City of Light & Romance</p>
+                    <div class="coming-soon-label">Coming Soon</div>
+                </div>
+            </div>
+
+            <!-- Venice Card (Coming Soon) -->
+            <div class="city-card coming-soon">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1514890547357-a9ee288728e0?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">Italy</div>
+                <div class="card-content">
+                    <h2 class="city-title">Venice</h2>
+                    <p class="city-subtitle">The Floating City</p>
+                    <div class="coming-soon-label">Coming Soon</div>
+                </div>
+            </div>
+
+            <!-- London Card (Coming Soon) -->
+            <div class="city-card coming-soon">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="card-overlay"></div>
+                <div class="city-badge">UK</div>
+                <div class="card-content">
+                    <h2 class="city-title">London</h2>
+                    <p class="city-subtitle">A Royal Journey</p>
+                    <div class="coming-soon-label">Coming Soon</div>
                 </div>
             </div>
 
@@ -473,16 +555,6 @@
     </footer>
 
     <script>
-        function openPage(url) {
-            // 简单的点击反馈
-            const btn = event.currentTarget;
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                btn.style.transform = '';
-                window.open(url, '_blank');
-            }, 150);
-        }
-
         // 简单的滚动显现效果
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.city-card');
@@ -507,4 +579,3 @@
     </script>
 </body>
 </html>
-
