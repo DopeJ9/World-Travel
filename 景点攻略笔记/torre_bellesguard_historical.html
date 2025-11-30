@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torre Bellesguard - Historical Context & Practical Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 30%, #581c87 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(180, 83, 9, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #fed7aa;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #b45309 0%, #d97706 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 750px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #fbbf24;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 0.6rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 0.7rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            backdrop-filter: blur(12px);
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.9rem;
+            color: #b45309;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #d97706, #f59e0b);
+            border-radius: 2px;
+        }
+
+        .historical-context {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            padding: 0.9rem;
+            border-radius: 10px;
+            border-left: 4px solid #b45309;
+            margin: 0.7rem 0;
+            box-shadow: 0 3px 12px rgba(180, 83, 9, 0.15);
+        }
+
+        .architectural-detail {
+            background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+            padding: 0.9rem;
+            margin: 0.7rem 0;
+            box-shadow: 0 3px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .architectural-detail h4 {
+            color: #1d4ed8;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .visit-logistics {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            border-left: 3px solid #16a34a;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(22, 163, 74, 0.15);
+        }
+
+        .visit-logistics h4 {
+            color: #15803d;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .practical-insight {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border: 2px solid #ec4899;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            box-shadow: 0 2px 10px rgba(236, 72, 153, 0.15);
+        }
+
+        .practical-insight h4 {
+            color: #be185d;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .rating-badge {
+            background: linear-gradient(45deg, #b45309, #f59e0b);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 18px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+            box-shadow: 0 2px 8px rgba(180, 83, 9, 0.3);
+        }
+
+        ul {
+            margin: 0.6rem 0;
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin: 0.3rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #b45309;
+        }
+
+        .historical-timeline {
+            counter-reset: timeline-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .historical-timeline li {
+            counter-increment: timeline-counter;
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 8px;
+            border-left: 3px solid #b45309;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(180, 83, 9, 0.1);
+        }
+
+        .historical-timeline li::before {
+            content: counter(timeline-counter);
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #b45309, #f59e0b);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 6px rgba(180, 83, 9, 0.4);
+        }
+
+        .duration-info {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 2px solid #0284c7;
+            margin: 0.6rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Torre Bellesguard</h1>
+            <h2>Historical Context & Practical Guide</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">4,672</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">1,834</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">3,248</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🏛️ Historical Significance</h3>
+            <div class="historical-context">
+                <h4><strong>Perfect for:</strong> History buffs, cultural enthusiasts, medieval architecture lovers</h4>
+                <p>Bellesguard sits in Barcelona's northern district. Gaudí chose this location because it was the estate of Catalonia's last medieval king, creating strong connections to medieval history. This work overflows with symbolism, bridging Gothic and Modernist styles. Plan for approximately one hour to fully appreciate this historical architectural narrative.</p>
+            </div>
+            
+            <div class="duration-info">
+                <h4>🏗️ Architectural Materials & Methods</h4>
+                <p>Bellesguard uses local slate stone materials, reflecting Gaudí's research and use of local geology and topography for construction methods. The building demonstrates his commitment to environmental integration and regional authenticity.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📍 Location & Visit Logistics</h3>
+            
+            <ol class="historical-timeline">
+                <li>
+                    <strong>Not Part of Gaudí's "Big Three"</strong><br>
+                    Because Bellesguard isn't included in the famous Gaudí trinity, visitor numbers remain relatively low - perfect for contemplative architectural appreciation.
+                </li>
+                <li>
+                    <strong>English Audio Guide Available</strong><br>
+                    On-site English audio guide equipment provides detailed route descriptions for different areas, though Chinese language options aren't currently available.
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>⭐ Visit Assessment</h3>
+            
+            <div class="architectural-detail">
+                <h4>🎭 Most Photogenic Areas</h4>
+                <p>The most impressive sections are actually the tower areas (formerly music room) and rooftop terraces, where you can see Tibidabo Mountain and Mediterranean views. These elevated perspectives showcase both architectural details and Barcelona's landscape context.</p>
+            </div>
+
+            <div class="visit-logistics">
+                <h4>🚌 Transportation Considerations</h4>
+                <p>Located quite far from Barcelona's other major attractions. Consider combining with Tibidabo visits for efficient itinerary planning.</p>
+            </div>
+
+            <div class="historical-context">
+                <h4>📊 Recommendation Rating</h4>
+                <p><span class="rating-badge">⭐⭐⭐ 3 Stars</span> - Worth visiting for Gaudí completists and medieval history enthusiasts, but not essential for casual Barcelona tourists. The combination of historical significance, architectural innovation, and peaceful atmosphere makes it valuable for dedicated cultural explorers.</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

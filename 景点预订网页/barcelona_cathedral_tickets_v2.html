@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona Cathedral - Tourist Visit Tickets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        .hero-section {
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1583422409516-2895a77efded?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #8B0000;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h2 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #8B0000;
+        }
+
+        .left-column .section {
+            padding: 1.5rem;
+            margin: 0;
+        }
+
+        .left-column .section:first-child {
+            margin-top: 0;
+        }
+
+        .right-column .section:first-child {
+            margin-top: 0;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #8B0000;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .left-column .section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .visiting-hours {
+            background: #fff;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid #ddd;
+        }
+
+        .hours-card {
+            border-right: 1px solid #ddd;
+            padding: 1.5rem;
+            text-align: center;
+            background: #f9f9f9;
+        }
+
+        .hours-card:last-child {
+            border-right: none;
+        }
+
+        .hours-card h4 {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .hours-time {
+            font-size: 1rem;
+            color: #8B0000;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .hours-note {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .important-notice {
+            background: #fff9e6;
+            border: 1px solid #f1c40f;
+            border-radius: 0;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .notice-title {
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notice-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .notice-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #8B0000;
+            font-size: 0.8rem;
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 0.8rem;
+            background: #8B0000;
+            color: white;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .calendar-day:hover {
+            background: #f0f0f0;
+            border-color: #8B0000;
+        }
+
+        .calendar-day.selected {
+            background: #8B0000;
+            color: white;
+            border-color: #660000;
+        }
+
+        .calendar-day.closed {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .time-slot:hover {
+            background: #f0f0f0;
+            border-color: #8B0000;
+        }
+
+        .time-slot.selected {
+            background: #8B0000;
+            color: white;
+            border-color: #660000;
+        }
+
+        .time-slot.sold-out {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            min-height: 50px;
+            overflow: hidden;
+        }
+
+        .time-slot.sold-out::after {
+            content: "sold out";
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            font-size: 0.6rem;
+            color: #8B0000;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1px 3px;
+            border-radius: 2px;
+            transform: rotate(15deg);
+            transform-origin: center;
+        }
+
+        .ticket-types {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .ticket-type {
+            border: 1px solid #ddd;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            background: white;
+            border-top: 3px solid #8B0000;
+        }
+
+        .ticket-type:hover {
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.1);
+        }
+
+        .ticket-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .ticket-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ticket-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-includes {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-left: 3px solid #8B0000;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-includes h5 {
+            color: #8B0000;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .ticket-includes p {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .price-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+        }
+
+        .price-option:hover {
+            background: #f0f0f0;
+            border-color: #8B0000;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #8B0000;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: #8B0000;
+        }
+
+        .quantity-btn:hover {
+            background: #8B0000;
+            color: white;
+        }
+
+        .quantity-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #8B0000;
+        }
+
+        .vespertin-schedule {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-left: 4px solid #8B0000;
+            margin-top: 1rem;
+        }
+
+        .vespertin-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vespertin-details {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .vespertin-time {
+            background: #8B0000;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            font-weight: bold;
+        }
+
+        .vespertin-days {
+            color: #666;
+            font-style: italic;
+        }
+
+        .total-section {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin: 0 0 2rem 0;
+            border-top: 4px solid #8B0000;
+        }
+
+        .total-breakdown {
+            margin-bottom: 1rem;
+        }
+
+        .total-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            border-left: 3px solid #8B0000;
+        }
+
+        .ticket-group {
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ticket-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .total-final {
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-top: 2px solid #8B0000;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: #8B0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .book-now-btn:hover {
+            background: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-top: 4px solid #8B0000;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #8B0000;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hours-card {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .hours-card:last-child {
+                border-bottom: none;
+            }
+            
+            .calendar-container {
+                gap: 5px;
+            }
+            
+            .calendar-day {
+                padding: 0.6rem;
+                font-size: 1rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .price-options {
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Barcelona Cathedral</h1>
+            <h2>Tourist Visit - Admission Tickets</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Visiting Hours Section -->
+        <div class="section">
+            <h3>Visiting Hours</h3>
+            <div class="visiting-hours">
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <h4>WEEK DAYS</h4>
+                        <div class="hours-time">from 9:30 to 18:30</div>
+                        <div class="hours-note">(access will be closed at 17:45)</div>
+                    </div>
+                    
+                    <div class="hours-card">
+                        <h4>SATURDAYS AND FESTIVE VIGIL (RELIGIOUS)</h4>
+                        <div class="hours-time">from 9:30 to 17:15</div>
+                        <div class="hours-note">(access will be closed at 16:30)</div>
+                    </div>
+                    
+                    <div class="hours-card">
+                        <h4>SUNDAYS AND FESTIVE (RELIGIOUS)</h4>
+                        <div class="hours-time">from 14:00 to 17:00</div>
+                        <div class="hours-note">(access will be closed at 16:30)</div>
+                    </div>
+                </div>
+                
+                <div class="important-notice">
+                    <div class="notice-title">Important Notice</div>
+                    <ul class="notice-list">
+                        <li>Please note that access will be closed before closing time. Please arrive 10 minutes before the chosen time.</li>
+                        <li>The summer months, from June to August, are the peak tourist season in Barcelona, and the Cathedral can get crowded. If you prefer to avoid the crowds, consider visiting during the spring (March to May) or fall (September to November) when the weather is mild and the crowds are thinner.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vespertin Visits Schedule Section -->
+        <div class="section">
+            <h3>Vespertin Visits Schedule</h3>
+            <div class="vespertin-schedule">
+                <div class="vespertin-title">Evening Cathedral Experience</div>
+                <div class="vespertin-details">
+                    <span class="vespertin-time">20:00</span>
+                    <span class="vespertin-days">Available on Tuesday, Thursday & Sunday</span>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666; font-style: italic;">
+                    Visit the Cathedral when the tour is closed, with a limited capacity, access its terrace and enjoy exceptional views of Barcelona.
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Content with Two Columns -->
+        <div class="main-content">
+            <!-- Left Column: Date and Time Selection -->
+            <div class="left-column">
+                <!-- Date Selection Section -->
+                <div class="section">
+                    <h3>Select Date - August</h3>
+                    <div class="calendar-container">
+                        <div class="calendar-header">Sun</div>
+                        <div class="calendar-header">Mon</div>
+                        <div class="calendar-header">Tue</div>
+                        <div class="calendar-header">Wed</div>
+                        <div class="calendar-header">Thu</div>
+                        <div class="calendar-header">Fri</div>
+                        <div class="calendar-header">Sat</div>
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Time Selection Section -->
+                <div class="section">
+                    <h3>Select Time</h3>
+                    <div id="time-slots-container">
+                        <p>Please select a date first</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Ticket Selection -->
+            <div class="right-column">
+                <!-- Ticket Types Section -->
+                <div class="section">
+                    <h3>Select Tickets</h3>
+                    <div class="ticket-types">
+                        <!-- Cathedral Visit Tickets -->
+                        <div class="ticket-type" id="ticket-cathedral">
+                            <div class="ticket-header">
+                                <div class="ticket-title">⛪ Cathedral Visit</div>
+                                <div class="ticket-includes">
+                                    <h5>Includes:</h5>
+                                    <p>Choir entrance + Access to the rooftop + Chapter hall + Virtual Audioguide + Diocesan Museum of Barcelona + Virtual reality + Augmented reality + Sant Sever Church</p>
+                                </div>
+                            </div>
+                            <div class="price-options">
+                                <div class="price-option">
+                                    <span><strong>General</strong></span>
+                                    <div class="quantity-controls">
+                                        <span style="color: #8B0000; font-weight: bold;">€16.00</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('general-cathedral', -1)">-</button>
+                                        <span class="quantity-display" id="general-cathedral-qty">0</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('general-cathedral', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="price-option">
+                                    <span><strong>Under 12</strong></span>
+                                    <div class="quantity-controls">
+                                        <span style="color: #8B0000; font-weight: bold;">€8.00</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('under12-cathedral', -1)">-</button>
+                                        <span class="quantity-display" id="under12-cathedral-qty">0</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('under12-cathedral', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="price-option">
+                                    <span><strong>Children under 3</strong></span>
+                                    <div class="quantity-controls">
+                                        <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('under3-cathedral', -1)">-</button>
+                                        <span class="quantity-display" id="under3-cathedral-qty">0</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('under3-cathedral', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vespertin Visits Tickets -->
+                        <div class="ticket-type" id="ticket-vespertin">
+                            <div class="ticket-header">
+                                <div class="ticket-title">🌅 Vespertin Visits</div>
+                            </div>
+                            <div class="price-options">
+                                <div class="price-option">
+                                    <span><strong>General</strong></span>
+                                    <div class="quantity-controls">
+                                        <span style="color: #8B0000; font-weight: bold;">€28.00</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('general-vespertin', -1)">-</button>
+                                        <span class="quantity-display" id="general-vespertin-qty">0</span>
+                                        <button class="quantity-btn" onclick="changeQuantity('general-vespertin', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Section -->
+                <div class="total-section">
+                    <h3>📋 Order Summary</h3>
+                    <div class="total-breakdown" id="total-breakdown">
+                        <p>No tickets selected</p>
+                    </div>
+                    <div class="total-final">
+                        <div class="total-item">
+                            <span>Total:</span>
+                            <span id="total-amount">€0.00</span>
+                        </div>
+                    </div>
+                    <button class="book-now-btn" onclick="bookNow()">🎫 Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Booking Confirmation</h2>
+            <p id="modal-message">Your booking has been confirmed!</p>
+            <button onclick="closeModal()" style="margin-top: 1rem; padding: 0.8rem 2rem; background: #8B0000; color: white; border: none; cursor: pointer; font-weight: bold;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let selectedDate = null;
+        let selectedTime = null;
+        let quantities = {};
+        
+        // Ticket prices
+        const ticketPrices = {
+            'general-cathedral': 16,
+            'under12-cathedral': 8,
+            'under3-cathedral': 0,
+            'general-vespertin': 28
+        };
+
+        // Initialize quantities
+        Object.keys(ticketPrices).forEach(key => {
+            quantities[key] = 0;
+        });
+
+        // Generate different sold-out patterns for each day
+        function getSoldOutPattern(date) {
+            const dateStr = date.replace(/-/g, '');
+            const seed = parseInt(dateStr) % 1000;
+            const pattern = [];
+            
+            const numSoldOut = 3 + (seed % 5); // 3-7 sold out slots for 16 total slots
+            const usedIndices = new Set();
+            
+            for (let i = 0; i < numSoldOut; i++) {
+                let index;
+                do {
+                    index = (seed + i * 9) % 16; // Different pattern based on date
+                } while (usedIndices.has(index));
+                usedIndices.add(index);
+                pattern.push(index);
+            }
+            
+            return pattern;
+        }
+
+        // Generate calendar for August 2026
+        function generateCalendar() {
+            const calendarContainer = document.querySelector('.calendar-container');
+            const daysInMonth = 31;
+            const firstDayOfWeek = 6; // August 1, 2026 is a Saturday
+            
+            // Add empty cells for days before the 1st
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                calendarContainer.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = `2026-08-${day.toString().padStart(2, '0')}`;
+                
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.dataset.date = date;
+                dayElement.onclick = () => selectDate(dayElement);
+                
+                calendarContainer.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(element) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Select new date
+            element.classList.add('selected');
+            selectedDate = element.dataset.date;
+            
+            // Clear time selection when date changes
+            selectedTime = null;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Generate time slots for selected date
+            generateTimeSlots(selectedDate);
+            
+            // Update total to show date info
+            updateTotal();
+        }
+
+        function generateTimeSlots(date) {
+            const dateObj = new Date(date + 'T12:00:00');
+            const dayOfWeek = dateObj.getDay();
+            const container = document.getElementById('time-slots-container');
+            
+            let timeSlots = [];
+            
+            // Check if Vespertin tickets are selected
+            const hasVespertin = quantities['general-vespertin'] > 0;
+            
+            if (hasVespertin) {
+                // Show only Vespertin time slots
+                if (dayOfWeek === 0 || dayOfWeek === 2 || dayOfWeek === 4) { // Sunday, Tuesday, Thursday
+                    timeSlots = ['20:00'];
+                } else {
+                    container.innerHTML = '<p style="text-align: center; color: #8B0000; font-weight: bold;">Vespertin visits not available on this day</p>';
+                    return;
+                }
+            } else {
+                // Generate regular time slots based on visiting hours
+                if (dayOfWeek === 0) { // Sunday
+                    timeSlots = generateTimeSlotsForRange('14:00', '17:00');
+                } else if (dayOfWeek === 6) { // Saturday
+                    timeSlots = generateTimeSlotsForRange('09:30', '17:15');
+                } else if (dayOfWeek >= 1 && dayOfWeek <= 5) { // Monday to Friday
+                    timeSlots = generateTimeSlotsForRange('09:30', '18:30');
+                }
+            }
+            
+            container.innerHTML = '<div class="time-slots"></div>';
+            const slotsContainer = container.querySelector('.time-slots');
+            
+            // Get sold-out pattern for this specific date
+            const soldOutPattern = getSoldOutPattern(date);
+            
+            timeSlots.forEach((time, index) => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                slot.dataset.time = time;
+                
+                // Apply date-specific sold-out pattern
+                if (soldOutPattern.includes(index)) {
+                    slot.classList.add('sold-out');
+                    slot.onclick = null;
+                } else {
+                    slot.onclick = () => selectTime(slot);
+                }
+                
+                slotsContainer.appendChild(slot);
+            });
+        }
+
+        function generateTimeSlotsForRange(startTime, endTime) {
+            const slots = [];
+            
+            // For weekdays, use the exact 16 slots from the image
+            if (startTime === '09:30' && endTime === '18:30') {
+                return [
+                    '09:30', '10:00', '10:30', '11:00',
+                    '11:30', '12:00', '12:30', '13:00',
+                    '13:30', '14:00', '14:30', '15:00',
+                    '15:30', '16:00', '16:30', '17:00'
+                ];
+            }
+            
+            const start = timeToMinutes(startTime);
+            const end = timeToMinutes(endTime) - 30; // Stop 30 minutes before closing
+            
+            let currentTime = start;
+            
+            // Round start time to nearest quarter hour
+            const startMinutes = currentTime % 60;
+            if (startMinutes % 15 !== 0) {
+                const nextQuarter = Math.ceil(startMinutes / 15) * 15;
+                currentTime = Math.floor(currentTime / 60) * 60 + nextQuarter;
+            }
+            
+            // Generate 30-minute intervals for first 12 slots
+            while (currentTime < end && slots.length < 12) {
+                slots.push(minutesToTime(currentTime));
+                currentTime += 30;
+            }
+            
+            // Add additional slots based on closing time to reach 16 total
+            if (endTime === '17:15') {
+                // Saturday (close at 5:15PM) - add 4 more slots  
+                slots.push('15:00', '15:30', '16:00', '16:30');
+            } else if (endTime === '17:00') {
+                // Sunday (close at 5:00PM) - add 4 more slots
+                slots.push('15:30', '16:00', '16:15', '16:30');
+            }
+            
+            // Sort all slots by time and remove duplicates
+            const uniqueSlots = [...new Set(slots)];
+            uniqueSlots.sort((a, b) => timeToMinutes(a) - timeToMinutes(b));
+            
+            return uniqueSlots;
+        }
+
+        function timeToMinutes(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function minutesToTime(minutes) {
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+        }
+
+        function selectTime(element) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Select new time
+            element.classList.add('selected');
+            selectedTime = element.dataset.time;
+            
+            // Update total to show date/time info
+            updateTotal();
+        }
+
+        function changeQuantity(ticketType, change) {
+            quantities[ticketType] = Math.max(0, quantities[ticketType] + change);
+            document.getElementById(ticketType + '-qty').textContent = quantities[ticketType];
+            
+            updateTotal();
+            
+            // Check if we need to regenerate time slots for Vespertin
+            if (selectedDate) {
+                generateTimeSlots(selectedDate);
+                // Restore the selected time slot after regeneration
+                if (selectedTime) {
+                    const timeSlot = document.querySelector(`[data-time="${selectedTime}"]`);
+                    if (timeSlot) {
+                        timeSlot.classList.add('selected');
+                    }
+                }
+            }
+        }
+
+        function updateTotal() {
+            let total = 0;
+            let breakdown = [];
+            
+            // Group tickets by type for better display
+            const ticketGroups = {
+                'cathedral': [],
+                'vespertin': []
+            };
+            
+            Object.keys(quantities).forEach(key => {
+                if (quantities[key] > 0) {
+                    const price = ticketPrices[key];
+                    const subtotal = quantities[key] * price;
+                    total += subtotal;
+                    
+                    const typeName = getTicketTypeName(key);
+                    const ticketTypeCategory = getTicketTypeCategory(key);
+                    
+                    ticketGroups[ticketTypeCategory].push({
+                        quantity: quantities[key],
+                        price: price,
+                        typeName: typeName,
+                        subtotal: subtotal
+                    });
+                }
+            });
+            
+            const breakdownContainer = document.getElementById('total-breakdown');
+            const totalAmount = document.getElementById('total-amount');
+            
+            let html = '';
+            
+            // Always show date and time info if selected
+            if (selectedDate && selectedTime) {
+                const dateObj = new Date(selectedDate + 'T12:00:00');
+                const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                html += `<div class="booking-details"><strong>📅 Date:</strong> ${formattedDate}<br><strong>🕐 Time:</strong> ${selectedTime}</div>`;
+            }
+            
+            // Add some spacing if we have booking details
+            if (html) {
+                html += '<br>';
+            }
+            
+            // Check if any tickets are selected (regardless of price)
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                html += '<p>No tickets selected</p>';
+            } else {
+                // Add ticket breakdown by type
+                Object.keys(ticketGroups).forEach(category => {
+                    if (ticketGroups[category].length > 0) {
+                        const fullTypeName = getFullTicketTypeName(category);
+                        html += `<div class="ticket-group"><strong>${fullTypeName}:</strong><br>`;
+                        
+                        ticketGroups[category].forEach(item => {
+                            html += `<div class="total-item"><span>&nbsp;&nbsp;${item.quantity} × €${item.price.toFixed(2)} (${item.typeName})</span><span>€${item.subtotal.toFixed(2)}</span></div>`;
+                        });
+                        html += '</div>';
+                    }
+                });
+            }
+            
+            breakdownContainer.innerHTML = html;
+            totalAmount.textContent = `€${total.toFixed(2)}`;
+        }
+
+        function getTicketTypeName(key) {
+            if (key.includes('general')) return 'General';
+            if (key.includes('under12')) return 'Under 12';
+            if (key.includes('under3')) return 'Children under 3';
+            return 'Unknown';
+        }
+
+        function getTicketTypeCategory(key) {
+            if (key.includes('cathedral')) return 'cathedral';
+            if (key.includes('vespertin')) return 'vespertin';
+            return 'unknown';
+        }
+
+        function getFullTicketTypeName(category) {
+            switch(category) {
+                case 'cathedral': return '⛪ Cathedral Visit';
+                case 'vespertin': return '🌅 Vespertin Visits';
+                default: return 'Unknown Ticket Type';
+            }
+        }
+
+        function bookNow() {
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                showModal('Booking Error', 'Please select at least one ticket before booking.');
+                return;
+            }
+            
+            if (!selectedDate) {
+                showModal('Booking Error', 'Please select a date for your visit.');
+                return;
+            }
+            
+            if (!selectedTime) {
+                showModal('Booking Error', 'Please select a time slot for your visit.');
+                return;
+            }
+            
+            // Check Vespertin availability
+            const hasVespertin = quantities['general-vespertin'] > 0;
+            if (hasVespertin) {
+                const dateObj = new Date(selectedDate + 'T12:00:00');
+                const dayOfWeek = dateObj.getDay();
+                if (!(dayOfWeek === 0 || dayOfWeek === 2 || dayOfWeek === 4)) {
+                    showModal('Booking Error', 'Vespertin visits are only available on Tuesday, Thursday, and Sunday.');
+                    return;
+                }
+                if (selectedTime !== '20:00') {
+                    showModal('Booking Error', 'Vespertin visits are only available at 20:00.');
+                    return;
+                }
+            }
+            
+            showModal('Booking Successful!', 'Your Barcelona Cathedral tickets have been booked successfully! You will receive a confirmation email shortly.');
+        }
+
+        function showModal(title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            
+            // Reset all quantities and selections after successful booking
+            if (document.getElementById('modal-title').textContent === 'Booking Successful!') {
+                resetBooking();
+            }
+        }
+
+        function resetBooking() {
+            // Reset quantities
+            Object.keys(quantities).forEach(key => {
+                quantities[key] = 0;
+                document.getElementById(key + '-qty').textContent = '0';
+            });
+            
+            // Reset selections
+            selectedDate = null;
+            selectedTime = null;
+            
+            // Clear visual selections
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Reset time slots
+            document.getElementById('time-slots-container').innerHTML = '<p>Please select a date first</p>';
+            
+            // Update total
+            updateTotal();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

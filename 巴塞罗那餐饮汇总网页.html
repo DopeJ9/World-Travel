@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona Dining Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C8D;
+            --accent-color: #C0392B;
+            --accent-gold: #D4AF37;
+            --success-green: #27AE60;
+            --border-radius: 8px;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Elegant Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        /* Layout: Single Column for Horizontal Cards */
+        .restaurant-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Modern Horizontal Card Design */
+        .restaurant-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Fixed header width, flexible body */
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            min-height: 300px;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Header on the Left */
+        .card-header {
+            background: #2C3E50;
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            grid-row: 1 / span 2; /* Span full height */
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .card-header h2 {
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 10px 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+
+        .michelin-stars {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+        }
+
+        .price-range {
+            background: rgba(255,255,255,0.15);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: inline-block;
+        }
+
+        .card-body {
+            padding: 2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .info-row i {
+            width: 28px;
+            color: var(--accent-gold);
+            margin-top: 3px;
+        }
+
+        /* Refined Highlights Section */
+        .highlights {
+            background: #F9F9F9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .highlights h4 {
+            margin: 0 0 8px 0;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .highlights p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .tags {
+            margin-top: auto; /* Push to bottom of body content */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #F0F2F5;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #5D6D7E;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Actions on the Right/Bottom */
+        .card-actions {
+            padding: 1.5rem 2.5rem;
+            border-top: 1px solid #F0F0F0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            background: #FAFAFA;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: white;
+            border: 1px solid var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background: #34495E;
+            border-color: #34495E;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--text-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-book {
+            background: var(--success-green);
+            color: white;
+            border: 1px solid var(--success-green);
+        }
+
+        .btn-book:hover {
+            background: #219150;
+            border-color: #219150;
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 850px) {
+            .restaurant-card {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .card-header {
+                width: 100%;
+                padding: 2rem;
+                align-items: center;
+                text-align: center;
+            }
+
+            .michelin-stars {
+                justify-content: center;
+            }
+
+            .card-actions {
+                justify-content: stretch;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .btn-book {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-book {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Barcelona Dining</h1>
+            <p>A Curated Selection of Culinary Excellence</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="restaurant-grid">
+
+            <!-- Atempo Restaurant -->
+            <article class="restaurant-card">
+                <div class="card-header">
+                    <h2>Atempo</h2>
+                    <div class="michelin-stars"><i class="fas fa-star"></i> Michelin 1-Star</div>
+                    <div class="price-range">€150 - €185</div>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <i class="fas fa-utensils"></i>
+                        <span>Creative Fine Dining (Chef Jordi Cruz)</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-users"></i>
+                        <span>Couples, Foodies, Special Occasions</span>
+                    </div>
+                    <div class="highlights">
+                        <h4>What to Expect</h4>
+                        <p>Chef Jordi Cruz's creative playground. Expect innovative dishes like A5 Wagyu and imaginative seafood preparations in a sophisticated setting.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Fine Dining</span>
+                        <span class="tag">Creative</span>
+                        <span class="tag">Great Value</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="餐饮攻略笔记/Atempo_Restaurant_Menu_Guide.html" class="btn btn-outline">Menu</a>
+                    <a href="餐饮攻略笔记/Atempo_Restaurant_Experience_Guide.html" class="btn btn-primary">Review</a>
+                    <a href="餐饮预订网页/Atempo_Restaurant_Booking.html" class="btn btn-book"><i class="fas fa-calendar-check"></i> Book</a>
+                </div>
+            </article>
+
+            <!-- Lasarte Restaurant -->
+            <article class="restaurant-card">
+                <div class="card-header">
+                    <h2>Lasarte</h2>
+                    <div class="michelin-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Michelin 3-Star</div>
+                    <div class="price-range">€225 - €345</div>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <i class="fas fa-utensils"></i>
+                        <span>Italian & Mediterranean Fine Dining</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-users"></i>
+                        <span>Luxury Dining, Gourmets</span>
+                    </div>
+                    <div class="highlights">
+                        <h4>What to Expect</h4>
+                        <p>A 3-Michelin star sanctuary. Famous for its Italian influence on Spanish ingredients and the signature Ham Brioche that guests rave about.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Top Tier</span>
+                        <span class="tag">Italian Influence</span>
+                        <span class="tag">Luxury</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="餐饮攻略笔记/Lasarte_Complete_Menu_Guide.html" class="btn btn-outline">Menu</a>
+                    <a href="餐饮攻略笔记/Lasarte_攻略笔记.html" class="btn btn-primary">Review</a>
+                    <a href="餐饮预订网页/Lasarte_Restaurant_Booking.html" class="btn btn-book"><i class="fas fa-calendar-check"></i> Book</a>
+                </div>
+            </article>
+
+            <!-- Bar Cañete -->
+            <article class="restaurant-card">
+                <div class="card-header">
+                    <h2>Bar Cañete</h2>
+                    <div class="price-range">€30 - €50</div>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <i class="fas fa-utensils"></i>
+                        <span>Traditional Spanish Tapas</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ciutat Vella (Gothic Quarter)</span>
+                    </div>
+                    <div class="highlights">
+                        <h4>What to Expect</h4>
+                        <p>The quintessential lively tapas bar experience in Gothic Quarter. Always bustling, noisy, and delicious - booking is essential.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Lively Atmosphere</span>
+                        <span class="tag">Authentic</span>
+                        <span class="tag">Popular</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="餐饮攻略笔记/Bar_Canete_Menu_Guide.html" class="btn btn-outline">Menu</a>
+                    <a href="餐饮攻略笔记/Bar Cañete_攻略笔记.html" class="btn btn-primary">Review</a>
+                    <a href="餐饮预订网页/bar cañete_Booking.html" class="btn btn-book"><i class="fas fa-calendar-check"></i> Book</a>
+                </div>
+            </article>
+
+            <!-- La Triunfal -->
+            <article class="restaurant-card">
+                <div class="card-header">
+                    <h2>La Triunfal</h2>
+                    <div class="price-range">€25 - €45</div>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <i class="fas fa-utensils"></i>
+                        <span>Spanish Cuisine & Tapas</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Near Arc de Triomf</span>
+                    </div>
+                    <div class="highlights">
+                        <h4>What to Expect</h4>
+                        <p>Perfect for a relaxed meal after visiting Arc de Triomf. Known for great stone-grilled meats and authentic paella in a friendly atmosphere.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Casual</span>
+                        <span class="tag">Great Location</span>
+                        <span class="tag">Good Value</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="餐饮攻略笔记/La Triunfal_攻略笔记.html" class="btn btn-primary">Review</a>
+                    <a href="餐饮预订网页/La Triunfal_Booking.html" class="btn btn-book"><i class="fas fa-calendar-check"></i> Book</a>
+                </div>
+            </article>
+
+            <!-- Pasa Tapas -->
+            <article class="restaurant-card">
+                <div class="card-header">
+                    <h2>Pasa Tapas</h2>
+                    <div class="price-range">€20 - €35</div>
+                </div>
+                <div class="card-body">
+                    <div class="info-row">
+                        <i class="fas fa-utensils"></i>
+                        <span>Classic Tapas Bar</span>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Gothic Quarter (Hidden Gem)</span>
+                    </div>
+                    <div class="highlights">
+                        <h4>What to Expect</h4>
+                        <p>A hidden gem loved by locals. Authentic, no-frills tapas and traditional huge paella pans at unbeatable prices. Great for groups.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Hidden Gem</span>
+                        <span class="tag">Local Favorite</span>
+                        <span class="tag">Budget Friendly</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <a href="餐饮攻略笔记/Pasa_Tapas_攻略笔记2.html" class="btn btn-outline">Menu</a>
+                    <a href="餐饮攻略笔记/Pasa_Tapas_攻略笔记1.html" class="btn btn-primary">Review</a>
+                    <a href="餐饮预订网页/Pasa_Tapas_Booking.html" class="btn btn-book"><i class="fas fa-calendar-check"></i> Book</a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+</body>
+</html>

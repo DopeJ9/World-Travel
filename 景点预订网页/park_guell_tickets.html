@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park Güell - Admission Tickets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f8f8;
+        }
+
+        .hero-section {
+            height: 200px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1583422409516-2895a77efded?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .hero-content h2 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #f0f0f0;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .section {
+            background: white;
+            margin: 1.5rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+        
+        .section:first-child {
+            margin-top: 0.8rem;
+        }
+        
+        .top-content .section {
+            margin-top: 0.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        }
+
+        .opening-hours {
+            background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+            padding: 0.6rem;
+            border-radius: 8px;
+            border-left: 5px solid #27ae60;
+        }
+
+        .hours-text {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: #2c3e50;
+            line-height: 1.2;
+            font-weight: 500;
+        }
+
+        .summer-hours {
+            background: #f39c12;
+            color: white;
+            padding: 0.4rem;
+            border-radius: 6px;
+            margin-top: 0.3rem;
+            font-weight: 500;
+        }
+
+        .important-notice {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 0.6rem;
+            margin-top: 0.4rem;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+        }
+
+        .notice-title {
+            font-weight: bold;
+            color: #d68910;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notice-title::before {
+            content: "⚠️";
+            font-size: 1.2rem;
+        }
+
+        .notice-content {
+            color: #d68910;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .top-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 0.5rem;
+            align-items: start;
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 0.7rem;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 0.8rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .calendar-day:hover {
+            background: #ecf0f1;
+            border-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
+        }
+
+        .calendar-day.selected {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            border-color: #1e8449;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
+        }
+
+        .right-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-self: start;
+        }
+
+        .time-selection {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+
+        .time-selection h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 55px;
+            font-weight: 600;
+            color: #34495e;
+            position: relative;
+        }
+
+        .time-slot:hover {
+            background: #ecf0f1;
+            border-color: #27ae60;
+            transform: translateY(-1px);
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            border-color: #1e8449;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .time-slot.sold-out {
+            background: #bdc3c7;
+            color: #7f8c8d;
+            cursor: not-allowed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot.sold-out::after {
+            content: "sold out";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            font-size: 0.65rem;
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2px 4px;
+            border-radius: 3px;
+            transform: rotate(-12deg);
+        }
+
+        /* Language indicators for Guided Tours */
+        .time-slot .language-indicator {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .time-slot .language-indicator.spanish {
+            background: #e74c3c;
+        }
+
+        .time-slot .language-indicator.english {
+            background: #3498db;
+        }
+
+        .time-slot .language-indicator.french {
+            background: #9b59b6;
+        }
+
+        .tickets-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.6rem;
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid #e8e8e8;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .ticket-title {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        .ticket-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .ticket-features {
+            padding: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 0.8rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.3rem;
+            color: #34495e;
+            font-size: 0.85rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            background: #27ae60;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .price-options {
+            border-top: 1px solid #e8e8e8;
+            padding-top: 0.6rem;
+        }
+
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            margin-bottom: 0.3rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+
+        .price-option:hover {
+            background: #ecf0f1;
+            border-color: #27ae60;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #27ae60;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: #27ae60;
+        }
+
+        .quantity-btn:hover {
+            background: #27ae60;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .quantity-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #34495e;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+        }
+
+        .total-breakdown {
+            margin-bottom: 0.8rem;
+        }
+
+        .total-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .booking-details {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.6rem;
+            border-radius: 8px;
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ticket-group {
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ticket-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .total-final {
+            font-size: 1.6rem;
+            font-weight: bold;
+            border-top: 3px solid #f39c12;
+            padding-top: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.3);
+        }
+
+        .book-now-btn:hover {
+            background: linear-gradient(135deg, #d68910 0%, #e67e22 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(39, 174, 96, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 3rem;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid #27ae60;
+        }
+
+        .close-btn {
+            color: #95a5a6;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Tour Schedule Styles */
+        .tour-schedules {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .schedule-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #27ae60;
+        }
+
+        .schedule-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .schedule-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+
+        .schedule-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.8rem 0.4rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            gap: 0.4rem;
+        }
+
+        .language-label {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .language-label.spanish {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .language-label.english {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .language-label.french {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+        }
+
+        .schedule-text {
+            font-size: 0.8rem;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .tour-info {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-top: 0.8rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .top-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .tickets-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .calendar-container {
+                gap: 6px;
+            }
+            
+            .calendar-day {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Park Güell</h1>
+            <h2>Admission Tickets</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Opening Hours Section -->
+        <div class="section">
+            <h3>🕒 Opening Hours</h3>
+            <div class="opening-hours">
+                <div class="hours-text">
+                    <strong>Daily:</strong> 9:30 am - 7:30 pm
+                </div>
+                <div class="summer-hours">
+                    <strong>Summer (July 1 - August 31):</strong> 9:00 am - 7:30 pm
+                </div>
+                <div class="important-notice">
+                    <div class="notice-title">Important Notice</div>
+                    <div class="notice-content">
+                        • Tickets are assigned on the basis of time-slots. Please arrive 10 minutes before the chosen time.<br>
+                        • For reservations that include a guided tour, please be at the meeting point 15 minutes prior to the specified time. All tours will start on time.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guided Tour Schedule Section -->
+        <div class="section">
+            <h3>🗓️ Park Güell Guided Tour Schedule</h3>
+            <div class="tour-schedules">
+                <div class="schedule-item">
+                    <div class="schedule-details">
+                        <div class="schedule-row">
+                            <span class="language-label spanish">Spanish</span>
+                            <span class="schedule-text">Mon-Fri & Sun: 10:30 / 11:30 / 12:30<br>Sat: 11:30</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="language-label english">English</span>
+                            <span class="schedule-text">Daily: 10:00 / 11:00 / 12:00 / 13:00 / 13:30</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="language-label french">French</span>
+                            <span class="schedule-text">Sat only: 10:30</span>
+                        </div>
+                    </div>
+                    <div class="tour-info">
+                        Guided tour through the most iconic spaces of Park Güell in groups of max 25 people
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Content: Date Selection and Time Selection -->
+        <div class="top-content">
+            <!-- Left: Date Selection -->
+            <div class="section">
+                <h3>Select Date - August</h3>
+                <div class="calendar-container">
+                    <div class="calendar-header">Sun</div>
+                    <div class="calendar-header">Mon</div>
+                    <div class="calendar-header">Tue</div>
+                    <div class="calendar-header">Wed</div>
+                    <div class="calendar-header">Thu</div>
+                    <div class="calendar-header">Fri</div>
+                    <div class="calendar-header">Sat</div>
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Right: Time Selection -->
+            <div class="right-selection">
+                <div class="time-selection">
+                    <h4>Select Time</h4>
+                    <div id="time-slots-container">
+                        <p>Please select a date first</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Types Section -->
+        <div class="section">
+            <h3>Select Your Experience</h3>
+            <div class="tickets-section">
+                <!-- Park Güell Visit -->
+                <div class="ticket-card" id="ticket-visit">
+                    <div class="ticket-header">
+                        <div class="ticket-title">Park Güell Visit</div>
+                        <div class="ticket-subtitle">Self-guided exploration</div>
+                    </div>
+                    <div class="ticket-features">
+                        <ul class="features-list">
+                            <li>Access to monumental area</li>
+                            <li>Visit at your own pace</li>
+                            <li>Gaudí's architectural masterpiece</li>
+                            <li>Panoramic views of Barcelona</li>
+                            <li>Time-slot entry system</li>
+                        </ul>
+                        <div class="price-options">
+                            <div class="price-option">
+                                <span><strong>General ticket</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€18.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('general-visit', -1)">-</button>
+                                    <span class="quantity-display" id="general-visit-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('general-visit', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Children from 7 to 12</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€13.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child7-12-visit', -1)">-</button>
+                                    <span class="quantity-display" id="child7-12-visit-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child7-12-visit', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Over 65</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€13.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('senior-visit', -1)">-</button>
+                                    <span class="quantity-display" id="senior-visit-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('senior-visit', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Children from 0 to 6</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child0-6-visit', -1)">-</button>
+                                    <span class="quantity-display" id="child0-6-visit-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child0-6-visit', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>People with disabilities</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('disability-visit', -1)">-</button>
+                                    <span class="quantity-display" id="disability-visit-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('disability-visit', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Accompanying people with disabilities</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€13.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('companion-visit', -1)">-</button>
+                                    <span class="quantity-display" id="companion-visit-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('companion-visit', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Park Güell Guided Tour -->
+                <div class="ticket-card" id="ticket-guided">
+                    <div class="ticket-header">
+                        <div class="ticket-title">Park Güell Guided Tour</div>
+                        <div class="ticket-subtitle">Professional guided experience</div>
+                    </div>
+                    <div class="ticket-features">
+                        <ul class="features-list">
+                            <li>Professional guide</li>
+                            <li>Groups of max 25 people</li>
+                            <li>In-depth historical insights</li>
+                            <li>Spanish, English and French</li>
+                            <li>Most iconic spaces tour</li>
+                        </ul>
+                        <div class="price-options">
+                            <div class="price-option">
+                                <span><strong>General ticket</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€35.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('general-guided', -1)">-</button>
+                                    <span class="quantity-display" id="general-guided-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('general-guided', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Children from 7 to 12</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€30.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child7-12-guided', -1)">-</button>
+                                    <span class="quantity-display" id="child7-12-guided-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child7-12-guided', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Over 65</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€30.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('senior-guided', -1)">-</button>
+                                    <span class="quantity-display" id="senior-guided-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('senior-guided', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Children from 0 to 6</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child0-6-guided', -1)">-</button>
+                                    <span class="quantity-display" id="child0-6-guided-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('child0-6-guided', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>People with disabilities</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€17.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('disability-guided', -1)">-</button>
+                                    <span class="quantity-display" id="disability-guided-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('disability-guided', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Accompanying people with disabilities</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">€30.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('companion-guided', -1)">-</button>
+                                    <span class="quantity-display" id="companion-guided-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('companion-guided', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <h3>🛒 Order Summary</h3>
+            <div class="total-breakdown" id="total-breakdown">
+                <p>No tickets selected</p>
+            </div>
+            <div class="total-final">
+                <div class="total-item">
+                    <span>Total:</span>
+                    <span id="total-amount">€0.00</span>
+                </div>
+            </div>
+            <button class="book-now-btn" onclick="bookNow()">🎫 Book Now</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Booking Confirmation</h2>
+            <p id="modal-message">Your booking has been confirmed!</p>
+            <button onclick="closeModal()" style="margin-top: 2rem; padding: 1rem 3rem; background: linear-gradient(135deg, #27ae60 0%, #229954 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedLanguage = null;
+        let quantities = {};
+        
+        // Ticket prices
+        const ticketPrices = {
+            'general-visit': 18,
+            'child7-12-visit': 13.5,
+            'senior-visit': 13.5,
+            'child0-6-visit': 0,
+            'disability-visit': 0,
+            'companion-visit': 13.5,
+            'general-guided': 35,
+            'child7-12-guided': 30.5,
+            'senior-guided': 30.5,
+            'disability-guided': 17,
+            'child0-6-guided': 0,
+            'companion-guided': 30.5
+        };
+
+        // Initialize quantities
+        Object.keys(ticketPrices).forEach(key => {
+            quantities[key] = 0;
+        });
+
+        // Guided tour schedules by day type
+        const guidedTourSchedules = {
+            'weekday': {  // Monday-Friday and Sunday
+                'spanish': ['10:30', '11:30', '12:30'],
+                'english': ['10:00', '11:00', '12:00', '13:00', '13:30']
+            },
+            'saturday': {
+                'spanish': ['11:30'],
+                'english': ['10:00', '11:00', '12:00', '13:00', '13:30'],
+                'french': ['10:30']
+            }
+        };
+
+        // Generate different sold-out patterns for each day
+        function getSoldOutPattern(date) {
+            const dateStr = date.replace(/-/g, '');
+            const seed = parseInt(dateStr) % 1000;
+            const pattern = [];
+            
+            const numSoldOut = 1 + (seed % 3); // 1-3 sold out slots
+            const usedIndices = new Set();
+            
+            for (let i = 0; i < numSoldOut; i++) {
+                let index;
+                do {
+                    index = (seed + i * 7) % 15; // Different pattern based on date
+                } while (usedIndices.has(index));
+                usedIndices.add(index);
+                pattern.push(index);
+            }
+            
+            return pattern;
+        }
+
+        // Generate calendar for August 2026
+        function generateCalendar() {
+            const calendarContainer = document.querySelector('.calendar-container');
+            const daysInMonth = 31;
+            const firstDayOfWeek = 6; // August 1, 2026 is a Saturday
+            
+            // Add empty cells for days before the 1st
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                calendarContainer.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = `2026-08-${day.toString().padStart(2, '0')}`;
+                
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.dataset.date = date;
+                dayElement.onclick = () => selectDate(dayElement);
+                
+                calendarContainer.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(element) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Select new date
+            element.classList.add('selected');
+            selectedDate = element.dataset.date;
+            
+            // Clear time selection when date changes
+            selectedTime = null;
+            selectedLanguage = null;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Generate time slots for selected date
+            generateTimeSlots(selectedDate);
+            
+            // Update total to show date info
+            updateTotal();
+        }
+
+        function generateTimeSlots(date) {
+            const container = document.getElementById('time-slots-container');
+            const dateObj = new Date(date + 'T12:00:00');
+            const dayOfWeek = dateObj.getDay();
+            
+            // Check which ticket type is selected
+            const hasGuided = Object.keys(quantities).some(key => 
+                key.includes('-guided') && quantities[key] > 0
+            );
+            const hasVisit = Object.keys(quantities).some(key => 
+                key.includes('-visit') && quantities[key] > 0
+            );
+            
+            let timeSlots = [];
+            let showLanguageIndicators = false;
+            
+            if (hasGuided) {
+                // Guided tours - show scheduled times with language indicators
+                showLanguageIndicators = true;
+                const scheduleKey = dayOfWeek === 6 ? 'saturday' : 'weekday';
+                
+                Object.entries(guidedTourSchedules[scheduleKey]).forEach(([language, times]) => {
+                    times.forEach(time => {
+                        timeSlots.push({ time: time, language: language });
+                    });
+                });
+                
+                // Sort by time
+                timeSlots.sort((a, b) => {
+                    const timeA = timeToMinutes(a.time);
+                    const timeB = timeToMinutes(b.time);
+                    return timeA - timeB;
+                });
+            } else {
+                // Park visits - specific time slots
+                timeSlots = [
+                    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', 
+                    '12:00', '12:30', '13:00', '13:30', '14:00', '15:00', 
+                    '16:00', '17:00', '18:00', '19:00'
+                ].map(time => ({ time: time }));
+            }
+            
+            container.innerHTML = '<div class="time-slots"></div>';
+            const slotsContainer = container.querySelector('.time-slots');
+            
+            // Get sold-out pattern for this specific date
+            const soldOutPattern = getSoldOutPattern(date);
+            
+            timeSlots.forEach((slot, index) => {
+                const slotElement = document.createElement('div');
+                slotElement.className = 'time-slot';
+                slotElement.textContent = slot.time;
+                slotElement.dataset.time = slot.time;
+                
+                // Add language indicator for Guided Tours
+                if (showLanguageIndicators && slot.language) {
+                    const indicator = document.createElement('div');
+                    indicator.className = `language-indicator ${slot.language}`;
+                    
+                    // Set language abbreviations
+                    const languageAbbr = {
+                        'spanish': 'ES',
+                        'english': 'EN',
+                        'french': 'FR'
+                    };
+                    
+                    indicator.textContent = languageAbbr[slot.language];
+                    slotElement.appendChild(indicator);
+                    slotElement.dataset.language = slot.language;
+                }
+                
+                // Apply date-specific sold-out pattern
+                if (soldOutPattern.includes(index)) {
+                    slotElement.classList.add('sold-out');
+                    slotElement.onclick = null;
+                } else {
+                    slotElement.onclick = () => selectTime(slotElement);
+                }
+                
+                slotsContainer.appendChild(slotElement);
+            });
+        }
+
+        function generateTimeSlotsForRange(startTime, endTime) {
+            const slots = [];
+            const start = timeToMinutes(startTime);
+            const end = timeToMinutes(endTime);
+            
+            let currentTime = start;
+            
+            // Generate 30-minute intervals
+            while (currentTime <= end) {
+                slots.push(minutesToTime(currentTime));
+                currentTime += 30;
+            }
+            
+            return slots;
+        }
+
+        function timeToMinutes(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function minutesToTime(minutes) {
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+        }
+
+        function selectTime(element) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Select new time
+            element.classList.add('selected');
+            selectedTime = element.dataset.time;
+            
+            // Store language for Guided Tours
+            if (element.dataset.language) {
+                selectedLanguage = element.dataset.language;
+            }
+            
+            // Update total to show date/time info
+            updateTotal();
+        }
+
+        function changeQuantity(ticketType, change) {
+            const newQuantity = Math.max(0, quantities[ticketType] + change);
+            
+            // Check if this is a guided tour ticket and if total guided tour participants would exceed 25
+            if (ticketType.includes('-guided') && change > 0) {
+                const currentGuidedTotal = Object.keys(quantities)
+                    .filter(key => key.includes('-guided'))
+                    .reduce((sum, key) => sum + quantities[key], 0);
+                
+                if (currentGuidedTotal >= 25) {
+                    showModal('Group Size Limit', 'Guided tours are limited to a maximum of 25 people per group. Please reduce the number of participants or book multiple tours.');
+                    return;
+                }
+            }
+            
+            quantities[ticketType] = newQuantity;
+            document.getElementById(ticketType + '-qty').textContent = quantities[ticketType];
+            
+            updateTotal();
+            
+            // Clear time selection when switching between ticket types
+            const hasGuided = Object.keys(quantities).some(key => 
+                key.includes('-guided') && quantities[key] > 0
+            );
+            const hasVisit = Object.keys(quantities).some(key => 
+                key.includes('-visit') && quantities[key] > 0
+            );
+            
+            // If switching between guided and visit tours, clear time selection
+            if ((hasGuided && hasVisit) || (!hasGuided && !hasVisit && selectedTime)) {
+                selectedTime = null;
+                selectedLanguage = null;
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+            }
+            
+            // Regenerate time slots based on current ticket selection
+            if (selectedDate) {
+                generateTimeSlots(selectedDate);
+                
+                // Restore the selected time slot after regeneration if still valid
+                if (selectedTime) {
+                    setTimeout(() => {
+                        const timeSlot = document.querySelector(`[data-time="${selectedTime}"]`);
+                        if (timeSlot) {
+                            timeSlot.classList.add('selected');
+                        }
+                    }, 50);
+                }
+            }
+        }
+
+        function updateTotal() {
+            let total = 0;
+            
+            // Group tickets by type for better display
+            const ticketGroups = {
+                'visit': [],
+                'guided': []
+            };
+            
+            Object.keys(quantities).forEach(key => {
+                if (quantities[key] > 0) {
+                    const price = ticketPrices[key];
+                    const subtotal = quantities[key] * price;
+                    total += subtotal;
+                    
+                    const typeName = getTicketTypeName(key);
+                    const ticketTypeCategory = getTicketTypeCategory(key);
+                    
+                    ticketGroups[ticketTypeCategory].push({
+                        quantity: quantities[key],
+                        price: price,
+                        typeName: typeName,
+                        subtotal: subtotal
+                    });
+                }
+            });
+            
+            const breakdownContainer = document.getElementById('total-breakdown');
+            const totalAmount = document.getElementById('total-amount');
+            
+            let html = '';
+            
+            // Always show date and time info if selected
+            if (selectedDate && selectedTime) {
+                const dateObj = new Date(selectedDate + 'T12:00:00');
+                const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                html += `<div class="booking-details"><strong>📅 Date:</strong> ${formattedDate}<br><strong>🕐 Time:</strong> ${selectedTime}</div>`;
+            }
+            
+            // Add language info if selected
+            if (selectedLanguage) {
+                const languageName = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
+                html += `<div class="booking-details"><strong>🗣️ Language:</strong> ${languageName}</div>`;
+            }
+            
+            // Add some spacing if we have booking details
+            if (html) {
+                html += '<br>';
+            }
+            
+            // Check if any tickets are selected
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                html += '<p>No tickets selected</p>';
+            } else {
+                // Add ticket breakdown by type
+                Object.keys(ticketGroups).forEach(category => {
+                    if (ticketGroups[category].length > 0) {
+                        const fullTypeName = getFullTicketTypeName(category);
+                        html += `<div class="ticket-group"><strong>${fullTypeName}:</strong><br>`;
+                        
+                        ticketGroups[category].forEach(item => {
+                            html += `<div class="total-item"><span>&nbsp;&nbsp;${item.quantity} × €${item.price.toFixed(2)} (${item.typeName})</span><span>€${item.subtotal.toFixed(2)}</span></div>`;
+                        });
+                        html += '</div>';
+                    }
+                });
+            }
+            
+            breakdownContainer.innerHTML = html;
+            totalAmount.textContent = `€${total.toFixed(2)}`;
+        }
+
+        function getTicketTypeName(key) {
+            if (key.includes('general')) return 'General';
+            if (key.includes('child7-12')) return 'Child (7-12)';
+            if (key.includes('child0-6')) return 'Child (0-6)';
+            if (key.includes('senior')) return 'Senior (65+)';
+            if (key.includes('disability')) return 'Disability';
+            if (key.includes('companion')) return 'Companion';
+            return 'Unknown';
+        }
+
+        function getTicketTypeCategory(key) {
+            if (key.includes('-visit')) return 'visit';
+            if (key.includes('-guided')) return 'guided';
+            return 'unknown';
+        }
+
+        function getFullTicketTypeName(category) {
+            switch(category) {
+                case 'visit': return '🌿 Park Güell Visit';
+                case 'guided': return '🎯 Park Güell Guided Tour';
+                default: return 'Unknown Ticket Type';
+            }
+        }
+
+        function bookNow() {
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                showModal('Booking Error', 'Please select at least one ticket before booking.');
+                return;
+            }
+            
+            if (!selectedDate) {
+                showModal('Booking Error', 'Please select a date for your visit.');
+                return;
+            }
+            
+            if (!selectedTime) {
+                showModal('Booking Error', 'Please select a time slot for your visit.');
+                return;
+            }
+            
+            showModal('Booking Successful!', 'Your Park Güell tickets have been booked successfully! You will receive a confirmation email shortly.');
+        }
+
+        function showModal(title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            
+            // Reset all quantities and selections after successful booking
+            if (document.getElementById('modal-title').textContent === 'Booking Successful!') {
+                resetBooking();
+            }
+        }
+
+        function resetBooking() {
+            // Reset quantities
+            Object.keys(quantities).forEach(key => {
+                quantities[key] = 0;
+                document.getElementById(key + '-qty').textContent = '0';
+            });
+            
+            // Reset selections
+            selectedDate = null;
+            selectedTime = null;
+            selectedLanguage = null;
+            
+            // Clear visual selections
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Reset time slots
+            document.getElementById('time-slots-container').innerHTML = '<p>Please select a date first</p>';
+            
+            // Update total
+            updateTotal();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

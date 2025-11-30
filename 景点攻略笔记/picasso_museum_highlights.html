@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picasso Museum - Essential Highlights Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Trebuchet MS', Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #ff6b6b 0%, #ee5a52 50%, #d63031 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #ffebee;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #d63031 0%, #ff6b6b 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #ffcdd2;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0.8rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.96);
+            margin: 1rem 0;
+            padding: 1.4rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+        }
+
+        .section h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.1rem;
+            color: #d63031;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            border-radius: 2px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
+            padding: 1.1rem;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+            margin: 0.9rem 0;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.15);
+        }
+
+        .tip-section {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            padding: 1.1rem;
+            margin: 0.9rem 0;
+            border-left: 4px solid #4caf50;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 12px rgba(76, 175, 80, 0.2);
+        }
+
+        .tip-section h4 {
+            color: #2e7d32;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .artwork-feature {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 1.1rem;
+            margin: 0.9rem 0;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.2);
+        }
+
+        .artwork-feature h4 {
+            color: #6a1b9a;
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .warning-alert {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 2px solid #ffa000;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            box-shadow: 0 3px 12px rgba(255, 160, 0, 0.2);
+        }
+
+        .warning-alert h4 {
+            color: #ef6c00;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .number-highlight {
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        ul {
+            margin: 0.8rem 0;
+            padding-left: 1.4rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #d63031;
+        }
+
+        .must-see-list {
+            counter-reset: artwork-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .must-see-list li {
+            counter-increment: artwork-counter;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border-left: 3px solid #ff6b6b;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.1);
+        }
+
+        .must-see-list li::before {
+            content: counter(artwork-counter);
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #fd79a8);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Picasso Museum</h1>
+            <h2>Essential Highlights & Must-See Works</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">5,842</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">1,376</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">2,914</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🔥 Must-See Highlights</h3>
+            <div class="highlight-box">
+                <h4><strong>Perfect for:</strong> Art enthusiasts, Picasso fans, first-time museum visitors</h4>
+                <p>This guide focuses on the museum's most celebrated masterpieces - from his teenage "divine works" to revolutionary Blue Period paintings. Most visitors spend 1-2 hours at the museum.</p>
+            </div>
+            
+            <ol class="must-see-list">
+                <li>
+                    <strong>Teenage Genius "Divine Works"</strong><br>
+                    <em>First Holy Communion</em> & <em>Science and Charity</em> - 14-year-old art school prodigy's genius on full display! The talent that amazed everyone to speechlessness.
+                </li>
+                <li>
+                    <strong>Blue Period's Gentle Melancholy</strong><br>
+                    <em>Blue Woman</em> & <em>The Blind Man's Meal</em> series - Yin-dark tones hiding life's underlying sorrow. Experience the emotional depth that defined this iconic period.
+                </li>
+                <li>
+                    <strong>58 Panels <em>Las Meninas</em> Variations</strong><br>
+                    Evening Picasso's obsession with Velázquez's masterpiece. Same theme, 3D perspective + hyperrealistic magic. Artistic interpretation at its most extreme and colorful!
+                </li>
+                <li>
+                    <strong>Medieval Courtyard Time Travel</strong><br>
+                    Museum housed in 5 renovated 15th-century noble palaces! Goth architecture + sycamore tree courtyard. Walking through feels like entering a time tunnel.
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>💡 Solo Visitor Tips</h3>
+            
+            <div class="tip-section">
+                <h4>✅ Essential Visit Strategy</h4>
+                <ul>
+                    <li><strong>Audio guide €5:</strong> Focus on key artworks with QR code analysis</li>
+                    <li><strong>Rooftop café must-visit:</strong> Sangria overlooking Barcelona's old town red rooftops</li>
+                    <li><strong>Exit shop limited editions:</strong> Picasso line art + ceramic plates - absolutely beautiful!</li>
+                    <li><strong>Nearby dining:</strong> 3-minute walk to "4 Cats" café - Picasso's office spot, century-old artistic atmosphere perfect for photos</li>
+                </ul>
+            </div>
+
+            <div class="artwork-feature">
+                <h4>📸 Photography Guidelines</h4>
+                <ul>
+                    <li><strong>Permanent exhibition photography prohibited</strong> (special exhibitions allowed)</li>
+                    <li><strong>Outfit suggestions:</strong> White/beige! Medieval stone walls + light colors = perfect photo composition</li>
+                    <li><strong>Hidden photo spot:</strong> Central courtyard with rooftop + second-floor arch window views</li>
+                </ul>
+            </div>
+
+            <div class="warning-alert">
+                <h4>⚠️ Anti-Theft Precautions</h4>
+                <p><strong>Goth Quarter pickpocket hotspot!</strong> Keep phone and camera secure! Recommended: back-close body bag (tested blood lessons 😱)</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎨 Artistic Journey Experience</h3>
+            <p>"Here, you'll encounter a young standard-signing Picasso - not the incomprehensible abstract art, but a teenager running through Barcelona's streets." The museum showcases Picasso's evolution from academic prodigy to modernist pioneer.</p>
+        </div>
+    </div>
+</body>
+</html>

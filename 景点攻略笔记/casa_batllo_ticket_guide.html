@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Batlló - Complete Ticket Guide & Recommendations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            line-height: 1.65;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #1a202c 0%, #2d3748 50%, #4a5568 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(26, 32, 44, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.4rem;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h2 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.9px;
+            color: #cbd5e0;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #fbb6ce;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.98);
+            margin: 1.2rem 0;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+        }
+
+        .section h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1.2rem;
+            color: #2d3748;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(45deg, #ed64a6, #f687b3);
+            border-radius: 2px;
+        }
+
+        .ticket-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .ticket-card.recommended {
+            border-color: #38b2ac;
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 50%, #81e6d9 100%);
+            transform: scale(1.01);
+            box-shadow: 0 6px 20px rgba(56, 178, 172, 0.2);
+        }
+
+        .ticket-card.premium {
+            border-color: #ed8936;
+            background: linear-gradient(135deg, #fffaf0 0%, #fef5e7 50%, #fed7aa 100%);
+            box-shadow: 0 4px 15px rgba(237, 137, 54, 0.15);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .ticket-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a202c;
+            text-transform: capitalize;
+        }
+
+        .ticket-price {
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #805ad5, #b794f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ticket-badge {
+            background: linear-gradient(45deg, #38b2ac, #4fd1c7);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.6rem;
+            box-shadow: 0 2px 8px rgba(56, 178, 172, 0.3);
+        }
+
+        .ticket-badge.vip {
+            background: linear-gradient(45deg, #ed8936, #fbb6ce);
+            color: #1a202c;
+            box-shadow: 0 2px 8px rgba(237, 137, 54, 0.3);
+        }
+
+        .ticket-includes {
+            margin: 0.8rem 0;
+        }
+
+        .ticket-includes h4 {
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .includes-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .includes-list li {
+            padding: 0.3rem 0;
+            color: #6c757d;
+        }
+
+        .includes-list li::before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .best-for {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border: 2px solid #4299e1;
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            box-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+        }
+
+        .best-for h4 {
+            color: #2b6cb0;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .special-offer {
+            background: linear-gradient(135deg, #e53e3e 0%, #fc8181 50%, #feb2b2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .special-offer h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .timing-info {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 3px 12px rgba(245, 158, 11, 0.15);
+        }
+
+        .pro-tip {
+            background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+            border: 2px solid #9f7aea;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            box-shadow: 0 3px 12px rgba(159, 122, 234, 0.15);
+        }
+
+        .pro-tip h4 {
+            color: #6b46c1;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        ul {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin: 0.4rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Casa Batlló</h1>
+            <h2>Complete Ticket Guide & Visitor Recommendations</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">2,849</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">521</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">1,376</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🎫 Complete Ticket Breakdown</h3>
+            
+            <div class="ticket-card recommended">
+                <div class="ticket-header">
+                    <div class="ticket-title">① Blue Ticket (Basic) <span class="ticket-badge">MOST POPULAR</span></div>
+                    <div class="ticket-price">€29+</div>
+                </div>
+                <div class="ticket-includes">
+                    <h4>Includes:</h4>
+                    <ul class="includes-list">
+                        <li>Audio guide in multiple languages</li>
+                        <li>Access to main floor, courtyard</li>
+                        <li>360° light show experience</li>
+                        <li>Gaudí cube souvenir ❤️</li>
+                    </ul>
+                </div>
+                <div class="best-for">
+                    <h4>👥 Perfect for:</h4>
+                    <p>First-time visitors, budget-conscious travelers, standard 1.5-hour visits</p>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="ticket-title">② Silver Ticket (Enhanced)</div>
+                    <div class="ticket-price">€36+</div>
+                </div>
+                <div class="ticket-includes">
+                    <h4>Includes:</h4>
+                    <ul class="includes-list">
+                        <li>Blue ticket content + rooftop dragon spine access</li>
+                    </ul>
+                </div>
+                <div class="best-for">
+                    <h4>👥 Perfect for:</h4>
+                    <p>Photography enthusiasts, architecture lovers, those wanting complete building access</p>
+                </div>
+            </div>
+
+            <div class="ticket-card premium">
+                <div class="ticket-header">
+                    <div class="ticket-title">③ Gold Ticket (AR Experience) <span class="ticket-badge vip">TECH LOVERS</span></div>
+                    <div class="ticket-price">€41+</div>
+                </div>
+                <div class="ticket-includes">
+                    <h4>Includes:</h4>
+                    <ul class="includes-list">
+                        <li>Silver ticket content + AR tablet</li>
+                        <li>Batlló family residence exhibition</li>
+                    </ul>
+                </div>
+                <div class="best-for">
+                    <h4>👥 Perfect for:</h4>
+                    <p>Tech enthusiasts, families, visitors wanting immersive historical experience</p>
+                </div>
+                <div class="pro-tip">
+                    <h4>💡 Insider Secret:</h4>
+                    <p>AR tablet reveals hidden details invisible to naked eye - worth it for detail-oriented visitors</p>
+                </div>
+            </div>
+
+            <div class="ticket-card premium">
+                <div class="ticket-header">
+                    <div class="ticket-title">④ Platinum Ticket (VIP) <span class="ticket-badge vip">LUXURY</span></div>
+                    <div class="ticket-price">€51+</div>
+                </div>
+                <div class="ticket-includes">
+                    <h4>Includes:</h4>
+                    <ul class="includes-list">
+                        <li>Gold ticket content + priority access</li>
+                        <li>Flexible timing + complimentary refreshments</li>
+                    </ul>
+                </div>
+                <div class="best-for">
+                    <h4>👥 Perfect for:</h4>
+                    <p>Luxury travelers, tight schedules, VIP experience seekers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>⭐ Special Experiences</h3>
+            
+            <div class="timing-info">
+                <h4>🌅 "Be the First" €45 (P7 Priority)</h4>
+                <p><strong>8:30 AM first entry</strong> - completely crowd-free experience! Perfect for photographers and those avoiding tourist groups.</p>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="ticket-title">🌙 Night Experience €29+ (Summer Only)</div>
+                </div>
+                <div class="ticket-includes">
+                    <p>Same pricing as day tickets but with completely different atmosphere - magical evening lighting throughout the building</p>
+                </div>
+            </div>
+
+            <div class="ticket-card">
+                <div class="ticket-header">
+                    <div class="ticket-title">🎵 Concert + Visit €59+</div>
+                </div>
+                <div class="ticket-includes">
+                    <p>Gaudí architecture + live music + wine - truly unique evening experience. Concert programs change daily, check official website for schedule</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Vicens - Personal Experience & Hidden Gems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #059669 0%, #10b981 30%, #34d399 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #fecaca;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #fca5a5;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0.6rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.96);
+            margin: 0.7rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(252, 165, 165, 0.3);
+            backdrop-filter: blur(12px);
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.9rem;
+            color: #dc2626;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #ef4444, #f87171);
+            border-radius: 2px;
+        }
+
+        .experience-highlight {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            padding: 0.9rem;
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+            margin: 0.7rem 0;
+            box-shadow: 0 3px 12px rgba(220, 38, 38, 0.15);
+        }
+
+        .personal-favorite {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #10b981;
+            border-radius: 10px;
+            padding: 0.9rem;
+            margin: 0.7rem 0;
+            box-shadow: 0 3px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .personal-favorite h4 {
+            color: #047857;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .intimate-moment {
+            background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            border-left: 3px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.15);
+        }
+
+        .intimate-moment h4 {
+            color: #1d4ed8;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .peaceful-atmosphere {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #6b7280;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            box-shadow: 0 2px 10px rgba(107, 114, 128, 0.15);
+        }
+
+        .peaceful-atmosphere h4 {
+            color: #374151;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .memory-keepsake {
+            background: linear-gradient(45deg, #dc2626, #f87171);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 18px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+        }
+
+        ul {
+            margin: 0.6rem 0;
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin: 0.3rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #dc2626;
+        }
+
+        .favorite-spaces {
+            counter-reset: space-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .favorite-spaces li {
+            counter-increment: space-counter;
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 8px;
+            border-left: 3px solid #dc2626;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
+        }
+
+        .favorite-spaces li::before {
+            content: counter(space-counter);
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #dc2626, #f87171);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+        }
+
+        .no-reservation {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 2px solid #f59e0b;
+            margin: 0.6rem 0;
+        }
+
+        .visit-duration {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 2px solid #0284c7;
+            margin: 0.6rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Casa Vicens</h1>
+            <h2>Personal Experience & Hidden Gems</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">9,247</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">3,486</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">7,129</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🏠 First Impressions</h3>
+            <div class="experience-highlight">
+                <h4><strong>Perfect for:</strong> Intimate architecture lovers, peaceful explorers, Gaudí beginners</h4>
+                <p>Casa Vicens, as Gaudí's very first residential architectural work, was immediately added to my must-see list after visiting! The experience was absolutely worth this trip! We were staying near Casa Milà, so the bus ride was very convenient. From afar, we were captivated by this colorful and exotic building full of different architectural styles!</p>
+            </div>
+
+            <div class="peaceful-atmosphere">
+                <h4>✨ Peaceful Early Morning Experience</h4>
+                <p>Being first batch visitors meant fewer crowds and a quieter atmosphere. We could truly immerse ourselves in experiencing Gaudí's dreamlike spaces, feeling the colors, details, and imagination! Perfect environment for contemplative appreciation during a leisurely morning 1.5-2 hours visit.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>💝 Personal Favorite Spaces</h3>
+            
+            <ol class="favorite-spaces">
+                <li>
+                    <strong>The Bathroom - Absolutely Stunning!</strong><br>
+                    Ceramic tiles combined with natural light - vintage yet vibrant! The attention to detail in this private space showcases Gaudí's commitment to beauty in every corner.
+                </li>
+                <li>
+                    <strong>Lady's Practice Room & Smoking Room</strong><br>
+                    Simply incredible! The colors and decorative details feel like stepping into a fairy tale book! Each room tells a story of elegant domestic life.
+                </li>
+                <li>
+                    <strong>Rooftop Photography Paradise</strong><br>
+                    Great for photos! The sun's rays create some dramatic shadows, though I still love the overall effect! Panoramic views with Gaudí's distinctive architectural elements.
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>🌿 Casa Vicens vs Other Gaudí Houses</h3>
+            
+            <div class="personal-favorite">
+                <h4>🏆 Why Casa Vicens Stands Out</h4>
+                <p>Personally, I find Casa Vicens even more beautiful than Casa Milà and Casa Batlló! Casa Vicens has so many architectural details that let you truly feel how architecture integrates with nature - tree trunks, leaves, and various colors and light applications. Even art novices can appreciate this beauty!</p>
+            </div>
+
+            <div class="intimate-moment">
+                <h4>🪑 The Balcony Experience</h4>
+                <p>Photos can't capture Casa Vicens' true beauty, but when you sit on a second-floor balcony chair, watching light filter through the mesh screen and listening to flowing water sounds, you'll feel incomparable comfort and tranquility.</p>
+            </div>
+
+            <div class="experience-highlight">
+                <h4>🎨 Architectural Integration with Nature</h4>
+                <p>Casa Vicens demonstrates Gaudí's early mastery of blending architectural elements with natural forms. The building feels alive, breathing with organic details that create an immersive sensory experience rather than just visual appreciation.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

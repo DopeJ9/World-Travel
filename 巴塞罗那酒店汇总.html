@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona Luxury Hotels Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #e63946 0%, #f77f00 50%, #fcbf49 100%);
+            color: white;
+            padding: 100px 20px 70px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #f77f00, transparent);
+        }
+
+        .hero-title {
+            font-size: 3.2em;
+            font-weight: 400;
+            letter-spacing: 6px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.95;
+            letter-spacing: 2px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 70px 40px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .intro-section::before {
+            content: '✦';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            color: #f77f00;
+            opacity: 0.3;
+        }
+
+        .intro-title {
+            font-size: 2.2em;
+            color: #e63946;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .intro-text {
+            font-size: 1.05em;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .hotels-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 45px 40px;
+            min-height: 300px;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .hotel-image {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 280px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e63946, #f77f00);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            z-index: 1;
+        }
+
+        .hotel-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+
+        .hotel-card:hover .hotel-image img {
+            transform: scale(1.05) translateZ(0);
+        }
+
+        .hotel-card:hover .hotel-image {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+
+        .hotel-content {
+            padding-right: 310px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hotel-header {
+            margin-bottom: 20px;
+        }
+
+        .hotel-name {
+            font-size: 1.9em;
+            font-weight: 500;
+            color: #e63946;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .hotel-rating {
+            display: inline-block;
+            background: linear-gradient(135deg, #f77f00, #fcbf49);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .hotel-category {
+            display: inline-block;
+            color: #666;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        .hotel-price {
+            font-size: 2em;
+            font-weight: 600;
+            color: #e63946;
+            margin: 15px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .hotel-price small {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .hotel-intro {
+            font-size: 0.98em;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 0.9em;
+            font-weight: 700;
+            color: #f77f00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            margin-top: 15px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .highlight-list li {
+            font-size: 0.92em;
+            color: #555;
+            line-height: 1.7;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .highlight-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #f77f00;
+            font-size: 0.7em;
+        }
+
+        .suitable-for {
+            background: #fff8f0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #f77f00;
+            font-size: 0.92em;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .suitable-for strong {
+            color: #e63946;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 1200px) {
+            .hotel-image {
+                width: 240px;
+                height: 170px;
+                top: 25px;
+                right: 25px;
+            }
+
+            .hotel-content {
+                padding-right: 270px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hotel-card {
+                padding: 240px 30px 35px 30px;
+                min-height: auto;
+            }
+
+            .hotel-image {
+                top: 20px;
+                right: 20px;
+                left: 20px;
+                width: auto;
+                height: 200px;
+            }
+
+            .hotel-content {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 2em;
+                letter-spacing: 3px;
+            }
+
+            .hero-subtitle {
+                font-size: 1em;
+                letter-spacing: 1px;
+            }
+
+            .intro-section {
+                padding: 50px 25px;
+            }
+
+            .intro-title {
+                font-size: 1.8em;
+            }
+
+            .intro-text {
+                font-size: 1em;
+            }
+
+            .hotel-card {
+                padding: 200px 25px 30px 25px;
+            }
+
+            .hotel-image {
+                top: 15px;
+                right: 15px;
+                left: 15px;
+                height: 170px;
+            }
+
+            .hotel-name {
+                font-size: 1.6em;
+            }
+
+            .container {
+                margin: 30px auto;
+            }
+
+            .hotels-grid {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="hero-title">BARCELONA LUXURY HOTELS</h1>
+        <p class="hero-subtitle">Premier Accommodation Collection</p>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2 class="intro-title">Discover Barcelona's Finest Accommodations</h2>
+            <p class="intro-text">
+                Experience the vibrant spirit of Barcelona through its most distinguished hotels. From Gaudí-inspired luxury to Mediterranean seaside elegance, 
+                each property offers a unique gateway to this enchanting city's art, culture, and lifestyle.
+            </p>
+        </div>
+
+        <div class="hotels-grid">
+            <!-- Hotel 1: Mandarin Oriental, Barcelona -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/TKvBbzEDKoPrUTxkjqncnAKYn5c/?preview_type=16" alt="Mandarin Oriental, Barcelona" loading="lazy">
+                </div>
+                <div class="hotel-content">
+                    <div class="hotel-header">
+                        <h2 class="hotel-name">Mandarin Oriental, Barcelona</h2>
+                        <span class="hotel-rating">⭐ 4.6</span>
+                        <span class="hotel-category">Five-Star Hotel</span>
+                        <div class="hotel-price">€750<small>/night</small></div>
+                    </div>
+                    <div class="hotel-intro">
+                        Located in Barcelona's prime location on Passeig de Gràcia (38-40), this five-star hotel is close to shopping and cultural landmarks while maintaining tranquil garden and rooftop relaxation spaces. With interior design by Spanish designer Patricia Urquiola, featuring over 120 luxurious rooms and suites, world-class spa/SPA, multiple restaurants, rooftop pool and terrace.
+                    </div>
+                    <div class="section-title">Featured Highlights</div>
+                    <ul class="highlight-list">
+                        <li><strong>Prime Location</strong> — Close to high-end shopping districts and cultural attractions, convenient transportation</li>
+                        <li><strong>Refined Design</strong> — Interior and ambiance represent urban luxury without being overly ostentatious</li>
+                        <li><strong>Luxury Facilities</strong> — SPA, rooftop pool, gardens enhance the stay experience</li>
+                    </ul>
+                    <div class="suitable-for">
+                        <strong>Suitable For:</strong>
+                        Travelers seeking high-end scenery and service experience, couples/special anniversary stays, those wanting shopping + cultural tour combinations.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel 2: Hotel Alma Barcelona -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/Pz0FbD8rZo8shlxLyDQcWNjGnNh/?preview_type=16" alt="Hotel Alma Barcelona" loading="lazy">
+                </div>
+                <div class="hotel-content">
+                    <div class="hotel-header">
+                        <h2 class="hotel-name">Hotel Alma Barcelona</h2>
+                        <span class="hotel-rating">⭐ 4.5</span>
+                        <span class="hotel-category">Five-Star Hotel</span>
+                        <div class="hotel-price">€550<small>/night</small></div>
+                    </div>
+                    <div class="hotel-intro">
+                        Located in Barcelona's Eixample district, just minutes' walk from Passeig de Gràcia. As a five-star "urban oasis," Alma Barcelona GL blends classic architecture with contemporary style, featuring tranquil gardens, rooftop terrace, quality restaurants, and spa facilities.
+                    </div>
+                    <div class="section-title">Featured Highlights</div>
+                    <ul class="highlight-list">
+                        <li><strong>Tranquil Greenery</strong> — Gardens and rooftop terrace create a rare sense of serenity in the urban area</li>
+                        <li><strong>Modern Design</strong> — Rooms feature minimalist style, abundant natural light, and excellent views</li>
+                        <li><strong>Superior Location</strong> — Close to shopping, dining, and landmark attractions</li>
+                    </ul>
+                    <div class="suitable-for">
+                        <strong>Suitable For:</strong>
+                        Those who appreciate design-strong hotels with soothing atmosphere; suitable for short trips or travelers wishing to relax in the city center.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel 3: W Barcelona -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/HODEbslBKoDbjdxyYNWcoXPOnEg/?preview_type=16" alt="W Barcelona" loading="lazy">
+                </div>
+                <div class="hotel-content">
+                    <div class="hotel-header">
+                        <h2 class="hotel-name">W Barcelona</h2>
+                        <span class="hotel-rating">⭐ 4.8</span>
+                        <span class="hotel-category">Five-Star Hotel</span>
+                        <div class="hotel-price">€800<small>/night</small></div>
+                    </div>
+                    <div class="hotel-intro">
+                        This five-star hotel by Barcelona's beach (Barceloneta waterfront) is famous for its sail-shaped building, designed by renowned architect Ricardo Bofill. Almost every room or suite offers sea views. The hotel features a rooftop bar, infinity pool, direct beach access, and modern fitness and spa facilities.
+                    </div>
+                    <div class="section-title">Featured Highlights</div>
+                    <ul class="highlight-list">
+                        <li><strong>Sea View Design</strong> — All rooms oriented toward waterfront views, the ultimate "sea view" accommodation option</li>
+                        <li><strong>Vibrant Atmosphere</strong> — Hotel positioning is more youthful and fashionable, suitable for vacation and socializing</li>
+                        <li><strong>Unique Architecture</strong> — The building's exterior itself is a landmark, excellent for photography</li>
+                    </ul>
+                    <div class="suitable-for">
+                        <strong>Suitable For:</strong>
+                        Travelers wanting sea views, vacation atmosphere, nightlife or social needs; families or friend groups also well-suited.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel 4: Hotel Ohla Barcelona -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/GziQbfUgVo9HSTxd2zTcf2annQh/?preview_type=16" alt="Hotel Ohla Barcelona" loading="lazy">
+                </div>
+                <div class="hotel-content">
+                    <div class="hotel-header">
+                        <h2 class="hotel-name">Hotel Ohla Barcelona</h2>
+                        <span class="hotel-rating">⭐ 4.2</span>
+                        <span class="hotel-category">Boutique Hotel</span>
+                        <div class="hotel-price">€480<small>/night</small></div>
+                    </div>
+                    <div class="hotel-intro">
+                        Located in the heart of Barcelona's Gothic Quarter, Ohla Barcelona is a luxury boutique hotel combining art and historical atmosphere. Its facade is decorated with works by artist Frederic Amat—"A Thousand Ceramic Eyes" gazing in all directions. The hotel's interior design is sleek and modern, with a rooftop pool and observation platform.
+                    </div>
+                    <div class="section-title">Featured Highlights</div>
+                    <ul class="highlight-list">
+                        <li><strong>Artistic Atmosphere</strong> — Building and interior design feature artistic and creative elements</li>
+                        <li><strong>Historic District</strong> — Located in the old city, within walking distance to multiple cultural attractions</li>
+                        <li><strong>Boutique Scale</strong> — Fewer rooms provide more privacy and customized service</li>
+                    </ul>
+                    <div class="suitable-for">
+                        <strong>Suitable For:</strong>
+                        Those who appreciate art, design, have old town exploration needs, and value atmosphere and location.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel 5: Serras Barcelona -->
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/ORrLbSiloobvoAxg1w4cp977nub/?preview_type=16" alt="Serras Barcelona" loading="lazy">
+                </div>
+                <div class="hotel-content">
+                    <div class="hotel-header">
+                        <h2 class="hotel-name">Serras Barcelona</h2>
+                        <span class="hotel-rating">⭐ 3.9</span>
+                        <span class="hotel-category">Boutique Hotel</span>
+                        <div class="hotel-price">€420<small>/night</small></div>
+                    </div>
+                    <div class="hotel-intro">
+                        This is a small boutique hotel located in Barcelona's Gothic Quarter, near Port Vell harbor, with 28 exquisite rooms and suites, offering warm and personalized service. The hotel faces the Mediterranean, featuring terraces with scenic views, blending urban history with waterfront atmosphere.
+                    </div>
+                    <div class="section-title">Featured Highlights</div>
+                    <ul class="highlight-list">
+                        <li><strong>Boutique Hotel</strong> — Few rooms, attentive service, peaceful environment</li>
+                        <li><strong>Harbor Views</strong> — Close to the port, environment brings sea breeze and sea view ambiance</li>
+                        <li><strong>City Center</strong> — Despite being by the sea, situated in the historic city core</li>
+                    </ul>
+                    <div class="suitable-for">
+                        <strong>Suitable For:</strong>
+                        Travelers seeking tranquility, high quality, and exclusivity; suitable for couples or business-leisure combination users.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elegant scroll animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const hotelCards = document.querySelectorAll('.hotel-card');
+
+            // Intersection Observer configuration
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -80px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply progressive animation to hotel cards
+            hotelCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px)';
+                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

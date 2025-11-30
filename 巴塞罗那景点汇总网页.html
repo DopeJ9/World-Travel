@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcelona Must-Visit Attractions Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-primary: #2D3436;
+            --text-secondary: #636E72;
+            --accent-sagrada: #E74C3C;
+            --accent-batllo: #3498DB;
+            --accent-mila: #E67E22;
+            --accent-picasso: #9B59B6;
+            --accent-cathedral: #C0392B;
+            --accent-palau: #F1C40F;
+            --accent-guell: #16A085;
+            --accent-vicens: #2ECC71;
+            --accent-park: #E84393;
+            --accent-bellesguard: #D35400;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1583422409516-2895a77efded?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* Layout */
+        .attractions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+        }
+
+        .attraction-card {
+            display: flex;
+            background: var(--card-bg);
+            height: 450px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Zigzag Effect */
+        .attraction-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Image Section */
+        .card-image {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .attraction-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        /* Content Section */
+        .card-content {
+            width: 50%;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Number Styling */
+        .attraction-number {
+            position: absolute;
+            top: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            opacity: 0.1;
+            line-height: 1;
+            right: 2rem;
+        }
+        
+        .attraction-card:nth-child(even) .attraction-number {
+            left: 2rem;
+            right: auto;
+        }
+
+        /* Text Styling */
+        .location {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0 0 1.5rem 0;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        /* Tags */
+        .info-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            background: #fcfcfc;
+        }
+
+        /* Specific Color Accents per Card */
+        /* Sagrada */
+        .card-sagrada h2 { color: var(--accent-sagrada); }
+        .card-sagrada .btn-book { background: var(--accent-sagrada); border-color: var(--accent-sagrada); }
+        .card-sagrada .btn-outline:hover { color: var(--accent-sagrada); border-color: var(--accent-sagrada); }
+
+        /* Batllo */
+        .card-batllo h2 { color: var(--accent-batllo); }
+        .card-batllo .btn-book { background: var(--accent-batllo); border-color: var(--accent-batllo); }
+        .card-batllo .btn-outline:hover { color: var(--accent-batllo); border-color: var(--accent-batllo); }
+
+        /* Mila */
+        .card-mila h2 { color: var(--accent-mila); }
+        .card-mila .btn-book { background: var(--accent-mila); border-color: var(--accent-mila); }
+        .card-mila .btn-outline:hover { color: var(--accent-mila); border-color: var(--accent-mila); }
+
+        /* Picasso */
+        .card-picasso h2 { color: var(--accent-picasso); }
+        .card-picasso .btn-book { background: var(--accent-picasso); border-color: var(--accent-picasso); }
+        .card-picasso .btn-outline:hover { color: var(--accent-picasso); border-color: var(--accent-picasso); }
+
+        /* Cathedral */
+        .card-cathedral h2 { color: var(--accent-cathedral); }
+        .card-cathedral .btn-book { background: var(--accent-cathedral); border-color: var(--accent-cathedral); }
+        .card-cathedral .btn-outline:hover { color: var(--accent-cathedral); border-color: var(--accent-cathedral); }
+
+        /* Palau Musica */
+        .card-palau h2 { color: var(--accent-palau); }
+        .card-palau .btn-book { background: var(--accent-palau); border-color: var(--accent-palau); }
+        .card-palau .btn-outline:hover { color: var(--accent-palau); border-color: var(--accent-palau); }
+
+        /* Guell Palace */
+        .card-guell h2 { color: var(--accent-guell); }
+        .card-guell .btn-book { background: var(--accent-guell); border-color: var(--accent-guell); }
+        .card-guell .btn-outline:hover { color: var(--accent-guell); border-color: var(--accent-guell); }
+
+        /* Vicens */
+        .card-vicens h2 { color: var(--accent-vicens); }
+        .card-vicens .btn-book { background: var(--accent-vicens); border-color: var(--accent-vicens); }
+        .card-vicens .btn-outline:hover { color: var(--accent-vicens); border-color: var(--accent-vicens); }
+
+        /* Park Guell */
+        .card-park h2 { color: var(--accent-park); }
+        .card-park .btn-book { background: var(--accent-park); border-color: var(--accent-park); }
+        .card-park .btn-outline:hover { color: var(--accent-park); border-color: var(--accent-park); }
+
+        /* Bellesguard */
+        .card-bellesguard h2 { color: var(--accent-bellesguard); }
+        .card-bellesguard .btn-book { background: var(--accent-bellesguard); border-color: var(--accent-bellesguard); }
+        .card-bellesguard .btn-outline:hover { color: var(--accent-bellesguard); border-color: var(--accent-bellesguard); }
+
+
+        /* Actions */
+        .actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .btn-book {
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-book:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid #eee;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+        }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.5rem; }
+            
+            .attraction-card, .attraction-card:nth-child(even) {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .card-image {
+                width: 100%;
+                height: 250px;
+            }
+
+            .card-content {
+                width: 100%;
+                padding: 2rem;
+            }
+
+            .attraction-number {
+                top: 1rem;
+                right: 1rem;
+                left: auto !important;
+                font-size: 3rem;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Barcelona</h1>
+            <p>The City of Architectural Wonders</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="attractions-list">
+
+            <!-- 1. Sagrada Familia -->
+            <article class="attraction-card card-sagrada">
+                <div class="card-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/TabSbgTDVorN2nx6gHIcNMGmn5b/?preview_type=16" alt="Sagrada Familia">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">01</div>
+                    <div class="location">Eixample</div>
+                    <h2>Sagrada Familia</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Gaudí's Masterpiece</span>
+                            <span class="tag">Tower Ascent</span>
+                            <span class="tag">Light & Shadow</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/sagrada_familia_tickets_v2 .html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/sagrada_familia_deep_guide.html" class="btn btn-outline">Deep Guide</a>
+                        <a href="景点攻略笔记/sagrada_familia_quick_guide.html" class="btn btn-outline">Quick Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. Casa Batlló -->
+            <article class="attraction-card card-batllo">
+                <div class="card-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/EhyrbtBoKoZ3aNxu8YFcJywAnxd/?preview_type=16" alt="Casa Batlló">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">02</div>
+                    <div class="location">Eixample</div>
+                    <h2>Casa Batlló</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Dragon Roof</span>
+                            <span class="tag">Marine Theme</span>
+                            <span class="tag">Immersive Tour</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/casa_batllo_tickets_v2.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/casa_batllo_complete_guide.html" class="btn btn-outline">Complete Guide</a>
+                        <a href="景点攻略笔记/casa_batllo_ticket_guide.html" class="btn btn-outline">Ticket Tips</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3. Casa Milà -->
+            <article class="attraction-card card-mila">
+                <div class="card-image">
+                    <img src="https://internal-api-drive-stream.larkoffice.com/space/api/box/stream/download/preview/LQ0mbgN4hoqbTHxFFndcg7wQn0g/?preview_type=16" alt="Casa Milà">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">03</div>
+                    <div class="location">Eixample</div>
+                    <h2>Casa Milà</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">La Pedrera</span>
+                            <span class="tag">Warrior Chimneys</span>
+                            <span class="tag">Night Experience</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/casa_mila_la_pedrera_tickets_v2.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/casa_mila_deep_guide.html" class="btn btn-outline">Deep Guide</a>
+                        <a href="景点攻略笔记/casa_mila_classic_guide.html" class="btn btn-outline">Classic Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4. Picasso Museum -->
+            <article class="attraction-card card-picasso">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?auto=format&fit=crop&w=800&q=80" alt="Picasso Museum">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">04</div>
+                    <div class="location">El Born</div>
+                    <h2>Picasso Museum</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Formative Years</span>
+                            <span class="tag">Medieval Palaces</span>
+                            <span class="tag">Las Meninas</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/picasso_museum_tickets_v2.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/picasso_museum_collection.html" class="btn btn-outline">Collection</a>
+                        <a href="景点攻略笔记/picasso_museum_highlights.html" class="btn btn-outline">Highlights</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 5. Barcelona Cathedral -->
+            <article class="attraction-card card-cathedral">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1583779457094-006824373509?auto=format&fit=crop&w=800&q=80" alt="Barcelona Cathedral">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">05</div>
+                    <div class="location">Gothic Quarter</div>
+                    <h2>Barcelona Cathedral</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Gothic Splendor</span>
+                            <span class="tag">Cloister Geese</span>
+                            <span class="tag">Rooftop Views</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/barcelona_cathedral_tickets_v2.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/barcelona_cathedral_value.html" class="btn btn-outline">History</a>
+                        <a href="景点攻略笔记/barcelona_cathedral_practical.html" class="btn btn-outline">Practical</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 6. Palau de la Música -->
+            <article class="attraction-card card-palau">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1564144006353-23986b08e789?auto=format&fit=crop&w=800&q=80" alt="Palau de la Música">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">06</div>
+                    <div class="location">El Born</div>
+                    <h2>Palau de la Música</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Stained Glass</span>
+                            <span class="tag">Modernist Jewel</span>
+                            <span class="tag">Concert Hall</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/palau_musica_tickets.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/palau_musica_architecture.html" class="btn btn-outline">Architecture</a>
+                        <a href="景点攻略笔记/palau_musica_photography.html" class="btn btn-outline">Photo Guide</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 7. Palau Güell -->
+            <article class="attraction-card card-guell">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1621327017866-7914f975d199?auto=format&fit=crop&w=800&q=80" alt="Palau Güell">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">07</div>
+                    <div class="location">El Raval</div>
+                    <h2>Palau Güell</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Dark Marble</span>
+                            <span class="tag">Early Gaudí</span>
+                            <span class="tag">Chimney Forest</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/palau_guell_tickets.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/palau_guell_highlights.html" class="btn btn-outline">Highlights</a>
+                        <a href="景点攻略笔记/palau_guell_practical.html" class="btn btn-outline">Practical</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 8. Casa Vicens -->
+            <article class="attraction-card card-vicens">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1553658125-82417e3b6a7d?auto=format&fit=crop&w=800&q=80" alt="Casa Vicens">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">08</div>
+                    <div class="location">Gràcia</div>
+                    <h2>Casa Vicens</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">First House</span>
+                            <span class="tag">Moorish Influence</span>
+                            <span class="tag">Garden Oasis</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/casa_vicens_tickets.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/casa_vicens_experience.html" class="btn btn-outline">Experience</a>
+                        <a href="景点攻略笔记/casa_vicens_practical.html" class="btn btn-outline">Practical</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 9. Park Güell -->
+            <article class="attraction-card card-park">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=800&q=80" alt="Park Güell">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">09</div>
+                    <div class="location">Gràcia</div>
+                    <h2>Park Güell</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Dragon Stairway</span>
+                            <span class="tag">Hypostyle Room</span>
+                            <span class="tag">City Views</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/park_guell_tickets.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/park_guell_route.html" class="btn btn-outline">Routes</a>
+                        <a href="景点攻略笔记/park_guell_decision.html" class="btn btn-outline">Planning</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 10. Torre Bellesguard -->
+            <article class="attraction-card card-bellesguard">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1598095122820-6dfd1f5b696d?auto=format&fit=crop&w=800&q=80" alt="Torre Bellesguard">
+                </div>
+                <div class="card-content">
+                    <div class="attraction-number">10</div>
+                    <div class="location">Sarrià</div>
+                    <h2>Torre Bellesguard</h2>
+                    
+                    <div class="info-group">
+                        <span class="info-label">Highlights</span>
+                        <div class="tags">
+                            <span class="tag">Medieval Castle</span>
+                            <span class="tag">Dragon Shape</span>
+                            <span class="tag">Panoramic Views</span>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <a href="景点预订网页/torre_bellesguard_tickets.html" class="btn btn-book"><i class="fas fa-ticket-alt"></i> Tickets</a>
+                        <a href="景点攻略笔记/torre_bellesguard_historical.html" class="btn btn-outline">History</a>
+                        <a href="景点攻略笔记/torre_bellesguard_hidden.html" class="btn btn-outline">Secrets</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+</body>
+</html>

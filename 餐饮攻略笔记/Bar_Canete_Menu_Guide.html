@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bar Cañete complete English menu with prices - Authentic Tapas in Barcelona">
+    <meta name="keywords" content="Bar Cañete, Barcelona menu, Tapas, Spanish cuisine, Gothic Quarter, dining guide">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note: Bar Cañete - Complete Menu & Prices Guide</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(211, 84, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .venue-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #d35400;
+            margin-bottom: 5px;
+        }
+
+        .visit-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Menu Styling */
+        .menu-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .menu-column {
+            background: #fff;
+        }
+
+        .menu-section {
+            margin-bottom: 30px;
+            background: #fffbf7;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ffe0b2;
+        }
+
+        .menu-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d35400;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #d35400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-weight: 500;
+            color: #2c3e50;
+            padding-right: 10px;
+            flex: 1;
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: #e67e22;
+            white-space: nowrap;
+        }
+
+        .menu-note {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #856404;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .special-box {
+            border: 2px solid #d35400;
+            background: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .note-header {
+                padding: 30px 20px;
+            }
+
+            .note-title {
+                font-size: 1.4rem;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .menu-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note</h1>
+            <p class="note-subtitle">Bar Cañete - Complete Menu & Prices Guide</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="venue-name">Bar Cañete</h2>
+                    <p class="visit-type">Authentic Tapas Menu with Prices</p>
+                </div>
+            </div>
+
+            <div class="menu-note">
+                ALL THE FISH AND SEAFOOD WE OFFER COMES FRESH FROM CATALAN FISH MARKETS. ALL THE VEGETABLES WE USE ARE LOCALLY GROWN AND SEASONAL.
+            </div>
+
+            <div class="menu-columns">
+                <!-- Left Column -->
+                <div class="menu-column">
+                    <!-- Accompaniments -->
+                    <div class="menu-section">
+                        <h3 class="menu-section-title">Accompaniments</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Toasted flatbread with tomato</span>
+                            <span class="menu-item-price">3,75 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Appetisers -->
+                    <div class="menu-section">
+                        <h3 class="menu-section-title">Appetisers</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Santoña anchovies in olive oil (whole, two fillets)</span>
+                            <span class="menu-item-price">6,45 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Anchovies in sherry vinegar</span>
+                            <span class="menu-item-price">6,65 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Mari's Russian salad</span>
+                            <span class="menu-item-price">7,50 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Chicken and bellota ham croquette (unit)</span>
+                            <span class="menu-item-price">2,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Lobster croquette with our secret ingredient (unit)</span>
+                            <span class="menu-item-price">4,80 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Cod fritter (unit)</span>
+                            <span class="menu-item-price">2,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Faro de Cádiz shrimp torta</span>
+                            <span class="menu-item-price">3,75 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Classic Iberian pork jowl with smoked herring</span>
+                            <span class="menu-item-price">11,15 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Fried Cordoba-style aubergines in sugar cane honey</span>
+                            <span class="menu-item-price">8,65 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Hand cut bellota cured ham (Guijuelo) (1/2 portion)</span>
+                            <span class="menu-item-price">18,75 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Hand cut bellota cured ham (Guijuelo) (1 portion)</span>
+                            <span class="menu-item-price">31,60 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Chorizo sausage sandwich</span>
+                            <span class="menu-item-price">6,40 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Squid sandwich</span>
+                            <span class="menu-item-price">6,50 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Barceloneta's bomba (spicy meatball)</span>
+                            <span class="menu-item-price">4,50 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Guillemet Nº3 oyster (unit)</span>
+                            <span class="menu-item-price">6,05 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Fresh Galician razor clam (unit)</span>
+                            <span class="menu-item-price">4,30 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Steamed cockles with citrus</span>
+                            <span class="menu-item-price">22,55 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Snacks -->
+                    <div class="menu-section">
+                        <h3 class="menu-section-title">Snacks</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Green beans parmesan and pine nut salad</span>
+                            <span class="menu-item-price">15,70 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Malaga-style fried anchovies and finely sliced pa amb tomàquet</span>
+                            <span class="menu-item-price">10,95 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Seasonal tomatoes salad with tuna and anchovies</span>
+                            <span class="menu-item-price">18,30 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Galician baby scallops with bellota ham</span>
+                            <span class="menu-item-price">22,55 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Marinera clams (with fish broth)</span>
+                            <span class="menu-item-price">27,80 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Cañete fried fish assortment: moray eel, beach prawn...</span>
+                            <span class="menu-item-price">24,25 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Deboned red mullet with a veil of pork</span>
+                            <span class="menu-item-price">18,25 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Aged beef steak tartare with french fries (130gr.)</span>
+                            <span class="menu-item-price">22,15 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Wild red tuna tartar (120gr.)</span>
+                            <span class="menu-item-price">22,35 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Cañete-style shrimp in garlic</span>
+                            <span class="menu-item-price">31,95 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Wild tuna Tataki with seaweed</span>
+                            <span class="menu-item-price">27,45 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Stewed Santa Pau beans with baby squid</span>
+                            <span class="menu-item-price">24,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Scrambled eggs with chorizo</span>
+                            <span class="menu-item-price">11,95 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Local catalán sausage with grilled aubergine</span>
+                            <span class="menu-item-price">13,50 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Veal sweetbreads with local prawns</span>
+                            <span class="menu-item-price">22,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Gratinated poularde cannelloni with duck foie bechamel</span>
+                            <span class="menu-item-price">17,70 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Aged beef steak with foie and truffle sauce</span>
+                            <span class="menu-item-price">31,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Deboned oxtail with mashed potatoes</span>
+                            <span class="menu-item-price">21,45 €</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="menu-column">
+                    <!-- Specials -->
+                    <div class="menu-section special-box">
+                        <h3 class="menu-section-title">DON'T MISS OUR SPECIAL!</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Gazpacho by the glass</span>
+                            <span class="menu-item-price">8,75 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Mellow veal meatball with "Funghi porcini"</span>
+                            <span class="menu-item-price">10,25 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Mellow potato omelette</span>
+                            <span class="menu-item-price">12,75 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Burrata with tomato tartare</span>
+                            <span class="menu-item-price">15,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">"Callos" Tripe with chickpeas</span>
+                            <span class="menu-item-price">17,25 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Seafood salad with octopus, mussels and local lobster</span>
+                            <span class="menu-item-price">17,40 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Traditional Sea bass ceviche</span>
+                            <span class="menu-item-price">23,40 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Fresh prawn open omelette</span>
+                            <span class="menu-item-price">24,90 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Watch out for the red prawn that gets in at eight. Fresh from the sea to the plate!</span>
+                            <span class="menu-item-price">100gr/31,05 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">"Cañete Paella" of the day</span>
+                            <span class="menu-item-price">26,25 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Snacks Continued -->
+                    <div class="menu-section">
+                        <h3 class="menu-section-title">SNACKS CONTINUED...</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Nebraska's "Black Angus" sirloin steak (350gr)</span>
+                            <span class="menu-item-price">49,55 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Finely cut grilled Iberian pork loin (with garlic and lemon on the side)</span>
+                            <span class="menu-item-price">53,90 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Cheeses -->
+                    <div class="menu-section">
+                        <h3 class="menu-section-title">CHEESES</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Assortment of traditionally produced cheeses, walnut bread and jam</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Half portion</span>
+                            <span class="menu-item-price">20,50 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">Whole portion</span>
+                            <span class="menu-item-price">29,90 €</span>
+                        </div>
+                    </div>
+
+                    <!-- Desserts -->
+                    <div class="menu-section">
+                        <h3 class="menu-section-title">DESSERTS</h3>
+                        <div class="menu-item">
+                            <span class="menu-item-name">"VALRHONA" CHOCOLATE COULANT</span>
+                            <span class="menu-item-price">8,60 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">"BABA AU RHUM" WITH PINEAPPLE AND COCONUT ICE CREAM</span>
+                            <span class="menu-item-price">7,35 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">CREMA CATALANA</span>
+                            <span class="menu-item-price">6,35 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">TORRIJAS SWEET WINE</span>
+                            <span class="menu-item-price">7,50 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">FINE APPLE TART WITH VAINILLA ICE CREAM</span>
+                            <span class="menu-item-price">9,10 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">CUBAN CHOCOLATE STICK WITH SALT</span>
+                            <span class="menu-item-price">8,60 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">SPECIAL MILLEFUILLE WITH CREAM "FORN VILAMALA"</span>
+                            <span class="menu-item-price">6,05 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">WILD STRAWBERRIES WITH COCONUT ICE CREAM</span>
+                            <span class="menu-item-price">9,60 €</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="menu-item-name">CARAMELISED PINEAPPLE WITH LEMON SORBET</span>
+                            <span class="menu-item-price">8,60 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>

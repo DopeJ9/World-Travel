@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal dining experience at La Triunfal Restaurant in Barcelona">
+    <meta name="keywords" content="La Triunfal, Barcelona dining, Spanish cuisine, tapas, paella, Barcelona restaurants">
+    <meta name="author" content="Travel Blogger">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Page Title -->
+    <title>Visit Note: La Triunfal Restaurant - Authentic Spanish Dining Experience</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- External JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="La Triunfal Restaurant - Authentic Spanish Dining Experience">
+    <meta property="og:description" content="A personal dining experience at La Triunfal Restaurant in Barcelona">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="La Triunfal Restaurant Dining Experience">
+    <meta name="twitter:description" content="Authentic Spanish cuisine in the heart of Barcelona">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-number {
+            font-weight: 600;
+            color: #FF6B35;
+        }
+
+        .stat-icon {
+            color: #FF6B35;
+            font-size: 1.1rem;
+        }
+
+        /* Header Section */
+        .note-header {
+            background: linear-gradient(135deg, #FF6B35, #E85A2B);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .note-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content Section */
+        .note-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f3f5;
+        }
+
+        .content-icon {
+            background: linear-gradient(135deg, #FF6B35, #E85A2B);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.3rem;
+        }
+
+        .content-meta {
+            flex: 1;
+        }
+
+        .venue-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FF6B35;
+            margin-bottom: 5px;
+        }
+
+        .visit-type {
+            color: #666;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: #FF6B35;
+            font-weight: 600;
+            text-align: center;
+            background: linear-gradient(135deg, #fff5f5, #ffeaa7);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #FF6B35;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #FF6B35;
+            margin: 30px 0 15px 0;
+        }
+
+        .emoji {
+            font-size: 1.4rem;
+        }
+
+        .restaurant-info {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 10px;
+        }
+
+        .restaurant-address {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .duration-info {
+            background: linear-gradient(135deg, #FF6B35, #E85A2B);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Two Column Layout */
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .column-left,
+        .column-right {
+            min-width: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .dish-highlight {
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .dish-name {
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dish-price {
+            font-weight: 700;
+            color: #FF6B35;
+            font-size: 1.1rem;
+            margin-left: 15px;
+        }
+
+        .dish-description {
+            color: #0056b3;
+            font-size: 0.95rem;
+        }
+
+        .menu-section {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #FF6B35;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .menu-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            color: #2c3e50;
+            flex: 1;
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: #FF6B35;
+            font-size: 1.1rem;
+            margin-left: 15px;
+        }
+
+        .wine-note {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Footer Section */
+        .note-footer {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .rating-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rating-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.3rem;
+        }
+
+        .visit-date {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #FF6B35, #E85A2B);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .social-stats {
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .stat-item {
+                font-size: 0.8rem;
+                gap: 6px;
+            }
+
+            .note-header {
+                padding: 30px 20px;
+            }
+
+            .note-title {
+                font-size: 1.4rem;
+            }
+
+            .note-content {
+                padding: 25px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .tags {
+                justify-content: flex-start;
+            }
+
+            .dish-name {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .dish-price {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-item-price {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+
+            .menu-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Social Stats -->
+        <div class="social-stats" data-aos="fade-down">
+            <div class="stat-item">
+                <i class="fas fa-heart stat-icon"></i>
+                <span class="stat-number">567</span>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comment stat-icon"></i>
+                <span class="stat-number">142</span>
+                <span>Comments</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-bookmark stat-icon"></i>
+                <span class="stat-number">89</span>
+                <span>Saves</span>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="note-header" data-aos="fade-down">
+            <h1 class="note-title">Visit Note</h1>
+            <p class="note-subtitle">La Triunfal - Authentic Spanish Dining Experience in Barcelona 🇪🇸</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="note-content" data-aos="fade-up">
+            <div class="content-header">
+                <div class="content-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content-meta">
+                    <h2 class="venue-name">La Triunfal Restaurant</h2>
+                    <p class="visit-type">Authentic Spanish Cuisine near Arc de Triomf</p>
+                </div>
+            </div>
+
+            <article class="article-content">
+
+                <div class="intro-text">
+                    "An authentic Spanish dining experience with incredible tapas and vibrant atmosphere!"
+                </div>
+
+                <p><strong>🌟 Restaurant Overview:</strong></p>
+                
+                <p>Located right next to the Arc de Triomf, La Triunfal is a popular spot that's been highly recommended by my friends studying in Barcelona. I finally had the chance to try it and it definitely lived up to the hype!</p>
+
+                <!-- Two Column Layout for Dishes -->
+                <div class="two-column-layout">
+                    <!-- Left Column: Highly Recommended Dishes -->
+                    <div class="column-left">
+                        <h3 class="section-title">🥘 Highly Recommended Dishes</h3>
+
+                        <div class="dish-highlight">
+                            <div class="dish-name">
+                                <span>🥩 Entrecot a la Piedra (Stone-grilled Steak)</span>
+                                <span class="dish-price">€35.50</span>
+                            </div>
+                            <div class="dish-description">The medium-rare steak arrives on a hot stone. The server first rubs the stone with beef fat, then places the steak on it to cook. The Maillard reaction is incredible! Simply seasoned with sea salt and black pepper - absolutely amazing! The side dishes (roasted potatoes and fried green peppers) are classic Spanish accompaniments.</div>
+                        </div>
+
+                        <div class="dish-highlight">
+                            <div class="dish-name">
+                                <span>🍤 Gambas al Ajillo (Garlic Shrimp)</span>
+                                <span class="dish-price">€5.00</span>
+                            </div>
+                            <div class="dish-description">Served sizzling in olive oil with crispy fried garlic slices. This is a classic Spanish dish that I would order again and again. The shrimp here are super plump and large! Delicious!</div>
+                        </div>
+
+                        <div class="dish-highlight">
+                            <div class="dish-name">
+                                <span>🥘 Paella Señorito (Seafood Paella)</span>
+                                <span class="menu-item-price">€25.95</span>
+                            </div>
+                            <div class="dish-description">The rice is not undercooked! And it's not too salty! If you've tried local Spanish food, you'll understand the significance of these two points. The seafood is plentiful and very fresh.</div>
+                        </div>
+
+                        <div class="dish-highlight">
+                            <div class="dish-name">
+                                <span>🍄 Champifiones Rellenos con Queso (Cheese-stuffed Mushrooms)</span>
+                                <span class="dish-price">€12.95</span>
+                            </div>
+                            <div class="dish-description">Rich, creamy cheese and sweet mushrooms are a perfect match. When you pick one up with a fork, it stretches with cheese!</div>
+                        </div>
+
+                        <div class="dish-highlight">
+                            <div class="dish-name">
+                                <span>🍹 Sangría (Spanish Wine Punch)</span>
+                                <span class="dish-price">€7.95/glass</span>
+                            </div>
+                            <div class="dish-description">Although I've had Sangría countless times in Spain, each place has its own unique flavor. This one has a perfect blend of fruitiness and wine body - definitely worth trying!</div>
+                        </div>
+
+                        <div class="dish-highlight">
+                            <div class="dish-name">
+                                <span>🍰 Tiramisu</span>
+                                <span class="dish-price">€7.50</span>
+                            </div>
+                            <div class="dish-description">Just returned from Italy, and while I still think Italian tiramisu is superior, this is absolutely top-notch by Spanish standards. The happiness that desserts bring!</div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Additional Menu Highlights -->
+                    <div class="column-right">
+                        <h3 class="section-title">📋 Additional Menu Highlights</h3>
+
+                        <div class="highlight-box">
+                            <p><strong>Tapas Selection:</strong></p>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Pan con Tomate (Bread with Tomato)</span>
+                                <span class="menu-item-price">€4.50</span>
+                            </div>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Jamón Ibérico (Iberian Ham)</span>
+                                <span class="menu-item-price">€11.95</span>
+                            </div>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Patatas Bravas Caseras (Homemade Spicy Potatoes)</span>
+                                <span class="menu-item-price">€7.50</span>
+                            </div>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Pimientos del Padrón (Padrón Peppers)</span>
+                                <span class="menu-item-price">€7.50</span>
+                            </div>
+                        </div>
+
+                        <div class="highlight-box">
+                            <p><strong>Main Courses:</strong></p>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Pulpo a la Gallega (Galician-style Octopus)</span>
+                                <span class="menu-item-price">€29.95</span>
+                            </div>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Secreto Ibérico con Puré de Boniato (Iberian Pork with Sweet Potato Purée)</span>
+                                <span class="menu-item-price">€16.95</span>
+                            </div>
+                            <div class="menu-item">
+                                <span class="menu-item-name">Costillas Ibéricas a la BBQ (BBQ Iberian Ribs)</span>
+                                <span class="menu-item-price">€15.50</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>👍 Overall Impression:</strong></p>
+                
+                <p>Everything was absolutely delicious with no disappointing dishes. Great value for money! The atmosphere was vibrant and authentically Spanish. We spent about 2 hours enjoying our meal and drinks, which felt like the perfect amount of time to savor the experience without feeling rushed.</p>
+
+            </article>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="note-footer" data-aos="fade-up">
+        </footer>
+    </div>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Initialize AOS (Animate On Scroll) if available
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+
+            // Add fade-in animation to main content
+            const content = document.querySelector('.note-content');
+            content.classList.add('fade-in');
+
+            // Add smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add reading progress indicator
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset;
+            const progress = (scrollTop / documentHeight) * 100;
+            
+            // Update progress bar if exists
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        });
+
+        // Print functionality
+        function printNote() {
+            window.print();
+        }
+
+        // Share functionality (if needed)
+        function shareNote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'La Triunfal Restaurant Experience',
+                    text: 'Check out this amazing Spanish restaurant review for La Triunfal in Barcelona',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support native sharing
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

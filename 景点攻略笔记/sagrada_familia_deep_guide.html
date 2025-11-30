@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagrada Família - In-Depth Art Lover's Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f8f8;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.8px;
+            color: #f0f0f0;
+        }
+
+        .stats-bar {
+            background: #2c3e50;
+            color: white;
+            padding: 0.8rem 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .section {
+            background: white;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e8e8e8;
+        }
+
+        .section h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(45deg, #8e44ad, #9b59b6);
+        }
+
+        .deep-info-box {
+            background: linear-gradient(135deg, #f8f3ff 0%, #e8d5ff 100%);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #8e44ad;
+            margin: 0.8rem 0;
+        }
+
+        .time-highlight {
+            background: #e74c3c;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+        }
+
+        .art-section {
+            background: #fdf6e3;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            border-left: 3px solid #d4a574;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .art-section h4 {
+            color: #b8860b;
+            margin-bottom: 0.7rem;
+            font-size: 1.2rem;
+        }
+
+        .tower-info {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 4px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .tower-info h4 {
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .symbolism-box {
+            background: #f3e5f5;
+            border: 1px solid #9c27b0;
+            border-radius: 6px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .symbolism-box h4 {
+            color: #7b1fa2;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .lighting-guide {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .timing-critical {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            border-radius: 4px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .timing-critical h4 {
+            color: #c62828;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin: 0.6rem 0;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        .emoji {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+        }
+
+        .detailed-route {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            border-left: 3px solid #6c757d;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .detailed-route h4 {
+            color: #495057;
+            margin-bottom: 0.7rem;
+            font-size: 1.2rem;
+        }
+
+        .architectural-detail {
+            background: #f0f8f0;
+            border: 1px solid #4caf50;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 4px;
+        }
+
+        .architectural-detail h5 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Sagrada Família</h1>
+            <h2>Complete Art Enthusiast's Experience</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">4,721</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">892</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">2,156</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🎨 Deep Dive Overview</h3>
+            <div class="deep-info-box">
+                <h4><strong>Perfect for:</strong> Art enthusiasts, architecture students, repeat visitors, detailed craftsmanship admirers</h4>
+                <p>This comprehensive guide unlocks the profound symbolism and architectural genius of Gaudí's unfinished masterpiece. Art lovers typically spend a full afternoon here, allowing time to truly absorb the intricate details and spiritual atmosphere of this evolving architectural revolution.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎟️ Ticket Strategy for Art Lovers</h3>
+            
+            <div class="timing-critical">
+                <h4>⏰ Critical Scheduling Information</h4>
+                <ul>
+                    <li><strong>Book 1-2 weeks ahead:</strong> Tower access sells out quickly</li>
+                    <li><strong>Museum opens:</strong> 9:00 AM sharp (perfect for avoiding crowds)</li>
+                    <li><strong>Last audio guide rental:</strong> 1 hour before closing</li>
+                    <li><strong>Optimal photography windows:</strong> 2:00-4:00 PM (west façade golden hour)</li>
+                    <li><strong>Evening light show:</strong> Best experienced 1 hour before sunset</li>
+                </ul>
+            </div>
+
+            <div class="tower-info">
+                <h4>🏗️ Complete Art Experience</h4>
+                <p><strong>Sagrada Familia + Audioguide + Towers:</strong> Essential for full artistic immersion.</p>
+                <p><strong>Tower choice:</strong> Nativity (ornate traditional Gaudí) or Passion (stark modern interpretation)</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎯 Comprehensive Art Lover's Route</h3>
+            
+            <div class="lighting-guide">
+                <strong>🌅 Lighting Mastery Schedule:</strong>
+                <ul>
+                    <li><strong>Afternoon peak (2-4 PM):</strong> West side explosion (warm reds/oranges) transforms interior into passionate sunset cathedral - perfect for dramatic, energetic art photography</li>
+                    <li><strong>Color transition moments:</strong> 2:30-3:30 PM offers maximum contrast between both sides</li>
+                    <li><strong>Golden hour (1 hour before sunset):</strong> External façades glow with warm Mediterranean light for architectural detail shots</li>
+                </ul>
+            </div>
+
+            <div class="detailed-route">
+                <h4>Phase 1: Nativity Façade Study</h4>
+                <div class="art-section">
+                    <ul>
+                        <li><strong>Central portal:</strong> Trace nativity narrative bottom to top</li>
+                        <li><strong>Stone flora/fauna:</strong> 100+ species from real-life studies</li>
+                        <li><strong>Hidden symbols:</strong> Turtle bases (land/sea), chameleons (change), cypress trees (eternal life)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detailed-route">
+                <h4>Phase 2: Interior Forest Cathedral</h4>
+                <div class="art-section">
+                    <ul>
+                        <li><strong>Hyperboloid columns:</strong> Mathematical tree-mimicking precision</li>
+                        <li><strong>Branching capitals:</strong> Columns split like trees reaching for light</li>
+                        <li><strong>Stained glass peak:</strong> West windows (warm reds/oranges) at 2:30-3:30 PM</li>
+                        <li><strong>Color psychology:</strong> Warm afternoon light creates passionate atmosphere</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detailed-route">
+                <h4>Phase 3: Tower Ascent</h4>
+                <div class="tower-info">
+                    <ul>
+                        <li><strong>Nautilus spiral:</strong> Mathematical staircase precision</li>
+                        <li><strong>65m perspective:</strong> Barcelona urban grid relationship</li>
+                        <li><strong>Future vision:</strong> Planned 172m Jesus Christ tower site</li>
+                        <li><strong>Practical:</strong> Narrow stairs, elevator descent, bring layers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detailed-route">
+                <h4>Phase 4: Museum & Vision</h4>
+                <div class="art-section">
+                    <ul>
+                        <li><strong>Original models:</strong> Gaudí's innovative design process</li>
+                        <li><strong>Hanging chain models:</strong> Revolutionary structural engineering</li>
+                        <li><strong>Future completion (2026):</strong> Glory Façade, world's tallest church tower</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detailed-route">
+                <h4>Phase 5: Passion Façade</h4>
+                <div class="art-section">
+                    <ul>
+                        <li><strong>Subirachs' sculpture:</strong> Controversial modern interpretation</li>
+                        <li><strong>Angular contrast:</strong> Opposite to Nativity's organic curves</li>
+                        <li><strong>Magic square:</strong> Mathematical puzzle with 33 solutions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

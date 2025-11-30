@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Milà - Classic Barcelona Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #a8caba 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #2c5530 0%, #4a7c59 50%, #6b8e23 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(44, 85, 48, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        .hero-content h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #e6fffa;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #90ee90;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 1.2rem 0;
+            padding: 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+        }
+
+        .section h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1.3rem;
+            color: #2c5530;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            position: relative;
+            text-transform: capitalize;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 65px;
+            height: 4px;
+            background: linear-gradient(45deg, #6b8e23, #90ee90);
+            border-radius: 2px;
+        }
+
+        .classic-info-box {
+            background: linear-gradient(135deg, #f0fff0 0%, #e6ffe6 100%);
+            padding: 1.2rem;
+            border-radius: 15px;
+            border-left: 5px solid #6b8e23;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(107, 142, 35, 0.2);
+        }
+
+        .time-highlight {
+            background: linear-gradient(45deg, #32cd32, #90ee90);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.3rem;
+            box-shadow: 0 3px 10px rgba(50, 205, 50, 0.3);
+        }
+
+        .photo-guide {
+            background: linear-gradient(135deg, #fffacd 0%, #ffeaa7 100%);
+            padding: 1.2rem;
+            margin: 1rem 0;
+            border-left: 5px solid #daa520;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.2);
+        }
+
+        .photo-guide h4 {
+            color: #b8860b;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            border: 2px solid #26a69a;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(38, 166, 154, 0.2);
+        }
+
+        .tip-box h4 {
+            color: #00695c;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .souvenir-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%);
+            border: 3px solid #ff9800;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.25);
+        }
+
+        .souvenir-box h4 {
+            color: #e65100;
+            margin-bottom: 0.7rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin: 0.6rem 0;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #2c5530;
+        }
+
+        .highlight-text {
+            background: linear-gradient(45deg, #90ee90, #98fb98);
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            color: #2c5530;
+            font-weight: 600;
+        }
+
+        .route-step {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e8 100%);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #32cd32;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 10px rgba(50, 205, 50, 0.1);
+        }
+
+        .route-step h4 {
+            color: #2e7d32;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Casa Milà</h1>
+            <h2>Classic Barcelona Architecture Tour</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">4,156</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">728</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">2,033</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🏛️ Classic Visit Overview</h3>
+            <div class="classic-info-box">
+                <h4><strong>Perfect for:</strong> Classic architecture enthusiasts, first-time visitors, rooftop photography lovers</h4>
+                <p>Casa Milà, also known as "La Pedrera" (The Stone Quarry), offers Barcelona's most spectacular rooftop experience. This classic route focuses on Gaudí's revolutionary design and the iconic chimney sculptures that have become symbols of the city.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h4>⏰ Recommended Visit Duration</h4>
+                <ul>
+                    <li><span class="highlight-text">Full day or evening visit</span> - flexible timing for optimal experience</li>
+                    <li><strong>Morning visitors:</strong> Fewer crowds, better photography lighting, stay for 1.5 hours</li>
+                    <li><strong>Evening visitors:</strong> Softer lighting, less intense sun exposure</li>
+                    <li><strong>Late afternoon peak:</strong> Around 10:30 AM, tour groups arrive - plan accordingly</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📸 Rooftop Photography Guide</h3>
+            
+            <div class="photo-guide">
+                <h4>🌟 Casa Milà's Famous Rooftop Route</h4>
+                <p>The rooftop planning is designed from <strong>bottom to top</strong> for the ultimate visitor experience. Those wanting to go to the rooftop first should prioritize rooftop access.</p>
+                <ul>
+                    <li><strong>Best approach:</strong> Complete lower floors first, then ascend to rooftop</li>
+                    <li><strong>Alternative route:</strong> Rooftop first for immediate wow factor (still perfectly fine!)</li>
+                </ul>
+            </div>
+
+            <div class="route-step">
+                <h4>🎯 Premium Photography Spots</h4>
+                <ul>
+                    <li><strong>Jennie's Instagram spot:</strong> Sacred Family Doorway area - expect crowds and queues</li>
+                    <li><strong>Compressed perspective shots:</strong> Use 70-200mm lens for dramatic architectural compression</li>
+                    <li><strong>Elevated platform shots:</strong> Position on stairs opposite the platform for maximum impact</li>
+                    <li><strong>Patience pays off:</strong> Wait for crowd-free moments - truly worth the extra time</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="section">
+            <h3>🎁 Souvenir & Shopping Experience</h3>
+            
+            <div class="souvenir-box">
+                <h4>🛍️ Must-Visit Gift Shop</h4>
+                <p><strong>Location:</strong> Best entrance is the lobby gift shop area</p>
+                <ul>
+                    <li><strong>No ticket required:</strong> Open to all visitors</li>
+                    <li><strong>Diverse selection:</strong> Wide variety of Gaudí-themed merchandise</li>
+                    <li><strong>Refrigerator magnets purchased:</strong> Perfect affordable Barcelona memento</li>
+                    <li><strong>Future opening plan:</strong> Will share shopping haul in upcoming posts!</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h4>🏪 Nearby Shopping Gems</h4>
+                <ul>
+                    <li><strong>Right side of entrance:</strong> Two specialty stores</li>
+                    <li><strong>Beef jerky store:</strong> Unique local delicacy</li>
+                    <li><strong>Chocolate heart store:</strong> Perfect sweet souvenir</li>
+                    <li><span class="highlight-text">Don't miss these local specialties!</span></li>
+                    <li><strong>Barcelona's best:</strong> Ideal zero-shopping destinations for authentic local products</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

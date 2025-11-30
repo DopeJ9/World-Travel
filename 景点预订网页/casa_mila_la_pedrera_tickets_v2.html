@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Milà – La Pedrera - Admission Tickets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f8f8;
+        }
+
+        .hero-section {
+            height: 175px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 200;
+            letter-spacing: 3px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .hero-content h2 {
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #f0f0f0;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+        
+        /* Move the date selection section up slightly */
+        .top-content .section {
+            margin-top: 0.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #e67e22, #f39c12);
+        }
+
+        .opening-hours {
+            background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+            padding: 0.8rem;
+            border-radius: 8px;
+            border-left: 5px solid #34495e;
+        }
+
+        .hours-text {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: #2c3e50;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+
+        .night-sessions {
+            background: #2c3e50;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .important-notice {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.6rem;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+        }
+
+        .notice-title {
+            font-weight: bold;
+            color: #d68910;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notice-title::before {
+            content: "⚠️";
+            font-size: 1.2rem;
+        }
+
+        .notice-content {
+            color: #d68910;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .top-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 0.5rem;
+            align-items: start;
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 0.7rem;
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 0.8rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .calendar-day:hover {
+            background: #ecf0f1;
+            border-color: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.2);
+        }
+
+        .calendar-day.selected {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-color: #1b2631;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 73, 94, 0.3);
+        }
+
+        .right-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-self: start;
+        }
+        
+        /* Ensure perfect alignment */
+        .right-selection .time-selection:first-child,
+        .right-selection .language-selection:not(.hidden) {
+            margin-top: 0;
+        }
+        
+        .right-selection .language-selection.hidden ~ .time-selection {
+            margin-top: 0;
+        }
+
+        .language-selection {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+
+        .language-selection h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .language-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .language-option {
+            padding: 1rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .language-option:hover {
+            background: #ecf0f1;
+            border-color: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .language-option.selected {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-color: #1b2631;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
+        }
+
+        .time-selection {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+
+        .time-selection h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 55px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .time-slot:hover {
+            background: #ecf0f1;
+            border-color: #34495e;
+            transform: translateY(-1px);
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-color: #1b2631;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
+        }
+
+        .time-slot.sold-out {
+            background: #bdc3c7;
+            color: #7f8c8d;
+            cursor: not-allowed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot.sold-out::after {
+            content: "sold out";
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            font-size: 0.65rem;
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2px 4px;
+            border-radius: 3px;
+            transform: rotate(12deg);
+        }
+
+        .tickets-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid #e8e8e8;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .ticket-title {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+        }
+
+        .ticket-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .ticket-features {
+            padding: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.6rem;
+            color: #34495e;
+            font-size: 0.85rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            background: #27ae60;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .price-options {
+            border-top: 1px solid #e8e8e8;
+            padding-top: 1rem;
+        }
+
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+
+        .price-option:hover {
+            background: #ecf0f1;
+            border-color: #34495e;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #34495e;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            color: #34495e;
+        }
+
+        .quantity-btn:hover {
+            background: #34495e;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .quantity-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #34495e;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
+        }
+
+        .total-breakdown {
+            margin-bottom: 1.5rem;
+        }
+
+        .total-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .booking-details {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ticket-group {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ticket-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .total-final {
+            font-size: 1.6rem;
+            font-weight: bold;
+            border-top: 3px solid #f39c12;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.3);
+        }
+
+        .book-now-btn:hover {
+            background: linear-gradient(135deg, #d68910 0%, #e67e22 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(230, 126, 34, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 3rem;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid #f39c12;
+        }
+
+        .close-btn {
+            color: #95a5a6;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Tour Schedule Styles */
+        .tour-schedules {
+            display: flex;
+            justify-content: center;
+        }
+
+        .schedule-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            padding: 1.8rem 3rem;
+            border-left: 4px solid #34495e;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .schedule-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .schedule-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .schedule-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.8rem 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            min-height: 75px;
+        }
+
+        .language-label {
+            padding: 0.35rem 1.8rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            min-width: 140px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .language-label.english {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .language-label.japanese {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .language-label.korean {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .schedule-text {
+            font-size: 0.95rem;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Time slot with language indicator */
+        .time-slot {
+            position: relative;
+        }
+
+        .time-slot .language-indicator {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .time-slot .language-indicator.english {
+            background: #3498db;
+        }
+
+        .time-slot .language-indicator.japanese {
+            background: #e74c3c;
+        }
+
+        .time-slot .language-indicator.korean {
+            background: #f39c12;
+        }
+        
+        /* Reset any margin adjustments */
+        .right-selection > * {
+            margin-top: 0 !important;
+        }
+
+        @media (max-width: 1024px) {
+            .top-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .tickets-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .tour-schedules {
+                justify-content: stretch;
+            }
+            
+            .schedule-item {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .schedule-details {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            
+            .schedule-row {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .calendar-container {
+                gap: 6px;
+            }
+            
+            .calendar-day {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Casa Milà</h1>
+            <h2>La Pedrera - Admission Tickets</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Opening Hours Section -->
+        <div class="section">
+            <h3>🕒 Opening Hours</h3>
+            <div class="opening-hours">
+                <div class="hours-text">
+                    <strong>From Monday to Sunday, and holidays:</strong> 9:00 am - 8:30 pm (Last entry: 7:00 pm)
+                </div>
+                <div class="night-sessions">
+                    <strong>Sessions night tour:</strong> 08:40 pm - 10:20 pm
+                </div>
+                <div class="important-notice">
+                    <div class="notice-title">Important Notice</div>
+                    <div class="notice-content">
+                        The time slot you choose gives you access to Casa Milà at that time, and keep in mind that you must arrive 10 minutes before the stated time.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tour Schedule Section -->
+        <div class="section">
+            <h3>🗓️ Tour Schedule</h3>
+            <div class="tour-schedules">
+                <div class="schedule-item">
+                    <div class="schedule-title">🌅 La Pedrera Sunrise</div>
+                    <div class="schedule-details">
+                        <div class="schedule-row">
+                            <span class="language-label english">English</span>
+                            <span class="schedule-text">Monday - Sunday: 08:00 / 08:45</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="language-label japanese">Japanese</span>
+                            <span class="schedule-text">Tuesday / Thursday / Saturday: 08:15</span>
+                        </div>
+                        <div class="schedule-row">
+                            <span class="language-label korean">Korean</span>
+                            <span class="schedule-text">Tuesday / Thursday / Saturday: 08:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Content: Date Selection and Time/Language Selection -->
+        <div class="top-content">
+            <!-- Left: Date Selection -->
+            <div class="section">
+                <h3>Select Date - August</h3>
+                <div class="calendar-container">
+                    <div class="calendar-header">Sun</div>
+                    <div class="calendar-header">Mon</div>
+                    <div class="calendar-header">Tue</div>
+                    <div class="calendar-header">Wed</div>
+                    <div class="calendar-header">Thu</div>
+                    <div class="calendar-header">Fri</div>
+                    <div class="calendar-header">Sat</div>
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Right: Time Selection -->
+            <div class="right-selection">
+                <!-- Time Selection -->
+                <div class="time-selection">
+                    <h4>Select Time</h4>
+                    <div class="time-info-notice" style="background: linear-gradient(135deg, #e8f4fd 0%, #d4e9f7 100%); border-left: 4px solid #3498db; padding: 0.8rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-size: 0.9rem; color: #2c3e50;">
+                        <div style="display: flex; align-items: start; gap: 0.5rem;">
+                            <span style="font-size: 1.1rem; flex-shrink: 0;">ℹ️</span>
+                            <div>
+                                <strong style="color: #2980b9;">Time Availability by Experience:</strong>
+                                <div style="margin-top: 0.5rem; line-height: 1.5;">
+                                    • <strong>Essential:</strong> 09:00 - 19:00 (last entry at 7pm)<br>
+                                    • <strong>Night Experience:</strong> 20:40 - 22:20<br>
+                                    • <strong>Sunrise:</strong> 08:00 - 08:45 (varies by language)
+                                </div>
+                                <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #555;">
+                                    Time slots will automatically update based on your ticket selection.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="time-slots-container">
+                        <p>Please select a date first</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Types Section -->
+        <div class="section">
+            <h3>Select Your Experience</h3>
+            <div class="tickets-section">
+                <!-- La Pedrera Essential -->
+                <div class="ticket-card" id="ticket-essential">
+                    <div class="ticket-header">
+                        <div class="ticket-title">La Pedrera Essential</div>
+                        <div class="ticket-subtitle">—</div>
+                    </div>
+                    <div class="ticket-features">
+                        <ul class="features-list">
+                            <li>Visit at your own pace</li>
+                            <li>No queues to enter (online)</li>
+                            <li>Wi-fi</li>
+                            <li>Free audio guide</li>
+                            <li>Partially accessible</li>
+                        </ul>
+                        <div class="price-options">
+                            <div class="price-option">
+                                <span><strong>Adult</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #e67e22; font-weight: bold;">€25.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('adult-essential', -1)">-</button>
+                                    <span class="quantity-display" id="adult-essential-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('adult-essential', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Student</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #e67e22; font-weight: bold;">€19.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('student-essential', -1)">-</button>
+                                    <span class="quantity-display" id="student-essential-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('student-essential', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Junior (12 to 17 years old)</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #e67e22; font-weight: bold;">€12.50</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('junior-essential', -1)">-</button>
+                                    <span class="quantity-display" id="junior-essential-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('junior-essential', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Children</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('children-essential', -1)">-</button>
+                                    <span class="quantity-display" id="children-essential-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('children-essential', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- La Pedrera Night Experience -->
+                <div class="ticket-card" id="ticket-night">
+                    <div class="ticket-header">
+                        <div class="ticket-title">La Pedrera Night Experience</div>
+                        <div class="ticket-subtitle">—</div>
+                    </div>
+                    <div class="ticket-features">
+                        <ul class="features-list">
+                            <li>Guided tour</li>
+                            <li>Show on the Rooftop</li>
+                            <li>Glass of cava</li>
+                            <li>Audio-visual screenings</li>
+                            <li>Wi-fi</li>
+                            <li>Partially accessible</li>
+                        </ul>
+                        <div class="price-options">
+                            <div class="price-option">
+                                <span><strong>Adult</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #e67e22; font-weight: bold;">€39.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('adult-night', -1)">-</button>
+                                    <span class="quantity-display" id="adult-night-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('adult-night', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Junior (12-17 years)</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #e67e22; font-weight: bold;">€19.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('junior-night', -1)">-</button>
+                                    <span class="quantity-display" id="junior-night-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('junior-night', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="price-option">
+                                <span><strong>Children (under 12 years)</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('children-night', -1)">-</button>
+                                    <span class="quantity-display" id="children-night-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('children-night', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- La Pedrera Sunrise -->
+                <div class="ticket-card" id="ticket-sunrise">
+                    <div class="ticket-header">
+                        <div class="ticket-title">La Pedrera Sunrise</div>
+                        <div class="ticket-subtitle">—</div>
+                    </div>
+                    <div class="ticket-features">
+                        <ul class="features-list">
+                            <li>Before opening</li>
+                            <li>Guided tour</li>
+                            <li>Partially accessible</li>
+                            <li>Wi-fi</li>
+                        </ul>
+                        <div class="price-options">
+                            <div class="price-option">
+                                <span><strong>General</strong></span>
+                                <div class="quantity-controls">
+                                    <span style="color: #e67e22; font-weight: bold;">€39.00</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('general-sunrise', -1)">-</button>
+                                    <span class="quantity-display" id="general-sunrise-qty">0</span>
+                                    <button class="quantity-btn" onclick="changeQuantity('general-sunrise', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <h3>🛒 Order Summary</h3>
+            <div class="total-breakdown" id="total-breakdown">
+                <p>No tickets selected</p>
+            </div>
+            <div class="total-final">
+                <div class="total-item">
+                    <span>Total:</span>
+                    <span id="total-amount">€0.00</span>
+                </div>
+            </div>
+            <button class="book-now-btn" onclick="bookNow()">🎫 Book Now</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Booking Confirmation</h2>
+            <p id="modal-message">Your booking has been confirmed!</p>
+            <button onclick="closeModal()" style="margin-top: 2rem; padding: 1rem 3rem; background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedLanguage = null;
+        let quantities = {};
+        
+        // Ticket prices
+        const ticketPrices = {
+            'adult-essential': 25,
+            'student-essential': 19,
+            'junior-essential': 12.5,
+            'children-essential': 0,
+            'adult-night': 39,
+            'junior-night': 19,
+            'children-night': 0,
+            'general-sunrise': 39
+        };
+
+        // Initialize quantities
+        Object.keys(ticketPrices).forEach(key => {
+            quantities[key] = 0;
+        });
+
+        // Language time restrictions for La Pedrera
+        const languageTimes = {
+            'english': ['08:00', '08:45'], // Monday - Sunday
+            'japanese': ['08:15'], // Tuesday, Thursday, Saturday
+            'korean': ['08:30'] // Tuesday, Thursday, Saturday
+        };
+
+        // Generate different sold-out patterns for each day
+        function getSoldOutPattern(date) {
+            const dateStr = date.replace(/-/g, '');
+            const seed = parseInt(dateStr) % 1000;
+            const pattern = [];
+            
+            const numSoldOut = 2 + (seed % 4); // 2-5 sold out slots
+            const usedIndices = new Set();
+            
+            for (let i = 0; i < numSoldOut; i++) {
+                let index;
+                do {
+                    index = (seed + i * 11) % 16; // Different pattern based on date
+                } while (usedIndices.has(index));
+                usedIndices.add(index);
+                pattern.push(index);
+            }
+            
+            return pattern;
+        }
+
+        // Generate calendar for August 2026
+        function generateCalendar() {
+            const calendarContainer = document.querySelector('.calendar-container');
+            const daysInMonth = 31;
+            const firstDayOfWeek = 6; // August 1, 2026 is a Saturday
+            
+            // Add empty cells for days before the 1st
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                calendarContainer.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = `2026-08-${day.toString().padStart(2, '0')}`;
+                
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.dataset.date = date;
+                dayElement.onclick = () => selectDate(dayElement);
+                
+                calendarContainer.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(element) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Select new date
+            element.classList.add('selected');
+            selectedDate = element.dataset.date;
+            
+            // Clear time and language selection when date changes
+            selectedTime = null;
+            selectedLanguage = null;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Check language requirements
+            checkLanguageRequirement();
+            
+            // Generate time slots for selected date
+            generateTimeSlots(selectedDate);
+            
+            // Update total to show date info
+            updateTotal();
+        }
+
+        function generateTimeSlots(date) {
+            const container = document.getElementById('time-slots-container');
+            
+            // Check ticket types selected - prioritize special experiences
+            const hasSunrise = quantities['general-sunrise'] > 0;
+            const hasNight = quantities['adult-night'] > 0 || quantities['junior-night'] > 0 || quantities['children-night'] > 0;
+            const hasEssential = quantities['adult-essential'] > 0 || quantities['student-essential'] > 0 || 
+                                quantities['junior-essential'] > 0 || quantities['children-essential'] > 0;
+            
+            let timeSlots = [];
+            let showLanguageIndicators = false;
+            
+            // Priority: Sunrise > Night > Essential (or default if no tickets selected)
+            if (hasSunrise) {
+                // Sunrise tickets - show all available time slots with language indicators
+                const dateObj = new Date(date + 'T12:00:00');
+                const dayOfWeek = dateObj.getDay();
+                
+                // Collect all available time slots with their languages
+                timeSlots = [];
+                showLanguageIndicators = true;
+                
+                // English times (available every day)
+                languageTimes['english'].forEach(time => {
+                    timeSlots.push({ time: time, language: 'english' });
+                });
+                
+                // Japanese and Korean times (only on Tue, Thu, Sat)
+                if (dayOfWeek === 2 || dayOfWeek === 4 || dayOfWeek === 6) {
+                    languageTimes['japanese'].forEach(time => {
+                        timeSlots.push({ time: time, language: 'japanese' });
+                    });
+                    languageTimes['korean'].forEach(time => {
+                        timeSlots.push({ time: time, language: 'korean' });
+                    });
+                }
+                
+                // Sort by time
+                timeSlots.sort((a, b) => {
+                    const timeA = timeToMinutes(a.time);
+                    const timeB = timeToMinutes(b.time);
+                    return timeA - timeB;
+                });
+                
+            } else if (hasNight) {
+                // Night Experience - every 20 minutes from 20:40 to 22:20
+                timeSlots = ['20:40', '21:00', '21:20', '21:40', '22:00', '22:20'].map(time => ({ time: time }));
+            } else {
+                // Default Essential tickets or no tickets selected - 9:00 to 19:00 (last entry 7pm)
+                timeSlots = generateTimeSlotsForRange('09:00', '19:00').map(time => ({ time: time }));
+            }
+            
+            container.innerHTML = '<div class="time-slots"></div>';
+            const slotsContainer = container.querySelector('.time-slots');
+            
+            // Get sold-out pattern for this specific date
+            const soldOutPattern = getSoldOutPattern(date);
+            
+            timeSlots.forEach((slot, index) => {
+                const slotElement = document.createElement('div');
+                slotElement.className = 'time-slot';
+                slotElement.textContent = slot.time;
+                slotElement.dataset.time = slot.time;
+                
+                // Add language indicator for Sunrise slots
+                if (showLanguageIndicators && slot.language) {
+                    const indicator = document.createElement('div');
+                    indicator.className = `language-indicator ${slot.language}`;
+                    indicator.textContent = slot.language.charAt(0).toUpperCase();
+                    slotElement.appendChild(indicator);
+                    slotElement.dataset.language = slot.language;
+                }
+                
+                // Apply date-specific sold-out pattern
+                if (soldOutPattern.includes(index)) {
+                    slotElement.classList.add('sold-out');
+                    slotElement.onclick = null;
+                } else {
+                    slotElement.onclick = () => selectTime(slotElement);
+                }
+                
+                slotsContainer.appendChild(slotElement);
+            });
+        }
+
+        function generateTimeSlotsForRange(startTime, endTime) {
+            const slots = [];
+            const start = timeToMinutes(startTime);
+            const end = timeToMinutes(endTime);
+            
+            let currentTime = start;
+            
+            // Generate 30-minute intervals for first 12 slots
+            while (currentTime < end && slots.length < 12) {
+                slots.push(minutesToTime(currentTime));
+                currentTime += 30;
+            }
+            
+            // Add the last 4 specific time slots
+            slots.push('15:00', '16:00', '17:30', '19:00');
+            
+            // Sort all slots by time and remove duplicates
+            const uniqueSlots = [...new Set(slots)];
+            uniqueSlots.sort((a, b) => timeToMinutes(a) - timeToMinutes(b));
+            
+            return uniqueSlots.slice(0, 16); // Ensure exactly 16 slots
+        }
+
+        function timeToMinutes(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function minutesToTime(minutes) {
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+        }
+
+        function selectTime(element) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Select new time
+            element.classList.add('selected');
+            selectedTime = element.dataset.time;
+            
+            // Store language for Sunrise slots
+            if (element.dataset.language) {
+                selectedLanguage = element.dataset.language;
+            }
+            
+            // Update total to show date/time info
+            updateTotal();
+        }
+
+        function checkLanguageRequirement() {
+            // Language is now handled automatically when selecting time slots for Sunrise tickets
+            // Clear language selection when no sunrise tours
+            const hasSunrise = quantities['general-sunrise'] > 0;
+            if (!hasSunrise) {
+                selectedLanguage = null;
+            }
+        }
+
+        function changeQuantity(ticketType, change) {
+            quantities[ticketType] = Math.max(0, quantities[ticketType] + change);
+            document.getElementById(ticketType + '-qty').textContent = quantities[ticketType];
+            
+            updateTotal();
+            checkLanguageRequirement();
+            
+            // Clear time selection when switching between ticket types with different time requirements
+            const hasSunrise = quantities['general-sunrise'] > 0;
+            const hasNight = quantities['adult-night'] > 0 || quantities['junior-night'] > 0 || quantities['children-night'] > 0;
+            const hasEssential = quantities['adult-essential'] > 0 || quantities['student-essential'] > 0 || 
+                                quantities['junior-essential'] > 0 || quantities['children-essential'] > 0;
+            
+            // If switching to a different ticket type, clear time selection
+            if ((hasSunrise || hasNight) && selectedTime) {
+                // Check if current selected time is valid for the new ticket type
+                let validTime = false;
+                
+                if (hasSunrise) {
+                    // For sunrise, check if the time exists in any language schedule
+                    Object.values(languageTimes).some(times => {
+                        if (times.includes(selectedTime)) {
+                            validTime = true;
+                            return true;
+                        }
+                        return false;
+                    });
+                } else if (hasNight) {
+                    const nightTimes = ['20:40', '21:00', '21:20', '21:40', '22:00', '22:20'];
+                    validTime = nightTimes.includes(selectedTime);
+                }
+                
+                if (!validTime) {
+                    selectedTime = null;
+                    selectedLanguage = null;
+                    document.querySelectorAll('.time-slot').forEach(slot => {
+                        slot.classList.remove('selected');
+                    });
+                }
+            }
+            
+            // Regenerate time slots based on current ticket selection
+            if (selectedDate) {
+                generateTimeSlots(selectedDate);
+                
+                // Restore the selected time slot after regeneration if still valid
+                if (selectedTime) {
+                    setTimeout(() => {
+                        const timeSlot = document.querySelector(`[data-time="${selectedTime}"]`);
+                        if (timeSlot) {
+                            timeSlot.classList.add('selected');
+                        }
+                    }, 50);
+                }
+            }
+        }
+
+        function updateTotal() {
+            let total = 0;
+            
+            // Group tickets by type for better display
+            const ticketGroups = {
+                'essential': [],
+                'night': [],
+                'sunrise': []
+            };
+            
+            Object.keys(quantities).forEach(key => {
+                if (quantities[key] > 0) {
+                    const price = ticketPrices[key];
+                    const subtotal = quantities[key] * price;
+                    total += subtotal;
+                    
+                    const typeName = getTicketTypeName(key);
+                    const ticketTypeCategory = getTicketTypeCategory(key);
+                    
+                    ticketGroups[ticketTypeCategory].push({
+                        quantity: quantities[key],
+                        price: price,
+                        typeName: typeName,
+                        subtotal: subtotal
+                    });
+                }
+            });
+            
+            const breakdownContainer = document.getElementById('total-breakdown');
+            const totalAmount = document.getElementById('total-amount');
+            
+            let html = '';
+            
+            // Always show date and time info if selected
+            if (selectedDate && selectedTime) {
+                const dateObj = new Date(selectedDate + 'T12:00:00');
+                const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                html += `<div class="booking-details"><strong>📅 Date:</strong> ${formattedDate}<br><strong>🕐 Time:</strong> ${selectedTime}</div>`;
+            }
+            
+            // Add language info if selected
+            if (selectedLanguage) {
+                const languageName = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
+                html += `<div class="booking-details"><strong>🗣️ Language:</strong> ${languageName}</div>`;
+            }
+            
+            // Add some spacing if we have booking details
+            if (html) {
+                html += '<br>';
+            }
+            
+            // Check if any tickets are selected (regardless of price)
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                html += '<p>No tickets selected</p>';
+            } else {
+                // Add ticket breakdown by type
+                Object.keys(ticketGroups).forEach(category => {
+                    if (ticketGroups[category].length > 0) {
+                        const fullTypeName = getFullTicketTypeName(category);
+                        html += `<div class="ticket-group"><strong>${fullTypeName}:</strong><br>`;
+                        
+                        ticketGroups[category].forEach(item => {
+                            html += `<div class="total-item"><span>&nbsp;&nbsp;${item.quantity} × €${item.price.toFixed(2)} (${item.typeName})</span><span>€${item.subtotal.toFixed(2)}</span></div>`;
+                        });
+                        html += '</div>';
+                    }
+                });
+            }
+            
+            breakdownContainer.innerHTML = html;
+            totalAmount.textContent = `€${total.toFixed(2)}`;
+        }
+
+        function getTicketTypeName(key) {
+            if (key.includes('adult')) return 'Adult';
+            if (key.includes('student')) return 'Student';
+            if (key.includes('junior')) return 'Junior';
+            if (key.includes('children')) return 'Children';
+            if (key.includes('general')) return 'General';
+            return 'Unknown';
+        }
+
+        function getTicketTypeCategory(key) {
+            if (key.includes('essential')) return 'essential';
+            if (key.includes('night')) return 'night';
+            if (key.includes('sunrise')) return 'sunrise';
+            return 'unknown';
+        }
+
+        function getFullTicketTypeName(category) {
+            switch(category) {
+                case 'essential': return '🏛️ La Pedrera Essential';
+                case 'night': return '🌙 La Pedrera Night Experience';
+                case 'sunrise': return '🌅 La Pedrera Sunrise';
+                default: return 'Unknown Ticket Type';
+            }
+        }
+
+        function bookNow() {
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                showModal('Booking Error', 'Please select at least one ticket before booking.');
+                return;
+            }
+            
+            if (!selectedDate) {
+                showModal('Booking Error', 'Please select a date for your visit.');
+                return;
+            }
+            
+            if (!selectedTime) {
+                showModal('Booking Error', 'Please select a time slot for your visit.');
+                return;
+            }
+            
+            // Language is automatically selected with time slot for Sunrise tickets
+            
+            showModal('Booking Successful!', 'Your Casa Milà – La Pedrera tickets have been booked successfully! You will receive a confirmation email shortly.');
+        }
+
+        function showModal(title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            
+            // Reset all quantities and selections after successful booking
+            if (document.getElementById('modal-title').textContent === 'Booking Successful!') {
+                resetBooking();
+            }
+        }
+
+        function resetBooking() {
+            // Reset quantities
+            Object.keys(quantities).forEach(key => {
+                quantities[key] = 0;
+                document.getElementById(key + '-qty').textContent = '0';
+            });
+            
+            // Reset selections
+            selectedDate = null;
+            selectedTime = null;
+            selectedLanguage = null;
+            
+            // Clear visual selections
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Language selection is now handled automatically with time slots
+            
+            // Reset time slots
+            document.getElementById('time-slots-container').innerHTML = '<p>Please select a date first</p>';
+            
+            // Update total
+            updateTotal();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

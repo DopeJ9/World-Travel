@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atempo - Barcelona Reservations</title>
+    
+    <!-- External CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Arial', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(44, 24, 16, 0.15);
+            height: 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-name-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(44, 24, 16, 0.85);
+            color: #f5deb3;
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(245, 222, 179, 0.3);
+        }
+
+        .restaurant-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+            color: #f5deb3;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(250, 240, 230, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(44, 24, 16, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #2c1810;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title i {
+            color: #8b4513;
+        }
+
+        /* Restaurant Info */
+        .info-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #faf0e6, #f5deb3);
+            border-radius: 12px;
+            border-left: 4px solid #8b4513;
+        }
+
+        .info-item h3 {
+            color: #2c1810;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item p {
+            color: #4a3728;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .hour-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(44, 24, 16, 0.1);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .hour-label {
+            font-weight: 600;
+            color: #2c1810;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .hour-time {
+            color: #8b4513;
+            font-size: 0.85rem;
+        }
+
+        .closed-item {
+            background: rgba(200, 200, 200, 0.3);
+            color: #666;
+        }
+
+        .closed-item .hour-time {
+            color: #666;
+        }
+
+        /* Dress Code & Rules */
+        .rules-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .rules-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(44, 24, 16, 0.1);
+            color: #4a3728;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li i {
+            color: #8b4513;
+            width: 16px;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            background: rgba(250, 240, 230, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(44, 24, 16, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            grid-column: span 2;
+        }
+
+        .simple-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(44, 24, 16, 0.15);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .month-nav-btn {
+            background: #2c1810;
+            color: #f5deb3;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .month-nav-btn:hover {
+            background: #8b4513;
+            transform: scale(1.1);
+        }
+
+        .month-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .month-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c1810;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .day-header {
+            background: #2c1810;
+            color: #f5deb3;
+            padding: 10px 5px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .calendar-day {
+            background: #faf0e6;
+            border: 1px solid #e9e2d6;
+            padding: 15px 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin: 1px;
+        }
+
+        .calendar-day:hover {
+            background: #f5deb3;
+            border-color: #8b4513;
+        }
+
+        .calendar-day.selected {
+            background: #2c1810;
+            color: #f5deb3;
+            border-color: #2c1810;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+            border: none;
+        }
+
+        .calendar-day.empty:hover {
+            background: transparent;
+        }
+
+        .calendar-day.closed {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .calendar-day.closed:hover {
+            background: #f0f0f0;
+            border-color: #e9e2d6;
+        }
+
+        /* Time Slots Styles */
+        .time-slots-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(44, 24, 16, 0.15);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .time-section {
+            margin-bottom: 20px;
+        }
+
+        .time-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .time-section-title {
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            background: #faf0e6;
+            border: 2px solid #e9e2d6;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-slot:hover {
+            background: #f5deb3;
+            border-color: #8b4513;
+        }
+
+        .time-slot.selected {
+            background: #2c1810;
+            color: #f5deb3;
+            border-color: #2c1810;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c1810;
+            font-size: 0.95rem;
+        }
+
+        /* Reserve Button */
+        .reserve-button {
+            background: linear-gradient(135deg, #2c1810, #8b4513);
+            color: #f5deb3;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(44, 24, 16, 0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .reserve-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(44, 24, 16, 0.4);
+        }
+
+        .reserve-button:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(250, 240, 230, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(44, 24, 16, 0.2);
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 20px;
+            color: #2c1810;
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: #8b4513;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .restaurant-name-overlay {
+                top: 15px;
+                left: 15px;
+                padding: 10px 15px;
+            }
+
+            .restaurant-name {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-form {
+                grid-column: span 1;
+            }
+
+            .simple-form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .calendar-grid {
+                gap: 1px;
+            }
+
+            .calendar-day {
+                min-height: 40px;
+                font-size: 0.9rem;
+                padding: 10px 5px;
+            }
+
+            .day-header {
+                padding: 8px 5px;
+                font-size: 0.8rem;
+            }
+
+            .time-slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .time-slot {
+                min-height: 40px;
+                font-size: 0.8rem;
+                padding: 10px 5px;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+                 alt="Atempo Barcelona" 
+                 class="hero-image">
+            <div class="restaurant-name-overlay">
+                <h1 class="restaurant-name">ATEMPO</h1>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Restaurant Information -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    Restaurant Information
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                    <p>Calle Córcega 200<br>Barcelona, Spain</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-clock"></i> Opening Hours</h3>
+                    <div class="hours-grid">
+                        <div class="hour-item">
+                            <div class="hour-label">Wed - Sun</div>
+                            <div class="hour-time">Lunch: 1:00 PM - 2:30 PM<br>Dinner: 8:00 PM - 9:30 PM</div>
+                        </div>
+                        <div class="hour-item closed-item">
+                            <div class="hour-label">Mon - Tue</div>
+                            <div class="hour-time">Closed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-credit-card"></i> Payment</h3>
+                    <p><strong>Credit cards accepted</strong></p>
+                    <ul class="rules-list">
+                        <li><i class="fas fa-check"></i> Visa, MasterCard, American Express</li>
+                        <li><i class="fas fa-check"></i> Contactless payments available</li>
+                        <li><i class="fas fa-check"></i> Cash payments also accepted</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Policies & Rules -->
+            <div class="info-card fade-in">
+                <h2 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Policies & Requirements
+                </h2>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-calendar-check"></i> Reservations</h3>
+                    <p><strong>Reservations are highly recommended</strong> for both lunch and dinner service. Please book in advance to ensure availability.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-utensils"></i> Service</h3>
+                    <p>Atempo offers <strong>table service</strong> for both lunch and dinner. Our experienced staff will provide attentive service throughout your dining experience.</p>
+                </div>
+
+                <div class="info-item">
+                    <h3><i class="fas fa-concierge-bell"></i> Special Requests</h3>
+                    <p>For any dietary requirements, celebrations, or specific seating requests, please contact us when making your reservation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form fade-in">
+            <h2 class="card-title">
+                <i class="fas fa-utensils"></i>
+                Make a Reservation
+            </h2>
+
+            <form id="reservationForm">
+                <div class="simple-form-grid">
+                    <div class="form-group">
+                        <label for="date">Select Date *</label>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="month-nav-btn" id="prevMonth" onclick="changeMonth(-1)">‹</button>
+                                <div class="month-title" id="monthTitle">August</div>
+                                <button type="button" class="month-nav-btn" id="nextMonth" onclick="changeMonth(1)">›</button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedDate" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Select Time *</label>
+                        <div class="time-slots-container">
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-sun"></i>
+                                    Lunch (Wed - Sun)
+                                </div>
+                                <div class="time-slots-grid" id="lunchSlots">
+                                    <div class="time-slot" data-time="13:00" onclick="selectTime('13:00')">1:00 PM</div>
+                                    <div class="time-slot" data-time="13:15" onclick="selectTime('13:15')">1:15 PM</div>
+                                    <div class="time-slot" data-time="13:30" onclick="selectTime('13:30')">1:30 PM</div>
+                                    <div class="time-slot" data-time="13:45" onclick="selectTime('13:45')">1:45 PM</div>
+                                    <div class="time-slot" data-time="14:00" onclick="selectTime('14:00')">2:00 PM</div>
+                                    <div class="time-slot" data-time="14:15" onclick="selectTime('14:15')">2:15 PM</div>
+                                    <div class="time-slot" data-time="14:30" onclick="selectTime('14:30')">2:30 PM</div>
+                                </div>
+                            </div>
+                            <div class="time-section">
+                                <div class="time-section-title">
+                                    <i class="fas fa-moon"></i>
+                                    Dinner (Wed - Sun)
+                                </div>
+                                <div class="time-slots-grid" id="dinnerSlots">
+                                    <div class="time-slot" data-time="20:00" onclick="selectTime('20:00')">8:00 PM</div>
+                                    <div class="time-slot" data-time="20:15" onclick="selectTime('20:15')">8:15 PM</div>
+                                    <div class="time-slot" data-time="20:30" onclick="selectTime('20:30')">8:30 PM</div>
+                                    <div class="time-slot" data-time="20:45" onclick="selectTime('20:45')">8:45 PM</div>
+                                    <div class="time-slot" data-time="21:00" onclick="selectTime('21:00')">9:00 PM</div>
+                                    <div class="time-slot" data-time="21:15" onclick="selectTime('21:15')">9:15 PM</div>
+                                    <div class="time-slot" data-time="21:30" onclick="selectTime('21:30')">9:30 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTime" name="time" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="reserve-button">
+                    <i class="fas fa-calendar-plus"></i>
+                    Make Reservation
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+34 937 34 19 19</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@atempo.com</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
+        let selectedDateValue = null;
+        let selectedTimeValue = null;
+        
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            const monthTitle = document.getElementById('monthTitle');
+            
+            monthTitle.textContent = monthNames[currentMonth] + ' ' + currentYear;
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            dayNames.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+            
+            // Get first day and number of days in month
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = new Date(currentYear, currentMonth, day);
+                const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
+                
+                // Check if restaurant is closed (Monday = 1, Tuesday = 2)
+                if (dayOfWeek === 1 || dayOfWeek === 2) {
+                    dayElement.className = 'calendar-day closed';
+                    dayElement.title = 'Restaurant is closed on Mondays and Tuesdays';
+                } else {
+                    dayElement.className = 'calendar-day';
+                    dayElement.onclick = () => selectDate(day);
+                }
+                
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevMonth');
+            const nextBtn = document.getElementById('nextMonth');
+            
+            // Allow navigation between August 2026 and September 2026
+            prevBtn.disabled = (currentMonth === 7 && currentYear === 2026);
+            nextBtn.disabled = (currentMonth === 8 && currentYear === 2026);
+        }
+
+        function changeMonth(direction) {
+            let newMonth = currentMonth + direction;
+            let newYear = currentYear;
+            
+            if (newMonth < 0) {
+                newMonth = 11;
+                newYear--;
+            } else if (newMonth > 11) {
+                newMonth = 0;
+                newYear++;
+            }
+            
+            // Only allow August 2026 and September 2026
+            if ((newMonth === 7 && newYear === 2026) || (newMonth === 8 && newYear === 2026)) {
+                currentMonth = newMonth;
+                currentYear = newYear;
+                generateCalendar();
+                // Clear selection when month changes
+                selectedDateValue = null;
+                document.getElementById('selectedDate').value = '';
+            }
+        }
+
+        function selectDate(day) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked day
+            event.target.classList.add('selected');
+            
+            // Set selected date value
+            const month = String(currentMonth + 1).padStart(2, '0');
+            const dayStr = String(day).padStart(2, '0');
+            selectedDateValue = `${currentYear}-${month}-${dayStr}`;
+            document.getElementById('selectedDate').value = selectedDateValue;
+        }
+
+        function selectTime(time) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+            
+            // Add selection to clicked time slot
+            event.target.classList.add('selected');
+            
+            // Set selected time value
+            selectedTimeValue = time;
+            document.getElementById('selectedTime').value = selectedTimeValue;
+        }
+
+        // Form Validation and Submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data.date || !data.time) {
+                alert('Please select both date and time.');
+                return;
+            }
+            
+            // Check if selected date is on a closed day
+            const selectedDate = new Date(data.date);
+            const dayOfWeek = selectedDate.getDay(); // 1 = Monday, 2 = Tuesday
+            
+            if (dayOfWeek === 1 || dayOfWeek === 2) {
+                alert('Sorry, Atempo is closed on Mondays and Tuesdays. Please select a different date.');
+                return;
+            }
+            
+            // Format date for display
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+            const displayDate = selectedDate.toLocaleDateString('en-US', dateOptions);
+            
+            // Format time for display
+            const time = data.time;
+            const [hours, minutes] = time.split(':');
+            const hour12 = parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours);
+            const ampm = parseInt(hours) >= 12 ? 'PM' : 'AM';
+            const displayTime = `${hour12}:${minutes} ${ampm}`;
+            
+            // Success message
+            alert(`Reservation Confirmed!\n\nDate: ${displayDate}\nTime: ${displayTime}\n\n¡Gracias! Thank you for choosing Atempo!`);
+            
+            // Reset form
+            this.reset();
+            selectedDateValue = null;
+            selectedTimeValue = null;
+            generateCalendar(); // Regenerate to clear selection
+            // Clear time selection
+            document.querySelectorAll('.time-slot').forEach(timeEl => {
+                timeEl.classList.remove('selected');
+            });
+        });
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize first element as visible
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstElement = document.querySelector('.fade-in');
+            if (firstElement) {
+                setTimeout(() => {
+                    firstElement.classList.add('visible');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

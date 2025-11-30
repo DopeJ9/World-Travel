@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Batlló - Online Tickets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f8f8;
+        }
+
+        .hero-section {
+            height: 175px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1583422409516-2895a77efded?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 200;
+            letter-spacing: 3px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .hero-content h2 {
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #f0f0f0;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+        
+        /* Move the date selection section up slightly */
+        .top-content .section {
+            margin-top: 0.5rem;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .opening-hours {
+            background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+            padding: 0.8rem;
+            border-radius: 8px;
+            border-left: 5px solid #34495e;
+        }
+
+        .hours-text {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: #2c3e50;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+
+        .important-notice {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.6rem;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+        }
+
+        .notice-title {
+            font-weight: bold;
+            color: #d68910;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notice-title::before {
+            content: "⚠️";
+            font-size: 1.2rem;
+        }
+
+        .notice-content {
+            color: #d68910;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .notice-content ol {
+            margin-left: 1.5rem;
+        }
+
+        .notice-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .top-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 0.5rem;
+            align-items: start;
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-weight: bold;
+            padding: 0.7rem;
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 0.8rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .calendar-day:hover {
+            background: #ecf0f1;
+            border-color: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.2);
+        }
+
+        .calendar-day.selected {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-color: #1b2631;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 73, 94, 0.3);
+        }
+
+        .right-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-self: start;
+        }
+        
+        /* Ensure perfect alignment */
+        .right-selection .time-selection:first-child,
+        .right-selection .visit-type-selection:not(.hidden) {
+            margin-top: 0;
+        }
+        
+        .right-selection .visit-type-selection.hidden ~ .time-selection {
+            margin-top: 0;
+        }
+
+        .visit-type-selection {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+
+        .visit-type-selection h4 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .language-type-selection {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+            margin-top: 1rem;
+        }
+
+        .language-type-selection h4 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .visit-dropdown {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-button {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            line-height: 1.2;
+            font-weight: 600;
+            color: #34495e;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-button:hover {
+            border-color: #34495e;
+            background: #ecf0f1;
+        }
+
+        .dropdown-button::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-button.open::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #34495e;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+        }
+
+        .dropdown-options.show {
+            display: block;
+        }
+
+        .dropdown-option {
+            padding: 0.7rem;
+            cursor: pointer;
+            border-bottom: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #34495e;
+            font-size: 0.95rem;
+            line-height: 1.2;
+        }
+
+        .dropdown-option:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-option:hover {
+            background: #ecf0f1;
+        }
+
+        .time-selection {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+        }
+
+        .time-selection h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #34495e;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #e8e8e8;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 55px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .time-slot:hover {
+            background: #ecf0f1;
+            border-color: #34495e;
+            transform: translateY(-1px);
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            border-color: #1b2631;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
+        }
+
+        .time-slot.sold-out {
+            background: #bdc3c7;
+            color: #7f8c8d;
+            cursor: not-allowed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot.sold-out::after {
+            content: "sold out";
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            font-size: 0.65rem;
+            color: #e74c3c;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2px 4px;
+            border-radius: 3px;
+            transform: rotate(12deg);
+        }
+
+        .tickets-section {
+            margin-top: 2rem;
+        }
+
+        .ticket-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        #vip-tickets.ticket-cards-container {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1200px) {
+            #vip-tickets.ticket-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #vip-tickets.ticket-cards-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid #e8e8e8;
+            position: relative;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .ticket-header {
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .ticket-header.blue { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+        .ticket-header.silver { background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); }
+        .ticket-header.gold { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+        .ticket-header.platinum { background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%); }
+        .ticket-header.night-blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .ticket-header.night-gold { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+
+        .ticket-features {
+            padding: 2rem 2rem 2rem 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0;
+            color: #34495e;
+            font-size: 0.85rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            background: #27ae60;
+            color: white;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .features-list li.disabled {
+            color: #bdc3c7;
+        }
+
+        .features-list li.disabled::before {
+            content: "✗";
+            background: #e74c3c;
+        }
+
+        /* Night ticket special icons */
+        .night-features .features-list li::before {
+            content: "✓";
+            background: transparent;
+            border: 2px solid #27ae60;
+            color: #27ae60;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .night-features .features-list li.disabled::before {
+            content: "✗";
+            background: transparent;
+            border: 2px solid #95a5a6;
+            color: #95a5a6;
+        }
+
+        .ticket-price {
+            text-align: center;
+            padding: 1rem;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .price-main {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .price-options {
+            margin-top: 1rem;
+            padding: 0;
+        }
+
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            margin-bottom: 0.6rem;
+            background: transparent;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s ease;
+            min-height: 55px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .price-option:hover {
+            background: transparent;
+        }
+
+        .price-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            margin-right: -1.2rem;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #34495e;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: #34495e;
+        }
+
+        .quantity-btn:hover {
+            background: #34495e;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .quantity-display {
+            min-width: 25px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #34495e;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
+        }
+
+        .total-breakdown {
+            margin-bottom: 1.5rem;
+        }
+
+        .total-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .booking-details {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ticket-group {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ticket-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .total-final {
+            font-size: 1.6rem;
+            font-weight: bold;
+            border-top: 3px solid #3498db;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .book-now-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 62, 80, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 3rem;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-top: 5px solid #3498db;
+        }
+
+        .close-btn {
+            color: #95a5a6;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Reset any margin adjustments */
+        .right-selection > * {
+            margin-top: 0 !important;
+        }
+
+        .junior-warning {
+            background: #e8f4fd;
+            border: 1px solid #3498db;
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #2980b9;
+            display: none;
+        }
+
+        .junior-warning.show {
+            display: block;
+        }
+
+        @media (max-width: 1400px) {
+            .ticket-cards-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .ticket-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .top-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .ticket-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .ticket-cards-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
+            
+            .features-list li {
+                font-size: 0.9rem;
+            }
+            
+            .calendar-container {
+                gap: 6px;
+            }
+            
+            .calendar-day {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .price-option {
+                padding: 0.6rem 1rem;
+            }
+            
+            .quantity-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Casa Batlló</h1>
+            <h2>Online Tickets</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Opening Hours Section -->
+        <div class="section">
+            <h3>🕒 Opening Hours</h3>
+            <div class="opening-hours">
+                <div class="hours-text">
+                    <strong>Every day of the year:</strong> 9:00 am - 10:30 pm
+                </div>
+                <div class="important-notice">
+                    <div class="notice-title">Important Notice</div>
+                    <div class="notice-content">
+                        <ol>
+                            <li>Please arrive 10 minutes before the selected time to enter calmly.</li>
+                            <li>It is important to enter at the chosen time for the visit. In case of force majeure, please go to the ticket office to explain your situation and we will assist in managing a new booking.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Content: Date Selection and Visit Type/Time Selection -->
+        <div class="top-content">
+            <!-- Left: Date Selection -->
+            <div class="section">
+                <h3>Select Date - August</h3>
+                <div class="calendar-container">
+                    <div class="calendar-header">Sun</div>
+                    <div class="calendar-header">Mon</div>
+                    <div class="calendar-header">Tue</div>
+                    <div class="calendar-header">Wed</div>
+                    <div class="calendar-header">Thu</div>
+                    <div class="calendar-header">Fri</div>
+                    <div class="calendar-header">Sat</div>
+                    <!-- Calendar days will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Right: Visit Type and Time Selection -->
+            <div class="right-selection">
+                <!-- Visit Type Selection -->
+                <div class="visit-type-selection">
+                    <h4>Select Visit Type</h4>
+                    <div class="visit-dropdown">
+                        <button class="dropdown-button" id="visit-type-btn" onclick="toggleDropdown()">
+                            <span id="selected-visit-type">General Visit</span>
+                        </button>
+                        <div class="dropdown-options" id="dropdown-options">
+                            <div class="dropdown-option" onclick="selectVisitType('general')">General Visit</div>
+                            <div class="dropdown-option" onclick="selectVisitType('vip')">Guided Visit + VIP Room</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time Selection -->
+                <div class="time-selection">
+                    <h4>Select Time</h4>
+                    <div id="time-slots-container">
+                        <p>Please select a date first</p>
+                    </div>
+                </div>
+
+                <!-- Guided Tour Language Selection (for VIP visits) -->
+                <div class="language-type-selection hidden" id="vip-language-section">
+                    <h4>Select Guided Tour Language</h4>
+                    <div class="visit-dropdown">
+                        <button class="dropdown-button" id="language-dropdown-btn" onclick="toggleLanguageDropdown()">
+                            <span id="selected-language">Select Language</span>
+                        </button>
+                        <div class="dropdown-options" id="language-dropdown-options">
+                            <div class="dropdown-option" onclick="selectTourLanguage('spanish')">🇪🇸 Spanish</div>
+                            <div class="dropdown-option" onclick="selectTourLanguage('english')">🇬🇧 English</div>
+                            <div class="dropdown-option" onclick="selectTourLanguage('french')">🇫🇷 French</div>
+                            <div class="dropdown-option" onclick="selectTourLanguage('italian')">🇮🇹 Italian</div>
+                            <div class="dropdown-option" onclick="selectTourLanguage('chinese')">🇨🇳 Chinese</div>
+                            <div class="dropdown-option" onclick="selectTourLanguage('korean')">🇰🇷 Korean</div>
+                            <div class="dropdown-option" onclick="selectTourLanguage('japanese')">🇯🇵 Japanese</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticket Types Section -->
+        <div class="section">
+            <h3>Select Your Tickets</h3>
+            <div class="tickets-section">
+                <!-- General Visit Tickets -->
+                <div id="general-tickets" class="ticket-cards-container">
+                    <!-- Blue Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header blue">BLUE TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Audioguide (15 languages available)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li class="disabled">Dragon's Rooftop</li>
+                                <li class="disabled">Augmented Reality Tablet</li>
+                                <li class="disabled">Gaudí Dome (immersive)</li>
+                                <li class="disabled">Original Concierge Room</li>
+                                <li class="disabled">Private residence of the Batllós</li>
+                                <li class="disabled">Priority Pass</li>
+                                <li class="disabled">Flexible date change</li>
+                                <li class="disabled">Free cancellation</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">31€</div>
+                                <div class="price-note">Children 0-12 years old FREE<br>Junior (Age 13-17) 6€ discount</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Adult</strong></span>
+                                            <span style="color: #3498db; font-weight: bold;">€31.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-blue', -1)">-</button>
+                                            <span class="quantity-display" id="adult-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Junior</strong></span>
+                                            <span style="color: #3498db; font-weight: bold; ">€25.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-blue', -1)">-</button>
+                                            <span class="quantity-display" id="junior-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Children</strong></span>
+                                            <span style="color: #27ae60; font-weight: bold; ">FREE</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('children-blue', -1)">-</button>
+                                            <span class="quantity-display" id="children-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('children-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="junior-warning" id="junior-blue-warning">
+                                    Up to 15 juniors per booking. At least one adult required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Silver Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header silver">SILVER TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Audioguide (15 languages available)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li>Dragon's Rooftop</li>
+                                <li class="disabled">Augmented Reality Tablet</li>
+                                <li class="disabled">Gaudí Dome (immersive)</li>
+                                <li class="disabled">Original Concierge Room</li>
+                                <li class="disabled">Private residence of the Batllós</li>
+                                <li class="disabled">Priority Pass</li>
+                                <li class="disabled">Flexible date change</li>
+                                <li class="disabled">Free cancellation</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">36€</div>
+                                <div class="price-note">Children 0-12 years old FREE<br>Junior (Age 13-17) 6€ discount</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Adult</strong></span>
+                                            <span style="color: #95a5a6; font-weight: bold; ">€36.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-silver', -1)">-</button>
+                                            <span class="quantity-display" id="adult-silver-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-silver', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Junior</strong></span>
+                                            <span style="color: #95a5a6; font-weight: bold; ">€30.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-silver', -1)">-</button>
+                                            <span class="quantity-display" id="junior-silver-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-silver', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Children</strong></span>
+                                            <span style="color: #27ae60; font-weight: bold; ">FREE</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('children-silver', -1)">-</button>
+                                            <span class="quantity-display" id="children-silver-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('children-silver', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="junior-warning" id="junior-silver-warning">
+                                    Up to 15 juniors per booking. At least one adult required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gold Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header gold">GOLD TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Audioguide (15 languages available)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li>Dragon's Rooftop</li>
+                                <li>Augmented Reality Tablet</li>
+                                <li>Gaudí Dome (immersive)</li>
+                                <li>Original Concierge Room</li>
+                                <li>Private residence of the Batllós</li>
+                                <li class="disabled">Priority Pass</li>
+                                <li class="disabled">Flexible date change</li>
+                                <li class="disabled">Free cancellation</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">41€</div>
+                                <div class="price-note">Children 0-12 years old FREE<br>Junior (Age 13-17) 6€ discount</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Adult</strong></span>
+                                            <span style="color: #f39c12; font-weight: bold; ">€41.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-gold', -1)">-</button>
+                                            <span class="quantity-display" id="adult-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Junior</strong></span>
+                                            <span style="color: #f39c12; font-weight: bold; ">€35.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-gold', -1)">-</button>
+                                            <span class="quantity-display" id="junior-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Children</strong></span>
+                                            <span style="color: #27ae60; font-weight: bold; ">FREE</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('children-gold', -1)">-</button>
+                                            <span class="quantity-display" id="children-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('children-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="junior-warning" id="junior-gold-warning">
+                                    Up to 15 juniors per booking. At least one adult required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Platinum Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header platinum">PLATINUM TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Audioguide (15 languages available)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li>Dragon's Rooftop</li>
+                                <li>Augmented Reality Tablet</li>
+                                <li>Gaudí Dome (immersive)</li>
+                                <li>Original Concierge Room</li>
+                                <li>Private residence of the Batllós</li>
+                                <li>Priority Pass</li>
+                                <li>Flexible date change</li>
+                                <li>Free cancellation</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">51€</div>
+                                <div class="price-note">Children 0-12 years old FREE<br>Junior (Age 13-17) 6€ discount</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Adult</strong></span>
+                                            <span style="color: #34495e; font-weight: bold; ">€51.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-platinum', -1)">-</button>
+                                            <span class="quantity-display" id="adult-platinum-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-platinum', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Junior</strong></span>
+                                            <span style="color: #34495e; font-weight: bold; ">€45.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-platinum', -1)">-</button>
+                                            <span class="quantity-display" id="junior-platinum-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-platinum', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Children</strong></span>
+                                            <span style="color: #27ae60; font-weight: bold; ">FREE</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('children-platinum', -1)">-</button>
+                                            <span class="quantity-display" id="children-platinum-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('children-platinum', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="junior-warning" id="junior-platinum-warning">
+                                    Up to 15 juniors per booking. At least one adult required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Night Blue Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header night-blue">NIGHT VISIT - BLUE TICKET</div>
+                        <div class="ticket-features night-features">
+                            <ul class="features-list">
+                                <li>Audioguide (15 languages available)</li>
+                                <li class="disabled">Cup of mulled wine</li>
+                                <li class="disabled">Original Concierge Room</li>
+                                <li class="disabled">Dragon's Rooftop</li>
+                                <li class="disabled">Augmented Reality Tablet</li>
+                                <li class="disabled">Gaudí Dome (immersive)</li>
+                            </ul>
+                            <div class="ticket-info-box" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #667eea;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 1.2rem;">⏱️</span>
+                                    <strong>Duration:</strong> 1 hr 15 mins
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 0.85rem;">First access: 6:30pm | Last access: 8:45pm</span>
+                                </div>
+                            </div>
+                            <div class="ticket-price">
+                                <div class="price-main">39€</div>
+                                <div class="price-note">Children 0-12 years old FREE</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Adult</strong></span>
+                                            <span style="color: #667eea; font-weight: bold;">€39.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-night-blue', -1)">-</button>
+                                            <span class="quantity-display" id="adult-night-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-night-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Junior (Age 13-17)</strong></span>
+                                            <span style="color: #667eea; font-weight: bold;">€33.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-night-blue', -1)">-</button>
+                                            <span class="quantity-display" id="junior-night-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-night-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Children (0-12)</strong></span>
+                                            <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('children-night-blue', -1)">-</button>
+                                            <span class="quantity-display" id="children-night-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('children-night-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="junior-warning" id="junior-night-blue-warning">
+                                    Up to 15 juniors per booking. At least one adult required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Night Gold Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header night-gold">NIGHT VISIT - GOLD TICKET</div>
+                        <div class="ticket-features night-features">
+                            <ul class="features-list">
+                                <li>Audioguide (15 languages available)</li>
+                                <li>Cup of mulled wine</li>
+                                <li>Original Concierge Room</li>
+                                <li>Dragon's Rooftop</li>
+                                <li>Augmented Reality Tablet</li>
+                                <li>Gaudí Dome (immersive)</li>
+                            </ul>
+                            <div class="ticket-info-box" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #f093fb;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 1.2rem;">⏱️</span>
+                                    <strong>Duration:</strong> 1 hr 15 mins
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 0.85rem;">First access: 6:30pm | Last access: 8:45pm</span>
+                                </div>
+                            </div>
+                            <div class="ticket-price">
+                                <div class="price-main">49€</div>
+                                <div class="price-note">Children 0-12 years old FREE</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Adult</strong></span>
+                                            <span style="color: #f093fb; font-weight: bold;">€49.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-night-gold', -1)">-</button>
+                                            <span class="quantity-display" id="adult-night-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-night-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Junior (Age 13-17)</strong></span>
+                                            <span style="color: #f093fb; font-weight: bold;">€43.00</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-night-gold', -1)">-</button>
+                                            <span class="quantity-display" id="junior-night-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('junior-night-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="price-option">
+                                        <div class="price-label">
+                                            <span><strong>Children (0-12)</strong></span>
+                                            <span style="color: #27ae60; font-weight: bold;">FREE</span>
+                                        </div>
+                                        <div class="quantity-controls">
+                                            <button class="quantity-btn" onclick="changeQuantity('children-night-gold', -1)">-</button>
+                                            <span class="quantity-display" id="children-night-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('children-night-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="junior-warning" id="junior-night-gold-warning">
+                                    Up to 15 juniors per booking. At least one adult required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIP Tickets (Hidden by default) -->
+                <div id="vip-tickets" class="ticket-cards-container hidden">
+                    <!-- VIP Blue Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header blue">BLUE TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Skip-the-line entry</li>
+                                <li>Professional guide (8 languages)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li>Dragon's Rooftop</li>
+                                <li>Original Concierge Room</li>
+                                <li>Private residence of the Batllós</li>
+                                <li>VIP Lounge + Drinks</li>
+                                <li class="disabled">Tasting of sweet and savory miniatures</li>
+                                <li class="disabled">Flexible date change</li>
+                                <li class="disabled">Free cancellation (up to 7 days before)</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">119€</div>
+                                <div class="price-note">Minimum 6 people - Maximum 12 people</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <span><strong>Adult</strong></span>
+                                        <div class="quantity-controls">
+                                            <span style="color: #3498db; font-weight: bold;">€119.00</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-vip-blue', -1)">-</button>
+                                            <span class="quantity-display" id="adult-vip-blue-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-vip-blue', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIP Silver Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header silver">SILVER TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Skip-the-line entry</li>
+                                <li>Professional guide (8 languages)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li>Dragon's Rooftop</li>
+                                <li>Original Concierge Room</li>
+                                <li>Private residence of the Batllós</li>
+                                <li>VIP Lounge + Drinks</li>
+                                <li>Tasting of sweet and savory miniatures</li>
+                                <li class="disabled">Flexible date change</li>
+                                <li class="disabled">Free cancellation (up to 7 days before)</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">149€</div>
+                                <div class="price-note">Minimum 6 people - Maximum 12 people</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <span><strong>Adult</strong></span>
+                                        <div class="quantity-controls">
+                                            <span style="color: #95a5a6; font-weight: bold;">€149.00</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-vip-silver', -1)">-</button>
+                                            <span class="quantity-display" id="adult-vip-silver-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-vip-silver', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIP Gold Ticket -->
+                    <div class="ticket-card">
+                        <div class="ticket-header gold">GOLD TICKET</div>
+                        <div class="ticket-features">
+                            <ul class="features-list">
+                                <li>Skip-the-line entry</li>
+                                <li>Professional guide (8 languages)</li>
+                                <li>Gaudí Cube (360°)</li>
+                                <li>Dragon's Rooftop</li>
+                                <li>Original Concierge Room</li>
+                                <li>Private residence of the Batllós</li>
+                                <li>VIP Lounge + Drinks</li>
+                                <li>Tasting of sweet and savory miniatures</li>
+                                <li>Flexible date change</li>
+                                <li>Free cancellation (up to 7 days before)</li>
+                            </ul>
+                            <div class="ticket-price">
+                                <div class="price-main">169€</div>
+                                <div class="price-note">Minimum 6 people - Maximum 12 people</div>
+                                <div class="price-options">
+                                    <div class="price-option">
+                                        <span><strong>Adult</strong></span>
+                                        <div class="quantity-controls">
+                                            <span style="color: #f39c12; font-weight: bold;">€169.00</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-vip-gold', -1)">-</button>
+                                            <span class="quantity-display" id="adult-vip-gold-qty">0</span>
+                                            <button class="quantity-btn" onclick="changeQuantity('adult-vip-gold', 1)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="total-section">
+            <h3>🛒 Order Summary</h3>
+            <div class="total-breakdown" id="total-breakdown">
+                <p>No tickets selected</p>
+            </div>
+            <div class="total-final">
+                <div class="total-item">
+                    <span>Total:</span>
+                    <span id="total-amount">€0.00</span>
+                </div>
+            </div>
+            <button class="book-now-btn" onclick="bookNow()">🎫 Book Now</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Booking Confirmation</h2>
+            <p id="modal-message">Your booking has been confirmed!</p>
+            <button onclick="closeModal()" style="margin-top: 2rem; padding: 1rem 3rem; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedVisitType = 'general';
+        let selectedTourLanguage = null;
+        let quantities = {};
+        
+        // Ticket prices
+        const ticketPrices = {
+            // General Visit tickets
+            'adult-blue': 31,
+            'junior-blue': 25,
+            'children-blue': 0,
+            'adult-silver': 36,
+            'junior-silver': 30,
+            'children-silver': 0,
+            'adult-gold': 41,
+            'junior-gold': 35,
+            'children-gold': 0,
+            'adult-platinum': 51,
+            'junior-platinum': 45,
+            'children-platinum': 0,
+            // Night Visit tickets
+            'adult-night-blue': 39,
+            'junior-night-blue': 33,
+            'children-night-blue': 0,
+            'adult-night-gold': 49,
+            'junior-night-gold': 43,
+            'children-night-gold': 0,
+            // VIP tickets
+            'adult-vip-blue': 119,
+            'adult-vip-silver': 149,
+            'adult-vip-gold': 169
+        };
+
+        // Initialize quantities
+        Object.keys(ticketPrices).forEach(key => {
+            quantities[key] = 0;
+        });
+
+        // Generate different sold-out patterns for each day
+        function getSoldOutPattern(date) {
+            const dateStr = date.replace(/-/g, '');
+            const seed = parseInt(dateStr) % 1000;
+            const pattern = [];
+            
+            const numSoldOut = 2 + (seed % 4); // 2-5 sold out slots
+            const usedIndices = new Set();
+            
+            for (let i = 0; i < numSoldOut; i++) {
+                let index;
+                do {
+                    index = (seed + i * 11) % 16; // Different pattern based on date
+                } while (usedIndices.has(index));
+                usedIndices.add(index);
+                pattern.push(index);
+            }
+            
+            return pattern;
+        }
+
+        // Generate calendar for August 2026
+        function generateCalendar() {
+            const calendarContainer = document.querySelector('.calendar-container');
+            const daysInMonth = 31;
+            const firstDayOfWeek = 6; // August 1, 2026 is a Saturday
+            
+            // Add empty cells for days before the 1st
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                calendarContainer.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                const date = `2026-08-${day.toString().padStart(2, '0')}`;
+                
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.dataset.date = date;
+                dayElement.onclick = () => selectDate(dayElement);
+                
+                calendarContainer.appendChild(dayElement);
+            }
+        }
+
+        function selectDate(element) {
+            // Remove previous selection
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            // Select new date
+            element.classList.add('selected');
+            selectedDate = element.dataset.date;
+            
+            // Clear time selection when date changes
+            selectedTime = null;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Generate time slots for selected date
+            generateTimeSlots(selectedDate);
+            
+            // Update total to show date info
+            updateTotal();
+        }
+
+        function toggleDropdown() {
+            const button = document.getElementById('visit-type-btn');
+            const options = document.getElementById('dropdown-options');
+            
+            button.classList.toggle('open');
+            options.classList.toggle('show');
+        }
+
+        function selectVisitType(type) {
+            const button = document.getElementById('visit-type-btn');
+            const options = document.getElementById('dropdown-options');
+            const selectedText = document.getElementById('selected-visit-type');
+            const vipLanguageSection = document.getElementById('vip-language-section');
+            
+            selectedVisitType = type;
+            
+            if (type === 'general') {
+                selectedText.textContent = 'General Visit';
+                document.getElementById('general-tickets').classList.remove('hidden');
+                document.getElementById('vip-tickets').classList.add('hidden');
+                vipLanguageSection.classList.add('hidden');
+            } else {
+                selectedText.textContent = 'Guided Visit + VIP Room';
+                document.getElementById('general-tickets').classList.add('hidden');
+                document.getElementById('vip-tickets').classList.remove('hidden');
+                vipLanguageSection.classList.remove('hidden');
+            }
+            
+            // Clear time and language selection when visit type changes
+            selectedTime = null;
+            selectedTourLanguage = null;
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Reset language dropdown
+            document.getElementById('selected-language').textContent = 'Select Language';
+            
+            // Regenerate time slots
+            if (selectedDate) {
+                generateTimeSlots(selectedDate);
+            }
+            
+            button.classList.remove('open');
+            options.classList.remove('show');
+            
+            updateTotal();
+        }
+
+        function generateTimeSlots(date) {
+            const container = document.getElementById('time-slots-container');
+            
+            let timeSlots = [];
+            
+            if (selectedVisitType === 'vip') {
+                // VIP tickets - only 4 specific times
+                timeSlots = ['08:00', '10:00', '16:00', '18:00'];
+            } else {
+                // General Visit - 16 slots from 9:00 to 20:45
+                timeSlots = generateTimeSlotsForRange('09:00', '20:45');
+            }
+            
+            container.innerHTML = '<div class="time-slots"></div>';
+            const slotsContainer = container.querySelector('.time-slots');
+            
+            // Get sold-out pattern for this specific date
+            const soldOutPattern = getSoldOutPattern(date);
+            
+            timeSlots.forEach((time, index) => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                slot.dataset.time = time;
+                
+                // Apply date-specific sold-out pattern
+                if (soldOutPattern.includes(index)) {
+                    slot.classList.add('sold-out');
+                    slot.onclick = null;
+                } else {
+                    slot.onclick = () => selectTime(slot);
+                }
+                
+                slotsContainer.appendChild(slot);
+            });
+        }
+
+        function generateTimeSlotsForRange(startTime, endTime) {
+            const slots = [];
+            const start = timeToMinutes(startTime);
+            
+            let currentTime = start;
+            
+            // Generate 30-minute intervals for first 12 slots
+            while (slots.length < 12) {
+                slots.push(minutesToTime(currentTime));
+                currentTime += 30;
+            }
+            
+            // Add the last 4 specific time slots
+            slots.push('15:00', '16:00', '18:30', '20:45');
+            
+            return slots.slice(0, 16); // Ensure exactly 16 slots
+        }
+
+        function timeToMinutes(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+
+        function minutesToTime(minutes) {
+            const hours = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+        }
+
+        function selectTime(element) {
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Select new time
+            element.classList.add('selected');
+            selectedTime = element.dataset.time;
+            
+            // Update total to show date/time info
+            updateTotal();
+        }
+
+        function changeQuantity(ticketType, change) {
+            const isVipTicket = ticketType.includes('vip');
+            
+            if (isVipTicket) {
+                // VIP tickets: jump from 0 to 6, max 12
+                if (change > 0) {
+                    if (quantities[ticketType] === 0) {
+                        quantities[ticketType] = 6;
+                    } else if (quantities[ticketType] < 12) {
+                        quantities[ticketType]++;
+                    }
+                } else {
+                    if (quantities[ticketType] > 6) {
+                        quantities[ticketType]--;
+                    } else if (quantities[ticketType] === 6) {
+                        quantities[ticketType] = 0;
+                    }
+                }
+            } else {
+                // Regular tickets
+                quantities[ticketType] = Math.max(0, quantities[ticketType] + change);
+                
+                // For junior tickets, max 15 and show warning
+                if (ticketType.includes('junior')) {
+                    quantities[ticketType] = Math.min(15, quantities[ticketType]);
+                    const warningId = ticketType.replace('junior', 'junior').replace('-', '-') + '-warning';
+                    const warningElement = document.getElementById(warningId);
+                    if (warningElement) {
+                        if (quantities[ticketType] > 0) {
+                            warningElement.classList.add('show');
+                        } else {
+                            warningElement.classList.remove('show');
+                        }
+                    }
+                }
+            }
+            
+            document.getElementById(ticketType + '-qty').textContent = quantities[ticketType];
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            
+            // Group tickets by type for better display
+            const ticketGroups = {
+                'blue': [],
+                'silver': [],
+                'gold': [],
+                'platinum': [],
+                'night-blue': [],
+                'night-gold': [],
+                'vip-blue': [],
+                'vip-silver': [],
+                'vip-gold': []
+            };
+            
+            Object.keys(quantities).forEach(key => {
+                if (quantities[key] > 0) {
+                    const price = ticketPrices[key];
+                    const subtotal = quantities[key] * price;
+                    total += subtotal;
+                    
+                    const typeName = getTicketTypeName(key);
+                    const ticketTypeCategory = getTicketTypeCategory(key);
+                    
+                    ticketGroups[ticketTypeCategory].push({
+                        quantity: quantities[key],
+                        price: price,
+                        typeName: typeName,
+                        subtotal: subtotal
+                    });
+                }
+            });
+            
+            const breakdownContainer = document.getElementById('total-breakdown');
+            const totalAmount = document.getElementById('total-amount');
+            
+            let html = '';
+            
+            // Always show date and time info if selected
+            if (selectedDate && selectedTime) {
+                const dateObj = new Date(selectedDate + 'T12:00:00');
+                const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                html += `<div class="booking-details"><strong>📅 Date:</strong> ${formattedDate}<br><strong>🕐 Time:</strong> ${selectedTime}</div>`;
+            }
+            
+            // Add visit type info
+            const visitTypeName = selectedVisitType === 'general' ? 'General Visit' : 'Guided Visit + VIP Room';
+            html += `<div class="booking-details"><strong>🎫 Visit Type:</strong> ${visitTypeName}</div>`;
+            
+            // Add language info for VIP visits
+            if (selectedVisitType === 'vip' && selectedTourLanguage) {
+                const languageNames = {
+                    'spanish': 'Spanish',
+                    'english': 'English',
+                    'french': 'French',
+                    'italian': 'Italian',
+                    'chinese': 'Chinese',
+                    'korean': 'Korean',
+                    'japanese': 'Japanese'
+                };
+                const languageFlags = {
+                    'spanish': '🇪🇸',
+                    'english': '🇬🇧',
+                    'french': '🇫🇷',
+                    'italian': '🇮🇹',
+                    'chinese': '🇨🇳',
+                    'korean': '🇰🇷',
+                    'japanese': '🇯🇵'
+                };
+                html += `<div class="booking-details"><strong>🗣️ Tour Language:</strong> ${languageFlags[selectedTourLanguage]} ${languageNames[selectedTourLanguage]}</div>`;
+            }
+            
+            // Add some spacing if we have booking details
+            if (html) {
+                html += '<br>';
+            }
+            
+            // Check if any tickets are selected (regardless of price)
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                html += '<p>No tickets selected</p>';
+            } else {
+                // Add ticket breakdown by type
+                Object.keys(ticketGroups).forEach(category => {
+                    if (ticketGroups[category].length > 0) {
+                        const fullTypeName = getFullTicketTypeName(category);
+                        html += `<div class="ticket-group"><strong>${fullTypeName}:</strong><br>`;
+                        
+                        ticketGroups[category].forEach(item => {
+                            html += `<div class="total-item"><span>&nbsp;&nbsp;${item.quantity} × €${item.price.toFixed(2)} (${item.typeName})</span><span>€${item.subtotal.toFixed(2)}</span></div>`;
+                        });
+                        html += '</div>';
+                    }
+                });
+            }
+            
+            breakdownContainer.innerHTML = html;
+            totalAmount.textContent = `€${total.toFixed(2)}`;
+        }
+
+        function getTicketTypeName(key) {
+            if (key.includes('adult')) return 'Adult';
+            if (key.includes('junior')) return 'Junior';
+            if (key.includes('children')) return 'Children';
+            return 'Unknown';
+        }
+
+        function getTicketTypeCategory(key) {
+            if (key.includes('vip-blue')) return 'vip-blue';
+            if (key.includes('vip-silver')) return 'vip-silver';
+            if (key.includes('vip-gold')) return 'vip-gold';
+            if (key.includes('night-blue')) return 'night-blue';
+            if (key.includes('night-gold')) return 'night-gold';
+            if (key.includes('blue')) return 'blue';
+            if (key.includes('silver')) return 'silver';
+            if (key.includes('gold')) return 'gold';
+            if (key.includes('platinum')) return 'platinum';
+            return 'unknown';
+        }
+
+        function getFullTicketTypeName(category) {
+            switch(category) {
+                case 'blue': return '🔵 Blue Ticket';
+                case 'silver': return '⚪ Silver Ticket';
+                case 'gold': return '🟡 Gold Ticket';
+                case 'platinum': return '⚫ Platinum Ticket';
+                case 'night-blue': return '🌙 Night Visit - Blue Ticket';
+                case 'night-gold': return '🌙 Night Visit - Gold Ticket';
+                case 'vip-blue': return '🔵 VIP Blue Ticket';
+                case 'vip-silver': return '⚪ VIP Silver Ticket';
+                case 'vip-gold': return '🟡 VIP Gold Ticket';
+                default: return 'Unknown Ticket Type';
+            }
+        }
+
+        function bookNow() {
+            const totalTickets = Object.values(quantities).reduce((sum, qty) => sum + qty, 0);
+            
+            if (totalTickets === 0) {
+                showModal('Booking Error', 'Please select at least one ticket before booking.');
+                return;
+            }
+            
+            if (!selectedDate) {
+                showModal('Booking Error', 'Please select a date for your visit.');
+                return;
+            }
+            
+            if (!selectedTime) {
+                showModal('Booking Error', 'Please select a time slot for your visit.');
+                return;
+            }
+            
+            // Check VIP ticket requirements
+            if (selectedVisitType === 'vip') {
+                const vipTotal = quantities['adult-vip-blue'] + quantities['adult-vip-silver'] + quantities['adult-vip-gold'];
+                if (vipTotal > 0 && (vipTotal < 6 || vipTotal > 12)) {
+                    showModal('Booking Error', 'VIP visits require between 6 and 12 people.');
+                    return;
+                }
+                
+                if (vipTotal > 0 && !selectedTourLanguage) {
+                    showModal('Booking Error', 'Please select a guided tour language for your VIP visit.');
+                    return;
+                }
+            }
+            
+            // Check junior requirements for general visits
+            if (selectedVisitType === 'general') {
+                const juniorTotal = quantities['junior-blue'] + quantities['junior-silver'] + quantities['junior-gold'] + quantities['junior-platinum'];
+                const adultTotal = quantities['adult-blue'] + quantities['adult-silver'] + quantities['adult-gold'] + quantities['adult-platinum'];
+                
+                if (juniorTotal > 0 && adultTotal === 0) {
+                    showModal('Booking Error', 'At least one adult is required when booking junior tickets.');
+                    return;
+                }
+            }
+            
+            showModal('Booking Successful!', 'Your Casa Batlló tickets have been booked successfully! You will receive a confirmation email shortly.');
+        }
+
+        function showModal(title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            
+            // Reset all quantities and selections after successful booking
+            if (document.getElementById('modal-title').textContent === 'Booking Successful!') {
+                resetBooking();
+            }
+        }
+
+        function resetBooking() {
+            // Reset quantities
+            Object.keys(quantities).forEach(key => {
+                quantities[key] = 0;
+                document.getElementById(key + '-qty').textContent = '0';
+            });
+            
+            // Reset selections
+            selectedDate = null;
+            selectedTime = null;
+            selectedTourLanguage = null;
+            
+            // Reset language dropdown
+            document.getElementById('selected-language').textContent = 'Select Language';
+            
+            // Clear visual selections
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            
+            // Hide junior warnings
+            document.querySelectorAll('.junior-warning').forEach(warning => {
+                warning.classList.remove('show');
+            });
+            
+            // Reset time slots
+            document.getElementById('time-slots-container').innerHTML = '<p>Please select a date first</p>';
+            
+            // Update total
+            updateTotal();
+        }
+
+        function toggleLanguageDropdown() {
+            const button = document.getElementById('language-dropdown-btn');
+            const options = document.getElementById('language-dropdown-options');
+            
+            button.classList.toggle('open');
+            options.classList.toggle('show');
+        }
+
+        function selectTourLanguage(language) {
+            const button = document.getElementById('language-dropdown-btn');
+            const options = document.getElementById('language-dropdown-options');
+            const selectedText = document.getElementById('selected-language');
+            
+            selectedTourLanguage = language;
+            
+            const languageNames = {
+                'spanish': 'Spanish',
+                'english': 'English',
+                'french': 'French',
+                'italian': 'Italian',
+                'chinese': 'Chinese',
+                'korean': 'Korean',
+                'japanese': 'Japanese'
+            };
+            
+            const languageFlags = {
+                'spanish': '🇪🇸',
+                'english': '🇬🇧',
+                'french': '🇫🇷',
+                'italian': '🇮🇹',
+                'chinese': '🇨🇳',
+                'korean': '🇰🇷',
+                'japanese': '🇯🇵'
+            };
+            
+            selectedText.textContent = `${languageFlags[language]} ${languageNames[language]}`;
+            
+            button.classList.remove('open');
+            options.classList.remove('show');
+            
+            updateTotal();
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const visitDropdown = document.querySelector('.visit-dropdown');
+            const languageDropdown = document.getElementById('vip-language-section');
+            
+            if (visitDropdown && !visitDropdown.contains(event.target)) {
+                document.getElementById('visit-type-btn').classList.remove('open');
+                document.getElementById('dropdown-options').classList.remove('show');
+            }
+            
+            if (languageDropdown && !languageDropdown.contains(event.target)) {
+                document.getElementById('language-dropdown-btn').classList.remove('open');
+                document.getElementById('language-dropdown-options').classList.remove('show');
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize calendar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            updateTotal();
+        });
+    </script>
+</body>
+</html>

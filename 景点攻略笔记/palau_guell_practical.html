@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palau Güell - Complete Practical Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            line-height: 1.65;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #2c5364 0%, #203a43 30%, #0f2027 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #00b894 0%, #00a085 50%, #00cec9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #81ecec;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #00b894 0%, #00a085 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #74b9ff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0.7rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.96);
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(116, 185, 255, 0.3);
+            backdrop-filter: blur(15px);
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00b894;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 55px;
+            height: 3px;
+            background: linear-gradient(45deg, #00a085, #00cec9);
+            border-radius: 2px;
+        }
+
+        .practical-info {
+            background: linear-gradient(135deg, #e8f8f5 0%, #d1f2eb 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid #00b894;
+            margin: 0.8rem 0;
+            box-shadow: 0 3px 12px rgba(0, 184, 148, 0.15);
+        }
+
+        .ticket-detail {
+            background: linear-gradient(135deg, #ebf3fd 0%, #d6eaf8 100%);
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            box-shadow: 0 3px 12px rgba(52, 152, 219, 0.2);
+        }
+
+        .ticket-detail h4 {
+            color: #2980b9;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .visitor-tip {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 0.9rem;
+            margin: 0.7rem 0;
+            border-left: 3px solid #fdcb6e;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 10px rgba(253, 203, 110, 0.15);
+        }
+
+        .visitor-tip h4 {
+            color: #d68910;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .location-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #6c757d;
+            border-radius: 10px;
+            padding: 0.9rem;
+            margin: 0.7rem 0;
+            box-shadow: 0 2px 10px rgba(108, 117, 125, 0.15);
+        }
+
+        .location-info h4 {
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .time-badge {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+            box-shadow: 0 2px 8px rgba(0, 184, 148, 0.3);
+        }
+
+        ul {
+            margin: 0.7rem 0;
+            padding-left: 1.3rem;
+        }
+
+        li {
+            margin: 0.4rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #00b894;
+        }
+
+        .visit-plan {
+            counter-reset: plan-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .visit-plan li {
+            counter-increment: plan-counter;
+            margin: 0.9rem 0;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+            border-radius: 10px;
+            border-left: 3px solid #00b894;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 184, 148, 0.1);
+        }
+
+        .visit-plan li::before {
+            content: counter(plan-counter);
+            position: absolute;
+            left: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 6px rgba(0, 184, 148, 0.4);
+        }
+
+        .free-access {
+            background: linear-gradient(135deg, #d4edd6 0%, #a3d977 100%);
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 2px solid #27ae60;
+            margin: 0.7rem 0;
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Palau Güell</h1>
+            <h2>Complete Practical Guide</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">5,924</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">2,187</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">3,658</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>⏰ Visit Planning</h3>
+            <div class="practical-info">
+                <h4><strong>Perfect for:</strong> Systematic explorers, budget-conscious travelers, architecture students</h4>
+                <p><strong>Visit Duration:</strong> 1-1.5 hours provides comprehensive exploration of Gaudí's early masterwork. This timeframe allows thorough appreciation of architectural details without rushing through key highlights.</p>
+            </div>
+            
+            <div class="free-access">
+                <h4>🎉 Monthly Free Access Opportunity</h4>
+                <p>As Gaudí's masterwork, this palace is a major achievement before Sagrada Família. Most importantly, it offers <strong>free access every first Sunday of the month!</strong> Book online three days in advance - regular day ticket prices are also reasonable.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎫 Tickets & Access Information</h3>
+
+            <div class="ticket-detail">
+                <h4>📱 Booking Recommendations</h4>
+                <p>Suggest advance booking through official website or authorized platforms. Peak season crowds gather, so early booking ensures entry.</p>
+            </div>
+
+            <div class="visitor-tip">
+                <h4>🎧 Audio Guide Benefits</h4>
+                <p>Free audio guide - content detailed, strongly recommended for use! Provides comprehensive architectural context and historical insights.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>💡 Practical Visitor Tips</h3>
+            
+            <ol class="visit-plan">
+                <li>
+                    <strong>Optimal Visit Timing</strong><br>
+                    Recommend morning early hours or evening before closing - fewer crowds, better lighting conditions for photography.
+                </li>
+                <li>
+                    <strong>Lighting Considerations</strong><br>
+                    Underground spaces have dim lighting, suitable for quiet atmospheric appreciation - not recommended for guests wearing high heels due to safety concerns.
+                </li>
+                <li>
+                    <strong>Souvenir Shopping</strong><br>
+                    Upon visit completion, don't forget the gift shop - notably features rooftop colorful chimney inspired designs, though exit shop offers limited reproductions with color variations.
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

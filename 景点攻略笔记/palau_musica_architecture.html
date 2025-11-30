@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palau de la Música - Architecture & Cultural Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Baskerville', 'Georgia', serif;
+            line-height: 1.65;
+            color: #0f172a;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 30%, #581c87 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #b91c1c 0%, #dc2626 50%, #ef4444 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(185, 28, 28, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: 2.2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        .hero-content h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1.2px;
+            color: #fecaca;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #b91c1c 0%, #dc2626 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .stats-container {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #fca5a5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0.7rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.97);
+            margin: 0.8rem 0;
+            padding: 1.2rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(252, 165, 165, 0.3);
+            backdrop-filter: blur(15px);
+        }
+
+        .section h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.1rem;
+            color: #b91c1c;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 65px;
+            height: 4px;
+            background: linear-gradient(45deg, #dc2626, #ef4444, #fca5a5);
+            border-radius: 2px;
+        }
+
+        .architecture-info {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            padding: 1.1rem;
+            border-radius: 16px;
+            border-left: 5px solid #dc2626;
+            margin: 0.9rem 0;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.15);
+        }
+
+        .cultural-feature {
+            background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+            border: 2px solid #2563eb;
+            border-radius: 16px;
+            padding: 1.1rem;
+            margin: 0.9rem 0;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .cultural-feature h4 {
+            color: #1d4ed8;
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .visit-info {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-left: 4px solid #16a34a;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 12px rgba(22, 163, 74, 0.2);
+        }
+
+        .visit-info h4 {
+            color: #15803d;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .performance-highlight {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 2px solid #d97706;
+            border-radius: 14px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            box-shadow: 0 3px 12px rgba(217, 119, 6, 0.2);
+        }
+
+        .performance-highlight h4 {
+            color: #c2410c;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .historical-context {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-left: 4px solid #64748b;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 10px rgba(100, 116, 139, 0.15);
+        }
+
+        .year-badge {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            padding: 0.3rem 0.9rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+            box-shadow: 0 3px 10px rgba(220, 38, 38, 0.3);
+        }
+
+        ul {
+            margin: 0.8rem 0;
+            padding-left: 1.4rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #b91c1c;
+        }
+
+        .feature-list {
+            counter-reset: feature-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            counter-increment: feature-counter;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            border-left: 3px solid #dc2626;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(220, 38, 38, 0.1);
+        }
+
+        .feature-list li::before {
+            content: counter(feature-counter);
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+        }
+
+        .visit-options {
+            display: grid;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .visit-option {
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+            padding: 0.9rem;
+            border-radius: 12px;
+            border: 2px solid #eab308;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .visit-option h5 {
+            color: #a16207;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Palau de la Música</h1>
+            <h2>Architecture & Cultural Experience</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">9,573</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">3,247</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">6,891</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🏛️ Architectural Masterpiece</h3>
+            <div class="architecture-info">
+                <h4><strong>Perfect for:</strong> Architecture students, cultural enthusiasts, Art Nouveau lovers</h4>
+                <p>Most cultural visits benefit from the comprehensive guided tour experience lasting approximately one hour.</p>
+            </div>
+            
+            <div class="historical-context">
+                <h4>🎨 Architectural Style & Features</h4>
+                <p>Palau de la Música Catalana gained fame for its magnificent colorful stained glass skylight, rich sculptural decorations, and brick structure - one of the world's few concert halls utilizing complete natural lighting.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>✨ Distinctive Architectural Elements</h3>
+            
+            <ol class="feature-list">
+                <li>
+                    <strong>Colorful Stained Glass Skylight</strong><br>
+                    The main hall's massive colorful glass skylight resembles a "sun," bathing the entire hall in soft, natural light - creating an ethereal concert atmosphere.
+                </li>
+                <li>
+                    <strong>Rich Sculptural Decorations</strong><br>
+                    Facade and interior decorations fuse modernist floral, figurative, and musical elements, including sculptures of Bach, Beethoven, and Palestrina among musical masters.
+                </li>
+                <li>
+                    <strong>Red Brick & Ceramic Exterior</strong><br>
+                    Building exterior employs typical Catalan red brick, Moorish ceramics, and ironwork decorations - creating striking visual impact.
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>🎼 Concert Hall & Cultural Performances</h3>
+            
+            <div class="performance-highlight">
+                <h4>🌟 Performance Categories</h4>
+                <p><strong>Main performances:</strong> Symphony concerts, choral performances, flamenco, opera. World-class musicians include Pavarotti, Piazzolla, and others.</p>
+            </div>
+
+            <div class="visit-info">
+                <h4>📍 Visit Information & Practical Details</h4>
+                <ul>
+                    <li><strong>Tickets:</strong> Around €20, guided tour (approximately 1 hour)</li>
+                    <li><strong>Opening hours:</strong> 10:00-15:30 (light season) 10:00-18:00 (peak season)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🎯 Recommended Visit Approaches</h3>
+            
+            <div class="visit-options">
+                <div class="visit-option">
+                    <h5>1. Daytime Architecture Tour</h5>
+                    <p>Book guided tour to appreciate colorful stained glass and magnificent decorations. Experience natural lighting unique among world concert halls.</p>
+                </div>
+
+                <div class="visit-option">
+                    <h5>2. Evening Concert Experience</h5>
+                    <p>Attend evening performance for audiovisual feast in world-class concert hall. Acoustic design creates unparalleled listening experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

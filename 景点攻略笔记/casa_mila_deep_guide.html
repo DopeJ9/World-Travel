@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Milà - In-Depth Architecture Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            line-height: 1.65;
+            color: #1a1a2e;
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 50%, #533483 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #e73c7e 0%, #23a6d5 50%, #23d5ab 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(231, 60, 126, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.6rem;
+            margin-bottom: 0.4rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffffff, #f0f8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #e8f4f8;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #16213e 0%, #0f3460 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .stats-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #23d5ab;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0.8rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.98);
+            margin: 1rem 0;
+            padding: 1.4rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(35, 213, 171, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .section h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.1rem;
+            color: #16213e;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 65px;
+            height: 4px;
+            background: linear-gradient(45deg, #e73c7e, #23a6d5, #23d5ab);
+            border-radius: 2px;
+        }
+
+        .deep-info-box {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            padding: 1rem;
+            border-radius: 15px;
+            border-left: 5px solid #23a6d5;
+            margin: 0.9rem 0;
+            box-shadow: 0 4px 15px rgba(35, 166, 213, 0.15);
+        }
+
+        .vr-experience {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+            border: 2px solid #e73c7e;
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 0.9rem 0;
+            box-shadow: 0 4px 15px rgba(231, 60, 126, 0.2);
+        }
+
+        .vr-experience h4 {
+            color: #c1185d;
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .route-phase {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1rem;
+            margin: 0.9rem 0;
+            border-left: 4px solid #23d5ab;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 12px rgba(35, 213, 171, 0.15);
+        }
+
+        .route-phase h4 {
+            color: #0d4f3c;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .floor-detail {
+            background: linear-gradient(135deg, #fff9c4 0%, #ffeaa7 100%);
+            border: 2px solid #fdcb6e;
+            border-radius: 12px;
+            padding: 0.9rem;
+            margin: 0.8rem 0;
+            box-shadow: 0 3px 12px rgba(253, 203, 110, 0.15);
+        }
+
+        .floor-detail h4 {
+            color: #b8860b;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .lighting-tip {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+            padding: 0.9rem;
+            margin: 0.8rem 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.15);
+        }
+
+        .time-marker {
+            background: linear-gradient(45deg, #e73c7e, #ff6b9d);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.3rem;
+            box-shadow: 0 4px 12px rgba(231, 60, 126, 0.3);
+        }
+
+        ul {
+            margin: 0.8rem 0;
+            padding-left: 1.4rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #16213e;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .numbered-route {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .numbered-route li {
+            counter-increment: step-counter;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            border-left: 3px solid #23a6d5;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(35, 166, 213, 0.08);
+        }
+
+        .numbered-route li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #23a6d5, #23d5ab);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(35, 166, 213, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Casa Milà</h1>
+            <h2>Complete In-Depth Journey</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">6,284</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">1,147</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">3,692</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🎯 Deep Exploration Overview</h3>
+            <div class="deep-info-box">
+                <h4><strong>Perfect for:</strong> Architecture specialists, VR enthusiasts, detailed tour lovers, repeat Barcelona visitors</h4>
+                <p>This comprehensive 2-hour deep route (single direction only!) takes you through every floor of Casa Milà with immersive VR experiences and detailed architectural analysis.</p>
+            </div>
+            
+            <div class="vr-experience">
+                <h4>🥽 VR + Tour Package Experience</h4>
+                <ul>
+                    <li><strong>Official website booking:</strong> Visit + VR tour package available</li>
+                    <li><strong>Exclusive VR room access:</strong> Brought to a special VR space (formerly master bedroom)</li>
+                    <li><strong>Immersive visualization:</strong> See several architectural interior visualizations</li>
+                    <li><strong>Learning opportunity:</strong> Perfect for architecture enthusiasts who love detailed study</li>
+                    <li><strong>Value experience:</strong> Great ticket price value for private venue with VR + photography time</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>🗺️ Complete Route</h3>
+            
+            <ol class="numbered-route">
+                <li>
+                    <strong>Rooftop Sculpture Garden <span class="time-marker">20 min</span></strong>
+                    <div class="floor-detail">
+                        <h4>📸 Photography Strategy:</h4>
+                        <ul>
+                            <li><strong>Elevator access only</strong> - no stairs to this level</li>
+                            <li><strong>C position optimal:</strong> Southwest corner for "Helmet Warrior" + Sagrada Família frame</li>
+                            <li><strong>Rainy day closure:</strong> Weather-dependent access</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Whale Corridor <span class="time-marker">30 min</span> - Must See!</strong>
+                    <div class="floor-detail">
+                        <h4>🐋 Architectural Marvel:</h4>
+                        <ul>
+                            <li><strong>270 red brick arches:</strong> Mimicking whale ribcage structure</li>
+                            <li><strong>Gaudí's handcraft + structural model exhibition</strong></li>
+                            <li><strong>200kg iron chain suspension design:</strong> Revolutionary ceiling arch system</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Sixth Floor Exhibition <span class="time-marker">20 min</span></strong>
+                    <div class="floor-detail">
+                        <h4>🏛️ 1912 Replica Rooms:</h4>
+                        <ul>
+                            <li>Original living room / dressing room / children's room recreations</li>
+                            <li>Period furniture and interior design showcase</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Central Courtyard <span class="time-marker">15 min</span></strong>
+                    <div class="lighting-tip">
+                        <h4>🌈 Light Layer Analysis:</h4>
+                        <ul>
+                            <li><strong>3-level courtyard photography:</strong> Iron + artistic structure like underwater cable</li>
+                            <li><strong>Light stratification:</strong> Bright lower level → Mysterious upper level</li>
+                            <li><strong>Staff reminder at 8 PM:</strong> 15 minutes remaining - reduced crowds, ideal for architectural photography</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torre Bellesguard - Hidden Gothic Gem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', Georgia, serif;
+            line-height: 1.6;
+            color: #1c1917;
+            background: linear-gradient(135deg, #78716c 0%, #57534e 30%, #44403c 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            height: 120px;
+            background: linear-gradient(45deg, #475569 0%, #64748b 50%, #94a3b8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(71, 85, 105, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .hero-content h2 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #cbd5e1;
+        }
+
+        .stats-bar {
+            background: linear-gradient(90deg, #475569 0%, #64748b 100%);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: inset 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-container {
+            max-width: 750px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 0.6rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 0.7rem 0;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            backdrop-filter: blur(12px);
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.9rem;
+            color: #475569;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #64748b, #94a3b8);
+            border-radius: 2px;
+        }
+
+        .hidden-treasure {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 0.9rem;
+            border-radius: 10px;
+            border-left: 4px solid #475569;
+            margin: 0.7rem 0;
+            box-shadow: 0 3px 12px rgba(71, 85, 105, 0.15);
+        }
+
+        .gothic-atmosphere {
+            background: linear-gradient(135deg, #fef7cd 0%, #fef3c7 100%);
+            border: 2px solid #d97706;
+            border-radius: 10px;
+            padding: 0.9rem;
+            margin: 0.7rem 0;
+            box-shadow: 0 3px 12px rgba(217, 119, 6, 0.2);
+        }
+
+        .gothic-atmosphere h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .photography-tip {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            border-left: 3px solid #059669;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(5, 150, 105, 0.15);
+        }
+
+        .photography-tip h4 {
+            color: #047857;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .exclusive-experience {
+            background: linear-gradient(135deg, #fdf4ff 0%, #f3e8ff 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin: 0.6rem 0;
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.15);
+        }
+
+        .exclusive-experience h4 {
+            color: #7c3aed;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .period-badge {
+            background: linear-gradient(45deg, #475569, #94a3b8);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 18px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem;
+            box-shadow: 0 2px 8px rgba(71, 85, 105, 0.3);
+        }
+
+        ul {
+            margin: 0.6rem 0;
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin: 0.3rem 0;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #475569;
+        }
+
+        .discovery-journey {
+            counter-reset: discovery-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .discovery-journey li {
+            counter-increment: discovery-counter;
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border-radius: 8px;
+            border-left: 3px solid #475569;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(71, 85, 105, 0.1);
+        }
+
+        .discovery-journey li::before {
+            content: counter(discovery-counter);
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #475569, #94a3b8);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 6px rgba(71, 85, 105, 0.4);
+        }
+
+        .visit-timing {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            padding: 0.7rem;
+            border-radius: 8px;
+            border: 2px solid #dc2626;
+            margin: 0.6rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Torre Bellesguard</h1>
+            <h2>Hidden Gothic Gem</h2>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>👍</span>
+                <span class="stat-number">3,847</span>
+                <span>likes</span>
+            </div>
+            <div class="stat-item">
+                <span>💬</span>
+                <span class="stat-number">1,293</span>
+                <span>comments</span>
+            </div>
+            <div class="stat-item">
+                <span>⭐</span>
+                <span class="stat-number">2,561</span>
+                <span>shares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>🏰 Gaudí's Earliest Masterpiece</h3>
+            <div class="hidden-treasure">
+                <h4><strong>Perfect for:</strong> Architecture purists, hidden gem hunters, peaceful explorers</h4>
+                <p>Gaudí's earliest work built between 1900-1909 is a Gothic-style palace, also known as Bellesguard or Beautiful View. It's quite far from Barcelona's other famous attractions - even if you've visited all the major sites, it takes about 50 minutes to get here. The experience rewards visitors with an intimate one-hour discovery</strong> of Gaudí's formative architectural vision.</p>
+            </div>
+            
+            <div class="visit-timing">
+                <h4>⏰ Essential Timing Information</h4>
+                <p>Must emphasize - Bellesguard is NOT open all day! Operating hours only until 15:00, with 14:00 being the last entry time. Audio guides don't have Chinese, so if you're planning to visit, pay attention to timing. The advantage is very few visitors - absolutely no queuing required!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📷 Photography & Visual Appeal</h3>
+            
+            <ol class="discovery-journey">
+                <li>
+                    <strong>Unassuming Exterior Appeal</strong><br>
+                    The exterior really doesn't grab attention - if not knowing it's Gaudí architecture, you might think it's just an ordinary stone house. However, its chimneys still possess distinctive Gaudí characteristics.
+                </li>
+                <li>
+                    <strong>Arabic Interior Decoration</strong><br>
+                    Step inside to discover exceptionally Arabic decorative styles - one of Gaudí's great preferences. Colorful stained glass windows, dazzling ceramics, and chandeliers create an orientalist palace atmosphere.
+                </li>
+                <li>
+                    <strong>Perfect Photography Spot</strong><br>
+                    Most people love taking photos in front of the building, but the best photo location is actually the striking corner chair at the entrance - it offers ideal height and distance for architectural shots.
+                </li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h3>✨ Exclusive Atmosphere</h3>
+            
+            <div class="gothic-atmosphere">
+                <h4>🏛️ Gothic Palace Experience</h4>
+                <p>Unlike other Gaudí attractions, Bellesguard maintains an authentic castle-like atmosphere. The building showcases Gaudí's early mastery of combining medieval Gothic elements with his signature organic modernist touches.</p>
+            </div>
+
+            <div class="photography-tip">
+                <h4>📸 Hidden Photo Opportunities</h4>
+                <p>While most visitors photograph the building's facade, the most photogenic location is actually inside the scenic district - climb the tower stairs for adequate height and distance. The awakening corner chair at the entrance provides perfect framing.</p>
+            </div>
+
+            <div class="exclusive-experience">
+                <h4>🎯 Why Choose Bellesguard</h4>
+                <p>If you don't have arrangements to visit Tibidabo Mountain for sunset or church activities, is it necessary to make a special trip? For Gaudí completists and architecture enthusiasts seeking peaceful exploration, absolutely worth the journey for its unique Gothic-Modernist fusion and crowd-free atmosphere.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
