@@ -6,392 +6,758 @@
     <title>Florence Must-Visit Attractions Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
+        :root {
+            --terracotta: #C45C26;
+            --terracotta-light: #E07B3D;
+            --olive: #6B7B3C;
+            --olive-light: #8A9F4E;
+            --sienna: #A0522D;
+            --gold: #D4A853;
+            --cream: #FDF8F3;
+            --warm-white: #FFFEF9;
+            --charcoal: #2C2C2C;
+            --soft-gray: #7A7A7A;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 50%, #DBC7B5 100%);
+            min-height: 100vh;
+            color: var(--charcoal);
+            overflow-x: hidden;
         }
-        .page-title {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #8e44ad, #9b59b6);
-            border-radius: 10px;
-            color: white;
-            font-size: 2.5em;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-        }
-        .attractions-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .attraction {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .attraction:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        .attraction::before {
-            content: "";
-            position: absolute;
+
+        /* Decorative Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 100%;
             height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(196, 92, 38, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(107, 123, 60, 0.03) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L35 15L30 25L25 15z' fill='%23C45C26' fill-opacity='0.02'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
         }
-        /* Cathedral - Tuscan Red */
-        .attraction.cathedral::before {
-            background: linear-gradient(to bottom, #c0392b, #e74c3c);
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
         }
-        .attraction.cathedral:hover {
-            border-color: #c0392b;
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 60px;
+            position: relative;
         }
-        .attraction.cathedral .attraction-number {
-            background: #c0392b;
-        }
-        .attraction.cathedral .attraction-type i {
-            color: #c0392b;
-        }
-        .attraction.cathedral .booking-link {
-            background: linear-gradient(45deg, #c0392b, #e74c3c);
-            box-shadow: 0 2px 8px rgba(192, 57, 43, 0.3);
-        }
-        .attraction.cathedral .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
-        }
-        
-        /* Viewpoint - Tuscan Gold */
-        .attraction.viewpoint::before {
-            background: linear-gradient(to bottom, #f39c12, #e67e22);
-        }
-        .attraction.viewpoint:hover {
-            border-color: #f39c12;
-        }
-        .attraction.viewpoint .attraction-number {
-            background: #f39c12;
-        }
-        .attraction.viewpoint .attraction-type i {
-            color: #f39c12;
-        }
-        .attraction.viewpoint .booking-link {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
-        }
-        .attraction.viewpoint .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
-        }
-        
-        /* Basilica - Renaissance Green */
-        .attraction.basilica::before {
-            background: linear-gradient(to bottom, #27ae60, #2ecc71);
-        }
-        .attraction.basilica:hover {
-            border-color: #27ae60;
-        }
-        .attraction.basilica .attraction-number {
-            background: #27ae60;
-        }
-        .attraction.basilica .attraction-type i {
-            color: #27ae60;
-        }
-        .attraction.basilica .booking-link {
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
-        }
-        .attraction.basilica .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
-        }
-        
-        /* Gallery - Renaissance Blue */
-        .attraction.gallery::before {
-            background: linear-gradient(to bottom, #3498db, #5dade2);
-        }
-        .attraction.gallery:hover {
-            border-color: #3498db;
-        }
-        .attraction.gallery .attraction-number {
-            background: #3498db;
-        }
-        .attraction.gallery .attraction-type i {
-            color: #3498db;
-        }
-        .attraction.gallery .booking-link {
-            background: linear-gradient(45deg, #3498db, #5dade2);
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-        }
-        .attraction.gallery .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
-        }
-        
-        /* Museum - Renaissance Purple */
-        .attraction.museum::before {
-            background: linear-gradient(to bottom, #9b59b6, #8e44ad);
-        }
-        .attraction.museum:hover {
-            border-color: #9b59b6;
-        }
-        .attraction.museum .attraction-number {
-            background: #9b59b6;
-        }
-        .attraction.museum .attraction-type i {
-            color: #9b59b6;
-        }
-        .attraction.museum .booking-link {
-            background: linear-gradient(45deg, #9b59b6, #8e44ad);
-            box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
-        }
-        .attraction.museum .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
-        }
-        
-        .attraction-number {
+
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--terracotta), var(--sienna));
             color: white;
-            width: 30px;
-            height: 30px;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(196, 92, 38, 0.3);
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4em;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            display: block;
+            background: linear-gradient(135deg, var(--terracotta) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            color: var(--soft-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Section Title */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .section-line {
+            flex: 1;
+            max-width: 150px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--charcoal);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title i {
+            color: var(--terracotta);
+            margin-right: 12px;
+        }
+
+        /* Attractions Grid */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 35px;
+            margin-bottom: 80px;
+        }
+
+        /* Attraction Card */
+        .attraction-card {
+            background: var(--warm-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .attraction-card:hover .card-image img {
+            transform: scale(1.08);
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        .attraction h2 {
-            color: #2c3e50;
-            margin: 0 0 10px 0;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.4em;
-            padding-right: 40px;
-            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--terracotta);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 2;
         }
-        .attraction-type {
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-            color: #666;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        .attraction-type i {
-            margin-right: 8px;
-            font-size: 1.1em;
-        }
-        .attraction-description {
-            color: #555;
-            line-height: 1.7;
-            font-size: 0.95em;
-            margin-bottom: 15px;
-        }
-        .booking-link {
-            display: inline-block;
-            color: white;
-            text-decoration: none;
+
+        .card-category {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin-right: 8px;
-            margin-bottom: 5px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--charcoal);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .booking-link:hover {
-            transform: translateY(-2px);
+
+        .card-category i {
+            color: var(--terracotta);
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .card-description {
+            color: var(--soft-gray);
+            line-height: 1.8;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9em;
+            font-weight: 600;
             text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-light));
             color: white;
+            box-shadow: 0 4px 15px rgba(196, 92, 38, 0.3);
         }
-        .booking-link i {
-            margin-right: 6px;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(196, 92, 38, 0.4);
         }
-        .attraction-full {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
-            border: 2px solid #f39c12;
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);
+
+        .btn-secondary {
+            background: var(--cream);
+            color: var(--charcoal);
+            border: 2px solid #E5DDD4;
         }
-        .attraction-full::before {
-            background: linear-gradient(to bottom, #f39c12, #e67e22, #d63031);
-            width: 6px;
+
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: white;
+            border-color: var(--charcoal);
         }
-        @media (max-width: 768px) {
+
+        /* Guide Cards - Different Style */
+        .guides-section {
+            background: linear-gradient(135deg, #F9F3ED 0%, #F5EBE0 50%, #EDE4D9 100%);
+            border-radius: 32px;
+            padding: 60px 40px;
+            margin-top: 40px;
+            border: 1px solid rgba(196, 92, 38, 0.1);
+            box-shadow: 0 10px 40px rgba(160, 82, 45, 0.08);
+        }
+
+        .guides-section .section-title {
+            color: var(--charcoal);
+        }
+
+        .guides-section .section-line {
+            background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .guide-card {
+            background: white;
+            border: 1px solid rgba(196, 92, 38, 0.12);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .guide-card:hover {
+            background: white;
+            border-color: var(--terracotta);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(196, 92, 38, 0.12);
+        }
+
+        .guide-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-light));
+            border-radius: 12px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .guide-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .guide-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8em;
+            color: var(--terracotta);
+            margin-bottom: 15px;
+        }
+
+        .guide-description {
+            color: var(--soft-gray);
+            font-size: 0.9em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .guide-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .guide-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-light));
+            color: white;
+            border: none;
+            box-shadow: 0 3px 12px rgba(196, 92, 38, 0.25);
+        }
+
+        .guide-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 92, 38, 0.4);
+        }
+
+        .guide-btn.coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #B8B8B8;
+            box-shadow: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--soft-gray);
+            font-size: 0.9em;
+        }
+
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
             .attractions-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
-            .attraction {
-                padding: 15px;
+
+            .hero-title {
+                font-size: 2.8em;
             }
-            .page-title {
-                font-size: 2em;
-                padding: 20px 0;
+
+            .guides-section {
+                padding: 40px 20px;
             }
         }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero-title {
+                font-size: 2.2em;
+            }
+
+            .card-image {
+                height: 200px;
+            }
+
+            .card-content {
+                padding: 20px;
+            }
+
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .attraction-card, .guide-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .attraction-card:nth-child(1) { animation-delay: 0.1s; }
+        .attraction-card:nth-child(2) { animation-delay: 0.2s; }
+        .attraction-card:nth-child(3) { animation-delay: 0.3s; }
+        .attraction-card:nth-child(4) { animation-delay: 0.4s; }
+        .attraction-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .guide-card:nth-child(1) { animation-delay: 0.1s; }
+        .guide-card:nth-child(2) { animation-delay: 0.15s; }
+        .guide-card:nth-child(3) { animation-delay: 0.2s; }
+        .guide-card:nth-child(4) { animation-delay: 0.25s; }
+        .guide-card:nth-child(5) { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="page-title">
-            Florence Must-Visit Attractions Guide
-        </div>
-        
-        <div class="attractions-grid">
-            <div class="attraction cathedral">
-                <div class="attraction-number">1</div>
-                <h2>Cathedral of Florence</h2>
-                <div class="attraction-type"><i class="fas fa-church"></i>Gothic Cathedral</div>
-                <div class="attraction-description">
-                    The magnificent Duomo with its iconic red-tiled dome designed by Brunelleschi. A masterpiece of Renaissance architecture and the symbol of Florence, offering breathtaking views from the top.
-                </div>
-                <a href="Cathedral of Florence (1).html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
-            </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">
+                Discover
+                <span>Florence</span>
+            </h1>
+            <p class="hero-subtitle">
+                Explore the birthplace of the Renaissance through its magnificent cathedrals, 
+                world-class museums, and breathtaking viewpoints.
+            </p>
+        </section>
 
-            <div class="attraction viewpoint">
-                <div class="attraction-number">2</div>
-                <h2>Piazzale Michelangelo</h2>
-                <div class="attraction-type"><i class="fas fa-mountain"></i>Scenic Viewpoint</div>
-                <div class="attraction-description">
-                    The most famous viewpoint in Florence offering panoramic views of the city and the Arno River. Perfect for sunset photography with bronze replicas of Michelangelo's David and other sculptures.
-                </div>
-                <a href="Piazzale_Michelangelo_Booking.html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Visit
-                </a>
-            </div>
-
-            <div class="attraction basilica">
-                <div class="attraction-number">3</div>
-                <h2>Basilica di Santa Croce</h2>
-                <div class="attraction-type"><i class="fas fa-cross"></i>Franciscan Basilica</div>
-                <div class="attraction-description">
-                    Known as the "Temple of Italian Glories," this Gothic basilica houses the tombs of Michelangelo, Galileo, and Machiavelli. Famous for its stunning frescoes by Giotto and beautiful Pazzi Chapel designed by Brunelleschi.
-                </div>
-                <a href="Basilica di Santa Croce (1).html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
-            </div>
-
-            <div class="attraction gallery">
-                <div class="attraction-number">4</div>
-                <h2>Galleria degli Uffizi</h2>
-                <div class="attraction-type"><i class="fas fa-palette"></i>Art Gallery</div>
-                <div class="attraction-description">
-                    One of the world's most famous art museums, housing an incomparable collection of Renaissance masterpieces. Features works by Botticelli, Leonardo da Vinci, Michelangelo, and Raphael. The Birth of Venus and Primavera are among its most celebrated treasures.
-                </div>
-                <a href="Galleria_degli_Uffizi_Booking.html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
-            </div>
-
-            <div class="attraction museum">
-                <div class="attraction-number">5</div>
-                <h2>Bargello Museum</h2>
-                <div class="attraction-type"><i class="fas fa-landmark"></i>Sculpture Museum</div>
-                <div class="attraction-description">
-                    Italy's premier sculpture museum, housed in a stunning medieval palace. Home to masterpieces by Donatello, Michelangelo, and Cellini. Features the famous David by Donatello and an outstanding collection of Renaissance bronzes and decorative arts.
-                </div>
-                <a href="Bargello Museum (4).html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
-            </div>
-        </div>
-
-        <div class="page-title" style="margin-top: 40px; font-size: 2em; background: linear-gradient(45deg, #27ae60, #2ecc71);">
-            Attraction Guides & Tips
-        </div>
+        <!-- Attractions Section -->
+        <section class="section-header">
+            <div class="section-line"></div>
+            <h2 class="section-title">
+                <i class="fas fa-landmark"></i>
+                Must-Visit Attractions
+            </h2>
+            <div class="section-line"></div>
+        </section>
 
         <div class="attractions-grid">
-            <div class="attraction cathedral">
-                <div class="attraction-number">G1</div>
-                <h2>Cathedral of Florence Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Comprehensive guide to visiting the Duomo, including dome climbing tips, best times to visit, and what to expect during your tour.
+            <!-- Cathedral of Florence -->
+            <article class="attraction-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E6%99%AF%E7%82%B9/Cathedral%20of%20Florence.png?raw=true" alt="Cathedral of Florence">
+                    
                 </div>
-                <a href="../佛罗伦萨景点攻略笔记/佛罗伦萨大教堂攻略笔记1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-            </div>
+                <div class="card-content">
+                    <h3 class="card-title">Cathedral of Florence</h3>
+                    <p class="card-description">
+                        The magnificent Duomo with its iconic red-tiled dome designed by Brunelleschi. 
+                        A masterpiece of Renaissance architecture and the symbol of Florence, 
+                        offering breathtaking views from the top.
+                    </p>
+                    <div class="card-actions">
+                        <a href="Cathedral of Florence (1).html" class="btn btn-primary">
+                            <i class="fas fa-ticket-alt"></i>
+                            Book Tickets
+                        </a>
+                    </div>
+                </div>
+            </article>
 
-            <div class="attraction viewpoint">
-                <div class="attraction-number">G2</div>
-                <h2>Piazzale Michelangelo Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Expert tips for visiting Piazzale Michelangelo, including the best photography spots and timing for golden hour views.
+            <!-- Piazzale Michelangelo -->
+            <article class="attraction-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E6%99%AF%E7%82%B9/Piazzale%20Michelangelo.png?raw=true" alt="Piazzale Michelangelo">
+                   
                 </div>
-                <a href="../佛罗伦萨景点攻略笔记/Piazzale_Michelangelo_攻略笔记1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-            </div>
+                <div class="card-content">
+                    <h3 class="card-title">Piazzale Michelangelo</h3>
+                    <p class="card-description">
+                        The most famous viewpoint in Florence offering panoramic views of the city 
+                        and the Arno River. Perfect for sunset photography with bronze replicas 
+                        of Michelangelo's David and other sculptures.
+                    </p>
+                    <div class="card-actions">
+                        <a href="Piazzale_Michelangelo_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-ticket-alt"></i>
+                            Book Visit
+                        </a>
+                    </div>
+                </div>
+            </article>
 
-            <div class="attraction basilica">
-                <div class="attraction-number">G3</div>
-                <h2>Basilica di Santa Croce Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Detailed guide to exploring Santa Croce basilica, featuring the tombs of Michelangelo, Galileo, and Dante. Complete tour of the "Temple of Italian Glories" with monument highlights and visit tips.
+            <!-- Basilica di Santa Croce -->
+            <article class="attraction-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E6%99%AF%E7%82%B9/Basilica%20di%20Santa%20Croce.png?raw=true" alt="Basilica di Santa Croce">
+                    
                 </div>
-                <a href="../佛罗伦萨景点攻略笔记/Basilica_di_Santa_Croce_攻略笔记1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="../佛罗伦萨景点攻略笔记/Basilica_di_Santa_Croce_攻略笔记2.html" class="booking-link" style="background: #95a5a6;">
-                    <i class="fas fa-map"></i>Guide 2 (Coming Soon)
-                </a>
-            </div>
+                <div class="card-content">
+                    <h3 class="card-title">Basilica di Santa Croce</h3>
+                    <p class="card-description">
+                        Known as the "Temple of Italian Glories," this Gothic basilica houses 
+                        the tombs of Michelangelo, Galileo, and Machiavelli. Famous for its 
+                        stunning frescoes by Giotto and beautiful Pazzi Chapel.
+                    </p>
+                    <div class="card-actions">
+                        <a href="Basilica di Santa Croce (1).html" class="btn btn-primary">
+                            <i class="fas fa-ticket-alt"></i>
+                            Book Tickets
+                        </a>
+                    </div>
+                </div>
+            </article>
 
-            <div class="attraction gallery">
-                <div class="attraction-number">G4</div>
-                <h2>Galleria degli Uffizi Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Essential guide to exploring the Uffizi Gallery, including must-see masterpieces, visiting strategies, and tips for avoiding crowds. Discover the highlights of Renaissance art collection.
+            <!-- Galleria degli Uffizi -->
+            <article class="attraction-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E6%99%AF%E7%82%B9/Galleria%20degli%20Uffizi1.png?raw=true" alt="Galleria degli Uffizi">
+               
                 </div>
-                <a href="../佛罗伦萨景点攻略笔记/Galleria_degli_Uffizi_note1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="../佛罗伦萨景点攻略笔记/Galleria_degli_Uffizi_note2.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
-            </div>
+                <div class="card-content">
+                    <h3 class="card-title">Galleria degli Uffizi</h3>
+                    <p class="card-description">
+                        One of the world's most famous art museums, housing an incomparable 
+                        collection of Renaissance masterpieces. Features works by Botticelli, 
+                        Leonardo da Vinci, Michelangelo, and Raphael.
+                    </p>
+                    <div class="card-actions">
+                        <a href="Galleria_degli_Uffizi_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-ticket-alt"></i>
+                            Book Tickets
+                        </a>
+                    </div>
+                </div>
+            </article>
 
-            <div class="attraction museum">
-                <div class="attraction-number">G5</div>
-                <h2>Bargello Museum Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Comprehensive guide to the Bargello Museum, featuring the finest collection of Renaissance sculpture. Learn about Donatello's masterpieces, visiting tips, and the museum's fascinating history as a medieval fortress.
+            <!-- Bargello Museum -->
+            <article class="attraction-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/Bargello%20Musuum.png?raw=true" alt="Bargello Museum">
+                    
                 </div>
-                <a href="../佛罗伦萨景点攻略笔记/bargello_museum_note1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-            </div>
+                <div class="card-content">
+                    <h3 class="card-title">Bargello Museum</h3>
+                    <p class="card-description">
+                        Italy's premier sculpture museum, housed in a stunning medieval palace. 
+                        Home to masterpieces by Donatello, Michelangelo, and Cellini. Features 
+                        the famous David by Donatello.
+                    </p>
+                    <div class="card-actions">
+                        <a href="Bargello Museum (4).html" class="btn btn-primary">
+                            <i class="fas fa-ticket-alt"></i>
+                            Book Tickets
+                        </a>
+                    </div>
+                </div>
+            </article>
         </div>
+
+        <!-- Guides Section -->
+        <section class="guides-section">
+            <div class="section-header">
+                <div class="section-line"></div>
+                <h2 class="section-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Attraction Guides & Tips
+                </h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="guides-grid">
+                <!-- Cathedral Guide -->
+                <div class="guide-card">
+                    <h3 class="guide-title">Cathedral of Florence Guide</h3>
+                    <div class="guide-type">
+                        <i class="fas fa-book-open"></i>
+                        Travel Guide
+                    </div>
+                    <p class="guide-description">
+                        Comprehensive guide to visiting the Duomo, including dome climbing tips, 
+                        best times to visit, and what to expect during your tour.
+                    </p>
+                    <div class="guide-links">
+                        <a href="../佛罗伦萨景点攻略笔记/佛罗伦萨大教堂攻略笔记1.html" class="guide-btn">
+                            <i class="fas fa-map"></i>
+                            Guide 1
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Piazzale Michelangelo Guide -->
+                <div class="guide-card">
+                    <h3 class="guide-title">Piazzale Michelangelo Guide</h3>
+                    <div class="guide-type">
+                        <i class="fas fa-book-open"></i>
+                        Travel Guide
+                    </div>
+                    <p class="guide-description">
+                        Expert tips for visiting Piazzale Michelangelo, including the best 
+                        photography spots and timing for golden hour views.
+                    </p>
+                    <div class="guide-links">
+                        <a href="../佛罗伦萨景点攻略笔记/Piazzale_Michelangelo_攻略笔记1.html" class="guide-btn">
+                            <i class="fas fa-map"></i>
+                            Guide 1
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Santa Croce Guide -->
+                <div class="guide-card">
+                    <h3 class="guide-title">Basilica di Santa Croce Guide</h3>
+                    <div class="guide-type">
+                        <i class="fas fa-book-open"></i>
+                        Travel Guide
+                    </div>
+                    <p class="guide-description">
+                        Detailed guide to exploring Santa Croce basilica, featuring the tombs 
+                        of Michelangelo, Galileo, and Dante with monument highlights.
+                    </p>
+                    <div class="guide-links">
+                        <a href="../佛罗伦萨景点攻略笔记/Basilica_di_Santa_Croce_攻略笔记1.html" class="guide-btn">
+                            <i class="fas fa-map"></i>
+                            Guide 1
+                        </a>
+                        <a href="../佛罗伦萨景点攻略笔记/Basilica_di_Santa_Croce_攻略笔记2.html" class="guide-btn coming-soon">
+                            <i class="fas fa-clock"></i>
+                            Guide 2 (Coming Soon)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Uffizi Guide -->
+                <div class="guide-card">
+                    <h3 class="guide-title">Galleria degli Uffizi Guide</h3>
+                    <div class="guide-type">
+                        <i class="fas fa-book-open"></i>
+                        Travel Guide
+                    </div>
+                    <p class="guide-description">
+                        Essential guide to exploring the Uffizi Gallery, including must-see 
+                        masterpieces, visiting strategies, and tips for avoiding crowds.
+                    </p>
+                    <div class="guide-links">
+                        <a href="../佛罗伦萨景点攻略笔记/Galleria_degli_Uffizi_note1.html" class="guide-btn">
+                            <i class="fas fa-map"></i>
+                            Guide 1
+                        </a>
+                        <a href="../佛罗伦萨景点攻略笔记/Galleria_degli_Uffizi_note2.html" class="guide-btn">
+                            <i class="fas fa-map"></i>
+                            Guide 2
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bargello Guide -->
+                <div class="guide-card">
+                    <h3 class="guide-title">Bargello Museum Guide</h3>
+                    <div class="guide-type">
+                        <i class="fas fa-book-open"></i>
+                        Travel Guide
+                    </div>
+                    <p class="guide-description">
+                        Comprehensive guide to the Bargello Museum, featuring the finest 
+                        collection of Renaissance sculpture and visiting tips.
+                    </p>
+                    <div class="guide-links">
+                        <a href="../佛罗伦萨景点攻略笔记/bargello_museum_note1.html" class="guide-btn">
+                            <i class="fas fa-map"></i>
+                            Guide 1
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-brand">Florence Travel Guide</div>
+            <p>Explore the Renaissance City with Confidence</p>
+        </footer>
     </div>
 </body>
 </html>
