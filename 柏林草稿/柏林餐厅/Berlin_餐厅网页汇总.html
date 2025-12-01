@@ -3,310 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berlin Dining Guide</title>
+    <title>Berlin Dining Guide | Culinary Experiences</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+        :root {
+            /* Berlin Dining Colors */
+            --accent-gold: #d4af37; /* Michelin Gold */
+            --accent-dark: #2d3436;
+            --accent-green: #27ae60; /* Green Star */
+            
+            --bg-body: #f9f9f9;
+            --bg-card: #ffffff;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-light: #eaeaea;
         }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(to bottom, #ffffff, #f1f2f6);
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0 0 1rem;
+            color: var(--accent-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        .page-title {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #2c3e50, #34495e);
-            border-radius: 10px;
-            color: white;
-            font-size: 2.5em;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
+            padding: 4rem 2rem;
         }
 
-        .restaurants-grid {
+        /* Grid Layout */
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
-        .restaurant {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* Card Component */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* Card Image Placeholder */
+        .card-img {
+            height: 220px;
+            background-color: #eee;
             position: relative;
             overflow: hidden;
         }
-        .restaurant:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border-color: #2c3e50;
-        }
-        .restaurant::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
+        
+        .card-img img {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .restaurant-number {
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
             position: absolute;
-            top: 10px;
+            top: 15px;
             right: 15px;
-            background: #2c3e50;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-dark);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        .restaurant h2 {
-            color: #2c3e50;
-            margin: 0 0 15px 0;
-            font-size: 1.4em;
-            padding-right: 40px;
-            font-family: 'Playfair Display', serif;
+            gap: 5px;
         }
 
-        /* Restaurant Tags */
-        .restaurant-tags {
-            margin: 15px 0;
+        .card-badge.michelin { color: var(--accent-gold); }
+        .card-badge.green-star { color: var(--accent-green); }
+
+        .card-body {
+            padding: 2rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
-        .restaurant-tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.75em;
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
             font-weight: 500;
-            color: white;
-            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 0 0 1rem;
+            color: var(--accent-dark);
             line-height: 1.2;
         }
 
-        .restaurant-tag.cuisine {
-            background: linear-gradient(45deg, #2c3e50, #1a252f);
-        }
-
-        .restaurant-tag.style {
-            background: linear-gradient(45deg, #34495e, #2c3e50);
-        }
-
-        .restaurant-tag.location {
-            background: linear-gradient(45deg, #3498db, #2980b9);
-        }
-
-        .restaurant-tag.michelin {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-        }
-
-        .guide-buttons {
+        .tags-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-bottom: 1.5rem;
         }
-        .guide-link {
-            display: inline-block;
-            background: linear-gradient(45deg, #2c3e50, #34495e);
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            background: #f1f2f6;
+            color: var(--text-muted);
+            border-radius: 6px;
             font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
         }
-        .guide-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
+
+        /* Action Buttons */
+        .card-footer {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border-radius: 8px;
             text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--accent-dark);
             color: white;
         }
-        .guide-link i {
-            margin-right: 6px;
+
+        .btn-primary:hover {
+            background: black;
+            transform: translateY(-2px);
         }
 
-        .restaurant-full {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border: 2px solid #2c3e50;
-            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2);
-        }
-        .restaurant-full::before {
-            background: linear-gradient(to bottom, #2c3e50, #34495e);
-            width: 6px;
+        .btn-secondary {
+            background: white;
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
         }
 
+        .btn-secondary:hover {
+            border-color: var(--accent-dark);
+            color: var(--accent-dark);
+            background: #f8f9fa;
+        }
+
+        .btn-group-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .restaurants-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .restaurant {
-                padding: 15px;
-            }
-            .page-title {
-                font-size: 2em;
-                padding: 20px 0;
-            }
-            .restaurant-tags {
-                margin: 10px 0;
-                gap: 4px;
-            }
-            .restaurant-tag {
-                font-size: 0.7em;
-                padding: 3px 8px;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <div class="hero-title">Berlin Dining Guide</div>
+        <div class="hero-subtitle">Explore the finest culinary experiences in Berlin, from Michelin-starred innovations to historic traditional gems.</div>
+    </header>
+
     <div class="container">
-        <div class="page-title">
-            Berlin Dining Guide
-        </div>
-        
-        <div class="restaurants-grid" id="restaurantsGrid">
-            <!-- Rutz Restaurant -->
-            <div class="restaurant restaurant-full">
-                <div class="restaurant-number">1</div>
-                <h2>Rutz Restaurant</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">German</span>
-                    <span class="restaurant-tag cuisine">Contemporary</span>
-                    <span class="restaurant-tag michelin">3 Michelin Stars</span>
-                    <span class="restaurant-tag style">Green Star</span>
-                    <span class="restaurant-tag location">Chausseestraße</span>
+        <div class="grid">
+            
+            <!-- 1. Rutz Restaurant -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Rutz Restaurant">
+                    <div class="card-badge michelin"><i class="fas fa-star"></i> 3 Stars</div>
                 </div>
-                <div class="guide-buttons">
-                    <a href="Rutz_Restaurant_Booking(2).html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../柏林餐饮攻略/Rutz_Restaurant_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                    <a href="../柏林餐饮攻略/Rutz_Restaurant_攻略笔记2.html" class="guide-link">
-                        <i class="fas fa-map"></i>Menu
-                    </a>
-                </div>
-            </div>
-
-            <!-- Facil Restaurant -->
-            <div class="restaurant">
-                <div class="restaurant-number">2</div>
-                <h2>Facil</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Modern European</span>
-                    <span class="restaurant-tag michelin">2 Michelin Stars</span>
-                    <span class="restaurant-tag style">Fine Dining</span>
-                    <span class="restaurant-tag location">Mitte</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Facil_Restaurant_Booking(2).html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../柏林餐饮攻略/Facil_Restaurant_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                    <a href="../柏林餐饮攻略/Facil_Restaurant_攻略笔记2.html" class="guide-link">
-                        <i class="fas fa-map"></i>Menu
-                    </a>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span>Chausseestraße</span>
+                        <span style="color: var(--accent-green);"><i class="fas fa-leaf"></i> Green Star</span>
+                    </div>
+                    <h3>Rutz Restaurant</h3>
+                    <div class="tags-container">
+                        <span class="tag">German</span>
+                        <span class="tag">Contemporary</span>
+                        <span class="tag">Fine Dining</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Rutz_Restaurant_Booking(2).html" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> Book Table
+                        </a>
+                        <div class="btn-group-vertical">
+                            <a href="../柏林餐饮攻略/Rutz_Restaurant_攻略笔记1.html" class="btn btn-secondary"><i class="fas fa-book-open"></i> Guide</a>
+                            <a href="../柏林餐饮攻略/Rutz_Restaurant_攻略笔记2.html" class="btn btn-secondary"><i class="fas fa-utensils"></i> Menu</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Bonvivant Cocktail Bistro -->
-            <div class="restaurant">
-                <div class="restaurant-number">3</div>
-                <h2>Bonvivant Cocktail Bistro</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Vegetarian / Vegan</span>
-                    <span class="restaurant-tag michelin">1 Michelin Star</span>
-                    <span class="restaurant-tag style">Cocktail Bar</span>
-                    <span class="restaurant-tag location">Schöneberg</span>
+            <!-- 2. Facil -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Facil">
+                    <div class="card-badge michelin"><i class="fas fa-star"></i> 2 Stars</div>
                 </div>
-                <div class="guide-buttons">
-                    <a href="Bonvivant_Cocktail_Bistro_Booking(3).html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../柏林餐饮攻略/Bonvivant_Restaurant_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                    <a href="../柏林餐饮攻略/Bonvivant_Restaurant_攻略笔记2.html" class="guide-link">
-                        <i class="fas fa-map"></i>Menu
-                    </a>
-                </div>
-            </div>
-
-            <!-- Katz Orange -->
-            <div class="restaurant">
-                <div class="restaurant-number">4</div>
-                <h2>Katz Orange</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Contemporary German</span>
-                    <span class="restaurant-tag style">Historic Brewery</span>
-                    <span class="restaurant-tag style">Craft Cocktails</span>
-                    <span class="restaurant-tag location">Mitte</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Katz_Orange_Booking.html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../柏林餐饮攻略/Katz_Orange_Menu.html" class="guide-link">
-                        <i class="fas fa-utensils"></i>Menu
-                    </a>
-                    <a href="../柏林餐饮攻略/Katz_Orange_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span>Mitte</span>
+                        <span>Fine Dining</span>
+                    </div>
+                    <h3>Facil</h3>
+                    <div class="tags-container">
+                        <span class="tag">Modern European</span>
+                        <span class="tag">Elegant</span>
+                        <span class="tag">Glass Pavillion</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Facil_Restaurant_Booking(2).html" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> Book Table
+                        </a>
+                        <div class="btn-group-vertical">
+                            <a href="../柏林餐饮攻略/Facil_Restaurant_攻略笔记1.html" class="btn btn-secondary"><i class="fas fa-book-open"></i> Guide</a>
+                            <a href="../柏林餐饮攻略/Facil_Restaurant_攻略笔记2.html" class="btn btn-secondary"><i class="fas fa-utensils"></i> Menu</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Zur Letzten Instanz -->
-            <div class="restaurant">
-                <div class="restaurant-number">5</div>
-                <h2>Zur Letzten Instanz</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Traditional German</span>
-                    <span class="restaurant-tag style">Historic (Est. 1621)</span>
-                    <span class="restaurant-tag style">Traditional</span>
-                    <span class="restaurant-tag location">East Berlin</span>
+            <!-- 3. Bonvivant Cocktail Bistro -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" alt="Bonvivant">
+                    <div class="card-badge michelin"><i class="fas fa-star"></i> 1 Star</div>
                 </div>
-                <div class="guide-buttons">
-                    <a href="Zur_Letzten_Instanz_Booking.html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../柏林餐饮攻略/Zur_letzten_Instanz_Menu.html" class="guide-link">
-                        <i class="fas fa-utensils"></i>Menu
-                    </a>
-                    <a href="../柏林餐饮攻略/Zur_Letzten_Instanz_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span>Schöneberg</span>
+                        <span>Bistro</span>
+                    </div>
+                    <h3>Bonvivant</h3>
+                    <div class="tags-container">
+                        <span class="tag">Vegetarian / Vegan</span>
+                        <span class="tag">Cocktail Bar</span>
+                        <span class="tag">Innovative</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Bonvivant_Cocktail_Bistro_Booking(3).html" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> Book Table
+                        </a>
+                        <div class="btn-group-vertical">
+                            <a href="../柏林餐饮攻略/Bonvivant_Restaurant_攻略笔记1.html" class="btn btn-secondary"><i class="fas fa-book-open"></i> Guide</a>
+                            <a href="../柏林餐饮攻略/Bonvivant_Restaurant_攻略笔记2.html" class="btn btn-secondary"><i class="fas fa-utensils"></i> Menu</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- 4. Katz Orange -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Katz Orange">
+                    <div class="card-badge">Michelin Plate</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span>Mitte</span>
+                        <span>Historic</span>
+                    </div>
+                    <h3>Katz Orange</h3>
+                    <div class="tags-container">
+                        <span class="tag">Contemporary German</span>
+                        <span class="tag">Brewery Building</span>
+                        <span class="tag">Craft Cocktails</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Katz_Orange_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> Book Table
+                        </a>
+                        <div class="btn-group-vertical">
+                            <a href="../柏林餐饮攻略/Katz_Orange_Menu.html" class="btn btn-secondary"><i class="fas fa-utensils"></i> Menu</a>
+                            <a href="../柏林餐饮攻略/Katz_Orange_攻略笔记1.html" class="btn btn-secondary"><i class="fas fa-book-open"></i> Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Zur Letzten Instanz -->
+            <div class="card">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1579684947550-22e945225d9a?auto=format&fit=crop&q=80&w=800" alt="Zur Letzten Instanz">
+                    <div class="card-badge">Est. 1621</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span>East Berlin</span>
+                        <span>Traditional</span>
+                    </div>
+                    <h3>Zur Letzten Instanz</h3>
+                    <div class="tags-container">
+                        <span class="tag">Traditional German</span>
+                        <span class="tag">Historic Tavern</span>
+                        <span class="tag">Hearty</span>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Zur_Letzten_Instanz_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i> Book Table
+                        </a>
+                        <div class="btn-group-vertical">
+                            <a href="../柏林餐饮攻略/Zur_letzten_Instanz_Menu.html" class="btn btn-secondary"><i class="fas fa-utensils"></i> Menu</a>
+                            <a href="../柏林餐饮攻略/Zur_Letzten_Instanz_攻略笔记1.html" class="btn btn-secondary"><i class="fas fa-book-open"></i> Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
