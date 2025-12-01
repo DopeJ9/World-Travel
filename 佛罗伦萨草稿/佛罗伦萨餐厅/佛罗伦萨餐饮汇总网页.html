@@ -6,338 +6,529 @@
     <title>Florence Dining Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
+        :root {
+            --burgundy: #722F37;
+            --burgundy-light: #8B3A42;
+            --wine: #5C1A1B;
+            --gold: #D4A853;
+            --gold-light: #E5C07B;
+            --cream: #FDF8F3;
+            --warm-white: #FFFEF9;
+            --charcoal: #2C2C2C;
+            --soft-gray: #7A7A7A;
+            --olive: #6B7B3C;
+            --terracotta: #C45C26;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        .page-title {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #8B4513, #CD853F);
-            border-radius: 10px;
-            color: white;
-            font-size: 2.5em;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 50%, #DBC7B5 100%);
+            min-height: 100vh;
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
 
-        .restaurants-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .restaurant {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .restaurant:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            border-color: #8B4513;
-        }
-        .restaurant::before {
-            content: "";
-            position: absolute;
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #8B4513, #CD853F);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(114, 47, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 168, 83, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
-        .restaurant-number {
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            right: 15px;
-            background: #8B4513;
-            color: white;
-            width: 30px;
-            height: 30px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
             border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4em;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            display: block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            color: var(--soft-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Section Title */
+        .section-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        .restaurant h2 {
-            color: #2c3e50;
-            margin: 0 0 15px 0;
-            font-size: 1.4em;
-            padding-right: 40px;
-            font-family: 'Playfair Display', serif;
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
-        /* Restaurant Tags */
-        .restaurant-tags {
-            margin: 15px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+        .section-line {
+            flex: 1;
+            max-width: 150px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        .restaurant-tag {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 500;
-            color: white;
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2em;
+            font-weight: 600;
+            color: var(--charcoal);
             text-align: center;
+        }
+
+        .section-title i {
+            color: var(--burgundy);
+            margin-right: 12px;
+        }
+
+        /* Restaurant Grid */
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 35px;
+            margin-bottom: 80px;
+        }
+
+        /* Restaurant Card */
+        .restaurant-card {
+            background: var(--warm-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .restaurant-card:hover .card-image img {
+            transform: scale(1.08);
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+        }
+
+        .card-content {
+            padding: 28px;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7em;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 15px;
             line-height: 1.2;
         }
 
-        .restaurant-tag.cuisine {
-            background: linear-gradient(45deg, #8B4513, #654321);
-        }
-
-        .restaurant-tag.style {
-            background: linear-gradient(45deg, #CD853F, #A0522D);
-        }
-
-        .restaurant-tag.location {
-            background: linear-gradient(45deg, #3498db, #2980b9);
-        }
-
-        .restaurant-tag.budget {
-            background: linear-gradient(45deg, #27ae60, #229954);
-        }
-
-        .guide-buttons {
+        /* Tags */
+        .card-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-bottom: 20px;
         }
-        .guide-link {
-            display: inline-block;
-            background: linear-gradient(45deg, #8B4513, #CD853F);
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
+            font-size: 0.8em;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.3);
         }
-        .guide-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4);
-            text-decoration: none;
+
+        .tag-cuisine {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(114, 47, 55, 0.05));
+            color: var(--burgundy);
+            border: 1px solid rgba(114, 47, 55, 0.2);
+        }
+
+        .tag-cuisine:hover {
+            background: var(--burgundy);
             color: white;
         }
-        .guide-link i {
-            margin-right: 6px;
+
+        .tag-style {
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.15), rgba(212, 168, 83, 0.05));
+            color: #A07D28;
+            border: 1px solid rgba(212, 168, 83, 0.3);
         }
 
-        .restaurant-full {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border: 2px solid #8B4513;
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
-        }
-        .restaurant-full::before {
-            background: linear-gradient(to bottom, #8B4513, #CD853F);
-            width: 6px;
+        .tag-style:hover {
+            background: var(--gold);
+            color: white;
         }
 
+        .tag-location {
+            background: linear-gradient(135deg, rgba(107, 123, 60, 0.1), rgba(107, 123, 60, 0.05));
+            color: var(--olive);
+            border: 1px solid rgba(107, 123, 60, 0.2);
+        }
 
-        @media (max-width: 768px) {
+        .tag-location:hover {
+            background: var(--olive);
+            color: white;
+        }
+
+        /* Card Actions */
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 25px;
+            font-size: 0.88em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+            color: white;
+            box-shadow: 0 4px 15px rgba(114, 47, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(114, 47, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--charcoal);
+            box-shadow: 0 4px 15px rgba(212, 168, 83, 0.25);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 168, 83, 0.35);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--soft-gray);
+            font-size: 0.9em;
+        }
+
+        .footer-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
             .restaurants-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
-            .restaurant {
-                padding: 15px;
-            }
-            .page-title {
-                font-size: 2em;
-                padding: 20px 0;
-            }
-            .restaurant-tags {
-                margin: 10px 0;
-                gap: 4px;
-            }
-            .restaurant-tag {
-                font-size: 0.7em;
-                padding: 3px 8px;
+
+            .hero-title {
+                font-size: 2.8em;
             }
         }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero-title {
+                font-size: 2.2em;
+            }
+
+            .card-image {
+                height: 200px;
+            }
+
+            .card-content {
+                padding: 20px;
+            }
+
+            .card-tags {
+                gap: 6px;
+            }
+
+            .tag {
+                padding: 5px 10px;
+                font-size: 0.75em;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .restaurant-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .restaurant-card:nth-child(1) { animation-delay: 0.1s; }
+        .restaurant-card:nth-child(2) { animation-delay: 0.2s; }
+        .restaurant-card:nth-child(3) { animation-delay: 0.3s; }
+        .restaurant-card:nth-child(4) { animation-delay: 0.4s; }
+        .restaurant-card:nth-child(5) { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="page-title">
-            Florence Dining Guide
-        </div>
-        
-        <div class="restaurants-grid" id="restaurantsGrid">
-            <div class="restaurant">
-                <div class="restaurant-number">1</div>
-                <h2>Atto di Vito Mollica</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Italian</span>
-                    <span class="restaurant-tag cuisine">Modern Creative</span>
-                    <span class="restaurant-tag style">Fine Dining</span>
-                    <span class="restaurant-tag location">City Center</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Atto_di_Vito_Mollica_Booking.html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Atto_di_Vito_Mollica_Menu.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                </div>
-            </div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">
+                <span>Florence Dining</span>
+            </h1>
+            <p class="hero-subtitle">
+                Discover the finest Tuscan culinary experiences, from Michelin-starred elegance 
+                to authentic traditional trattorias in the heart of the Renaissance city.
+            </p>
+        </section>
 
-            <div class="restaurant">
-                <div class="restaurant-number">2</div>
-                <h2>Enoteca Pinchiorri</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Italian</span>
-                    <span class="restaurant-tag cuisine">Tuscan</span>
-                    <span class="restaurant-tag style">Michelin</span>
-                    <span class="restaurant-tag style">Historic</span>
-                    <span class="restaurant-tag location">Historic Center</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Enoteca_Pinchiorri_Booking.html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Enoteca_Pinchiorri_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Enoteca_Pinchiorri_攻略笔记2.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 2
-                    </a>
-                </div>
-            </div>
+        <!-- Section Header -->
+        <section class="section-header">
+            <div class="section-line"></div>
+            <h2 class="section-title">
+                <i class="fas fa-utensils"></i>
+                Featured Restaurants
+            </h2>
+            <div class="section-line"></div>
+        </section>
 
-            <div class="restaurant">
-                <div class="restaurant-number">3</div>
-                <h2>Principe del Mare</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Seafood</span>
-                    <span class="restaurant-tag cuisine">Mediterranean</span>
-                    <span class="restaurant-tag style">Traditional</span>
-                    <span class="restaurant-tag location">Oltrarno</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Principe del mare (1).html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Principe del mare note1 (1).html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide Notes
-                    </a>
-                </div>
-            </div>
-
-            <div class="restaurant">
-                <div class="restaurant-number">4</div>
-                <h2>Ristorante Santa Elisabetta</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Italian</span>
-                    <span class="restaurant-tag cuisine">Tuscan</span>
-                    <span class="restaurant-tag style">Fine Dining</span>
-                    <span class="restaurant-tag location">Historic Center</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Ristorante_Santa_Elisabetta_Booking.html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Ristorante_Santa_Elisabetta_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Santa_Elisabetta_攻略笔记1.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 2
-                    </a>
-                </div>
-            </div>
-
-            <div class="restaurant">
-                <div class="restaurant-number">5</div>
-                <h2>Saporium</h2>
-                <div class="restaurant-tags">
-                    <span class="restaurant-tag cuisine">Italian</span>
-                    <span class="restaurant-tag cuisine">Modern Creative</span>
-                    <span class="restaurant-tag style">Contemporary</span>
-                    <span class="restaurant-tag location">City Center</span>
-                </div>
-                <div class="guide-buttons">
-                    <a href="Saporium_Booking.html" class="guide-link">
-                        <i class="fas fa-calendar-alt"></i>Book Table
-                    </a>
-                    <a href="../佛罗伦萨餐饮攻略合集/Saporium_Menu.html" class="guide-link">
-                        <i class="fas fa-map"></i>Guide 1
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="page-title" style="margin-top: 40px; font-size: 1.8em; background: linear-gradient(45deg, #27ae60, #2ecc71);">
-            Featured Florence Dining Experiences
-        </div>
-
+        <!-- Restaurants Grid -->
         <div class="restaurants-grid">
-            <div class="restaurant restaurant-full">
-                <div class="restaurant-number">⭐</div>
-                <h2>Culinary Journey in the Renaissance City</h2>
-                <div class="restaurant-tags"></div>
-                <div style="color: #555; line-height: 1.7; font-size: 0.95em; margin-bottom: 15px;">
-                    Experience the authentic Tuscan culinary culture in Florence, the birthplace of the Renaissance. From traditional Florentine steaks to exquisite modern creative dishes, from historic family restaurants to Michelin-starred establishments, this ancient and elegant city offers diverse choices for every food lover. Enjoy fine wines and delicacies along the Arno River, savor Italian romance in Renaissance buildings, and make your Florence journey an unforgettable culinary exploration.
+            <!-- Atto di Vito Mollica -->
+            <article class="restaurant-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E9%A4%90%E5%8E%85/ATTO%20DI%20VITO%20MOLLICA.png?raw=true" alt="Atto di Vito Mollica">
                 </div>
-                <div class="guide-buttons">
-                    <a href="#" class="guide-link">
-                        <i class="fas fa-crown"></i>Fine Dining
-                    </a>
-                    <a href="#" class="guide-link">
-                        <i class="fas fa-utensils"></i>Tuscan Cuisine
-                    </a>
-                    <a href="#" class="guide-link">
-                        <i class="fas fa-map-marker-alt"></i>Historic Center
-                    </a>
+                <div class="card-content">
+                    <h3 class="card-title">Atto di Vito Mollica</h3>
+                    <div class="card-tags">
+                        <span class="tag tag-cuisine"><i class="fas fa-leaf"></i>Italian</span>
+                        <span class="tag tag-cuisine"><i class="fas fa-magic"></i>Modern Creative</span>
+                        <span class="tag tag-style"><i class="fas fa-star"></i>Fine Dining</span>
+                        <span class="tag tag-location"><i class="fas fa-map-pin"></i>City Center</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Atto_di_Vito_Mollica_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i>Book Table
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Atto_di_Vito_Mollica_Menu.html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide 1
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </article>
 
-    <script>
-        // Page load animation
-        window.addEventListener('load', function() {
-            const restaurants = document.querySelectorAll('.restaurant');
-            restaurants.forEach((restaurant, index) => {
-                restaurant.style.opacity = '0';
-                restaurant.style.transform = 'translateY(30px)';
-                setTimeout(() => {
-                    restaurant.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    restaurant.style.opacity = '1';
-                    restaurant.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
-        });
-    </script>
+            <!-- Enoteca Pinchiorri -->
+            <article class="restaurant-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E9%A4%90%E5%8E%85/ENOTECA%20PINCHIORRI.png?raw=true" alt="Enoteca Pinchiorri">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Enoteca Pinchiorri</h3>
+                    <div class="card-tags">
+                        <span class="tag tag-cuisine"><i class="fas fa-leaf"></i>Italian</span>
+                        <span class="tag tag-cuisine"><i class="fas fa-wine-bottle"></i>Tuscan</span>
+                        <span class="tag tag-style"><i class="fas fa-award"></i>Michelin</span>
+                        <span class="tag tag-style"><i class="fas fa-landmark"></i>Historic</span>
+                        <span class="tag tag-location"><i class="fas fa-map-pin"></i>Historic Center</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Enoteca_Pinchiorri_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i>Book Table
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Enoteca_Pinchiorri_攻略笔记1.html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide 1
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Enoteca_Pinchiorri_攻略笔记2.html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide 2
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Principe del Mare -->
+            <article class="restaurant-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/PRINCIPE%20DEL%20MARE.png?raw=true" alt="Principe del Mare">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Principe del Mare</h3>
+                    <div class="card-tags">
+                        <span class="tag tag-cuisine"><i class="fas fa-fish"></i>Seafood</span>
+                        <span class="tag tag-cuisine"><i class="fas fa-sun"></i>Mediterranean</span>
+                        <span class="tag tag-style"><i class="fas fa-home"></i>Traditional</span>
+                        <span class="tag tag-location"><i class="fas fa-map-pin"></i>Oltrarno</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Principe del mare (1).html" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i>Book Table
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Principe del mare note1 (1).html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide Notes
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Ristorante Santa Elisabetta -->
+            <article class="restaurant-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E9%A4%90%E5%8E%85/RISTORANTE%20SANTA%20ELISABETTA.png?raw=true" alt="Ristorante Santa Elisabetta">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ristorante Santa Elisabetta</h3>
+                    <div class="card-tags">
+                        <span class="tag tag-cuisine"><i class="fas fa-leaf"></i>Italian</span>
+                        <span class="tag tag-cuisine"><i class="fas fa-wine-bottle"></i>Tuscan</span>
+                        <span class="tag tag-style"><i class="fas fa-star"></i>Fine Dining</span>
+                        <span class="tag tag-location"><i class="fas fa-map-pin"></i>Historic Center</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Ristorante_Santa_Elisabetta_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i>Book Table
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Ristorante_Santa_Elisabetta_攻略笔记1.html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide 1
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Santa_Elisabetta_攻略笔记1.html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide 2
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Saporium -->
+            <article class="restaurant-card">
+                <div class="card-image">
+                    <img src="https://github.com/DopeJ9/World-Travel/blob/main/%E4%BD%9B%E7%BD%97%E4%BC%A6%E8%90%A8/%E9%A4%90%E5%8E%85/Saporium.png?raw=true" alt="Saporium">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Saporium</h3>
+                    <div class="card-tags">
+                        <span class="tag tag-cuisine"><i class="fas fa-leaf"></i>Italian</span>
+                        <span class="tag tag-cuisine"><i class="fas fa-magic"></i>Modern Creative</span>
+                        <span class="tag tag-style"><i class="fas fa-gem"></i>Contemporary</span>
+                        <span class="tag tag-location"><i class="fas fa-map-pin"></i>City Center</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="Saporium_Booking.html" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i>Book Table
+                        </a>
+                        <a href="../佛罗伦萨餐饮攻略合集/Saporium_Menu.html" class="btn btn-secondary">
+                            <i class="fas fa-book-open"></i>Guide 1
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-brand">Florence Dining Guide</div>
+            <p>Savor the Flavors of Tuscany</p>
+        </footer>
+    </div>
 </body>
 </html>
