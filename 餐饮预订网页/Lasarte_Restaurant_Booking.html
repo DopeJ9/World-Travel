@@ -657,8 +657,8 @@
     </div>
 
     <script>
-        let currentMonth = 11; // December (0-based)
-        let currentYear = 2024;
+        let currentMonth = 7; // August (0-based)
+        let currentYear = 2026;
         let selectedDateValue = null;
         let selectedTimeValue = null;
         
@@ -740,14 +740,14 @@
             const prevBtn = document.getElementById('prevMonth');
             const nextBtn = document.getElementById('nextMonth');
             
-            prevBtn.disabled = (currentMonth === 11); // Can't go before December
-            nextBtn.disabled = (currentMonth === 11); // Can't go after December
+            prevBtn.disabled = (currentMonth === 7); // Can't go before August
+            nextBtn.disabled = (currentMonth === 7); // Can't go after August
         }
 
         function changeMonth(direction) {
             const newMonth = currentMonth + direction;
             
-            if (newMonth >= 11 && newMonth <= 11) { // Only December
+            if (newMonth >= 7 && newMonth <= 7) { // Only August
                 currentMonth = newMonth;
                 generateCalendar();
                 // Clear selection when month changes
@@ -900,4 +900,3 @@
     </script>
 </body>
 </html>
-
