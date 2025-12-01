@@ -3,453 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berlin Must-Visit Attractions Guide</title>
+    <title>Berlin Explorer | Attractions & Guides</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+        :root {
+            /* Berlin Colors */
+            --color-cathedral: #e74c3c;
+            --color-tower: #f39c12;
+            --color-history: #27ae60;
+            --color-museum: #3498db;
+            --color-nature: #9b59b6;
+            --color-bunker: #34495e;
+            
+            --bg-body: #fdfdfd;
+            --bg-card: #ffffff;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-light: #f1f2f6;
         }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0 0 1rem;
+            color: #2d3436;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 4rem 2rem;
         }
-        .page-title {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            border-radius: 10px;
-            color: white;
-            font-size: 2.5em;
-            font-weight: 700;
+
+        /* Section Styling */
+        .section-header {
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title {
             font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            padding-left: 1rem;
         }
-        .attractions-grid {
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: #2d3436;
+            border-radius: 2px;
+        }
+
+        /* Grid Layout */
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
         }
-        .attraction {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* Card Component */
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 0; /* Changed from 2rem to 0 for full-bleed images */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
             position: relative;
             overflow: hidden;
         }
-        .attraction:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
-        .attraction::before {
-            content: "";
+
+        /* Card Image */
+        .card-img-top {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Card Content Wrapper */
+        .card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Dynamic Color Classes */
+        .card.cathedral { --accent: var(--color-cathedral); }
+        .card.tower { --accent: var(--color-tower); }
+        .card.history { --accent: var(--color-history); }
+        .card.museum { --accent: var(--color-museum); }
+        .card.nature { --accent: var(--color-nature); }
+        .card.bunker { --accent: var(--color-bunker); }
+
+        .card::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
-            height: 100%;
+            width: 100%;
+            height: 6px;
+            background: var(--accent);
+            z-index: 2;
         }
-        /* Cathedral - Berlin Red */
-        .attraction.cathedral::before {
-            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
         }
-        .attraction.cathedral:hover {
-            border-color: #e74c3c;
-        }
-        .attraction.cathedral .attraction-number {
-            background: #e74c3c;
-        }
-        .attraction.cathedral .attraction-type i {
-            color: #e74c3c;
-        }
-        .attraction.cathedral .booking-link {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
-        }
-        .attraction.cathedral .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
-        }
-        
-        /* Tower - Berlin Gold */
-        .attraction.tower::before {
-            background: linear-gradient(to bottom, #f39c12, #e67e22);
-        }
-        .attraction.tower:hover {
-            border-color: #f39c12;
-        }
-        .attraction.tower .attraction-number {
-            background: #f39c12;
-        }
-        .attraction.tower .attraction-type i {
-            color: #f39c12;
-        }
-        .attraction.tower .booking-link {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
-        }
-        .attraction.tower .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
-        }
-        
-        /* Museum - Berlin Blue */
-        .attraction.museum::before {
-            background: linear-gradient(to bottom, #3498db, #2980b9);
-        }
-        .attraction.museum:hover {
-            border-color: #3498db;
-        }
-        .attraction.museum .attraction-number {
-            background: #3498db;
-        }
-        .attraction.museum .attraction-type i {
-            color: #3498db;
-        }
-        .attraction.museum .booking-link {
-            background: linear-gradient(45deg, #3498db, #2980b9);
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-        }
-        .attraction.museum .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
-        }
-        
-        /* History Museum - Berlin Green */
-        .attraction.history::before {
-            background: linear-gradient(to bottom, #27ae60, #229954);
-        }
-        .attraction.history:hover {
-            border-color: #27ae60;
-        }
-        .attraction.history .attraction-number {
-            background: #27ae60;
-        }
-        .attraction.history .attraction-type i {
-            color: #27ae60;
-        }
-        .attraction.history .booking-link {
-            background: linear-gradient(45deg, #27ae60, #229954);
-            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
-        }
-        .attraction.history .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
-        }
-        
-        /* Nature Museum - Berlin Purple */
-        .attraction.nature::before {
-            background: linear-gradient(to bottom, #9b59b6, #8e44ad);
-        }
-        .attraction.nature:hover {
-            border-color: #9b59b6;
-        }
-        .attraction.nature .attraction-number {
-            background: #9b59b6;
-        }
-        .attraction.nature .attraction-type i {
-            color: #9b59b6;
-        }
-        .attraction.nature .booking-link {
-            background: linear-gradient(45deg, #9b59b6, #8e44ad);
-            box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
-        }
-        .attraction.nature .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
-        }
-        
-        /* Bunker - Berlin Dark */
-        .attraction.bunker::before {
-            background: linear-gradient(to bottom, #34495e, #2c3e50);
-        }
-        .attraction.bunker:hover {
-            border-color: #34495e;
-        }
-        .attraction.bunker .attraction-number {
-            background: #34495e;
-        }
-        .attraction.bunker .attraction-type i {
-            color: #34495e;
-        }
-        .attraction.bunker .booking-link {
-            background: linear-gradient(45deg, #34495e, #2c3e50);
-            box-shadow: 0 2px 8px rgba(52, 73, 94, 0.3);
-        }
-        .attraction.bunker .booking-link:hover {
-            box-shadow: 0 4px 12px rgba(52, 73, 94, 0.4);
-        }
-        
-        .attraction-number {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+
+        .icon-wrap {
+            width: 56px;
+            height: 56px;
+            background: #f8f9fa;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: background 0.3s;
         }
-        .attraction h2 {
-            color: #2c3e50;
-            margin: 0 0 10px 0;
-            font-size: 1.4em;
-            padding-right: 40px;
+
+        .card:hover .icon-wrap {
+            background: var(--accent);
+            color: white;
+        }
+
+        .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #f1f2f6;
+            line-height: 1;
             font-family: 'Playfair Display', serif;
         }
-        .attraction-type {
-            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-            color: #666;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            display: inline-block;
-            margin-bottom: 15px;
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+            color: var(--text-main);
         }
-        .attraction-type i {
-            margin-right: 8px;
-            font-size: 1.1em;
+
+        .tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
         }
-        .attraction-description {
-            color: #555;
-            line-height: 1.7;
-            font-size: 0.95em;
-            margin-bottom: 15px;
+
+        .description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
         }
-        .booking-link {
-            display: inline-block;
-            color: white;
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 12px;
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
             font-weight: 500;
-            transition: all 0.3s ease;
-            margin-right: 8px;
-            margin-bottom: 5px;
+            transition: all 0.2s;
+            gap: 8px;
         }
-        .booking-link:hover {
-            transform: translateY(-2px);
-            text-decoration: none;
+
+        .btn-primary {
+            background: var(--accent);
             color: white;
+            width: auto; /* Changed from 100% */
+            align-self: flex-start; /* Aligns button to the left */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .booking-link i {
-            margin-right: 6px;
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
-        .attraction-full {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
-            border: 2px solid #f39c12;
-            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
-        .attraction-full::before {
-            background: linear-gradient(to bottom, #f39c12, #e67e22, #d63031);
-            width: 6px;
+
+        .btn-outline {
+            border: 2px solid #eaeaea;
+            color: var(--text-main);
+            background: white;
         }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #fffcfc;
+        }
+
         @media (max-width: 768px) {
-            .attractions-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .attraction {
-                padding: 15px;
-            }
-            .page-title {
-                font-size: 2em;
-                padding: 20px 0;
-            }
+            .hero-title { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
 <body>
+
+    <header>
+        <div class="hero-title">Berlin Explorer</div>
+        <div class="hero-subtitle">Discover the history, culture, and architecture of Germany's capital with our curated selection of top attractions.</div>
+    </header>
+
     <div class="container">
-        <div class="page-title">
-            Berlin Must-Visit Attractions & Booking Guide
-        </div>
         
-        <div class="attractions-grid">
-            <div class="attraction cathedral">
-                <div class="attraction-number">1</div>
-                <h2>Berliner Dom</h2>
-                <div class="attraction-type"><i class="fas fa-church"></i>Baroque Cathedral</div>
-                <div class="attraction-description">
-                    Berlin's most magnificent Baroque-style cathedral, located on Museum Island. Features a stunning dome and exquisite interior decoration, with panoramic city views from the top. The cathedral houses the Hohenzollern dynasty crypts and stands as one of Germany's most important religious buildings.
+        <!-- Booking Section -->
+        <div class="section-header">
+            <h2 class="section-title">Must-Visit Attractions & Booking</h2>
+        </div>
+
+        <div class="grid">
+            <!-- 1. Berliner Dom -->
+            <div class="card cathedral">
+                <img src="https://github.com/DopeJ9/World-Travel/blob/main/images/%E6%9F%8F%E6%9E%97/%E6%9F%8F%E6%9E%97%E6%99%AF%E7%82%B9/berlin_cathedral:booking.png?raw=true" class="card-img-top" alt="Berliner Dom">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="icon-wrap"><i class="fas fa-church"></i></div>
+                        <div class="number">01</div>
+                    </div>
+                    <h3>Berliner Dom</h3>
+                    <span class="tag">Baroque Cathedral</span>
+                    <p class="description">Berlin's most magnificent Baroque-style cathedral on Museum Island. Enjoy the stunning dome and panoramic city views.</p>
+                    <a href="柏林网页/柏林景点预订/Berliner Dom预订网页(1).html" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i> Book Tickets
+                    </a>
                 </div>
-                <a href="柏林网页/柏林景点预订/Berliner Dom预订网页(1).html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
             </div>
 
-            <div class="attraction tower">
-                <div class="attraction-number">2</div>
-                <h2>Berliner Fernsehturm (TV Tower)</h2>
-                <div class="attraction-type"><i class="fas fa-tower-broadcast"></i>Observation Tower</div>
-                <div class="attraction-description">
-                    Berlin's tallest building and iconic landmark, standing at 368 meters. The observation deck at 203 meters offers 360-degree panoramic views of Berlin. The tower also features a revolving restaurant where you can dine while enjoying stunning city views, making it a perfect spot for photography.
+            <!-- 2. TV Tower -->
+            <div class="card tower">
+                <img src="https://github.com/DopeJ9/World-Travel/blob/main/images/%E6%9F%8F%E6%9E%97/%E6%9F%8F%E6%9E%97%E6%99%AF%E7%82%B9/Berliner%20Fernsehturm:booking.png?raw=true" class="card-img-top" alt="Berliner Fernsehturm">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="icon-wrap"><i class="fas fa-tower-broadcast"></i></div>
+                        <div class="number">02</div>
+                    </div>
+                    <h3>Fernsehturm</h3>
+                    <span class="tag">TV Tower</span>
+                    <p class="description">Berlin's iconic landmark standing at 368m. The observation deck offers 360-degree panoramic views of the city.</p>
+                    <a href="柏林网页/柏林景点预订/Berliner Fernsehturm预订网页.html" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i> Book Tickets
+                    </a>
                 </div>
-                <a href="柏林网页/柏林景点预订/Berliner Fernsehturm预订网页.html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
             </div>
 
-            <div class="attraction history">
-                <div class="attraction-number">3</div>
-                <h2>DDR Museum</h2>
-                <div class="attraction-type"><i class="fas fa-history"></i>Interactive History Museum</div>
-                <div class="attraction-description">
-                    A unique interactive museum vividly showcasing daily life in East Germany. Visitors can experience an East German apartment, drive a Trabant car simulator, and learn about the social system, culture, and lifestyle of the DDR era. An essential visit for understanding Berlin's history.
+            <!-- 3. DDR Museum -->
+            <div class="card history">
+                <img src="https://github.com/DopeJ9/World-Travel/blob/main/images/%E6%9F%8F%E6%9E%97/%E6%9F%8F%E6%9E%97%E6%99%AF%E7%82%B9/DDR%20Museum:booking.png?raw=true" class="card-img-top" alt="DDR Museum">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="icon-wrap"><i class="fas fa-history"></i></div>
+                        <div class="number">03</div>
+                    </div>
+                    <h3>DDR Museum</h3>
+                    <span class="tag">Interactive History</span>
+                    <p class="description">Experience daily life in East Germany through interactive exhibits, including a Trabant simulator and apartment reconstruction.</p>
+                    <a href="柏林网页/柏林景点预订/DDR Museum预订网页(3).html" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i> Book Tickets
+                    </a>
                 </div>
-                <a href="柏林网页/柏林景点预订/DDR Museum预订网页(3).html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
             </div>
 
-            <div class="attraction museum">
-                <div class="attraction-number">4</div>
-                <h2>Neues Museum</h2>
-                <div class="attraction-type"><i class="fas fa-landmark"></i>Archaeological Museum</div>
-                <div class="attraction-description">
-                    One of the most important museums on Museum Island, housing an extensive collection of Ancient Egyptian artifacts and prehistoric archaeological treasures. The star exhibit is the 3,300-year-old bust of Queen Nefertiti. The museum building itself is a masterpiece, perfectly blending historical and modern design.
+            <!-- 4. Neues Museum -->
+            <div class="card museum">
+                <img src="https://github.com/DopeJ9/World-Travel/blob/main/images/%E6%9F%8F%E6%9E%97/%E6%9F%8F%E6%9E%97%E6%99%AF%E7%82%B9/Neues%20Museum:booking.png?raw=true" class="card-img-top" alt="Neues Museum">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="icon-wrap"><i class="fas fa-landmark"></i></div>
+                        <div class="number">04</div>
+                    </div>
+                    <h3>Neues Museum</h3>
+                    <span class="tag">Archaeology</span>
+                    <p class="description">Home to the bust of Queen Nefertiti and extensive collections of Ancient Egyptian and prehistoric artifacts.</p>
+                    <a href="柏林网页/柏林景点预订/Neues Museum预约订票网页(3).html" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i> Book Tickets
+                    </a>
                 </div>
-                <a href="柏林网页/柏林景点预订/Neues Museum预约订票网页(3).html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
             </div>
 
-            <div class="attraction nature">
-                <div class="attraction-number">5</div>
-                <h2>Museum für Naturkunde</h2>
-                <div class="attraction-type"><i class="fas fa-dragon"></i>Natural History Museum</div>
-                <div class="attraction-description">
-                    One of Europe's largest natural history museums, housing over 30 million specimens. The museum's crown jewel is the world's tallest mounted dinosaur skeleton—a Brachiosaurus standing at 13.27 meters. Features exquisite animal specimens, mineral exhibits, and biodiversity displays, perfect for the whole family.
+            <!-- 5. Nature Museum -->
+            <div class="card nature">
+                <img src="https://github.com/DopeJ9/World-Travel/blob/main/images/%E6%9F%8F%E6%9E%97/%E6%9F%8F%E6%9E%97%E6%99%AF%E7%82%B9/Museum%20fu%CC%88r%20Naturkunde:booking.png?raw=true" class="card-img-top" alt="Museum für Naturkunde">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="icon-wrap"><i class="fas fa-dragon"></i></div>
+                        <div class="number">05</div>
+                    </div>
+                    <h3>Museum für Naturkunde</h3>
+                    <span class="tag">Natural History</span>
+                    <p class="description">Features the world's tallest mounted dinosaur skeleton and over 30 million specimens of minerals and animals.</p>
+                    <a href="柏林网页/柏林景点预订/Museum für Naturkunde预订网页(1).html" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i> Book Tickets
+                    </a>
                 </div>
-                <a href="柏林网页/柏林景点预订/柏林自然博物馆预订网页.html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
             </div>
 
-            <div class="attraction bunker">
-                <div class="attraction-number">6</div>
-                <h2>Berlin Story Bunker</h2>
-                <div class="attraction-type"><i class="fas fa-shield-alt"></i>Historical Exhibition</div>
-                <div class="attraction-description">
-                    A museum housed in an authentic WWII air-raid shelter, featuring multimedia exhibitions chronicling Berlin's complete history from its founding to modern times. Highlights include the Nazi era, WWII, and Cold War periods. The well-preserved bunker offers visitors an immersive historical experience.
+            <!-- 6. Berlin Story Bunker -->
+            <div class="card bunker">
+                <img src="https://github.com/DopeJ9/World-Travel/blob/main/images/%E6%9F%8F%E6%9E%97/%E6%9F%8F%E6%9E%97%E6%99%AF%E7%82%B9/Berlin%20Story%20Bunker:Booking.png?raw=true" class="card-img-top" alt="Berlin Story Bunker">
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
+                        <div class="number">06</div>
+                    </div>
+                    <h3>Berlin Story Bunker</h3>
+                    <span class="tag">Historical Exhibition</span>
+                    <p class="description">Located in a WWII air-raid shelter, documenting 800 years of Berlin history with a focus on the Nazi era.</p>
+                    <a href="柏林网页/柏林景点预订/Berlin Story Bunker预订网页.html" class="btn btn-primary">
+                        <i class="fas fa-ticket-alt"></i> Book Tickets
+                    </a>
                 </div>
-                <a href="柏林网页/柏林景点预订/Berlin Story Bunker预订网页.html" class="booking-link">
-                    <i class="fas fa-ticket-alt"></i>Book Tickets
-                </a>
             </div>
         </div>
 
-        <div class="page-title" style="margin-top: 40px; font-size: 2em; background: linear-gradient(45deg, #27ae60, #229954);">
-            Attraction Guides & Tips
+
+        <!-- Guides Section -->
+        <div class="section-header">
+            <h2 class="section-title">Attraction Guides & Tips</h2>
         </div>
 
-        <div class="attractions-grid">
-            <div class="attraction cathedral">
-                <div class="attraction-number">G1</div>
-                <h2>Berliner Dom Travel Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Comprehensive visitor guide to Berliner Dom, including dome climbing tips, best photography spots, Hohenzollern crypt highlights, and advice for avoiding crowds.
+        <div class="grid">
+            <!-- G1. Berliner Dom Guides -->
+            <div class="card cathedral">
+                <div class="card-body">
+                    <h3>Berliner Dom Guides</h3>
+                    <span class="tag"><i class="fas fa-map-marked-alt"></i> Travel Notes</span>
+                    <p class="description">Dome climbing tips, photography spots, and crypt highlights.</p>
+                    <div class="btn-group">
+                        <a href="柏林网页/柏林景点攻略笔记/柏林大教堂攻略网页.html" class="btn btn-outline">Overview</a>
+                        <a href="柏林网页/柏林景点攻略笔记/柏林大教堂攻略深度游览版.html" class="btn btn-outline">Deep Dive</a>
+                    </div>
                 </div>
-                <a href="柏林网页/柏林景点攻略笔记/柏林大教堂攻略网页.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="柏林网页/柏林景点攻略笔记/柏林大教堂攻略深度游览版.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
             </div>
 
-            <div class="attraction tower">
-                <div class="attraction-number">G2</div>
-                <h2>TV Tower Travel Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Complete guide to visiting the TV Tower, including best visiting times, revolving restaurant booking tips, observation deck photography advice, and nearby attraction recommendations.
+            <!-- G2. TV Tower Guides -->
+            <div class="card tower">
+                <div class="card-body">
+                    <h3>TV Tower Guides</h3>
+                    <span class="tag"><i class="fas fa-map-marked-alt"></i> Travel Notes</span>
+                    <p class="description">Best visiting times, restaurant tips, and observation deck guide.</p>
+                    <div class="btn-group">
+                        <a href="柏林网页/柏林景点攻略笔记/柏林电视塔旅游攻略_速览版.html" class="btn btn-outline">Quick Look</a>
+                        <a href="柏林网页/柏林景点攻略笔记/柏林电视塔旅游攻略_深度版.html" class="btn btn-outline">Deep Dive</a>
+                    </div>
                 </div>
-                <a href="柏林网页/柏林景点攻略笔记/柏林电视塔旅游攻略_速览版.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="柏林网页/柏林景点攻略笔记/柏林电视塔旅游攻略_深度版.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
             </div>
 
-            <div class="attraction history">
-                <div class="attraction-number">G3</div>
-                <h2>DDR Museum Travel Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    In-depth exploration of the DDR Museum's interactive exhibits, including must-see displays, Trabant car simulator experience guide, East German apartment tour highlights, and historical context.
+            <!-- G3. DDR Museum Guides -->
+            <div class="card history">
+                <div class="card-body">
+                    <h3>DDR Museum Guides</h3>
+                    <span class="tag"><i class="fas fa-map-marked-alt"></i> Travel Notes</span>
+                    <p class="description">Must-see exhibits and understanding East German history context.</p>
+                    <div class="btn-group">
+                        <a href="柏林网页/柏林景点攻略笔记/DDR Museum旅游攻略_速览版.html" class="btn btn-outline">Quick Look</a>
+                        <a href="柏林网页/柏林景点攻略笔记/DDR Museum旅游攻略_深度版.html" class="btn btn-outline">Deep Dive</a>
+                    </div>
                 </div>
-                <a href="柏林网页/柏林景点攻略笔记/DDR Museum旅游攻略_速览版.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="柏林网页/柏林景点攻略笔记/DDR Museum旅游攻略_深度版.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
             </div>
 
-            <div class="attraction museum">
-                <div class="attraction-number">G4</div>
-                <h2>Neues Museum Travel Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Essential guide to exploring the Neues Museum, featuring tips for viewing the Nefertiti bust, Ancient Egyptian artifacts appreciation guide, prehistoric exhibit highlights, and Museum Island combination ticket recommendations.
+            <!-- G4. Neues Museum Guides -->
+            <div class="card museum">
+                <div class="card-body">
+                    <h3>Neues Museum Guides</h3>
+                    <span class="tag"><i class="fas fa-map-marked-alt"></i> Travel Notes</span>
+                    <p class="description">Tips for viewing Nefertiti and Egyptian artifacts collection.</p>
+                    <div class="btn-group">
+                        <a href="柏林网页/柏林景点攻略笔记/柏林新博物馆攻略网页1.html" class="btn btn-outline">Guide 1</a>
+                        <a href="柏林网页/柏林景点攻略笔记/柏林新博物馆攻略网页2.html" class="btn btn-outline">Guide 2</a>
+                    </div>
                 </div>
-                <a href="柏林网页/柏林景点攻略笔记/柏林新博物馆攻略网页1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="柏林网页/柏林景点攻略笔记/柏林新博物馆攻略网页2.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
             </div>
 
-            <div class="attraction nature">
-                <div class="attraction-number">G5</div>
-                <h2>Natural History Museum Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    Comprehensive guide to visiting the Natural History Museum, including best viewing angles for the Brachiosaurus skeleton, dinosaur hall tour routes, mineral and gem exhibit recommendations, and family-friendly interactive area highlights.
+            <!-- G5. Nature Museum Guides -->
+            <div class="card nature">
+                <div class="card-body">
+                    <h3>Nature Museum Guides</h3>
+                    <span class="tag"><i class="fas fa-map-marked-alt"></i> Travel Notes</span>
+                    <p class="description">Dinosaur hall tour routes and mineral collection highlights.</p>
+                    <div class="btn-group">
+                        <a href="柏林网页/柏林景点攻略笔记/柏林自然博物馆攻略笔记1.html" class="btn btn-outline">Guide 1</a>
+                        <a href="柏林网页/柏林景点攻略笔记/柏林自然博物馆攻略笔记2.html" class="btn btn-outline">Guide 2</a>
+                    </div>
                 </div>
-                <a href="柏林网页/柏林景点攻略笔记/柏林自然博物馆攻略笔记1.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="柏林网页/柏林景点攻略笔记/柏林自然博物馆攻略笔记2.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
             </div>
 
-            <div class="attraction bunker">
-                <div class="attraction-number">G6</div>
-                <h2>Berlin Story Bunker Guide</h2>
-                <div class="attraction-type"><i class="fas fa-map"></i>Travel Guide</div>
-                <div class="attraction-description">
-                    In-depth visitor guide to the Berlin Story Bunker, explaining key exhibits from the Nazi era, authentic WWII air-raid shelter features, multimedia display viewing tips, and proper understanding of sensitive historical topics.
+            <!-- G6. Bunker Guides -->
+            <div class="card bunker">
+                <div class="card-body">
+                    <h3>Bunker Guides</h3>
+                    <span class="tag"><i class="fas fa-map-marked-alt"></i> Travel Notes</span>
+                    <p class="description">Understanding the shelter's history and key WWII exhibits.</p>
+                    <div class="btn-group">
+                        <a href="柏林网页/柏林景点攻略笔记/柏林地堡攻略网页.html" class="btn btn-outline">Guide 1</a>
+                        <a href="柏林网页/柏林景点攻略笔记/柏林地堡旅游攻略_深度版.html" class="btn btn-outline">Guide 2</a>
+                    </div>
                 </div>
-                <a href="柏林网页/柏林景点攻略笔记/柏林地堡攻略网页.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 1
-                </a>
-                <a href="柏林网页/柏林景点攻略笔记/柏林地堡旅游攻略_深度版.html" class="booking-link">
-                    <i class="fas fa-map"></i>Guide 2
-                </a>
             </div>
         </div>
+
     </div>
 </body>
 </html>
-
